@@ -1,0 +1,16 @@
+{
+  "instructions": [
+    {
+      "title": "Give your Saving Pot a name. Select a saving amount",
+      "media": "http://www.image-1"
+    },
+    {
+      "title": "Select participants from your contact list.",
+      "media": "http://www.image-2"
+    },
+    {
+      "title": "Your plan starts when the first participant pays.",
+      "media": "http://www.image-3"
+    }
+  ]
+}
