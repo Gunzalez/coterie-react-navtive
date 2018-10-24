@@ -57,19 +57,20 @@ class Introduction extends Component {
                 </View>
 
 
-
                 <View style={styles.content}>
-
-                    <View style={styles.dots}>
-                        <Text>...</Text>
+                    <View style={styles.top}>
+                        <View style={styles.dots}>
+                            {instructions.map((_, i) => (
+                                <View style={styles.dot} key={i}></View>
+                            ))}
+                        </View>
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={this.handlePress}>
-                        <Text style={styles.text}>SKIP</Text>
+                    <TouchableOpacity style={styles.bottom} onPress={this.handlePress}>
+                        <Text style={styles.button}>SKIP</Text>
                     </TouchableOpacity>
 
                 </View>
-
             </View>
         );
     }
@@ -88,15 +89,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     dots: {
+        flexDirection: 'row'
+    },
+    dot: {
+        marginHorizontal: 5,
+        height: 12,
+        width: 12,
+        borderRadius: 6,
+        backgroundColor: '#cccccc'
+    },
+    top: {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
-    button: {
+    bottom: {
         color: '#147efb',
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
-    text: {
+    button: {
         paddingBottom: 60
     }
 });
