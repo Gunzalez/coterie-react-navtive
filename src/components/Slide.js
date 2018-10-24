@@ -6,7 +6,7 @@ import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const height = width * 1.4;
+const height = width * 1.6;
 
 class Carousel extends Component {
 
@@ -24,7 +24,6 @@ class Carousel extends Component {
                     <Text style={styles.title}>{title}</Text>
                 </View>
                 <Text  style={styles.image}>Image ref: {media}</Text>
-
             </View>
         );
     }
@@ -34,8 +33,7 @@ const styles = StyleSheet.create({
     slide: {
         width,
         height,
-        paddingTop: 30,
-        backgroundColor: '#000'
+        paddingTop: 30
     },
     image: {
         height: 200,
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
-        color: '#fff',
+        color: '#444',
         textAlign: 'center',
         paddingHorizontal: 30
     },

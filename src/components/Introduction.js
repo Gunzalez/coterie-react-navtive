@@ -42,19 +42,34 @@ class Introduction extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView
-                    horizontal
-                    pagingEnabled
-                    showsHorizontalScrollIndicator={false}>
-                    {instructions.map((item, i) => (
-                        <Slide item={item} key={i} />
-                    ))}
-                </ScrollView>
-                <View style={styles.skip}>
-                    <TouchableOpacity onPress={this.handlePress}>
-                        <Text style={styles.button}>SKIP</Text>
-                    </TouchableOpacity>
+
+                <View style={styles.carousel}>
+
+                    <ScrollView
+                        horizontal
+                        pagingEnabled
+                        showsHorizontalScrollIndicator={false}>
+                        {instructions.map((item, i) => (
+                            <Slide item={item} key={i} />
+                        ))}
+                    </ScrollView>
+
                 </View>
+
+
+
+                <View style={styles.content}>
+
+                    <View style={styles.dots}>
+                        <Text>...</Text>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={this.handlePress}>
+                        <Text style={styles.text}>SKIP</Text>
+                    </TouchableOpacity>
+
+                </View>
+
             </View>
         );
     }
@@ -62,17 +77,27 @@ class Introduction extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
     },
-    skip: {
-        backgroundColor: 'red'
-
+    carousel: {
+        flex: 5
+    },
+    content: {
+        flex: 2,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    dots: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     button: {
-        textAlign: 'center',
-        fontSize: 20,
-        color: '#147efb'
-
+        color: '#147efb',
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    text: {
+        paddingBottom: 60
     }
 });
 
