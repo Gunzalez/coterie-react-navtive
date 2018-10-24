@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
-
-import Carousel from './Carousel';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 const height = width * 1.4;
+
+import Slide from './Slide';
 
 const instructions = [
     {
@@ -42,7 +42,14 @@ class Introduction extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Carousel style={styles.carousel} list={instructions} />
+                <ScrollView
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={false}>
+                    {instructions.map((item, i) => (
+                        <Slide item={item} key={i} />
+                    ))}
+                </ScrollView>
                 <View style={styles.skip}>
                     <TouchableOpacity onPress={this.handlePress}>
                         <Text style={styles.button}>SKIP</Text>
@@ -55,23 +62,16 @@ class Introduction extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    carousel: {
-        width,
-        height: 400
+
     },
     skip: {
-        height: 40,
-        justifyContent: 'space-around',
-        alignContent: 'center',
         backgroundColor: 'red'
 
     },
     button: {
         textAlign: 'center',
         fontSize: 20,
-        color: '#5fc9f8'
+        color: '#147efb'
 
     }
 });
