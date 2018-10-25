@@ -114,20 +114,19 @@ const styles = StyleSheet.create({
         height: 12,
         width: 12,
         borderRadius: 6,
-        backgroundColor: '#cccccc'
+        backgroundColor: '#ba55d3'
     },
     top: {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
     bottom: {
-        color: '#147efb',
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
     button: {
         marginBottom: 60,
-        backgroundColor: '#BA55D3',
+        backgroundColor: '#ba55d3',
         width: '60%',
         paddingVertical: 12,
         flexDirection: 'row',
