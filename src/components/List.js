@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
+import Icon from "react-native-vector-icons/Ionicons";
+
 class List extends Component {
 
 
@@ -20,6 +22,12 @@ class List extends Component {
 
                 <View style={styles.content}>
                     <TouchableOpacity style={styles.bigButton} onPress={this.handlePress}>
+                        <Text>Create a new pot</Text>
+                        <Icon
+                            name="ios-add"
+                            color="#ba55d3"
+                            size={90}
+                        />
                     </TouchableOpacity>
                 </View>
 
@@ -47,10 +55,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     bigButton: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: '#ba55d3',
+        width: '80%',
+        height: '80%',
+        backgroundColor: 'red',
         alignSelf: 'center'
     }
 });
