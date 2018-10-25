@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-
-const { width } = Dimensions.get('window');
-
-const height = width * 1.4;
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
 
 import Slide from './Slide';
 
@@ -25,6 +21,8 @@ const instructions = [
     }
 ];
 
+const { width } = Dimensions.get('window');
+
 class Introduction extends Component {
 
     static propTypes = {
@@ -35,11 +33,15 @@ class Introduction extends Component {
         index: 0
     };
 
+    scrollX = new Animated.Value(0);
+
     handlePress = () => {
         this.props.skipLink('list');
     };
 
     render() {
+        let position = Animated.divide(this.scrollX, width);
+
         return (
             <View style={styles.container}>
 
@@ -48,7 +50,12 @@ class Introduction extends Component {
                     <ScrollView
                         horizontal
                         pagingEnabled
-                        showsHorizontalScrollIndicator={false}>
+                        showsHorizontalScrollIndicator={false}
+                        onScroll={Animated.event( // Animated.event returns a function that takes an array where the first element...
+                            [{ nativeEvent: { contentOffset: { x: this.scrollX } } }] // ... is an object that maps any nativeEvent prop to a variable
+                        )} // in this case we are mapping the value of nativeEvent.contentOffset.x to this.scrollX
+                        scrollEventThrottle={16} // this will ensure that this ScrollView's onScroll prop is called no faster than 16ms between each function call
+                        >
                         {instructions.map((item, i) => (
                             <Slide item={item} key={i} />
                         ))}
@@ -60,9 +67,18 @@ class Introduction extends Component {
                 <View style={styles.content}>
                     <View style={styles.top}>
                         <View style={styles.dots}>
-                            {instructions.map((_, i) => (
-                                <View style={styles.dot} key={i}></View>
-                            ))}
+                            {instructions.map((_, i) => {
+                                let opacity = position.interpolate({
+                                    inputRange: [i - 1, i, i + 1], // each dot will need to have an opacity of 1 when position is equal to their index (i)
+                                    outputRange: [0.3, 1, 0.3], // when position is not i, the opacity of the dot will animate to 0.3
+                                    // inputRange: [i - 0.50000000001, i - 0.5, i, i + 0.5, i + 0.50000000001], // only when position is ever so slightly more than +/- 0.5 of a dot's index
+                                    // outputRange: [0.3, 1, 1, 1, 0.3], // is when the opacity changes from 1 to 0.3
+                                    extrapolate: 'clamp' // this will prevent the opacity of the dots from going outside of the outputRange (i.e. opacity will not be less than 0.3)
+                                });
+                                return (
+                                    <Animated.View style={[ { opacity }, styles.dot]} key={i} />
+                                )
+                            })}
                         </View>
                     </View>
 
