@@ -76,15 +76,17 @@ class Introduction extends Component {
                                     extrapolate: 'clamp' // this will prevent the opacity of the dots from going outside of the outputRange (i.e. opacity will not be less than 0.3)
                                 });
                                 return (
-                                    <Animated.View style={[ { opacity }, styles.dot]} key={i} />
+                                    <Animated.View style={[ { opacity }, styles.dot ]} key={i} />
                                 )
                             })}
                         </View>
                     </View>
 
-                    <TouchableOpacity style={styles.bottom} onPress={this.handlePress}>
-                        <Text style={styles.button}>SKIP</Text>
-                    </TouchableOpacity>
+                    <View style={styles.bottom}>
+                        <TouchableOpacity style={styles.button} onPress={this.handlePress}>
+                            <Text style={styles.text}>SKIP</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </View>
             </View>
@@ -124,7 +126,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     button: {
-        paddingBottom: 60
+        marginBottom: 60,
+        backgroundColor: '#BA55D3',
+        width: '60%',
+        paddingVertical: 12,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderRadius: 8
+    },
+    text: {
+        color: '#ffffff',
+        fontSize: 16
     }
 });
 
