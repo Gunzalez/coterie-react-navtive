@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     slide: {
         width,
         height,
-        paddingTop: 30
+        paddingTop: 20
     },
     image: {
         height: 200,

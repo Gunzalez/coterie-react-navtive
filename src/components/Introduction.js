@@ -30,13 +30,22 @@ class Introduction extends Component {
     };
 
     state = {
-        index: 0
+        index: 0,
+        disabled: true
     };
 
     scrollX = new Animated.Value(0);
 
     handlePress = () => {
         this.props.skipLink('list');
+    };
+
+    handleEndScroll = evt => {
+        if(this.state.disabled){
+            this.setState({
+                disabled: evt.nativeEvent.contentSize.width !== (evt.nativeEvent['targetContentOffset'].x + width)
+            })
+        }
     };
 
     render() {
@@ -52,10 +61,10 @@ class Introduction extends Component {
                         pagingEnabled
                         showsHorizontalScrollIndicator={false}
                         onScroll={Animated.event( // Animated.event returns a function that takes an array where the first element...
-                            [{ nativeEvent: { contentOffset: { x: this.scrollX } } }] // ... is an object that maps any nativeEvent prop to a variable
+                            [{ nativeEvent: { contentOffset: { x: this.scrollX } } } ] // ... is an object that maps any nativeEvent prop to a variable
                         )} // in this case we are mapping the value of nativeEvent.contentOffset.x to this.scrollX
                         scrollEventThrottle={16} // this will ensure that this ScrollView's onScroll prop is called no faster than 16ms between each function call
-                        >
+                        onScrollEndDrag={ this.handleEndScroll }>
                         {instructions.map((item, i) => (
                             <Slide item={item} key={i} />
                         ))}
@@ -83,8 +92,10 @@ class Introduction extends Component {
                     </View>
 
                     <View style={styles.bottom}>
-                        <TouchableOpacity style={styles.button} onPress={this.handlePress}>
-                            <Text style={styles.text}>SKIP</Text>
+                        <TouchableOpacity style={[ {opacity : this.state.disabled ? 0.3 : 1}, styles.button ]}
+                                  disabled={this.state.disabled}
+                                  onPress={this.handlePress}>
+                            <Text style={styles.text}>CONTINUE</Text>
                         </TouchableOpacity>
                     </View>
 
