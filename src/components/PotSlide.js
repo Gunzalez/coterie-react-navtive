@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text } from 'react-native';
 
+import utils from './../utils';
+
 const getStatus = (id) => {
       switch (id){
           case 1:
@@ -26,7 +28,7 @@ class PotSlide extends Component {
     render() {
 
         const {
-            title = 'Saving Pot',
+            title = 'Create a new pot',
             amount = '-',
             participants = '-',
             status = 0,
@@ -39,23 +41,23 @@ class PotSlide extends Component {
 
         if(status === 0){
             return (
-                <View style={styles.slide}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.title}>Plus Button</Text>
+                <View style={[ styles.slide, styles.empty]}>
+                    <Text style={[styles.intro, styles.title]}>{title}</Text>
+                    <Text style={styles.intro}>Plus Button</Text>
                 </View>
             )
         }
 
         return (
-            <View style={styles.slide}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.title}>Saving £{amount}</Text>
-                <Text style={styles.title}>{participants} Participants</Text>
-                <Text style={styles.title}>Round {round}</Text>
-                <Text style={styles.title}>Status: { getStatus(status) }</Text>
-                <Text style={styles.title}>Current Pot Value £{curPotValue}</Text>
-                <Text style={styles.title}>Pot Value £{totPotValue}</Text>
-                <Text style={styles.title}>Next to collect: {next}</Text>
+            <View style={[ styles.slide, styles.full]}>
+                <Text style={[styles.text, styles.title]}>{title}</Text>
+                <Text style={styles.text}>Saving £{amount}</Text>
+                <Text style={styles.text}>{participants} Participants</Text>
+                <Text style={styles.text}>Round {round}</Text>
+                <Text style={styles.text}>Status: { getStatus(status) }</Text>
+                <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
+                <Text style={styles.text}>Pot Value £{totPotValue}</Text>
+                <Text style={styles.text}>Next to collect: {next}</Text>
             </View>
         );
     }
@@ -63,11 +65,29 @@ class PotSlide extends Component {
 
 const styles = StyleSheet.create({
     slide: {
+        padding: 20,
+        borderRadius: 6
 
+    },
+    empty: {
+        borderWidth: 1,
+        borderColor: utils.colours.purple
+    },
+    full: {
+        backgroundColor: utils.colours.purple
     },
     title: {
+        fontSize: 26,
+        paddingBottom: 10
+    },
+    text: {
+        color: utils.colours.white
 
     },
+    intro: {
+        color: utils.colours.purple
+
+    }
 });
 
 export default PotSlide

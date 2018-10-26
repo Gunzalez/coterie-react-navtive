@@ -37,7 +37,6 @@ class MyCarousel extends Component {
                 renderItem={this._renderItem}
                 sliderWidth={sliderWidth}
                 itemWidth={slideWidth}
-                removeClippedSubviews={false}
             />
         );
     }
@@ -47,8 +46,7 @@ const styles = StyleSheet.create({
     slide: {
         width: itemWidth,
         height: itemHeight,
-        paddingHorizontal: horizontalMargin,
-        backgroundColor: 'red'
+        paddingHorizontal: horizontalMargin
     },
     slideInnerContainer: {
         width: slideWidth,

@@ -6,6 +6,10 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Animated, Dimensi
 
 import Slide from './Slide';
 
+import utils from './../utils';
+
+// import { instructions } from './../data/instructions';
+
 const instructions = [
     {
         "title": "Give your Saving Pot a name. Select a saving amount",
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
         height: 12,
         width: 12,
         borderRadius: 6,
-        backgroundColor: '#ba55d3'
+        backgroundColor: utils.colours.purple
     },
     top: {
         flexDirection: 'row',
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginBottom: 60,
-        backgroundColor: '#ba55d3',
+        backgroundColor: utils.colours.purple,
         width: '60%',
         paddingVertical: 12,
         flexDirection: 'row',
