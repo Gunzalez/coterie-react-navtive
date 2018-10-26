@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+
+import Icon from "react-native-vector-icons/Ionicons";
 
 import utils from './../utils';
 
@@ -25,6 +27,10 @@ class PotSlide extends Component {
         data: PropTypes.object.isRequired
     };
 
+    handlePress = () =>{
+        console.log('Pressed');
+    };
+
     render() {
 
         const {
@@ -41,24 +47,28 @@ class PotSlide extends Component {
 
         if(status === 0){
             return (
-                <View style={[ styles.slide, styles.empty]}>
-                    <Text style={[styles.intro, styles.title]}>{title}</Text>
-                    <Text style={styles.intro}>Plus Button</Text>
-                </View>
+                <TouchableOpacity onPress={this.handlePress}>
+                    <View style={[ styles.slide, styles.empty]}>
+                        <Text style={[styles.intro, styles.title]}>{title}</Text>
+                        <Icon name="ios-add-circle" size={90} color={utils.colours.purple} />
+                    </View>
+                </TouchableOpacity>
             )
         }
 
         return (
-            <View style={[ styles.slide, styles.full]}>
-                <Text style={[styles.text, styles.title]}>{title}</Text>
-                <Text style={styles.text}>Saving £{amount}</Text>
-                <Text style={styles.text}>{participants} Participants</Text>
-                <Text style={styles.text}>Round {round}</Text>
-                <Text style={styles.text}>Status: { getStatus(status) }</Text>
-                <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
-                <Text style={styles.text}>Pot Value £{totPotValue}</Text>
-                <Text style={styles.text}>Next to collect: {next}</Text>
-            </View>
+            <TouchableOpacity onPress={this.handlePress}>
+                <View style={[ styles.slide, styles.full]}>
+                    <Text style={[styles.text, styles.title]}>{title}</Text>
+                    <Text style={styles.text}>Saving £{amount}</Text>
+                    <Text style={styles.text}>{participants} Participants</Text>
+                    <Text style={styles.text}>Round {round}</Text>
+                    <Text style={styles.text}>Status: { getStatus(status) }</Text>
+                    <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
+                    <Text style={styles.text}>Pot Value £{totPotValue}</Text>
+                    <Text style={styles.text}>Next to collect: {next}</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 }
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
         backgroundColor: utils.colours.purple
     },
     title: {
-        fontSize: 26,
+        fontSize: 20,
         paddingBottom: 10
     },
     text: {

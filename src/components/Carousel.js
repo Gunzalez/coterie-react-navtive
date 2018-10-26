@@ -25,7 +25,7 @@ class MyCarousel extends Component {
     _renderItem ({item, _}) {
         return (
             <View style={styles.slide}>
-                <PotSlide data={item}/>
+                <PotSlide data={item} />
             </View>
         );
     }

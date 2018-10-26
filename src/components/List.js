@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import MyCarousel from './Carousel';
-
-import Icon from "react-native-vector-icons/Ionicons";
 
 class List extends Component {
 
