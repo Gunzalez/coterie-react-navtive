@@ -2,10 +2,29 @@ import React, { Component } from 'react';
 
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
+import MyCarousel from './Carousel';
+
 import Icon from "react-native-vector-icons/Ionicons";
 
 class List extends Component {
 
+    state = {
+        pots: [
+            {
+                status: 2,
+                title: 'Daddy\'s Slippers',
+                participants: 4,
+                round: 2,
+                amount: 80,
+                current: 2,
+                next: 'Steven',
+                id: '9901-OA-44'
+            },
+            {
+                status: 0
+            }
+        ]
+    };
 
     handlePress = () => {
 
@@ -20,16 +39,7 @@ class List extends Component {
                     <Text style={styles.title}>Saving Pots</Text>
                 </View>
 
-                <View style={styles.content}>
-                    <TouchableOpacity style={styles.bigButton} onPress={this.handlePress}>
-                        <Text>Create a new pot</Text>
-                        <Icon
-                            name="ios-add"
-                            color="#ba55d3"
-                            size={90}
-                        />
-                    </TouchableOpacity>
-                </View>
+                <MyCarousel pots={this.state.pots} />
 
             </View>
         );

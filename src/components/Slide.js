@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 
 const height = width * 1.6;
 
-class Carousel extends Component {
+class Slide extends Component {
 
     static propTypes = {
         item: PropTypes.object.isRequired
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Carousel
+export default Slide

@@ -31,7 +31,7 @@ class Introduction extends Component {
 
     state = {
         index: 0,
-        disabled: true
+        disabled: false
     };
 
     scrollX = new Animated.Value(0);
