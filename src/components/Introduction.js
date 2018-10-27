@@ -30,7 +30,7 @@ const { width } = Dimensions.get('window');
 class Introduction extends Component {
 
     static propTypes = {
-        skipLink: PropTypes.func.isRequired
+        navigateTo: PropTypes.func.isRequired
     };
 
     state = {
@@ -41,7 +41,7 @@ class Introduction extends Component {
     scrollX = new Animated.Value(0);
 
     handlePress = () => {
-        this.props.skipLink('list');
+        this.props.navigateTo('list');
     };
 
     handleEndScroll = evt => {

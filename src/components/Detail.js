@@ -21,7 +21,7 @@ const getStatus = (id) => {
       }
 };
 
-class PotSlide extends Component {
+class Detail extends Component {
 
     static propTypes = {
         data: PropTypes.object.isRequired
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PotSlide
+export default Detail

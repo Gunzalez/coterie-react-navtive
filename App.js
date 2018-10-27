@@ -7,32 +7,47 @@ import Introduction from './src/components/Introduction';
 
 import List from './src/components/List';
 
+import Detail from './src/components/Detail';
+
 export default class App extends Component {
 
     state = {
-        stage: 'intro'
+        screen: 'intro',
+        potId: null
     };
 
-    stageUpdate = stage => {
-        this.setState({ stage })
+    updateScreen = screen => {
+        this.setState({ screen })
+    };
+
+    updatePotId = potId => {
+        this.setState({ potId })
     };
 
     render() {
 
-        const { stage } = this.state;
+        const { screen } = this.state;
 
-        if(stage === 'intro'){
+        if(screen === 'intro'){
             return (
                 <View style={styles.container}>
-                    <Introduction skipLink={this.stageUpdate} />
+                    <Introduction navigateTo={this.updateScreen} />
                 </View>
             );
         }
 
-        if(stage === 'list'){
+        if(screen === 'list'){
             return (
                 <View style={styles.container}>
-                    <List />
+                    <List navigateTo={this.updateScreen} updatePotId={this.updatePotId}  />
+                </View>
+            );
+        }
+
+        if(screen === 'detail'){
+            return (
+                <View style={styles.container}>
+                    <Detail navigateTo={this.updateScreen} />
                 </View>
             );
         }
