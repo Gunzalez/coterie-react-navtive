@@ -24,11 +24,12 @@ const getStatus = (id) => {
 class PotSlide extends Component {
 
     static propTypes = {
-        data: PropTypes.object.isRequired
+        data: PropTypes.object.isRequired,
+        updatePotId: PropTypes.func.isRequired
     };
 
-    handlePress = () =>{
-        console.log('Pressed');
+    handlePress = (id) => {
+        this.props.updatePotId(id)
     };
 
     render() {
@@ -40,6 +41,7 @@ class PotSlide extends Component {
             status = 0,
             round = '-',
             current = '-',
+            potId = '-new-pot-',
             next = 'Trump'  } = this.props.data;
 
         const curPotValue = parseInt(current) * parseInt(amount);
@@ -57,7 +59,7 @@ class PotSlide extends Component {
         }
 
         return (
-            <TouchableOpacity onPress={this.handlePress}>
+            <TouchableOpacity onPress={() => this.handlePress({potId})}>
                 <View style={[ styles.slide, styles.full ]}>
                     <Text style={[styles.text, styles.title]}>{title}</Text>
                     <Text style={styles.text}>Saving £{amount}</Text>

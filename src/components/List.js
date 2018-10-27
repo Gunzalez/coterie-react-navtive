@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { StyleSheet, View, Text } from 'react-native';
 
 import MyCarousel from './Carousel';
 
 class List extends Component {
+
+    static propTypes = {
+        navigateTo: PropTypes.func.isRequired,
+        updatePotId: PropTypes.func.isRequired
+    };
 
     state = {
         pots: [
@@ -16,7 +23,7 @@ class List extends Component {
                 amount: 80,
                 current: 2,
                 next: 'Steven',
-                id: '9901-OA-44'
+                potId: '9901-OA-44'
             },
             {
                 status: 0
@@ -37,7 +44,10 @@ class List extends Component {
                     <Text style={styles.title}>Saving Pots</Text>
                 </View>
 
-                <MyCarousel pots={this.state.pots} />
+                <MyCarousel
+                    pots={this.state.pots}
+                    firstItem={1}
+                    updatePotId={this.props.updatePotId} />
 
             </View>
         );

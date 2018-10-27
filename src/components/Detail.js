@@ -57,8 +57,8 @@ class Detail extends Component {
         }
 
         return (
-            <TouchableOpacity onPress={this.handlePress}>
                 <View style={[ styles.slide, styles.full ]}>
+                    <Text>Detail screen</Text>
                     <Text style={[styles.text, styles.title]}>{title}</Text>
                     <Text style={styles.text}>Saving £{amount}</Text>
                     <Text style={styles.text}>{participants} Participants</Text>
@@ -68,7 +68,6 @@ class Detail extends Component {
                     <Text style={styles.text}>Pot Value £{totPotValue}</Text>
                     <Text style={styles.text}>Next to collect: {next}</Text>
                 </View>
-            </TouchableOpacity>
         );
     }
 }

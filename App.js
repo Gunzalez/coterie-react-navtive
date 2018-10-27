@@ -47,7 +47,7 @@ export default class App extends Component {
         if(screen === 'detail'){
             return (
                 <View style={styles.container}>
-                    <Detail navigateTo={this.updateScreen} />
+                    <Detail navigateTo={this.updateScreen} potId={this.state.potId} />
                 </View>
             );
         }

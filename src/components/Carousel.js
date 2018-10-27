@@ -19,27 +19,29 @@ const itemHeight = 200;
 class MyCarousel extends Component {
 
     static propTypes = {
-        pots: PropTypes.array.isRequired
+        pots: PropTypes.array.isRequired,
+        firstItem: PropTypes.number.isRequired,
+        updatePotId: PropTypes.func.isRequired
     };
 
     _renderItem ({item, _}) {
         return (
             <View style={styles.slide}>
-                <PotSlide data={item} />
+                <PotSlide data={item} updatePotId={this.props.updatePotId} />
             </View>
         );
     }
 
     state = {
-        entries: this.props.pots,
-        activeSlide: 1
+        pots: this.props.pots,
+        activeSlide: this.props.firstItem
     };
 
     get pagination () {
-        const { entries, activeSlide } = this.state;
+        const { pots, activeSlide } = this.state;
         return (
             <Pagination
-                dotsLength={entries.length}
+                dotsLength={pots.length}
                 activeDotIndex={activeSlide}
                 containerStyle={styles.pagination}
                 dotStyle={styles.dot}
@@ -57,8 +59,8 @@ class MyCarousel extends Component {
             <View>
                 <Carousel
                     layout={'default'}
-                    data={this.state.entries}
-                    renderItem={this._renderItem}
+                    data={this.state.pots}
+                    renderItem={this._renderItem.bind(this)}
                     sliderWidth={sliderWidth}
                     itemWidth={slideWidth}
                     onSnapToItem={(index) => this.setState({ activeSlide: index }) }
