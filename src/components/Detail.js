@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import utils from './../utils';
 
 class Detail extends Component {
 
     static propTypes = {
+        navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired
     };
 
@@ -16,16 +17,23 @@ class Detail extends Component {
         potDetail: this.props.potDetail
     };
 
+    handlePress = () => {
+        this.props.navigateTo('list');
+    };
+
     render() {
 
         const { potId, title } = this.state.potDetail;
 
         return (
-                <View style={[ styles.slide ]}>
-                    <Text style={[ styles.title ]}>Detail screen</Text>
-                    <Text>pot Id :{ potId }</Text>
-                    <Text>Title: { title }</Text>
-                </View>
+            <View style={[ styles.slide ]}>
+                <Text style={[ styles.title ]}>Detail screen</Text>
+                <Text>pot Id :{ potId }</Text>
+                <Text>Title: { title }</Text>
+                <TouchableOpacity onPress={this.handlePress}>
+                    <Text>Back</Text>
+                </TouchableOpacity>
+            </View>
         );
     }
 }
