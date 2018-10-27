@@ -26,11 +26,11 @@ class PotSlide extends Component {
     static propTypes = {
         data: PropTypes.object.isRequired,
         navigateTo: PropTypes.func.isRequired,
-        updatePotId: PropTypes.func.isRequired
+        updatePotDetail: PropTypes.func.isRequired
     };
 
-    handlePress = (id) => {
-        this.props.updatePotId(id);
+    handlePress = () => {
+        this.props.updatePotDetail(this.props.data);
         this.props.navigateTo('detail');
     };
 
@@ -43,7 +43,6 @@ class PotSlide extends Component {
             status = 0,
             round = '-',
             current = '-',
-            potId = '-new-pot-',
             next = 'Trump'  } = this.props.data;
 
         const curPotValue = parseInt(current) * parseInt(amount);
@@ -61,7 +60,7 @@ class PotSlide extends Component {
         }
 
         return (
-            <TouchableOpacity onPress={() => this.handlePress({potId})}>
+            <TouchableOpacity onPress={this.handlePress}>
                 <View style={[ styles.slide, styles.full ]}>
                     <Text style={[styles.text, styles.title]}>{title}</Text>
                     <Text style={styles.text}>Saving £{amount}</Text>

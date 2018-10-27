@@ -14,7 +14,6 @@ export default class App extends Component {
     state = {
         screen: 'intro',
         pots: [],
-        potId: '',
         potDetail: {}
     };
 
@@ -22,13 +21,13 @@ export default class App extends Component {
         this.setState({ screen })
     };
 
-    updatePotId = potId => {
-        this.setState({ potId })
+    updatePotDetail = potDetail => {
+        this.setState({ potDetail })
     };
 
     render() {
 
-        const { screen } = this.state;
+        const { screen, pots, potDetail } = this.state;
 
         if(screen === 'intro'){
             return (
@@ -41,7 +40,9 @@ export default class App extends Component {
         if(screen === 'list'){
             return (
                 <View style={styles.container}>
-                    <List navigateTo={this.updateScreen} updatePotId={this.updatePotId} potId={this.state.potId}  />
+                    <List navigateTo={this.updateScreen}
+                          updatePotDetail={this.updatePotDetail}
+                          potDetail={potDetail}  />
                 </View>
             );
         }
@@ -49,7 +50,8 @@ export default class App extends Component {
         if(screen === 'detail'){
             return (
                 <View style={styles.container}>
-                    <Detail navigateTo={this.updateScreen} potDetail={this.state.potDetail} />
+                    <Detail navigateTo={this.updateScreen}
+                            potDetail={potDetail} />
                 </View>
             );
         }

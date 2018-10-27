@@ -22,13 +22,13 @@ class MyCarousel extends Component {
         pots: PropTypes.array.isRequired,
         firstItem: PropTypes.number.isRequired,
         navigateTo: PropTypes.func.isRequired,
-        updatePotId: PropTypes.func.isRequired
+        updatePotDetail: PropTypes.func.isRequired
     };
 
     _renderItem ({item, _}) {
         return (
             <View style={styles.slide}>
-                <PotSlide data={item} navigateTo={this.props.navigateTo} updatePotId={this.props.updatePotId} />
+                <PotSlide data={item} navigateTo={this.props.navigateTo} updatePotDetail={this.props.updatePotDetail} />
             </View>
         );
     }

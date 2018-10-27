@@ -18,11 +18,13 @@ class Detail extends Component {
 
     render() {
 
-        console.log(this.state);
+        const { potId, title } = this.state.potDetail;
 
         return (
                 <View style={[ styles.slide ]}>
                     <Text style={[ styles.title ]}>Detail screen</Text>
+                    <Text>pot Id :{ potId }</Text>
+                    <Text>Title: { title }</Text>
                 </View>
         );
     }

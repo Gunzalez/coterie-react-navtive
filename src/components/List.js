@@ -10,8 +10,8 @@ class List extends Component {
 
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
-        updatePotId: PropTypes.func.isRequired,
-        potId: PropTypes.string.isRequired
+        updatePotDetail: PropTypes.func.isRequired,
+        potDetail: PropTypes.object.isRequired
     };
 
     state = {
@@ -39,7 +39,7 @@ class List extends Component {
     getFirstItem = () => {
         let index = this.state.pots.length - 1;
         for (let i = 0; i < this.state.pots.length; i++) {
-            if (this.state.pots[i].potId === this.props.potId) {
+            if (this.state.pots[i].potId === this.props.potDetail.potId) {
                 index = i
             }
         }
@@ -59,7 +59,7 @@ class List extends Component {
                     pots={this.state.pots}
                     firstItem={ this.getFirstItem() }
                     navigateTo={ this.props.navigateTo }
-                    updatePotId={this.props.updatePotId} />
+                    updatePotDetail={this.props.updatePotDetail} />
             </View>
         );
     }
