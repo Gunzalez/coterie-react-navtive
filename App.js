@@ -13,7 +13,21 @@ export default class App extends Component {
 
     state = {
         screen: 'intro',
-        pots: [],
+        pots: [
+            {
+                status: 2,
+                title: 'Daddy\'s Slippers',
+                participants: 4,
+                round: 2,
+                amount: 80,
+                current: 2,
+                next: 'Steven',
+                potId: '9901-OA-44'
+            },
+            {
+                status: 0
+            }
+        ],
         potDetail: {}
     };
 
@@ -42,6 +56,7 @@ export default class App extends Component {
                 <View style={styles.container}>
                     <List navigateTo={this.updateScreen}
                           updatePotDetail={this.updatePotDetail}
+                          pots={pots}
                           potDetail={potDetail}  />
                 </View>
             );

@@ -11,29 +11,12 @@ class List extends Component {
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
         updatePotDetail: PropTypes.func.isRequired,
-        potDetail: PropTypes.object.isRequired
+        potDetail: PropTypes.object.isRequired,
+        pots: PropTypes.array.isRequired
     };
 
     state = {
-        pots: [
-            {
-                status: 2,
-                title: 'Daddy\'s Slippers',
-                participants: 4,
-                round: 2,
-                amount: 80,
-                current: 2,
-                next: 'Steven',
-                potId: '9901-OA-44'
-            },
-            {
-                status: 0
-            }
-        ]
-    };
-
-    handlePress = () => {
-
+        pots: this.props.pots
     };
 
     getFirstItem = () => {
