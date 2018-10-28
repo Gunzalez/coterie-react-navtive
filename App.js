@@ -57,7 +57,7 @@ export default class App extends Component {
                     <List navigateTo={this.updateScreen}
                           updatePotDetail={this.updatePotDetail}
                           pots={pots}
-                          potDetail={potDetail}  />
+                          potDetail={potDetail} />
                 </View>
             );
         }

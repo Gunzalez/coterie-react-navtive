@@ -26,12 +26,16 @@ class PotSlide extends Component {
     static propTypes = {
         data: PropTypes.object.isRequired,
         navigateTo: PropTypes.func.isRequired,
-        updatePotDetail: PropTypes.func.isRequired
+        updatePotDetail: PropTypes.func.isRequired,
+        activeSlide: PropTypes.number.isRequired,
+        index: PropTypes.number.isRequired
     };
 
     handlePress = () => {
-        this.props.updatePotDetail(this.props.data);
-        this.props.navigateTo('detail');
+        if (this.props.index === this.props.activeSlide) {
+            this.props.updatePotDetail(this.props.data);
+            this.props.navigateTo('detail');
+        }
     };
 
     render() {

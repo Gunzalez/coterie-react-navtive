@@ -25,10 +25,14 @@ class MyCarousel extends Component {
         updatePotDetail: PropTypes.func.isRequired
     };
 
-    _renderItem ({item, _}) {
+    _renderItem ({item, index}) {
         return (
             <View style={styles.slide}>
-                <PotSlide data={item} navigateTo={this.props.navigateTo} updatePotDetail={this.props.updatePotDetail} />
+                <PotSlide data={item}
+                          navigateTo={this.props.navigateTo}
+                          updatePotDetail={this.props.updatePotDetail}
+                          activeSlide={this.state.activeSlide}
+                          index={index} />
             </View>
         );
     }
