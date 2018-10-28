@@ -32,10 +32,12 @@ class List extends Component {
     render() {
 
         return (
-            <View style={styles.list}>
+            <View style={styles.container}>
 
                 <View style={styles.header}>
                     <Text style={styles.title}>Saving Pots</Text>
+                    <Text style={styles.text}>4 pots, 3 running</Text>
+                    <Text style={styles.text}>Last viewed: 18.10.2018</Text>
                 </View>
 
                 <MyCarousel
@@ -49,28 +51,24 @@ class List extends Component {
 }
 
 const styles = StyleSheet.create({
-    list: {
+    container: {
         flex: 1
-
     },
     header: {
-        paddingVertical: 10
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        height: 120
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 16
     },
     title: {
         fontSize: 20,
         color: '#444',
         textAlign: 'center',
+        paddingBottom: 10
 
-    },
-    content: {
-        flex: 1,
-        justifyContent: 'space-around'
-    },
-    bigButton: {
-        width: '80%',
-        height: '80%',
-        backgroundColor: 'red',
-        alignSelf: 'center'
     }
 });
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import PotSlide from './PotSlide';
+
 import utils from "../utils";
 
 const horizontalMargin = 0;
@@ -14,7 +15,7 @@ const slideWidth = 280;
 
 const sliderWidth = Dimensions.get('window').width;
 const itemWidth = slideWidth + horizontalMargin * 2;
-const itemHeight = 200;
+const itemHeight = '60%';
 
 class MyCarousel extends Component {
 
