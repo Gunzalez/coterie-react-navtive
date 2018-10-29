@@ -10,12 +10,13 @@ import PotSlide from './PotSlide';
 
 import utils from "../utils";
 
-const horizontalMargin = 0;
-const slideWidth = 280;
-
 const sliderWidth = Dimensions.get('window').width;
+
+const horizontalMargin = 10;
+
+const slideWidth = sliderWidth - 100;
+
 const itemWidth = slideWidth + horizontalMargin * 2;
-const itemHeight = '60%';
 
 class MyCarousel extends Component {
 
@@ -81,8 +82,8 @@ class MyCarousel extends Component {
 const styles = StyleSheet.create({
     slide: {
         width: itemWidth,
-        height: itemHeight,
-        paddingHorizontal: horizontalMargin
+        height: 'auto',
+        paddingHorizontal: 15
     },
     slideInnerContainer: {
         width: slideWidth,

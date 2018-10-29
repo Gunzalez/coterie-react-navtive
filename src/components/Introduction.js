@@ -22,6 +22,14 @@ const instructions = [
     {
         "title": "Your plan starts when the first participant pays.",
         "media": "http://www.image-3"
+    },
+    {
+        "title": "Re-arrange the schedule to suit your needs",
+        "media": "http://www.image-4"
+    },
+    {
+        "title": "Clone or restart a plan once matured",
+        "media": "http://www.image-5"
     }
 ];
 

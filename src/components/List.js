@@ -20,7 +20,7 @@ class List extends Component {
     };
 
     getFirstItem = () => {
-        let index = this.state.pots.length - 1;
+        let index = 0;
         for (let i = 0; i < this.state.pots.length; i++) {
             if (this.state.pots[i].potId === this.props.potDetail.potId) {
                 index = i

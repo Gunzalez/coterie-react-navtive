@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Dimensions } from 'react-native';
 
 import Icon from "react-native-vector-icons/Ionicons";
 
 import utils from './../utils';
+
+const deviceHeight = Dimensions.get('window').height;
+
+const itemHeight = deviceHeight - 350;
 
 const getStatus = (id) => {
       switch (id){
@@ -54,17 +58,21 @@ class PotSlide extends Component {
 
         if(status === 0){
             return (
-                <TouchableOpacity onPress={this.handlePress}>
+                <TouchableWithoutFeedback onPress={this.handlePress}>
                     <View style={[ styles.slide, styles.empty ]}>
-                        <Text style={[styles.intro, styles.title]}>{title}</Text>
-                        <Icon name="ios-add-circle" size={90} color={utils.colours.purple} />
+                        <View style={styles.top}>
+                            <Text style={[styles.intro, styles.title]}>{title}</Text>
+                        </View>
+                        <View style={styles.bottom}>
+                            <Icon name="ios-add-circle" style={styles.button} size={90} color={utils.colours.purple} />
+                        </View>
                     </View>
-                </TouchableOpacity>
+                </TouchableWithoutFeedback>
             )
         }
 
         return (
-            <TouchableOpacity onPress={this.handlePress}>
+            <TouchableWithoutFeedback onPress={this.handlePress}>
                 <View style={[ styles.slide, styles.full ]}>
                     <Text style={[styles.text, styles.title]}>{title}</Text>
                     <Text style={styles.text}>Saving £{amount}</Text>
@@ -75,16 +83,21 @@ class PotSlide extends Component {
                     <Text style={styles.text}>Pot Value £{totPotValue}</Text>
                     <Text style={styles.text}>Next to collect: {next}</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
         );
     }
 }
 
 const styles = StyleSheet.create({
     slide: {
-        padding: 20,
-        borderRadius: 5
-
+        borderRadius: 8,
+        height: itemHeight
+    },
+    top: {
+        backgroundColor: utils.colours.purple,
+        height: 80,
+        margin: 10,
+        borderRadius: 4
     },
     empty: {
         borderWidth: 1,
@@ -95,15 +108,23 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        paddingBottom: 10
+        paddingBottom: 10,
+        textAlign: 'center'
     },
     text: {
         color: utils.colours.white
 
     },
     intro: {
-        color: utils.colours.purple
-
+        color: utils.colours.white,
+        padding: 20
+    },
+    bottom: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    button: {
+        alignSelf: 'center'
     }
 });
 
