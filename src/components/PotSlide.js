@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     slide: {
         borderRadius: 8,
         height: itemHeight,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         paddingVertical: 10
     },
     top: {

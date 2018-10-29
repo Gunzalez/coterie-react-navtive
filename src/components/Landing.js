@@ -24,9 +24,7 @@ class Detail extends Component {
 
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
-            contacts: [],
-            participants: [],
-            podId: this.state.potDetail.potId
+            potDetail: this.state.potDetail
         })
     };
 
@@ -44,17 +42,15 @@ class Detail extends Component {
         const curPotValue = parseInt(current) * parseInt(amount);
         const totPotValue = (parseInt(participants)-1) * parseInt(amount);
 
-
-
         return (
             <View style={[ styles.container ]}>
-                <Text style={[ styles.title ]}>Detail screen</Text>
+                <Text style={[ styles.title ]}>Detail: {title}</Text>
                 <TouchableOpacity style={styles.back} onPress={this.handlePress}>
                     <Text style={styles.backText}>Back to Pots</Text>
                 </TouchableOpacity>
                 { status !== 0 &&
                 <View>
-                    <Text style={styles.heading}>Pot/Form details</Text>
+                    <Text style={styles.heading}>Form details</Text>
                     <Text>Title :{ title } (editable before payment)</Text>
                     <Text>Amount: £{ amount } (editable before payment)</Text>
                     <Text>No. of Participants: { participants } (editable before payment)</Text>

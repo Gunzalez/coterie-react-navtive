@@ -19,12 +19,11 @@ class Participants extends Component {
     render() {
 
         const { navigation } = this.props;
-        const potId = navigation.state.params.podId;
+        const { title } = navigation.state.params.potDetail;
 
         return (
             <View style={[ styles.container ]}>
-                <Text style={[ styles.title ]}>Participants</Text>
-                <Text>Showing participants for id: {potId}</Text>
+                <Text style={[ styles.title ]}>Participants: {title}</Text>
                 <Button title="Done" onPress={this.closeParticipants} />
             </View>
         );
