@@ -25,7 +25,14 @@ export default class App extends Component {
                 potId: '9901-OA-44'
             },
             {
-                status: 0
+                status: 2,
+                title: 'October Pot',
+                participants: 9,
+                round: 6,
+                amount: 200,
+                current: 2,
+                next: 'Harry Kane',
+                potId: '123-0BV-X'
             }
         ],
         potDetail: {}

@@ -54,7 +54,7 @@ class PotSlide extends Component {
             next = 'Trump'  } = this.props.data;
 
         const curPotValue = parseInt(current) * parseInt(amount);
-        const totPotValue = parseInt(participants) * parseInt(amount);
+        const totPotValue = (parseInt(participants)-1) * parseInt(amount);
 
         if(status === 0){
             return (
@@ -91,12 +91,13 @@ class PotSlide extends Component {
 const styles = StyleSheet.create({
     slide: {
         borderRadius: 8,
-        height: itemHeight
+        height: itemHeight,
+        paddingHorizontal: 10,
+        paddingVertical: 10
     },
     top: {
         backgroundColor: utils.colours.purple,
         height: 80,
-        margin: 10,
         borderRadius: 4
     },
     empty: {
@@ -116,8 +117,7 @@ const styles = StyleSheet.create({
 
     },
     intro: {
-        color: utils.colours.white,
-        padding: 20
+        color: utils.colours.white
     },
     bottom: {
         flex: 1,

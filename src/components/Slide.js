@@ -6,7 +6,7 @@ import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const height = width * 1.6;
+const height = width * 1.4;
 
 class Slide extends Component {
 
@@ -19,28 +19,38 @@ class Slide extends Component {
         const { title, media } = this.props.item;
 
         return (
-            <View style={styles.slide}>
+            <View style={styles.container}>
                 <View>
                     <Text style={styles.title}>{title}</Text>
                 </View>
-                <Text  style={styles.image}>Image ref: {media}</Text>
+                <View style={styles.bottom}>
+                    <View style={styles.image}>
+                        <Text>{media}</Text>
+                    </View>
+                </View>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    slide: {
+    container: {
         width,
         height,
         paddingTop: 20
     },
     image: {
-        height: 200,
-        justifyContent: 'space-around',
-        alignContent: 'center',
-        color: 'red',
-        textAlign: 'center'
+        width: '65%',
+        height: '85%',
+        backgroundColor: '#ffffff',
+        borderRadius: 6,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bottom: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     title: {
         fontSize: 22,

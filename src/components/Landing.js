@@ -42,7 +42,9 @@ class Detail extends Component {
             next = 'Trump'} = this.state.potDetail;
 
         const curPotValue = parseInt(current) * parseInt(amount);
-        const totPotValue = parseInt(participants) * parseInt(amount);
+        const totPotValue = (parseInt(participants)-1) * parseInt(amount);
+
+
 
         return (
             <View style={[ styles.container ]}>
@@ -50,27 +52,31 @@ class Detail extends Component {
                 <TouchableOpacity style={styles.back} onPress={this.handlePress}>
                     <Text style={styles.backText}>Back to Pots</Text>
                 </TouchableOpacity>
-                <Text style={styles.heading}>Pot/Form details</Text>
-                <Text>Title :{ title } (editable before payment)</Text>
-                <Text>Amount: £{ amount } (editable before payment)</Text>
-                <Text>No. of Participants: { participants } (editable before payment)</Text>
-                <Text>---</Text>
-                <Text style={styles.heading}>Meta</Text>
-                <Text>Pot Status: { status } (derived)</Text>
-                <Text>Current round: { round } (derived)</Text>
-                <Text>Next to get paid: { next } (derived)</Text>
-                <Text>Current pot value: £{ curPotValue } (derived)</Text>
-                <Text>Total pot value: { totPotValue } (derived)</Text>
-                <Text>---</Text>
-                <Text style={styles.heading}>Actions</Text>
-                <Text>- Delete a pot (may be disabled)</Text>
-                <Text>- Save a Pot (may be disabled)</Text>
-                <Text>- Manage payment/collection (click on Participant)</Text>
-                <Text>- Clear Pot/Form (may be disabled)</Text>
-                <Text>- Clone Pot (may be disabled)</Text>
-                <Text>- Add/Remove Participants (may be disabled)</Text>
-                <Text>- Re-order Participants (may be disabled)</Text>
-                <Text>---</Text>
+                { status !== 0 &&
+                <View>
+                    <Text style={styles.heading}>Pot/Form details</Text>
+                    <Text>Title :{ title } (editable before payment)</Text>
+                    <Text>Amount: £{ amount } (editable before payment)</Text>
+                    <Text>No. of Participants: { participants } (editable before payment)</Text>
+                    <Text>---</Text>
+                    <Text style={styles.heading}>Meta</Text>
+                    <Text>Pot Status: { status } (derived)</Text>
+                    <Text>Current round: { round } (derived)</Text>
+                    <Text>Next to get paid: { next } (derived)</Text>
+                    <Text>Current pot value: £{ curPotValue } (derived)</Text>
+                    <Text>Total pot value: { totPotValue } (derived)</Text>
+                    <Text>---</Text>
+                    <Text style={styles.heading}>Actions</Text>
+                    <Text>- Delete a pot (may be disabled)</Text>
+                    <Text>- Save a Pot (may be disabled)</Text>
+                    <Text>- Manage payment/collection (click on Participant)</Text>
+                    <Text>- Clear Pot/Form (may be disabled)</Text>
+                    <Text>- Clone Pot (may be disabled)</Text>
+                    <Text>- Add/Remove Participants (may be disabled)</Text>
+                    <Text>- Re-order Participants (may be disabled)</Text>
+                    <Text>---</Text>
+                </View>
+                }
                 <Button title="Add/Remove Participants" onPress={this.showParticipants} />
             </View>
         );

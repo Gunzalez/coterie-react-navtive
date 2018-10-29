@@ -31,10 +31,10 @@ class MyCarousel extends Component {
         return (
             <View style={styles.slide}>
                 <PotSlide data={item}
-                          navigateTo={this.props.navigateTo}
-                          updatePotDetail={this.props.updatePotDetail}
-                          activeSlide={this.state.activeSlide}
-                          index={index} />
+                      navigateTo={this.props.navigateTo}
+                      updatePotDetail={this.props.updatePotDetail}
+                      activeSlide={this.state.activeSlide}
+                      index={index} />
             </View>
         );
     }
