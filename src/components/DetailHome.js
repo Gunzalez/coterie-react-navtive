@@ -16,10 +16,10 @@ class ParticipantsScreen extends Component {
     };
 
     render(){
+
         return(
             <View stye={{flex: 1, alignItems:'center', justifyContent: 'center'}}>
                 <Text stye={{fontSize: 20}}>Participants</Text>
-                <Button/>
             </View>
         )
     }
@@ -29,12 +29,15 @@ class DetailScreen extends Component {
 
     render(){
 
-        console.log(this.props.navigation.state.params);
+        const { navigateTo, potDetail } = this.props.screenProps;
+        const { navigate } = this.props.navigation;
 
         return(
-            <View stye={{flex: 1, alignItems:'center', justifyContent: 'center'}}>
-                <Detail navigateTo={()=>{}} potDetail={{}} />
-            </View>
+            <Detail
+                navigateTo={navigateTo}
+                potDetail={potDetail}
+                navigate={navigate}
+            />
         )
     }
 }
@@ -49,12 +52,8 @@ const PotDetailNavigator = createStackNavigator({
         }
     },{
         initialRouteName: 'Detail',
-        initialRouteParams: {
-            navigateTo: () => {},
-            pot: {},
-            name: 'Ovais'
-        },
-        headerMode: 'none'
+        headerMode: 'none',
+        mode: 'modal'
     });
 
 class DetailHome extends Component {
@@ -65,14 +64,13 @@ class DetailHome extends Component {
     };
 
     state = {
-        func: this.props.navigateTo,
-        details: this.props.potDetail
+        navigateTo: this.props.navigateTo,
+        potDetail: this.props.potDetail
     };
 
     render(){
-
         return (
-            <PotDetailNavigator />
+            <PotDetailNavigator screenProps={this.state} />
         )
     }
 }

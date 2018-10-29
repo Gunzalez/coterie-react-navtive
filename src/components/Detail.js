@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 
 import utils from './../utils';
 
@@ -10,7 +10,8 @@ class Detail extends Component {
 
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
-        potDetail: PropTypes.object.isRequired
+        potDetail: PropTypes.object.isRequired,
+        navigate: PropTypes.func.isRequired
     };
 
     state = {
@@ -19,6 +20,10 @@ class Detail extends Component {
 
     handlePress = () => {
         this.props.navigateTo('list');
+    };
+
+    showParticipants = () => {
+        this.props.navigate('Participants')
     };
 
     render() {
@@ -33,6 +38,7 @@ class Detail extends Component {
                 <TouchableOpacity onPress={this.handlePress}>
                     <Text>Back</Text>
                 </TouchableOpacity>
+                <Button title="Add Participants" onPress={this.showParticipants} />
             </View>
         );
     }
