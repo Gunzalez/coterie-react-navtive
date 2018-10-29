@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Dimensions } from 'react-native';
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
@@ -57,23 +57,24 @@ class PotSlide extends Component {
         const totPotValue = (parseInt(participants)-1) * parseInt(amount);
 
         return (
-                <View style={styles.container}>
-                    <View style={styles.top}>
-                        <TouchableWithoutFeedback onPress={this.handlePress}>
-                            <Icon name="ellipsis-v" size={30} color={utils.colours.purple} />
-                        </TouchableWithoutFeedback>
-                    </View>
-                    <View style={styles.bottom}>
-                        <Text style={[styles.text, styles.title]}>{title}</Text>
-                        <Text style={styles.text}>Saving £{amount}</Text>
-                        <Text style={styles.text}>{participants} Participants</Text>
-                        <Text style={styles.text}>Round {round}</Text>
-                        <Text style={styles.text}>Status: { getStatus(status) }</Text>
-                        <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
-                        <Text style={styles.text}>Pot Value £{totPotValue}</Text>
-                        <Text style={styles.text}>Next to collect: {next}</Text>
-                    </View>
+            <View style={styles.container}>
+                <View style={styles.top}>
+                    <Icon name="edit"
+                          size={40}
+                          color={utils.colours.purple}
+                          onPress={this.handlePress} />
                 </View>
+                <View style={styles.bottom}>
+                    <Text style={[styles.text, styles.title]}>{title}</Text>
+                    <Text style={styles.text}>Saving £{amount}</Text>
+                    <Text style={styles.text}>{participants} Participants</Text>
+                    <Text style={styles.text}>Round {round}</Text>
+                    <Text style={styles.text}>Status: { getStatus(status) }</Text>
+                    <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
+                    <Text style={styles.text}>Pot Value £{totPotValue}</Text>
+                    <Text style={styles.text}>Next to collect: {next}</Text>
+                </View>
+            </View>
         );
     }
 }

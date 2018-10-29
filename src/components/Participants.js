@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
+import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
@@ -24,7 +26,13 @@ class Participants extends Component {
         return (
             <View style={[ styles.container ]}>
                 <Text style={[ styles.title ]}>Participants: {title}</Text>
-                <Button title="Done" onPress={this.closeParticipants} />
+                <View style={styles.bottom}>
+                    <Icon
+                        name="downcircleo"
+                        size={40}
+                        color={utils.colours.purple}
+                        onPress={this.closeParticipants} />
+                </View>
             </View>
         );
     }
@@ -34,6 +42,10 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
         borderRadius: 5
+    },
+    bottom: {
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
     },
     title: {
         fontSize: 20,

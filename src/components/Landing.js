@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 
+import Icon from "react-native-vector-icons/AntDesign";
+
 import utils from './../utils';
 
 class Detail extends Component {
@@ -45,35 +47,42 @@ class Detail extends Component {
         return (
             <View style={[ styles.container ]}>
                 <Text style={[ styles.title ]}>Detail: {title}</Text>
-                <TouchableOpacity style={styles.back} onPress={this.handlePress}>
-                    <Text style={styles.backText}>Back to Pots</Text>
-                </TouchableOpacity>
-                { status !== 0 &&
-                <View>
-                    <Text style={styles.heading}>Form details</Text>
-                    <Text>Title :{ title } (editable before payment)</Text>
-                    <Text>Amount: £{ amount } (editable before payment)</Text>
-                    <Text>No. of Participants: { participants } (editable before payment)</Text>
-                    <Text>---</Text>
-                    <Text style={styles.heading}>Meta</Text>
-                    <Text>Pot Status: { status } (derived)</Text>
-                    <Text>Current round: { round } (derived)</Text>
-                    <Text>Next to get paid: { next } (derived)</Text>
-                    <Text>Current pot value: £{ curPotValue } (derived)</Text>
-                    <Text>Total pot value: { totPotValue } (derived)</Text>
-                    <Text>---</Text>
-                    <Text style={styles.heading}>Actions</Text>
-                    <Text>- Delete a pot (may be disabled)</Text>
-                    <Text>- Save a Pot (may be disabled)</Text>
-                    <Text>- Manage payment/collection (click on Participant)</Text>
-                    <Text>- Clear Pot/Form (may be disabled)</Text>
-                    <Text>- Clone Pot (may be disabled)</Text>
-                    <Text>- Add/Remove Participants (may be disabled)</Text>
-                    <Text>- Re-order Participants (may be disabled)</Text>
-                    <Text>---</Text>
+                <Icon
+                    name="closecircleo"
+                    size={40}
+                    color={utils.colours.purple}
+                    onPress={this.handlePress} />
+
+                <Text style={styles.heading}>Form details</Text>
+                <Text>Title :{ title } (editable before payment)</Text>
+                <Text>Amount: £{ amount } (editable before payment)</Text>
+                <Text>No. of Participants: { participants } (editable before payment)</Text>
+                <Text>---</Text>
+                <Text style={styles.heading}>Meta</Text>
+                <Text>Pot Status: { status } (derived)</Text>
+                <Text>Current round: { round } (derived)</Text>
+                <Text>Next to get paid: { next } (derived)</Text>
+                <Text>Current pot value: £{ curPotValue } (derived)</Text>
+                <Text>Total pot value: { totPotValue } (derived)</Text>
+                <Text>---</Text>
+                <Text style={styles.heading}>Actions</Text>
+                <Text>- Delete a pot (may be disabled)</Text>
+                <Text>- Save a Pot (may be disabled)</Text>
+                <Text>- Manage payment/collection (click on Participant)</Text>
+                <Text>- Clear Pot/Form (may be disabled)</Text>
+                <Text>- Clone Pot (may be disabled)</Text>
+                <Text>- Add/Remove Participants (may be disabled)</Text>
+                <Text>- Re-order Participants (may be disabled)</Text>
+
+                <View style={styles.tray}>
+                    <Icon
+                        name="upcircleo"
+                        size={40}
+                        color={utils.colours.purple}
+                        onPress={this.showParticipants} />
                 </View>
-                }
-                <Button title="Add/Remove Participants" onPress={this.showParticipants} />
+
+
             </View>
         );
     }
@@ -86,6 +95,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         paddingBottom: 10
+    },
+    tray: {
+        paddingTop: 30
     },
     heading:{
         fontSize: 18,
