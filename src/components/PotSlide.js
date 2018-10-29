@@ -121,10 +121,8 @@ const styles = StyleSheet.create({
     },
     bottom: {
         flex: 1,
-        justifyContent: 'center'
-    },
-    button: {
-        alignSelf: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
