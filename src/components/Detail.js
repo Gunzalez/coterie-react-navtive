@@ -2,64 +2,78 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-import utils from './../utils';
+import { createStackNavigator } from 'react-navigation';
 
-class Detail extends Component {
+import Landing from './Landing';
 
-    static propTypes = {
-        navigateTo: PropTypes.func.isRequired,
-        potDetail: PropTypes.object.isRequired,
-        navigate: PropTypes.func.isRequired
+
+class ParticipantsScreen extends Component {
+
+    goBack = () => {
+        this.props.navigation.navigate('Landing')
     };
 
-    state = {
-        potDetail: this.props.potDetail
-    };
+    render(){
 
-    handlePress = () => {
-        this.props.navigateTo('list');
-    };
-
-    showParticipants = () => {
-        this.props.navigate('Participants')
-    };
-
-    render() {
-
-        const { potId, title } = this.state.potDetail;
-
-        return (
-            <View style={[ styles.slide ]}>
-                <Text style={[ styles.title ]}>Detail screen</Text>
-                <Text>pot Id :{ potId }</Text>
-                <Text>Title: { title }</Text>
-                <TouchableOpacity onPress={this.handlePress}>
-                    <Text>Back</Text>
-                </TouchableOpacity>
-                <Button title="Add Participants" onPress={this.showParticipants} />
+        return(
+            <View stye={{flex: 1, alignItems:'center', justifyContent: 'center'}}>
+                <Text stye={{fontSize: 20}}>Participants</Text>
+                <Button title={"Done"} onPress={this.goBack} />
             </View>
-        );
+        )
     }
 }
 
-const styles = StyleSheet.create({
-    slide: {
-        padding: 20,
-        borderRadius: 5
-    },
-    full: {
-        backgroundColor: utils.colours.purple
-    },
-    title: {
-        fontSize: 20,
-        paddingBottom: 10
-    },
-    text: {
-        color: utils.colours.white
+class LandingScreen extends Component {
 
+    render(){
+
+        const { navigateTo, potDetail } = this.props.screenProps;
+        const { navigate } = this.props.navigation;
+
+        return(
+            <Landing
+                navigateTo={navigateTo}
+                potDetail={potDetail}
+                navigate={navigate}
+            />
+        )
     }
+}
+
+const PotDetailNavigator = createStackNavigator({
+    Landing: {
+        screen: LandingScreen
+    },
+
+    Participants: {
+        screen: ParticipantsScreen
+    }
+},{
+    initialRouteName: 'Landing',
+    headerMode: 'none',
+    mode: 'modal'
 });
 
-export default Detail
+class DetailHome extends Component {
+
+    static propTypes = {
+        navigateTo: PropTypes.func.isRequired,
+        potDetail: PropTypes.object.isRequired
+    };
+
+    state = {
+        navigateTo: this.props.navigateTo,
+        potDetail: this.props.potDetail
+    };
+
+    render(){
+        return (
+            <PotDetailNavigator screenProps={this.state} />
+        )
+    }
+}
+
+export default DetailHome;

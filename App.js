@@ -7,7 +7,7 @@ import Introduction from './src/components/Introduction';
 
 import List from './src/components/List';
 
-import Detail from './src/components/DetailHome';
+import Detail from './src/components/Detail';
 
 export default class App extends Component {
 
