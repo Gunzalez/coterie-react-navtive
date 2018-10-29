@@ -9,18 +9,22 @@ import utils from './../utils';
 class Participants extends Component {
 
     static propTypes = {
-        navigate: PropTypes.func.isRequired
+        navigation: PropTypes.object.isRequired
     };
 
     closeParticipants = () => {
-        this.props.navigate('Landing')
+        this.props.navigation.navigate('Landing')
     };
 
     render() {
 
+        const { navigation } = this.props;
+        const potId = navigation.state.params.podId;
+
         return (
             <View style={[ styles.container ]}>
                 <Text style={[ styles.title ]}>Participants</Text>
+                <Text>Showing participants for id: {potId}</Text>
                 <Button title="Done" onPress={this.closeParticipants} />
             </View>
         );

@@ -12,11 +12,9 @@ class ParticipantsScreen extends Component {
 
     render(){
 
-        const { navigate } = this.props.navigation;
-
         return(
             <Participants
-                navigate={navigate}
+                navigation={this.props.navigation}
             />
         )
     }
@@ -27,13 +25,12 @@ class LandingScreen extends Component {
     render(){
 
         const { navigateTo, potDetail } = this.props.screenProps;
-        const { navigate } = this.props.navigation;
 
         return(
             <Landing
                 navigateTo={navigateTo}
                 potDetail={potDetail}
-                navigate={navigate}
+                navigation={this.props.navigation}
             />
         )
     }

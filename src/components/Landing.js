@@ -11,7 +11,7 @@ class Detail extends Component {
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
-        navigate: PropTypes.func.isRequired
+        navigation: PropTypes.object.isRequired
     };
 
     state = {
@@ -23,7 +23,11 @@ class Detail extends Component {
     };
 
     showParticipants = () => {
-        this.props.navigate('Participants')
+        this.props.navigation.navigate('Participants', {
+            contacts: [],
+            participants: [],
+            podId: this.state.potDetail.potId
+        })
     };
 
     render() {
@@ -43,6 +47,9 @@ class Detail extends Component {
         return (
             <View style={[ styles.container ]}>
                 <Text style={[ styles.title ]}>Detail screen</Text>
+                <TouchableOpacity style={styles.back} onPress={this.handlePress}>
+                    <Text style={styles.backText}>Back to Pots</Text>
+                </TouchableOpacity>
                 <Text style={styles.heading}>Pot/Form details</Text>
                 <Text>Title :{ title } (editable before payment)</Text>
                 <Text>Amount: £{ amount } (editable before payment)</Text>
@@ -65,9 +72,6 @@ class Detail extends Component {
                 <Text>- Re-order Participants (may be disabled)</Text>
                 <Text>---</Text>
                 <Button title="Add/Remove Participants" onPress={this.showParticipants} />
-                <TouchableOpacity style={styles.back} onPress={this.handlePress}>
-                    <Text style={styles.backText}>Back to Pots</Text>
-                </TouchableOpacity>
             </View>
         );
     }
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
     },
     back: {
         backgroundColor: utils.colours.purple,
-        marginTop: 50,
+        marginBottom: 20,
         padding: 12,
         borderRadius: 5
     },
