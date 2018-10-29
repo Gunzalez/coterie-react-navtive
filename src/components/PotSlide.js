@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Dimensions } from 'react-native';
 
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import utils from './../utils';
 
@@ -56,73 +56,49 @@ class PotSlide extends Component {
         const curPotValue = parseInt(current) * parseInt(amount);
         const totPotValue = (parseInt(participants)-1) * parseInt(amount);
 
-        if(status === 0){
-            return (
-                <TouchableWithoutFeedback onPress={this.handlePress}>
-                    <View style={[ styles.slide, styles.empty ]}>
-                        <View style={styles.top}>
-                            <Text style={[styles.intro, styles.title]}>{title}</Text>
-                        </View>
-                        <View style={styles.bottom}>
-                            <Icon name="ios-add-circle" style={styles.button} size={90} color={utils.colours.purple} />
-                        </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            )
-        }
-
         return (
-            <TouchableWithoutFeedback onPress={this.handlePress}>
-                <View style={[ styles.slide, styles.full ]}>
-                    <Text style={[styles.text, styles.title]}>{title}</Text>
-                    <Text style={styles.text}>Saving £{amount}</Text>
-                    <Text style={styles.text}>{participants} Participants</Text>
-                    <Text style={styles.text}>Round {round}</Text>
-                    <Text style={styles.text}>Status: { getStatus(status) }</Text>
-                    <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
-                    <Text style={styles.text}>Pot Value £{totPotValue}</Text>
-                    <Text style={styles.text}>Next to collect: {next}</Text>
+                <View style={styles.container}>
+                    <View style={styles.top}>
+                        <TouchableWithoutFeedback onPress={this.handlePress}>
+                            <Icon name="ellipsis-v" size={30} color={utils.colours.purple} />
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <View style={styles.bottom}>
+                        <Text style={[styles.text, styles.title]}>{title}</Text>
+                        <Text style={styles.text}>Saving £{amount}</Text>
+                        <Text style={styles.text}>{participants} Participants</Text>
+                        <Text style={styles.text}>Round {round}</Text>
+                        <Text style={styles.text}>Status: { getStatus(status) }</Text>
+                        <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
+                        <Text style={styles.text}>Pot Value £{totPotValue}</Text>
+                        <Text style={styles.text}>Next to collect: {next}</Text>
+                    </View>
                 </View>
-            </TouchableWithoutFeedback>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    slide: {
+    container: {
         borderRadius: 8,
         height: itemHeight,
-        paddingHorizontal: 20,
-        paddingVertical: 10
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        backgroundColor: utils.colours.white
     },
     top: {
-        backgroundColor: utils.colours.purple,
-        height: 80,
-        borderRadius: 4
-    },
-    empty: {
-        borderWidth: 1,
-        borderColor: utils.colours.purple
-    },
-    full: {
-        backgroundColor: utils.colours.purple
+        flex: 1,
+        alignItems: 'flex-end'
     },
     title: {
-        fontSize: 20,
-        paddingBottom: 10,
-        textAlign: 'center'
-    },
-    text: {
-        color: utils.colours.white
-
-    },
-    intro: {
-        color: utils.colours.white
+        fontSize: 25,
+        color: utils.colours.purple,
+        paddingBottom: 10
     },
     bottom: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        paddingBottom: 10,
+        paddingHorizontal: 10
+
     }
 });
 
