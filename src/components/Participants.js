@@ -24,12 +24,12 @@ class Participants extends Component {
 
     state = {
         participants: [
-            {
-                name: "Peter Parker",
-                mobileId: 14,
-                id: 8,
-                avatar: 'PP'
-            }
+            // {
+            //     name: "Peter Parker",
+            //     mobileId: 14,
+            //     id: 8,
+            //     avatar: 'PP'
+            // }
             // {
             //     name: "Mathew",
             //     mobileId: 17,
@@ -227,9 +227,7 @@ class Participants extends Component {
             setTimeout(() => this.flatList.scrollToEnd(), 200);
         }
 
-
         Object.assign(contact, { "checked": !contact.checked });
-
 
         this.setState({
             "contacts": tempContactsArray,
@@ -298,7 +296,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     middle: {
-
+        height: 60
     },
     bottom: {
         borderTopWidth: 1,
