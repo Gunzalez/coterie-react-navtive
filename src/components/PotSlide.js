@@ -60,7 +60,7 @@ class PotSlide extends Component {
             <View style={styles.container}>
                 <View style={styles.top}>
                     <Icon name="edit"
-                          size={40}
+                          size={utils.icons.size}
                           color={utils.colours.purple}
                           onPress={this.handlePress} />
                 </View>

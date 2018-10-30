@@ -49,11 +49,11 @@ class Detail extends Component {
                 <Text style={[ styles.title ]}>Detail: {title}</Text>
                 <Icon
                     name="closecircleo"
-                    size={40}
+                    size={utils.icons.size}
                     color={utils.colours.purple}
                     onPress={this.handlePress} />
 
-                <Text style={styles.heading}>Form details</Text>
+                <Text style={styles.heading}>Form</Text>
                 <Text>Title :{ title } (editable before payment)</Text>
                 <Text>Amount: £{ amount } (editable before payment)</Text>
                 <Text>No. of Participants: { participants } (editable before payment)</Text>
@@ -77,12 +77,10 @@ class Detail extends Component {
                 <View style={styles.tray}>
                     <Icon
                         name="upcircleo"
-                        size={40}
+                        size={utils.icons.size}
                         color={utils.colours.purple}
                         onPress={this.showParticipants} />
                 </View>
-
-
             </View>
         );
     }

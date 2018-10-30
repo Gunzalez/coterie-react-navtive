@@ -29,7 +29,7 @@ class Participants extends Component {
                 <View style={styles.bottom}>
                     <Icon
                         name="downcircleo"
-                        size={40}
+                        size={30}
                         color={utils.colours.purple}
                         onPress={this.closeParticipants} />
                 </View>
