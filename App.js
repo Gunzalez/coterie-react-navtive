@@ -16,17 +16,27 @@ export default class App extends Component {
         pots: [
             {
                 status: 2,
-                title: 'Daddy\'s Slippers',
+                title: 'October28',
                 participants: 4,
                 round: 2,
-                amount: 80,
+                amount: 100,
                 current: 2,
                 next: 'Steven',
                 potId: '9901-OA-44'
             },
             {
                 status: 2,
-                title: 'October Pot',
+                title: 'Daddy\'s Slippers',
+                participants: 6,
+                round: 5,
+                amount: 60,
+                current: 2,
+                next: 'Peter Bratu',
+                potId: '120X-90-4B'
+            },
+            {
+                status: 1,
+                title: 'June14.02.2018',
                 participants: 9,
                 round: 6,
                 amount: 200,

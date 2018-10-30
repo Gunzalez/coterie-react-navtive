@@ -28,7 +28,7 @@ const instructions = [
         "media": "http://www.image-4"
     },
     {
-        "title": "Clone or restart a plan once matured",
+        "title": "Clone or restart a plan once it has matured",
         "media": "http://www.image-5"
     }
 ];
@@ -84,7 +84,6 @@ class Introduction extends Component {
 
                 </View>
 
-
                 <View style={styles.content}>
                     <View style={styles.top}>
                         <View style={styles.dots}>
@@ -122,10 +121,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     carousel: {
-        flex: 5
+        flex: 3
     },
     content: {
-        flex: 2,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between'
     },

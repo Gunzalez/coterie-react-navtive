@@ -36,7 +36,7 @@ class List extends Component {
 
                 <View style={styles.header}>
                     <Text style={styles.title}>Saving Pots</Text>
-                    <Text style={styles.text}>4 pots, 3 running</Text>
+                    <Text style={styles.text}>3 pots, 3 running</Text>
                     <Text style={styles.text}>Last viewed: 18.10.2018</Text>
                 </View>
 

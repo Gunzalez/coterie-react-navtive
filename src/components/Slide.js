@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     image: {
         width: '65%',
         height: '85%',
-        backgroundColor: '#ffffff',
+        backgroundColor: 'red',
         borderRadius: 6,
         justifyContent: 'center',
         alignItems: 'center'
