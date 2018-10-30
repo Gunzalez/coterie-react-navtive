@@ -6,11 +6,15 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
-const Participant = () => {
+const Participant = (props) => {
+
+    const { data } = props;
+
+    const { avatar } = data.item;
 
     return (
         <View style={[ styles.container ]}>
-            <Text style={styles.text}>AB</Text>
+            <Text style={styles.text}>{avatar}</Text>
         </View>
     );
 };

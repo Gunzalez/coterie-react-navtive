@@ -196,28 +196,37 @@ class Participants extends Component {
         ]
     };
 
+    createAvatar = contact => {
+        let avatar = contact.name.charAt(0).toUpperCase();
+        if(contact.surname){
+            avatar = avatar + contact.surname.charAt(0).toUpperCase()
+        }
+        return avatar;
+    };
+
+
+
     contactClicked = (indexOfContactList) => {
         const tempContactsArray = this.state.contacts.slice();
         const tempParticipantsArray = this.state.participants.slice();
-
         const contact = tempContactsArray[indexOfContactList];
 
-        if(contact.checked){
-            // remove from Participants
+        if(contact.checked){ // remove from Participants
             tempParticipantsArray.map((participant, index) => {
                 if(participant.mobileId === contact.mobileId){
                     tempParticipantsArray.splice(index, 1);
                 }
             })
-
-        } else {
-            // add to Participants
+        } else { // add to Participants
             const participant = Object.assign({}, {
                 name: contact.name,
-                mobileId: contact.mobileId
+                mobileId: contact.mobileId,
+                avatar: this.createAvatar(contact)
             });
             tempParticipantsArray.push(participant);
+            setTimeout(() => this.flatList.scrollToEnd(), 200);
         }
+
 
         Object.assign(contact, { "checked": !contact.checked });
 
@@ -251,6 +260,7 @@ class Participants extends Component {
 
                 <View style={styles.middle}>
                     <FlatList
+                        ref={(scrollView) => { this.flatList = scrollView }}
                         data={this.state.participants}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
