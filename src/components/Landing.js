@@ -60,14 +60,14 @@ class Detail extends Component {
                 <Text style={styles.heading}>Form</Text>
                 <Text>Title :{ title } (editable before payment)</Text>
                 <Text>Amount: £{ amount } (editable before payment)</Text>
-                <Text>No. of Participants: { participants } (editable before payment)</Text>
+                <Text>Participants: { participants } (editable before payment)</Text>
                 <Text>---</Text>
                 <Text style={styles.heading}>Meta</Text>
                 <Text>Pot Status: { status } (derived)</Text>
                 <Text>Current round: { round } (derived)</Text>
                 <Text>Next to get paid: { next } (derived)</Text>
                 <Text>Current pot value: £{ curPotValue } (derived)</Text>
-                <Text>Total pot value: { totPotValue } (derived)</Text>
+                <Text>Total pot value: £{ totPotValue } (derived)</Text>
                 <Text>---</Text>
                 <Text style={styles.heading}>Actions</Text>
                 <Text>- Delete a pot (may be disabled)</Text>
@@ -92,7 +92,9 @@ class Detail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20
+        padding: 20,
+        backgroundColor: '#f5f5f5',
+        flex: 1
     },
     top: {
         flexDirection: 'row',

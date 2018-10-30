@@ -8,18 +8,22 @@ import utils from './../utils';
 
 const Contact = (props) => {
 
-    const { name, mobileId } = props.data.item;
+    const { data, contactClicked } = props;
+
+    const { name, surname, checked } = data.item;
 
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={styles.text}>{name}</Text>
+                <Text style={styles.text}>{name} {surname}</Text>
             </View>
             <View style={[styles.cell]}>
                 <Icon
-                    name="radio-button-checked"
+                    name={ checked ? 'radio-button-checked' : 'radio-button-unchecked' }
                     size={28}
-                    color={utils.colours.purple} />
+                    color={utils.colours.purple}
+                    onPress={()=>{contactClicked(data.index)}}
+                />
             </View>
         </View>
     );

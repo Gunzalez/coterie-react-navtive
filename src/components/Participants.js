@@ -25,132 +25,207 @@ class Participants extends Component {
     state = {
         participants: [
             {
-                name: "Peter",
+                name: "Peter Parker",
                 mobileId: 14,
-                id: 8
-            },
-            {
-                name: "Mathew",
-                mobileId: 17,
-                id: 4
-            },
-            {
-                name: "Linda",
-                mobileId: 4,
-                id: 3
-            },
-            {
-                name: "Jaclyn",
-                mobileId: 12,
-                id: 2
-            },
-            {
-                name: "Linda",
-                mobileId: 13,
-                id: 7
-            },
-            {
-                name: "Jaclyn",
-                mobileId: 10,
-                id: 5
-            },
-            {
-                name: "Shorma",
-                mobileId: 22,
-                id: 9
-            },
-            {
-                name: "Scott",
-                mobileId: 11,
-                id: 21
+                id: 8,
+                avatar: 'PP'
             }
+            // {
+            //     name: "Mathew",
+            //     mobileId: 17,
+            //     id: 4
+            // },
+            // {
+            //     name: "Linda",
+            //     mobileId: 4,
+            //     id: 3
+            // },
+            // {
+            //     name: "Jaclyn",
+            //     mobileId: 12,
+            //     id: 2
+            // },
+            // {
+            //     name: "Linda",
+            //     mobileId: 13,
+            //     id: 7
+            // },
+            // {
+            //     name: "Jaclyn",
+            //     mobileId: 10,
+            //     id: 5
+            // },
+            // {
+            //     name: "Shorma",
+            //     mobileId: 22,
+            //     id: 9
+            // },
+            // {
+            //     name: "Scott",
+            //     mobileId: 11,
+            //     id: 21
+            // }
         ],
         contacts: [
             {
                 name: "Karl",
-                mobileId: 14
+                surname: "Walsh",
+                mobileId: 1,
+                checked: false
             },
             {
                 name: "Titi",
-                mobileId: 17
+                surname: "Adesanya",
+                mobileId: 2,
+                checked: false
             },
             {
                 name: "Hasan",
-                mobileId: 4
+                surname: "Kazan",
+                mobileId: 3,
+                checked: false
             },
             {
                 name: "Segun",
-                mobileId: 12
+                surname: "Konibire",
+                mobileId: 4,
+                checked: false
             },
             {
                 name: "Malcolm",
-                mobileId: 13
+                surname: "Seaborn",
+                mobileId: 5,
+                checked: false
             },
             {
                 name: "Frank",
-                mobileId: 10,
+                surname: "Sinatra",
+                mobileId: 6,
+                checked: false
             },
             {
                 name: "Mathew",
-                mobileId: 17
+                surname: "Ferry",
+                mobileId: 7,
+                checked: false
             },
             {
                 name: "Clifton",
-                mobileId: 4
+                surname: "Green",
+                mobileId: 8,
+                checked: false
             },
             {
                 name: "Mary",
-                mobileId: 12
+                surname: "Poppins",
+                mobileId: 9,
+                checked: false
             },
             {
                 name: "Jay",
-                mobileId: 13
+                surname: "Flaxman",
+                mobileId: 10,
+                checked: false
             },
             {
                 name: "Jaclyn",
-                mobileId: 10,
+                surname: "Jones",
+                mobileId: 11,
+                checked: false
             },
             {
                 name: "Pilan",
-                mobileId: 17
+                surname: "Ramiah",
+                mobileId: 12,
+                checked: false
             },
             {
                 name: "Keon",
-                mobileId: 4
+                surname: "Konibire",
+                mobileId: 13,
+                checked: false
             },
             {
                 name: "Kayden",
-                mobileId: 12
+                surname: "konibire",
+                mobileId: 14,
+                checked: false
             },
             {
                 name: "Rob",
-                mobileId: 13
+                surname: "Curle",
+                mobileId: 15,
+                checked: false
             },
             {
-                name: "Jaclyn",
-                mobileId: 10,
+                name: "Jacky",
+                surname: "Brown",
+                mobileId: 16,
+                checked: false
             },
             {
-                name: "Mathew",
-                mobileId: 17
+                name: "Kevin",
+                surname: "Philips",
+                mobileId: 17,
+                checked: false
             },
             {
-                name: "Linda",
-                mobileId: 4
+                name: "Lynda",
+                surname: "Dot.Com",
+                mobileId: 18,
+                checked: false
             },
             {
-                name: "Jaclyn",
-                mobileId: 12
+                name: "Jane",
+                surname: "Red",
+                mobileId: 19,
+                checked: false
             },
             {
                 name: "Susan",
-                mobileId: 13
+                surname: "Fox",
+                mobileId: 20,
+                checked: false
             },
             {
                 name: "Florence",
-                mobileId: 10,
+                surname: "Nightingale",
+                mobileId: 21,
+                checked: false
             }
         ]
+    };
+
+    contactClicked = (indexOfContactList) => {
+        const tempContactsArray = this.state.contacts.slice();
+        const tempParticipantsArray = this.state.participants.slice();
+
+        const contact = tempContactsArray[indexOfContactList];
+
+        if(contact.checked){
+            // remove from Participants
+            tempParticipantsArray.map((participant, index) => {
+                if(participant.mobileId === contact.mobileId){
+                    tempParticipantsArray.splice(index, 1);
+                }
+            })
+
+        } else {
+            // add to Participants
+            const participant = Object.assign({}, {
+                name: contact.name,
+                mobileId: contact.mobileId
+            });
+            tempParticipantsArray.push(participant);
+        }
+
+        Object.assign(contact, { "checked": !contact.checked });
+
+
+        this.setState({
+            "contacts": tempContactsArray,
+            "participants": tempParticipantsArray
+        });
     };
 
     render() {
@@ -179,20 +254,20 @@ class Participants extends Component {
                         data={this.state.participants}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        keyExtractor={this._keyExtractor}
                         renderItem={(item) =>
                             <Participant data={item}  />
                         }
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
                 <View style={styles.bottom}>
                     <FlatList
                         data={this.state.contacts}
                         showsVerticalScrollIndicator={false}
-                        keyExtractor={this._keyExtractor}
                         renderItem={(item) =>
-                            <Contact data={item}  />
+                            <Contact data={item} contactClicked={this.contactClicked}  />
                         }
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
 
