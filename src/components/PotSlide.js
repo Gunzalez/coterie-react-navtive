@@ -54,6 +54,7 @@ class PotSlide extends Component {
             next = 'Trump'  } = this.props.data;
 
         const curPotValue = parseInt(current) * parseInt(amount);
+
         const totPotValue = (parseInt(participants)-1) * parseInt(amount);
 
         return (

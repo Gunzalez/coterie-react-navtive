@@ -21,6 +21,7 @@ class Participants extends Component {
     render() {
 
         const { navigation } = this.props;
+
         const { title } = navigation.state.params.potDetail;
 
         return (
