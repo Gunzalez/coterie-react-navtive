@@ -42,7 +42,7 @@ export default class App extends Component {
                 amount: 200,
                 current: 2,
                 next: 'Harry Kane',
-                potId: '123-0BV-X'
+                potId: 'USU-0BV-X'
             }
         ],
         potDetail: {}
