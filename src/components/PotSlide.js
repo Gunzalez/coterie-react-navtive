@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -10,7 +10,7 @@ import utils from './../utils';
 
 const deviceHeight = Dimensions.get('window').height;
 
-const itemHeight = deviceHeight - 350;
+const itemHeight = deviceHeight - 400;
 
 const getStatus = (id) => {
       switch (id){
@@ -86,7 +86,18 @@ const styles = StyleSheet.create({
         height: itemHeight,
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: utils.colours.white
+        backgroundColor: utils.colours.white,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+
+        elevation: 3,
+        marginVertical: 5
     },
     top: {
         flex: 1,
@@ -101,6 +112,9 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingHorizontal: 10
 
+    },
+    text: {
+        fontSize: 16
     }
 });
 
