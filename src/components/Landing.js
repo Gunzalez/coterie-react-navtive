@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text } from 'react-native';
 
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/FontAwesome5";
+
+import IconAnt from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
@@ -46,12 +48,14 @@ class Detail extends Component {
 
         return (
             <View style={[ styles.container ]}>
-                <Text style={[ styles.title ]}>Detail: {title}</Text>
-                <Icon
-                    name="closecircleo"
-                    size={utils.icons.size}
-                    color={utils.colours.purple}
-                    onPress={this.handlePress} />
+                <View style={styles.top}>
+                    <Text style={[ styles.title ]}>{title}</Text>
+                    <Icon
+                        name="ellipsis-v"
+                        size={utils.icons.size}
+                        color={utils.colours.purple}
+                        onPress={this.handlePress} />
+                </View>
 
                 <Text style={styles.heading}>Form</Text>
                 <Text>Title :{ title } (editable before payment)</Text>
@@ -75,7 +79,7 @@ class Detail extends Component {
                 <Text>- Re-order Participants (may be disabled)</Text>
 
                 <View style={styles.tray}>
-                    <Icon
+                    <IconAnt
                         name="upcircleo"
                         size={utils.icons.size}
                         color={utils.colours.purple}
@@ -90,8 +94,13 @@ const styles = StyleSheet.create({
     container: {
         padding: 20
     },
+    top: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     title: {
-        fontSize: 20,
+        fontSize: 25,
+        color: utils.colours.purple,
         paddingBottom: 10
     },
     tray: {

@@ -26,11 +26,11 @@ class Participants extends Component {
 
         return (
             <View style={[ styles.container ]}>
-                <Text style={[ styles.title ]}>Participants: {title}</Text>
+                <Text style={[ styles.title ]}>{title}</Text>
                 <View style={styles.bottom}>
                     <Icon
                         name="downcircleo"
-                        size={30}
+                        size={utils.icons.size}
                         color={utils.colours.purple}
                         onPress={this.closeParticipants} />
                 </View>
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     title: {
-        fontSize: 20,
+        fontSize: 25,
+        color: utils.colours.purple,
         paddingBottom: 10
     }
 });

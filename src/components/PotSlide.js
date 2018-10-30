@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 import utils from './../utils';
 
@@ -60,7 +60,7 @@ class PotSlide extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <Icon name="edit"
+                    <Icon name="ellipsis-v"
                           size={utils.icons.size}
                           color={utils.colours.purple}
                           onPress={this.handlePress} />

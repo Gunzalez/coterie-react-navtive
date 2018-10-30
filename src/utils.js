@@ -6,5 +6,10 @@ export default {
     },
     icons: {
         size: 32
+    },
+    text: {
+        header: 22,
+        heading: 18,
+        copy: 14
     }
 }
