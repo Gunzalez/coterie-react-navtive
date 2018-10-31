@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text } from 'react-native';
 
-import Icon from "react-native-vector-icons/FontAwesome5";
-
-import IconAnt from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
@@ -164,7 +162,7 @@ class Detail extends Component {
                 <View style={styles.top}>
                     <Text style={[ styles.title ]}>{title}</Text>
                     <Icon
-                        name="ellipsis-v"
+                        name="shrink"
                         size={utils.icons.size}
                         color={utils.colours.purple}
                         onPress={this.handlePress} />
@@ -192,7 +190,7 @@ class Detail extends Component {
                 <Text>- Re-order Participants (may be disabled)</Text>
 
                 <View style={styles.tray}>
-                    <IconAnt
+                    <Icon
                         name="upcircleo"
                         size={utils.icons.size}
                         color={utils.colours.purple}

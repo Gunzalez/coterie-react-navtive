@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
@@ -30,7 +30,6 @@ class PotSlide extends Component {
     static propTypes = {
         data: PropTypes.object.isRequired,
         navigateTo: PropTypes.func.isRequired,
-        updatePotDetail: PropTypes.func.isRequired,
         activeSlide: PropTypes.number.isRequired,
         index: PropTypes.number.isRequired
     };
@@ -60,7 +59,7 @@ class PotSlide extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <Icon name="ellipsis-v"
+                    <Icon name="arrowsalt"
                           size={utils.icons.size}
                           color={utils.colours.purple}
                           onPress={this.handlePress} />

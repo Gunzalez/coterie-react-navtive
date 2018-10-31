@@ -12,9 +12,12 @@ class ParticipantsScreen extends Component {
 
     render(){
 
+        const { updatePotDetail } = this.props.screenProps;
+
         return(
             <Participants
                 navigation={this.props.navigation}
+                updatePotDetail={updatePotDetail}
             />
         )
     }
@@ -28,9 +31,9 @@ class LandingScreen extends Component {
 
         return(
             <Landing
+                navigation={this.props.navigation}
                 navigateTo={navigateTo}
                 potDetail={potDetail}
-                navigation={this.props.navigation}
             />
         )
     }
@@ -50,16 +53,18 @@ const PotDetailNavigator = createStackNavigator({
     mode: 'modal'
 });
 
-class DetailHome extends Component {
+class Detail extends Component {
 
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
+        updatePotDetail: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired
     };
 
     state = {
         navigateTo: this.props.navigateTo,
-        potDetail: this.props.potDetail
+        potDetail: this.props.potDetail,
+        updatePotDetail: this.props.updatePotDetail
     };
 
     render(){
@@ -69,4 +74,4 @@ class DetailHome extends Component {
     }
 }
 
-export default DetailHome;
+export default Detail;

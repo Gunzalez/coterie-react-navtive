@@ -89,9 +89,9 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <List navigateTo={this.updateScreen}
-                          updatePotDetail={this.updatePotDetail}
-                          potDetail={potDetail}
-                          pots={pots} />
+                        updatePotDetail={this.updatePotDetail}
+                        potDetail={potDetail}
+                        pots={pots} />
                 </View>
             );
         }
@@ -100,12 +100,12 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <Detail navigateTo={this.updateScreen}
-                            potDetail={potDetail} />
+                        updatePotDetail={this.updatePotDetail}
+                        potDetail={potDetail} />
                 </View>
             );
         }
     }
-
 }
 
 const styles = StyleSheet.create({

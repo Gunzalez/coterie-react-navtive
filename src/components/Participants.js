@@ -15,7 +15,8 @@ import Contact from './Contact';
 class Participants extends Component {
 
     static propTypes = {
-        navigation: PropTypes.object.isRequired
+        navigation: PropTypes.object.isRequired,
+        updatePotDetail: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -48,9 +49,14 @@ class Participants extends Component {
     }
 
     closeParticipants = () => {
-        this.props.navigation.navigate('Landing', {
-            participants: this.state.participants
-        })
+        this.props.navigation.navigate('Landing')
+    };
+
+    saveParticipants = () => {
+        let originalPot = this.props.navigation.state.params.potDetail;
+        let updatedPot = Object.assign(originalPot, { participants:this.state.participants });
+        // should update pot in backend
+        this.props.updatePotDetail(updatedPot);
     };
 
     createAvatar = contact => {
@@ -102,10 +108,10 @@ class Participants extends Component {
 
                     <View style={styles.icon}>
                         <Icon
-                            name="downcircleo"
+                            name="save"
                             size={utils.icons.size}
                             color={utils.colours.purple}
-                            onPress={this.closeParticipants} />
+                            onPress={this.saveParticipants} />
                     </View>
                 </View>
 
@@ -130,6 +136,14 @@ class Participants extends Component {
                             <Contact data={item} contactClicked={this.contactClicked}  />
                         }
                     />
+                </View>
+
+                <View style={styles.footer}>
+                    <Icon
+                        name="downcircleo"
+                        size={utils.icons.size}
+                        color={utils.colours.white}
+                        onPress={this.closeParticipants} />
                 </View>
 
             </View>
@@ -165,6 +179,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: utils.colours.purple,
         paddingBottom: 10
+    },
+    footer: {
+        backgroundColor: utils.colours.purple,
+        height: 100,
+        padding: 20,
+        alignItems: 'flex-end'
     }
 });
 
