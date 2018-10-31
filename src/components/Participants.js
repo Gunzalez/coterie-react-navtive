@@ -73,9 +73,18 @@ class Participants extends Component {
         const contact = tempContactsArray[indexOfContactList];
 
         if(contact.checked){ // remove from Participants
+
+
             tempParticipantsArray.map((participant, index) => {
                 if(participant.mobileId === contact.id){
+
                     tempParticipantsArray.splice(index, 1);
+                    // this.flatList.scrollToIndex({
+                    //     animated: true,
+                    //     index: index,
+                    //     viewPosition: 1,
+                    //     viewOffset: 0
+                    // });
                 }
             })
         } else { // add to Participants
@@ -122,6 +131,7 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
+                        onScrollEnd={() => console.log("end")}
                         renderItem={(item) =>
                             <Participant data={item}  />
                         }

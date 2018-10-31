@@ -54,7 +54,7 @@ class PotSlide extends Component {
 
         const curPotValue = parseInt(current) * parseInt(amount);
 
-        const totPotValue = (parseInt(participants)-1) * parseInt(amount);
+        const totPotValue = ( participants.length -1 ) * parseInt(amount);
 
         return (
             <View style={styles.container}>

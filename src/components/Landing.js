@@ -155,7 +155,7 @@ class Detail extends Component {
             next = 'Trump'} = this.state.potDetail;
 
         const curPotValue = parseInt(current) * parseInt(amount);
-        const totPotValue = (parseInt(participants)-1) * parseInt(amount);
+        const totPotValue = ( participants.length - 1 ) * parseInt(amount);
 
         return (
             <View style={[ styles.container ]}>
@@ -189,7 +189,7 @@ class Detail extends Component {
                 <Text>- Add/Remove Participants (may be disabled)</Text>
                 <Text>- Re-order Participants (may be disabled)</Text>
 
-                <View style={styles.tray}>
+                <View style={styles.footer}>
                     <Icon
                         name="upcircleo"
                         size={utils.icons.size}
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         color: utils.colours.purple,
         paddingBottom: 10
     },
-    tray: {
+    footer: {
         paddingTop: 30
     },
     heading:{
