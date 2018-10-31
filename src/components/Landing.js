@@ -18,9 +18,142 @@ class Detail extends Component {
         navigation: PropTypes.object.isRequired
     };
 
-    state = {
-        potDetail: this.props.potDetail
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            potDetail: this.props.potDetail
+        };
+
+        this.contactList = [
+            {
+                name: "Karl",
+                surname: "Walsh",
+                mobileId: 1,
+                checked: false
+            },
+            {
+                name: "Titi",
+                surname: "Adesanya",
+                mobileId: 2,
+                checked: false
+            },
+            {
+                name: "Hasan",
+                surname: "Kazan",
+                mobileId: 3,
+                checked: false
+            },
+            {
+                name: "Segun",
+                surname: "Konibire",
+                mobileId: 4,
+                checked: false
+            },
+            {
+                name: "Malcolm",
+                surname: "Seaborn",
+                mobileId: 5,
+                checked: false
+            },
+            {
+                name: "Frank",
+                surname: "Sinatra",
+                mobileId: 6,
+                checked: false
+            },
+            {
+                name: "Mathew",
+                surname: "Ferry",
+                mobileId: 7,
+                checked: false
+            },
+            {
+                name: "Clifton",
+                surname: "Green",
+                mobileId: 8,
+                checked: false
+            },
+            {
+                name: "Mary",
+                surname: "Poppins",
+                mobileId: 9,
+                checked: false
+            },
+            {
+                name: "Jay",
+                surname: "Flaxman",
+                mobileId: 10,
+                checked: false
+            },
+            {
+                name: "Jaclyn",
+                surname: "Jones",
+                mobileId: 11,
+                checked: false
+            },
+            {
+                name: "Pilan",
+                surname: "Ramiah",
+                mobileId: 12,
+                checked: false
+            },
+            {
+                name: "Keon",
+                surname: "Konibire",
+                mobileId: 13,
+                checked: false
+            },
+            {
+                name: "Kayden",
+                surname: "konibire",
+                mobileId: 14,
+                checked: false
+            },
+            {
+                name: "Rob",
+                surname: "Curle",
+                mobileId: 15,
+                checked: false
+            },
+            {
+                name: "Jacky",
+                surname: "Brown",
+                mobileId: 16,
+                checked: false
+            },
+            {
+                name: "Kevin",
+                surname: "Philips",
+                mobileId: 17,
+                checked: false
+            },
+            {
+                name: "Lynda",
+                surname: "Dot.Com",
+                mobileId: 18,
+                checked: false
+            },
+            {
+                name: "Jane",
+                surname: "Red",
+                mobileId: 19,
+                checked: false
+            },
+            {
+                name: "Susan",
+                surname: "Fox",
+                mobileId: 20,
+                checked: false
+            },
+            {
+                name: "Florence",
+                surname: "Nightingale",
+                mobileId: 21,
+                checked: false
+            }
+        ]
+    }
 
     handlePress = () => {
         this.props.navigateTo('list');
@@ -28,7 +161,8 @@ class Detail extends Component {
 
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
-            potDetail: this.state.potDetail
+            potDetail: this.state.potDetail,
+            contacts: this.contactList
         })
     };
 

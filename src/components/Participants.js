@@ -18,183 +18,62 @@ class Participants extends Component {
         navigation: PropTypes.object.isRequired
     };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            participants: [
+                // {
+                //     name: "Peter Parker",
+                //     mobileId: 14,
+                //     id: 8,
+                //     avatar: 'PP'
+                // }
+                // {
+                //     name: "Mathew",
+                //     mobileId: 17,
+                //     id: 4
+                // },
+                // {
+                //     name: "Linda",
+                //     mobileId: 4,
+                //     id: 3
+                // },
+                // {
+                //     name: "Jaclyn",
+                //     mobileId: 12,
+                //     id: 2
+                // },
+                // {
+                //     name: "Linda",
+                //     mobileId: 13,
+                //     id: 7
+                // },
+                // {
+                //     name: "Jaclyn",
+                //     mobileId: 10,
+                //     id: 5
+                // },
+                // {
+                //     name: "Shorma",
+                //     mobileId: 22,
+                //     id: 9
+                // },
+                // {
+                //     name: "Scott",
+                //     mobileId: 11,
+                //     id: 21
+                // }
+            ],
+            contacts: this.props.navigation.state.params.contacts
+        };
+
+    }
+
     closeParticipants = () => {
         this.props.navigation.navigate('Landing')
     };
 
-    state = {
-        participants: [
-            // {
-            //     name: "Peter Parker",
-            //     mobileId: 14,
-            //     id: 8,
-            //     avatar: 'PP'
-            // }
-            // {
-            //     name: "Mathew",
-            //     mobileId: 17,
-            //     id: 4
-            // },
-            // {
-            //     name: "Linda",
-            //     mobileId: 4,
-            //     id: 3
-            // },
-            // {
-            //     name: "Jaclyn",
-            //     mobileId: 12,
-            //     id: 2
-            // },
-            // {
-            //     name: "Linda",
-            //     mobileId: 13,
-            //     id: 7
-            // },
-            // {
-            //     name: "Jaclyn",
-            //     mobileId: 10,
-            //     id: 5
-            // },
-            // {
-            //     name: "Shorma",
-            //     mobileId: 22,
-            //     id: 9
-            // },
-            // {
-            //     name: "Scott",
-            //     mobileId: 11,
-            //     id: 21
-            // }
-        ],
-        contacts: [
-            {
-                name: "Karl",
-                surname: "Walsh",
-                mobileId: 1,
-                checked: false
-            },
-            {
-                name: "Titi",
-                surname: "Adesanya",
-                mobileId: 2,
-                checked: false
-            },
-            {
-                name: "Hasan",
-                surname: "Kazan",
-                mobileId: 3,
-                checked: false
-            },
-            {
-                name: "Segun",
-                surname: "Konibire",
-                mobileId: 4,
-                checked: false
-            },
-            {
-                name: "Malcolm",
-                surname: "Seaborn",
-                mobileId: 5,
-                checked: false
-            },
-            {
-                name: "Frank",
-                surname: "Sinatra",
-                mobileId: 6,
-                checked: false
-            },
-            {
-                name: "Mathew",
-                surname: "Ferry",
-                mobileId: 7,
-                checked: false
-            },
-            {
-                name: "Clifton",
-                surname: "Green",
-                mobileId: 8,
-                checked: false
-            },
-            {
-                name: "Mary",
-                surname: "Poppins",
-                mobileId: 9,
-                checked: false
-            },
-            {
-                name: "Jay",
-                surname: "Flaxman",
-                mobileId: 10,
-                checked: false
-            },
-            {
-                name: "Jaclyn",
-                surname: "Jones",
-                mobileId: 11,
-                checked: false
-            },
-            {
-                name: "Pilan",
-                surname: "Ramiah",
-                mobileId: 12,
-                checked: false
-            },
-            {
-                name: "Keon",
-                surname: "Konibire",
-                mobileId: 13,
-                checked: false
-            },
-            {
-                name: "Kayden",
-                surname: "konibire",
-                mobileId: 14,
-                checked: false
-            },
-            {
-                name: "Rob",
-                surname: "Curle",
-                mobileId: 15,
-                checked: false
-            },
-            {
-                name: "Jacky",
-                surname: "Brown",
-                mobileId: 16,
-                checked: false
-            },
-            {
-                name: "Kevin",
-                surname: "Philips",
-                mobileId: 17,
-                checked: false
-            },
-            {
-                name: "Lynda",
-                surname: "Dot.Com",
-                mobileId: 18,
-                checked: false
-            },
-            {
-                name: "Jane",
-                surname: "Red",
-                mobileId: 19,
-                checked: false
-            },
-            {
-                name: "Susan",
-                surname: "Fox",
-                mobileId: 20,
-                checked: false
-            },
-            {
-                name: "Florence",
-                surname: "Nightingale",
-                mobileId: 21,
-                checked: false
-            }
-        ]
-    };
 
     createAvatar = contact => {
         let avatar = contact.name.charAt(0).toUpperCase();
