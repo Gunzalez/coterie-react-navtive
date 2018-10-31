@@ -12,11 +12,11 @@ import utils from './../utils';
 
 class Detail extends Component {
 
-    // static propTypes = {
-    //     navigateTo: PropTypes.func.isRequired,
-    //     potDetail: PropTypes.object.isRequired,
-    //     navigation: PropTypes.object.isRequired
-    // };
+    static propTypes = {
+        navigateTo: PropTypes.func.isRequired,
+        potDetail: PropTypes.object.isRequired,
+        navigation: PropTypes.object.isRequired
+    };
 
     constructor(props) {
         super(props);
@@ -29,128 +29,107 @@ class Detail extends Component {
             {
                 name: "Karl",
                 surname: "Walsh",
-                mobileId: 1,
-                checked: false
+                id: 1
             },
             {
                 name: "Titi",
                 surname: "Adesanya",
-                mobileId: 2,
-                checked: false
+                id: 2
             },
             {
                 name: "Hasan",
                 surname: "Kazan",
-                mobileId: 3,
-                checked: false
+                id: 3
             },
             {
                 name: "Segun",
                 surname: "Konibire",
-                mobileId: 4,
-                checked: false
+                id: 4
             },
             {
                 name: "Malcolm",
                 surname: "Seaborn",
-                mobileId: 5,
-                checked: false
+                id: 5
             },
             {
                 name: "Frank",
                 surname: "Sinatra",
-                mobileId: 6,
-                checked: false
+                id: 6
             },
             {
                 name: "Mathew",
                 surname: "Ferry",
-                mobileId: 7,
-                checked: false
+                id: 7
             },
             {
                 name: "Clifton",
                 surname: "Green",
-                mobileId: 8,
-                checked: false
+                id: 8
             },
             {
                 name: "Mary",
                 surname: "Poppins",
-                mobileId: 9,
-                checked: false
+                id: 9
             },
             {
                 name: "Jay",
                 surname: "Flaxman",
-                mobileId: 10,
-                checked: false
+                id: 10
             },
             {
                 name: "Jaclyn",
                 surname: "Jones",
-                mobileId: 11,
-                checked: false
+                id: 11
             },
             {
                 name: "Pilan",
                 surname: "Ramiah",
-                mobileId: 12,
-                checked: false
+                id: 12
             },
             {
                 name: "Keon",
                 surname: "Konibire",
-                mobileId: 13,
-                checked: false
+                id: 13
             },
             {
                 name: "Kayden",
                 surname: "konibire",
-                mobileId: 14,
-                checked: false
+                id: 14
             },
             {
                 name: "Rob",
                 surname: "Curle",
-                mobileId: 15,
-                checked: false
+                id: 15
             },
             {
                 name: "Jacky",
                 surname: "Brown",
-                mobileId: 16,
-                checked: false
+                id: 16
             },
             {
                 name: "Kevin",
                 surname: "Philips",
-                mobileId: 17,
-                checked: false
+                id: 17
             },
             {
                 name: "Lynda",
                 surname: "Dot.Com",
-                mobileId: 18,
-                checked: false
+                id: 18
             },
             {
                 name: "Jane",
                 surname: "Red",
-                mobileId: 19,
-                checked: false
+                id: 19
             },
             {
                 name: "Susan",
                 surname: "Fox",
-                mobileId: 20,
-                checked: false
+                id: 20
             },
             {
                 name: "Florence",
                 surname: "Nightingale",
-                mobileId: 21,
-                checked: false
+                id: 21
             }
         ]
     }

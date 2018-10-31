@@ -17,7 +17,24 @@ export default class App extends Component {
             {
                 status: 2,
                 title: 'October28',
-                participants: [],
+                participants: [
+                    {
+                        id: 1,
+                        mobileId: 5
+                    },
+                    {
+                        id: 2,
+                        mobileId: 6
+                    },
+                    {
+                        id: 3,
+                        mobileId: 11
+                    },
+                    {
+                        id: 4,
+                        mobileId: 20
+                    }
+                ],
                 round: 2,
                 amount: 100,
                 current: 2,

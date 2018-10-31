@@ -14,21 +14,43 @@ import Contact from './Contact';
 
 class Participants extends Component {
 
-    // static propTypes = {
-    //     navigation: PropTypes.object.isRequired
-    // };
+    static propTypes = {
+        navigation: PropTypes.object.isRequired
+    };
 
     constructor(props) {
         super(props);
 
+        let initialParticipants = [];
+        let initialContacts = this.props.navigation.state.params.contacts;
+        initialContacts.forEach(contact => {
+            delete contact.checked
+        });
+
+        this.props.navigation.state.params.potDetail.participants.map(participant => {
+            this.props.navigation.state.params.contacts.map((contact, index) => {
+                if(contact.id === participant.mobileId){
+                    initialParticipants.push({
+                        mobileId: contact.id,
+                        avatar: this.createAvatar(contact)
+                    });
+                    initialContacts[index].checked = true;
+                }
+            })
+        });
+
         this.state = {
-            participants: this.props.navigation.state.params.potDetail.participants,
-            contacts: this.props.navigation.state.params.contacts
+            participants: initialParticipants,
+            contacts: initialContacts
         };
+
+        // this.contactList = this.props.navigation.state.params.contacts;
     }
 
     closeParticipants = () => {
-        this.props.navigation.navigate('Landing')
+        this.props.navigation.navigate('Landing', {
+            participants: this.state.participants
+        })
     };
 
     createAvatar = contact => {
@@ -46,17 +68,15 @@ class Participants extends Component {
 
         if(contact.checked){ // remove from Participants
             tempParticipantsArray.map((participant, index) => {
-                if(participant.mobileId === contact.mobileId){
+                if(participant.mobileId === contact.id){
                     tempParticipantsArray.splice(index, 1);
                 }
             })
         } else { // add to Participants
-            const participant = Object.assign({}, {
-                name: contact.name,
-                mobileId: contact.mobileId,
+            tempParticipantsArray.push({
+                mobileId: contact.id,
                 avatar: this.createAvatar(contact)
             });
-            tempParticipantsArray.push(participant);
             setTimeout(() => this.flatList.scrollToEnd(), 200);
         }
 
@@ -95,20 +115,20 @@ class Participants extends Component {
                         data={this.state.participants}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={(item) =>
                             <Participant data={item}  />
                         }
-                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
                 <View style={styles.bottom}>
                     <FlatList
                         data={this.state.contacts}
                         showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={(item) =>
                             <Contact data={item} contactClicked={this.contactClicked}  />
                         }
-                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
 
