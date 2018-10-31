@@ -12,11 +12,11 @@ import utils from './../utils';
 
 class Detail extends Component {
 
-    static propTypes = {
-        navigateTo: PropTypes.func.isRequired,
-        potDetail: PropTypes.object.isRequired,
-        navigation: PropTypes.object.isRequired
-    };
+    // static propTypes = {
+    //     navigateTo: PropTypes.func.isRequired,
+    //     potDetail: PropTypes.object.isRequired,
+    //     navigation: PropTypes.object.isRequired
+    // };
 
     constructor(props) {
         super(props);
@@ -171,7 +171,7 @@ class Detail extends Component {
         const { potId,
             title = 'Create a new pot',
             amount = '-',
-            participants = '-',
+            participants = [],
             status = 0,
             round = '-',
             current = '-',
@@ -194,7 +194,7 @@ class Detail extends Component {
                 <Text style={styles.heading}>Form</Text>
                 <Text>Title :{ title } (editable before payment)</Text>
                 <Text>Amount: £{ amount } (editable before payment)</Text>
-                <Text>Participants: { participants } (editable before payment)</Text>
+                <Text>Participants: { participants.length } (editable before payment)</Text>
                 <Text>---</Text>
                 <Text style={styles.heading}>Meta</Text>
                 <Text>Pot Status: { status } (derived)</Text>

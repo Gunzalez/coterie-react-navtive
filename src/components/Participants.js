@@ -14,66 +14,22 @@ import Contact from './Contact';
 
 class Participants extends Component {
 
-    static propTypes = {
-        navigation: PropTypes.object.isRequired
-    };
+    // static propTypes = {
+    //     navigation: PropTypes.object.isRequired
+    // };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            participants: [
-                // {
-                //     name: "Peter Parker",
-                //     mobileId: 14,
-                //     id: 8,
-                //     avatar: 'PP'
-                // }
-                // {
-                //     name: "Mathew",
-                //     mobileId: 17,
-                //     id: 4
-                // },
-                // {
-                //     name: "Linda",
-                //     mobileId: 4,
-                //     id: 3
-                // },
-                // {
-                //     name: "Jaclyn",
-                //     mobileId: 12,
-                //     id: 2
-                // },
-                // {
-                //     name: "Linda",
-                //     mobileId: 13,
-                //     id: 7
-                // },
-                // {
-                //     name: "Jaclyn",
-                //     mobileId: 10,
-                //     id: 5
-                // },
-                // {
-                //     name: "Shorma",
-                //     mobileId: 22,
-                //     id: 9
-                // },
-                // {
-                //     name: "Scott",
-                //     mobileId: 11,
-                //     id: 21
-                // }
-            ],
+            participants: this.props.navigation.state.params.potDetail.participants,
             contacts: this.props.navigation.state.params.contacts
         };
-
     }
 
     closeParticipants = () => {
         this.props.navigation.navigate('Landing')
     };
-
 
     createAvatar = contact => {
         let avatar = contact.name.charAt(0).toUpperCase();
@@ -82,8 +38,6 @@ class Participants extends Component {
         }
         return avatar;
     };
-
-
 
     contactClicked = (indexOfContactList) => {
         const tempContactsArray = this.state.contacts.slice();

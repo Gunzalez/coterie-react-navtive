@@ -17,17 +17,17 @@ export default class App extends Component {
             {
                 status: 2,
                 title: 'October28',
-                participants: 4,
+                participants: [],
                 round: 2,
                 amount: 100,
                 current: 2,
                 next: 'Steven',
-                potId: '9901-OA-44'
+                potId: '9901-OA-44',
             },
             {
                 status: 2,
                 title: 'Daddy\'s Slippers',
-                participants: 6,
+                participants: [],
                 round: 5,
                 amount: 60,
                 current: 2,
@@ -37,7 +37,7 @@ export default class App extends Component {
             {
                 status: 1,
                 title: 'June14.02.2018',
-                participants: 9,
+                participants: [],
                 round: 6,
                 amount: 200,
                 current: 2,

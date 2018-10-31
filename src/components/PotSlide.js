@@ -47,7 +47,7 @@ class PotSlide extends Component {
         const {
             title = 'Create a new pot',
             amount = '-',
-            participants = '-',
+            participants = [],
             status = 0,
             round = '-',
             current = '-',
@@ -68,7 +68,7 @@ class PotSlide extends Component {
                 <View style={styles.bottom}>
                     <Text style={[styles.text, styles.title]}>{title}</Text>
                     <Text style={styles.text}>Saving £{amount}</Text>
-                    <Text style={styles.text}>{participants} Participants</Text>
+                    <Text style={styles.text}>{participants.length} Participants</Text>
                     <Text style={styles.text}>Round {round}</Text>
                     <Text style={styles.text}>Status: { getStatus(status) }</Text>
                     <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
