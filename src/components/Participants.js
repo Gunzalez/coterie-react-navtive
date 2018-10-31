@@ -78,13 +78,14 @@ class Participants extends Component {
             tempParticipantsArray.map((participant, index) => {
                 if(participant.mobileId === contact.id){
 
+                    // tempParticipantsArray.splice(index, 1);
+                    this.flatList.scrollToIndex({
+                        animated: false,
+                        index: index,
+                        viewPosition: 1,
+                        viewOffset: 0
+                    });
                     tempParticipantsArray.splice(index, 1);
-                    // this.flatList.scrollToIndex({
-                    //     animated: true,
-                    //     index: index,
-                    //     viewPosition: 1,
-                    //     viewOffset: 0
-                    // });
                 }
             })
         } else { // add to Participants
@@ -131,7 +132,8 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        onScrollEnd={() => console.log("end")}
+                        onMomentumScrollEnd={() => console.log("end")}
+
                         renderItem={(item) =>
                             <Participant data={item}  />
                         }

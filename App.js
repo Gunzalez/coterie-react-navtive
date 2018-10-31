@@ -20,19 +20,19 @@ export default class App extends Component {
                 participants: [
                     {
                         id: 1,
-                        mobileId: 5
+                        mobileId: 1
                     },
                     {
                         id: 2,
-                        mobileId: 6
+                        mobileId: 2
                     },
                     {
                         id: 3,
-                        mobileId: 11
+                        mobileId: 3
                     },
                     {
                         id: 4,
-                        mobileId: 20
+                        mobileId: 4
                     }
                 ],
                 round: 2,
