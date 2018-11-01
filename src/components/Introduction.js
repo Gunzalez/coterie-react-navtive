@@ -120,9 +120,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    carousel: {
-        flex: 3
-    },
     content: {
         flex: 1,
         flexDirection: 'column',
@@ -147,7 +144,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     button: {
-        marginBottom: 60,
+        marginBottom: 40,
         backgroundColor: utils.colours.purple,
         width: '60%',
         paddingVertical: 12,
