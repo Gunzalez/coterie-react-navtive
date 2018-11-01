@@ -43,14 +43,30 @@ class PotSlide extends Component {
 
     render() {
 
-        const {
-            title = 'Create a new pot',
-            amount = '-',
-            participants = [],
-            status = 0,
-            round = '-',
-            current = '-',
-            next = 'Trump'  } = this.props.data;
+        const { title = 'Create a Pot', amount, participants, status, round, current, next } = this.props.data;
+
+        if(status === 0){
+            return(
+                <View style={styles.container}>
+                    <View style={styles.top}>
+                        <Icon name="arrowsalt"
+                              size={utils.icons.size}
+                              color={utils.colours.purple}
+                              onPress={this.handlePress} />
+                    </View>
+                    <View style={styles.bottom}>
+                        <Text style={[styles.text, styles.title]}>{title}</Text>
+                        <Text style={styles.intro}>Saving amount</Text>
+                        <Text style={styles.intro}>No of participants</Text>
+                        <Text style={styles.intro}>Current saving round</Text>
+                        <Text style={styles.intro}>Pot status</Text>
+                        <Text style={styles.intro}>Current Pot Value</Text>
+                        <Text style={styles.intro}>Total Pot Value</Text>
+                        <Text style={styles.intro}>Next to collect</Text>
+                    </View>
+                </View>
+            )
+        }
 
         const curPotValue = parseInt(current) * parseInt(amount);
 
@@ -110,10 +126,13 @@ const styles = StyleSheet.create({
     bottom: {
         paddingBottom: 10,
         paddingHorizontal: 10
-
     },
     text: {
         fontSize: 16
+    },
+    intro: {
+        fontSize: 16,
+        color: '#cccccc'
     }
 });
 

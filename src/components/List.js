@@ -15,9 +15,21 @@ class List extends Component {
         pots: PropTypes.array.isRequired
     };
 
-    state = {
-        pots: this.props.pots
-    };
+    constructor(props) {
+        super(props);
+
+        const allPots = this.props.pots;
+        if(allPots.length === 0 || allPots[(allPots.length - 1)].status !== 0 ){
+            allPots.push({
+                status: 0,
+                potId: -1
+            });
+        }
+
+        this.state = {
+            pots: allPots
+        };
+    }
 
     getFirstItem = () => {
         let index = 0;
@@ -44,7 +56,7 @@ class List extends Component {
                     pots={this.state.pots}
                     firstItem={ this.getFirstItem() }
                     navigateTo={ this.props.navigateTo }
-                    updatePotDetail={this.props.updatePotDetail} />
+                    updatePotDetail={ this.props.updatePotDetail } />
             </View>
         );
     }
