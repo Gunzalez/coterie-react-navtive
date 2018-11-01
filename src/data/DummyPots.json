@@ -1,0 +1,44 @@
+{
+    "pots": [
+        {
+            "id": "44caf03b-fe75-4baf-82cf-c358bc1d9381",
+            "name": "Making Progress",
+            "nextParticipantToCollect" : "Michael Johnson",
+            "nextParticipantsToPay": ["3e852ade-da83-41f6-a714-061d1687601e", "aa5b0b63-d669-4c4e-8371-6b37e50c2283"],
+            "participants": [
+                {
+                    "contactId": "12",
+                    "id": "ff0d736d-5a23-4ba2-823a-d4ba2d783865"
+                },
+                {
+                    "contactId": "15",
+                    "id": "c68ee291-9172-450e-8c99-e1bd6759affc"
+                },
+                {
+                    "contactId": "4",
+                    "id": "709f1608-a503-4f58-8b3a-b1f783138dac"
+                },
+                {
+                    "contactId": "11",
+                    "id": "3e852ade-da83-41f6-a714-061d1687601e"
+                },
+                {
+                    "contactId": "1",
+                    "id": "41749e12-2b97-44a2-be72-11228fa6df60"
+                },
+                {
+                    "contactId": "14",
+                    "id": "62219a0e-f6ed-4d0c-a6bc-fe9b60c715de"
+                },
+                {
+                    "contactId": "16",
+                    "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
+                }
+            ],
+            "round": 1,
+            "savingsAmount": 400,
+            "status": "in-progress",
+            "_capabilities": []
+        }
+    ]
+}
