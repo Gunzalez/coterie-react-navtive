@@ -43,9 +43,9 @@ class PotSlide extends Component {
 
     render() {
 
-        const { title = 'Create a Pot', amount, participants, status, round, current, next } = this.props.data;
+        const { name = 'Create a Pot', savingsAmount, participants, status, round, nextParticipantToCollect } = this.props.data;
 
-        if(status === 0){
+        if(status === "new"){
             return(
                 <View style={styles.container}>
                     <View style={styles.top}>
@@ -55,12 +55,11 @@ class PotSlide extends Component {
                               onPress={this.handlePress} />
                     </View>
                     <View style={styles.bottom}>
-                        <Text style={[styles.text, styles.title]}>{title}</Text>
+                        <Text style={[styles.text, styles.title]}>{name}</Text>
                         <Text style={styles.intro}>Saving amount</Text>
                         <Text style={styles.intro}>No of participants</Text>
                         <Text style={styles.intro}>Current saving round</Text>
                         <Text style={styles.intro}>Pot status</Text>
-                        <Text style={styles.intro}>Current Pot Value</Text>
                         <Text style={styles.intro}>Total Pot Value</Text>
                         <Text style={styles.intro}>Next to collect</Text>
                     </View>
@@ -68,9 +67,7 @@ class PotSlide extends Component {
             )
         }
 
-        const curPotValue = parseInt(current) * parseInt(amount);
-
-        const totPotValue = ( participants.length -1 ) * parseInt(amount);
+        const totPotValue = ( participants.length -1 ) * parseInt(savingsAmount);
 
         return (
             <View style={styles.container}>
@@ -81,14 +78,13 @@ class PotSlide extends Component {
                           onPress={this.handlePress} />
                 </View>
                 <View style={styles.bottom}>
-                    <Text style={[styles.text, styles.title]}>{title}</Text>
-                    <Text style={styles.text}>Saving £{amount}</Text>
+                    <Text style={[styles.text, styles.title]}>{name}</Text>
+                    <Text style={styles.text}>Saving £{savingsAmount}</Text>
                     <Text style={styles.text}>{participants.length} Participants</Text>
                     <Text style={styles.text}>Round {round}</Text>
-                    <Text style={styles.text}>Status: { getStatus(status) }</Text>
-                    <Text style={styles.text}>Current Pot Value £{curPotValue}</Text>
+                    <Text style={styles.text}>Status: {status}</Text>
                     <Text style={styles.text}>Pot Value £{totPotValue}</Text>
-                    <Text style={styles.text}>Next to collect: {next}</Text>
+                    <Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>
                 </View>
             </View>
         );
@@ -128,10 +124,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     text: {
-        fontSize: 16
+        fontSize: 14
     },
     intro: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#cccccc'
     }
 });

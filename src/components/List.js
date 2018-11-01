@@ -19,9 +19,9 @@ class List extends Component {
         super(props);
 
         const allPots = this.props.pots;
-        if( allPots.length === 0 || allPots[(allPots.length - 1)].status !== 0 ){
+        if( allPots.length === 0 || allPots[(allPots.length - 1)].status !== "new" ){
             allPots.push({
-                status: 0,
+                status: "new",
                 potId: -1
             });
         }
