@@ -16,8 +16,9 @@ export default class App extends Component {
         pots: [
             {
                 "id": "44caf03b-fe75-4baf-82cf-c358bc1d9381",
-                "name": "Easales",
-                "nextParticipantToCollect" : "ff0d736d-5a23-4ba2-823a-d4ba2d783865",
+                "name": "TFS Rocks On!",
+                // "nextParticipantToCollect" : "ff0d736d-5a23-4ba2-823a-d4ba2d783865",
+                "nextParticipantToCollect" : "Michael Johnson",
                 "nextParticipantsToPay": ["3e852ade-da83-41f6-a714-061d1687601e", "aa5b0b63-d669-4c4e-8371-6b37e50c2283"],
                 "participants": [
                     {

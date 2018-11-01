@@ -67,7 +67,7 @@ class PotSlide extends Component {
             )
         }
 
-        const totPotValue = ( participants.length -1 ) * parseInt(savingsAmount);
+        const totPotValue = (participants.length * savingsAmount) - savingsAmount;
 
         return (
             <View style={styles.container}>

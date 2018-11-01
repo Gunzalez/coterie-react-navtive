@@ -145,22 +145,14 @@ class Detail extends Component {
 
     render() {
 
-        const { potId,
-            title = 'Create a new pot',
-            amount = '-',
-            participants = [],
-            status = 0,
-            round = '-',
-            current = '-',
-            next = 'Trump'} = this.state.potDetail;
+        const { name = 'Create a new pot', savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
 
-        const curPotValue = parseInt(current) * parseInt(amount);
-        const totPotValue = ( participants.length - 1 ) * parseInt(amount);
+        const totPotValue =  (participants.length * savingsAmount) - savingsAmount;
 
         return (
             <View style={[ styles.container ]}>
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>{title}</Text>
+                    <Text style={[ styles.title ]}>{name}</Text>
                     <Icon
                         name="shrink"
                         size={utils.icons.size}
@@ -169,17 +161,21 @@ class Detail extends Component {
                 </View>
 
                 <Text style={styles.heading}>Form</Text>
-                <Text>Title :{ title } (editable before payment)</Text>
-                <Text>Amount: £{ amount } (editable before payment)</Text>
+                <Text>Title :{ name } (editable before payment)</Text>
+                <Text>Amount: £{ savingsAmount } (editable before payment)</Text>
                 <Text>Participants: { participants.length } (editable before payment)</Text>
-                <Text>---</Text>
-                <Text style={styles.heading}>Meta</Text>
-                <Text>Pot Status: { status } (derived)</Text>
-                <Text>Current round: { round } (derived)</Text>
-                <Text>Next to get paid: { next } (derived)</Text>
-                <Text>Current pot value: £{ curPotValue } (derived)</Text>
-                <Text>Total pot value: £{ totPotValue } (derived)</Text>
-                <Text>---</Text>
+
+                { participants.length > 0 &&
+                    <View>
+                        <Text style={styles.heading}>Meta</Text>
+                        <Text>Pot Status: { status } (derived)</Text>
+                        <Text>Current round: { round } (derived)</Text>
+                        <Text>Next to get paid: { nextParticipantToCollect } (derived)</Text>
+                        <Text>Current pot value: £{ "-----" } (derived)</Text>
+                        <Text>Total pot value: £{ totPotValue } (derived)</Text>
+                    </View>
+                }
+
                 <Text style={styles.heading}>Actions</Text>
                 <Text>- Delete a pot (may be disabled)</Text>
                 <Text>- Save a Pot (may be disabled)</Text>
