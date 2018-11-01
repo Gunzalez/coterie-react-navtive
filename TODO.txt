@@ -1,0 +1,5 @@
+Develop utils, and use
+Design Landing form page
+Move data to JSON files
+Removing list items with animations
+Test on Android
