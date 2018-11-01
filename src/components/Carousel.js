@@ -12,11 +12,15 @@ import utils from "../utils";
 
 const sliderWidth = Dimensions.get('window').width;
 
+const deviceHeight = Dimensions.get('window').height;
+
 const horizontalMargin = 10;
 
 const slideWidth = sliderWidth - 100;
 
 const itemWidth = slideWidth + horizontalMargin * 2;
+
+const itemHeight = deviceHeight - 240;
 
 class MyCarousel extends Component {
 
@@ -81,8 +85,10 @@ class MyCarousel extends Component {
 const styles = StyleSheet.create({
     slide: {
         width: itemWidth,
-        height: 'auto',
-        paddingHorizontal: 15
+        height: itemHeight,
+        paddingHorizontal: 15,
+        // backgroundColor: '#000000',
+        justifyContent: 'flex-end'
     },
     slideInnerContainer: {
         width: slideWidth,

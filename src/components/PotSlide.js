@@ -10,7 +10,7 @@ import utils from './../utils';
 
 const deviceHeight = Dimensions.get('window').height;
 
-const itemHeight = deviceHeight - 400;
+const itemHeight = deviceHeight - 290;
 
 const getStatus = (id) => {
       switch (id){

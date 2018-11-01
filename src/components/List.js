@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
         color: '#444',
         textAlign: 'center',
         paddingBottom: 10
-
     }
 });
 
