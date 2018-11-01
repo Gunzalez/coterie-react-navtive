@@ -8,30 +8,9 @@ import Slide from './Slide';
 
 import utils from './../utils';
 
-// import { instructions } from './../data/instructions';
+import data from './../data/instructions';
 
-const instructions = [
-    {
-        "title": "Give your Saving Pot a name. Select a saving amount",
-        "media": "http://www.image-1"
-    },
-    {
-        "title": "Select participants from your contact list.",
-        "media": "http://www.image-2"
-    },
-    {
-        "title": "Your plan starts when the first participant pays.",
-        "media": "http://www.image-3"
-    },
-    {
-        "title": "Re-arrange the schedule to suit your needs",
-        "media": "http://www.image-4"
-    },
-    {
-        "title": "Clone or restart a plan once it has matured",
-        "media": "http://www.image-5"
-    }
-];
+const instructions = data.instructions;
 
 const { width } = Dimensions.get('window');
 
