@@ -168,11 +168,11 @@ class Detail extends Component {
                 { participants.length > 0 &&
                     <View>
                         <Text style={styles.heading}>Meta</Text>
-                        <Text>Pot Status: { status } (derived)</Text>
-                        <Text>Current round: { round } (derived)</Text>
-                        <Text>Next to get paid: { nextParticipantToCollect } (derived)</Text>
-                        <Text>Current pot value: £{ "-----" } (derived)</Text>
-                        <Text>Total pot value: £{ totPotValue } (derived)</Text>
+                        <Text>Pot Status: { status }</Text>
+                        <Text>Current round: { round }</Text>
+                        <Text>Next to get paid: { nextParticipantToCollect }</Text>
+                        <Text>Current pot value: £{ "-----" }</Text>
+                        <Text>Total pot value: £{ totPotValue }</Text>
                     </View>
                 }
 

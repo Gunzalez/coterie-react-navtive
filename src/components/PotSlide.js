@@ -12,19 +12,6 @@ const deviceHeight = Dimensions.get('window').height;
 
 const itemHeight = deviceHeight - 290;
 
-const getStatus = (id) => {
-      switch (id){
-          case 1:
-              return 'Saved';
-          case 2:
-              return 'Running';
-          case 3:
-              return 'Matured';
-          default:
-              return 'New'
-      }
-};
-
 class PotSlide extends Component {
 
     static propTypes = {

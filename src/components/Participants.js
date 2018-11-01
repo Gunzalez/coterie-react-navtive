@@ -108,13 +108,13 @@ class Participants extends Component {
 
         const { navigation } = this.props;
 
-        const { title } = navigation.state.params.potDetail;
+        const { name } = navigation.state.params.potDetail;
 
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>{title}</Text>
+                    <Text style={[ styles.title ]}>{ name }</Text>
 
                     <View style={styles.icon}>
                         <Icon
