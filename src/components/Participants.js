@@ -127,8 +127,8 @@ class Participants extends Component {
                             onPress={this.saveParticipants}>
                         <Icon
                             name="save"
-                            size={utils.icons.size}
-                            color={ this.hasParticipantsChanged() ? utils.colours.gray : utils.colours.purple }
+                            size={utils.style.icons.size}
+                            color={ this.hasParticipantsChanged() ? utils.style.colours.gray : utils.style.colours.purple }
                              />
                         </TouchableOpacity>
                     </View>
@@ -162,8 +162,8 @@ class Participants extends Component {
                 <View style={styles.footer}>
                     <Icon
                         name="downcircleo"
-                        size={utils.icons.size}
-                        color={utils.colours.white}
+                        size={utils.style.icons.size}
+                        color={utils.style.colours.white}
                         onPress={this.closeParticipants} />
                 </View>
 
@@ -194,15 +194,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
-        backgroundColor: utils.colours.white
+        backgroundColor: utils.style.colours.white
     },
     title: {
         fontSize: 25,
-        color: utils.colours.purple,
+        color: utils.style.colours.purple,
         paddingBottom: 10
     },
     footer: {
-        backgroundColor: utils.colours.purple,
+        backgroundColor: utils.style.colours.purple,
         height: 100,
         padding: 20,
         alignItems: 'flex-end'

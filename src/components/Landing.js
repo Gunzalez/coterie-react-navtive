@@ -155,8 +155,8 @@ class Detail extends Component {
                     <Text style={[ styles.title ]}>{name}</Text>
                     <Icon
                         name="shrink"
-                        size={utils.icons.size}
-                        color={utils.colours.purple}
+                        size={utils.style.icons.size}
+                        color={utils.style.colours.purple}
                         onPress={this.handlePress} />
                 </View>
 
@@ -188,8 +188,8 @@ class Detail extends Component {
                 <View style={styles.footer}>
                     <Icon
                         name="upcircleo"
-                        size={utils.icons.size}
-                        color={utils.colours.purple}
+                        size={utils.style.icons.size}
+                        color={utils.style.colours.purple}
                         onPress={this.showParticipants} />
                 </View>
             </View>
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        color: utils.colours.purple,
+        color: utils.style.colours.purple,
         paddingBottom: 10
     },
     footer: {
@@ -220,13 +220,13 @@ const styles = StyleSheet.create({
         paddingTop: 15
     },
     back: {
-        backgroundColor: utils.colours.purple,
+        backgroundColor: utils.style.colours.purple,
         marginBottom: 20,
         padding: 12,
         borderRadius: 5
     },
     backText: {
-        color: utils.colours.white,
+        color: utils.style.colours.white,
         fontSize: 18,
         textAlign: 'center'
     }

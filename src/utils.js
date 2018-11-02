@@ -1,17 +1,19 @@
 
 export default {
-    colours: {
-        purple: '#ba55d3',
-        white: '#ffffff',
-        gray: '#cccccc'
-    },
-    icons: {
-        size: 32
-    },
-    text: {
-        header: 22,
-        heading: 18,
-        copy: 14
+    style: {
+        colours: {
+            purple: '#ba55d3',
+            white: '#ffffff',
+            gray: '#cccccc'
+        },
+        icons: {
+            size: 32
+        },
+        text: {
+            header: 22,
+            heading: 18,
+            copy: 14
+        }
     },
     js: {
         getIds: function (array) {

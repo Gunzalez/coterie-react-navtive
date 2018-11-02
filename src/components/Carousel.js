@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         height: 12,
         width: 12,
         borderRadius: 6,
-        backgroundColor: utils.colours.purple
+        backgroundColor: utils.style.colours.purple
     }
 });
 

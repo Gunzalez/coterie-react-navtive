@@ -37,8 +37,8 @@ class PotSlide extends Component {
                 <View style={styles.container}>
                     <View style={styles.top}>
                         <Icon name="arrowsalt"
-                              size={utils.icons.size}
-                              color={utils.colours.purple}
+                              size={utils.style.icons.size}
+                              color={utils.style.colours.purple}
                               onPress={this.handlePress} />
                     </View>
                     <View style={styles.bottom}>
@@ -60,8 +60,8 @@ class PotSlide extends Component {
             <View style={styles.container}>
                 <View style={styles.top}>
                     <Icon name="arrowsalt"
-                          size={utils.icons.size}
-                          color={utils.colours.purple}
+                          size={utils.style.icons.size}
+                          color={utils.style.colours.purple}
                           onPress={this.handlePress} />
                 </View>
                 <View style={styles.bottom}>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         height: itemHeight,
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: utils.colours.white,
+        backgroundColor: utils.style.colours.white,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        color: utils.colours.purple,
+        color: utils.style.colours.purple,
         paddingBottom: 10
     },
     bottom: {

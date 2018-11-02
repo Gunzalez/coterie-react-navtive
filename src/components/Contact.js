@@ -21,7 +21,7 @@ const Contact = (props) => {
                 <Icon
                     name={ checked ? 'radio-button-checked' : 'radio-button-unchecked' }
                     size={28}
-                    color={utils.colours.purple}
+                    color={utils.style.colours.purple}
                     onPress={()=>{contactClicked(data.index)}}
                 />
             </View>

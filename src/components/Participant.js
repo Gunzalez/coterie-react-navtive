@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 30,
-        backgroundColor: utils.colours.purple,
+        backgroundColor: utils.style.colours.purple,
         marginHorizontal: 6,
         justifyContent: 'center',
         alignItems: 'center'
     },
     text: {
         fontSize: 20,
-        color: utils.colours.white
+        color: utils.style.colours.white
     }
 });
 

@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         height: 12,
         width: 12,
         borderRadius: 6,
-        backgroundColor: utils.colours.purple
+        backgroundColor: utils.style.colours.purple
     },
     top: {
         flexDirection: 'row',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginBottom: 40,
-        backgroundColor: utils.colours.purple,
+        backgroundColor: utils.style.colours.purple,
         width: '60%',
         paddingVertical: 12,
         flexDirection: 'row',
