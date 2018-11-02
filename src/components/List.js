@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 
 import MyCarousel from './Carousel';
+import utils from "../utils";
 
 class List extends Component {
 
@@ -64,7 +65,8 @@ class List extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#f5f5f5'
     },
     header: {
         paddingVertical: 10,

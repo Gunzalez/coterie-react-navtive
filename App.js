@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 
 import Introduction from './src/components/Introduction';
 
@@ -10,6 +10,8 @@ import List from './src/components/List';
 import Detail from './src/components/Detail';
 
 import data from './src/data/DummyPots';
+
+import utils from './src/utils';
 
 export default class App extends Component {
 
@@ -38,6 +40,7 @@ export default class App extends Component {
         if(screen === 'intro'){
             return (
                 <View style={styles.container}>
+                    <StatusBar barStyle={"light-content"} />
                     <Introduction navigateTo={this.updateScreen} />
                 </View>
             );
@@ -46,6 +49,7 @@ export default class App extends Component {
         if(screen === 'list'){
             return (
                 <View style={styles.container}>
+                    <StatusBar barStyle={"light-content"} />
                     <List navigateTo={this.updateScreen}
                         updatePotDetail={this.updatePotDetail}
                         potDetail={potDetail}
@@ -57,6 +61,7 @@ export default class App extends Component {
         if(screen === 'detail'){
             return (
                 <View style={styles.container}>
+                    <StatusBar barStyle={"light-content"} />
                     <Detail navigateTo={this.updateScreen}
                         updatePotDetail={this.updatePotDetail}
                         potDetail={potDetail} />
@@ -68,7 +73,7 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: utils.style.colours.purple,
         paddingTop: 20,
         flex: 1
     }

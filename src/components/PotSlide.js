@@ -28,53 +28,53 @@ class PotSlide extends Component {
         }
     };
 
+    getTotalPotValue = pot => {
+        const { participants, savingsAmount } = pot;
+        if(participants.length){
+            return (participants.length * savingsAmount) - savingsAmount
+        }
+        return 0;
+    };
+
     render() {
 
         const { name = 'Create a Pot', savingsAmount, participants, status, round, nextParticipantToCollect } = this.props.data;
 
-        if(status === "new"){
-            return(
-                <View style={styles.container}>
-                    <View style={styles.top}>
-                        <TouchableOpacity onPress={this.handlePress}>
+
+        return(
+            <View style={styles.container}>
+
+                <View style={styles.top}>
+                    <TouchableOpacity style={styles.topButton} onPress={this.handlePress}>
                         <Icon name="arrowsalt"
                               size={utils.style.icons.size}
-                              color={utils.style.colours.purple} />
-                        </TouchableOpacity>
-                    </View>
+                              color={utils.style.colours.white} />
+                    </TouchableOpacity>
+                    <Text style={[styles.text, styles.title]}>{name}</Text>
+                </View>
+
+                { status === "new" &&
                     <View style={styles.bottom}>
-                        <Text style={[styles.text, styles.title]}>{name}</Text>
                         <Text style={styles.intro}>Saving amount</Text>
                         <Text style={styles.intro}>No of participants</Text>
-                        <Text style={styles.intro}>Current saving round</Text>
+                        <Text style={styles.intro}>Saving round</Text>
                         <Text style={styles.intro}>Pot status</Text>
                         <Text style={styles.intro}>Total Pot Value</Text>
                         <Text style={styles.intro}>Next to collect</Text>
                     </View>
-                </View>
-            )
-        }
+                }
 
-        const totPotValue = (participants.length * savingsAmount) - savingsAmount;
+                { status !== "new" &&
+                    <View style={styles.bottom}>
+                        <Text style={styles.text}>Saving £{savingsAmount}</Text>
+                        <Text style={styles.text}>{participants.length} Participants</Text>
+                        <Text style={styles.text}>Round: {round}</Text>
+                        <Text style={styles.text}>Status: {status}</Text>
+                        <Text style={styles.text}>Pot Value £{this.getTotalPotValue(this.props.data)}</Text>
+                        <Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>
+                    </View>
+                }
 
-        return (
-            <View style={styles.container}>
-                <View style={styles.top}>
-                    <TouchableOpacity onPress={this.handlePress}>
-                    <Icon name="arrowsalt"
-                          size={utils.style.icons.size}
-                          color={utils.style.colours.purple} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.bottom}>
-                    <Text style={[styles.text, styles.title]}>{name}</Text>
-                    <Text style={styles.text}>Saving £{savingsAmount}</Text>
-                    <Text style={styles.text}>{participants.length} Participants</Text>
-                    <Text style={styles.text}>Round {round}</Text>
-                    <Text style={styles.text}>Status: {status}</Text>
-                    <Text style={styles.text}>Pot Value £{totPotValue}</Text>
-                    <Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>
-                </View>
             </View>
         );
     }
@@ -84,33 +84,42 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 8,
         height: itemHeight,
-        paddingHorizontal: 10,
-        paddingVertical: 10,
+        // paddingHorizontal: 10,
+        // paddingVertical: 10,
         backgroundColor: utils.style.colours.white,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-
-        elevation: 3,
+        // shadowColor: "#000",
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 1,
+        // },
+        // shadowOpacity: 0.22,
+        // shadowRadius: 2.22,
+        // elevation: 3,
         marginVertical: 5
+    },
+    topButton: {
+        alignSelf: 'flex-end'
     },
     top: {
         flex: 1,
-        alignItems: 'flex-end'
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: utils.style.colours.purple,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        paddingHorizontal: 15,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     title: {
         fontSize: 25,
-        color: utils.style.colours.purple,
-        paddingBottom: 10
+        color: utils.style.colours.white,
+        alignSelf: 'flex-start'
     },
     bottom: {
-        paddingBottom: 10,
-        paddingHorizontal: 10
+        paddingHorizontal: 15,
+        paddingTop: 10,
+        paddingBottom: 15
     },
     text: {
         fontSize: 14
