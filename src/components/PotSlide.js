@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -36,10 +36,11 @@ class PotSlide extends Component {
             return(
                 <View style={styles.container}>
                     <View style={styles.top}>
+                        <TouchableOpacity onPress={this.handlePress}>
                         <Icon name="arrowsalt"
                               size={utils.style.icons.size}
-                              color={utils.style.colours.purple}
-                              onPress={this.handlePress} />
+                              color={utils.style.colours.purple} />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.bottom}>
                         <Text style={[styles.text, styles.title]}>{name}</Text>
@@ -59,10 +60,11 @@ class PotSlide extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
+                    <TouchableOpacity onPress={this.handlePress}>
                     <Icon name="arrowsalt"
                           size={utils.style.icons.size}
-                          color={utils.style.colours.purple}
-                          onPress={this.handlePress} />
+                          color={utils.style.colours.purple} />
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.bottom}>
                     <Text style={[styles.text, styles.title]}>{name}</Text>

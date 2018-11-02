@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -153,11 +153,12 @@ class Detail extends Component {
             <View style={[ styles.container ]}>
                 <View style={styles.top}>
                     <Text style={[ styles.title ]}>{name}</Text>
+                    <TouchableOpacity onPress={this.handlePress}>
                     <Icon
                         name="shrink"
                         size={utils.style.icons.size}
-                        color={utils.style.colours.purple}
-                        onPress={this.handlePress} />
+                        color={utils.style.colours.purple}/>
+                    </TouchableOpacity>
                 </View>
 
                 <Text style={styles.heading}>Form</Text>
@@ -186,11 +187,12 @@ class Detail extends Component {
                 <Text>- Re-order Participants (may be disabled)</Text>
 
                 <View style={styles.footer}>
+                    <TouchableOpacity onPress={this.showParticipants}>
                     <Icon
                         name="upcircleo"
                         size={utils.style.icons.size}
-                        color={utils.style.colours.purple}
-                        onPress={this.showParticipants} />
+                        color={utils.style.colours.purple} />
+                    </TouchableOpacity>
                 </View>
             </View>
         );

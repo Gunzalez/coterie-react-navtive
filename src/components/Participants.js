@@ -160,11 +160,12 @@ class Participants extends Component {
                 </View>
 
                 <View style={styles.footer}>
+                    <TouchableOpacity onPress={this.closeParticipants}>
                     <Icon
                         name="downcircleo"
                         size={utils.style.icons.size}
-                        color={utils.style.colours.white}
-                        onPress={this.closeParticipants} />
+                        color={utils.style.colours.white} />
+                    </TouchableOpacity>
                 </View>
 
             </View>

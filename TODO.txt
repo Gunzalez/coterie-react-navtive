@@ -4,5 +4,5 @@ Move data to JSON files
 Removing list items with animations
 Test on Android
 Hook up Karl's token business
-Look into Screen to Screen animations -shared components
+Look into Screen to Screen animations - shared components
 Get native contacts
