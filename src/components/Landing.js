@@ -151,6 +151,7 @@ class Detail extends Component {
 
         return (
             <View style={[ styles.container ]}>
+
                 <View style={styles.top}>
                     <Text style={[ styles.title ]}>{name}</Text>
                     <TouchableOpacity onPress={this.handlePress}>
@@ -161,39 +162,46 @@ class Detail extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.heading}>Form</Text>
-                <Text>Title :{ name } (editable before payment)</Text>
-                <Text>Amount: £{ savingsAmount } (editable before payment)</Text>
-                <Text>Participants: { participants.length } (editable before payment)</Text>
-
-                { participants.length > 0 &&
-                    <View>
-                        <Text style={styles.heading}>Meta</Text>
-                        <Text>Pot Status: { status }</Text>
-                        <Text>Current round: { round }</Text>
-                        <Text>Next to get paid: { nextParticipantToCollect }</Text>
-                        <Text>Current pot value: £{ "-----" }</Text>
-                        <Text>Total pot value: £{ totPotValue }</Text>
+                <View style={styles.middle}>
+                    <View style={styles.form}>
+                        <Text>Title :{ name } (editable before payment)</Text>
+                        <Text>Amount: £{ savingsAmount } (editable before payment)</Text>
                     </View>
-                }
-
-                <Text style={styles.heading}>Actions</Text>
-                <Text>- Delete a pot (may be disabled)</Text>
-                <Text>- Save a Pot (may be disabled)</Text>
-                <Text>- Manage payment/collection (click on Participant)</Text>
-                <Text>- Clear Pot/Form (may be disabled)</Text>
-                <Text>- Clone Pot (may be disabled)</Text>
-                <Text>- Add/Remove Participants (may be disabled)</Text>
-                <Text>- Re-order Participants (may be disabled)</Text>
+                </View>
 
                 <View style={styles.footer}>
+
+                    <TouchableOpacity>
+                        <Icon
+                            name="delete"
+                            size={40}
+                            color={utils.style.colours.white} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Icon
+                            name="save"
+                            size={40}
+                            color={utils.style.colours.white} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Icon
+                            name="menufold"
+                            size={40}
+                            color={utils.style.colours.white} />
+                    </TouchableOpacity>
+
                     <TouchableOpacity onPress={this.showParticipants}>
-                    <Icon
-                        name="upcircleo"
-                        size={utils.style.icons.size}
-                        color={utils.style.colours.purple} />
+                        <Icon
+                            name="adduser"
+                            size={40}
+                            color={utils.style.colours.white} />
                     </TouchableOpacity>
                 </View>
+
+
+
             </View>
         );
     }
@@ -201,36 +209,29 @@ class Detail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
+        paddingTop: 20,
         backgroundColor: '#f5f5f5',
         flex: 1
     },
     top: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingHorizontal: 20
     },
     title: {
         fontSize: 25,
         color: utils.style.colours.purple,
         paddingBottom: 10
     },
+    middle: {
+        flex: 1,
+        paddingHorizontal: 20
+    },
     footer: {
-        paddingTop: 30
-    },
-    heading:{
-        fontSize: 18,
-        paddingTop: 15
-    },
-    back: {
-        backgroundColor: utils.style.colours.purple,
-        marginBottom: 20,
-        padding: 12,
-        borderRadius: 5
-    },
-    backText: {
-        color: utils.style.colours.white,
-        fontSize: 18,
-        textAlign: 'center'
+        padding: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: utils.style.colours.purple
     }
 });
 

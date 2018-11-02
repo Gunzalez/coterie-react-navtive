@@ -1,8 +1,15 @@
+
+To DO
+=========
 Develop utils, and use
 Design Landing form page
 Move data to JSON files
 Removing list items with animations
 Test on Android
-Hook up Karl's token business
+Hook up Karl's token business, Async
 Look into Screen to Screen animations - shared components
 Get native contacts
+
+
+DOING
+=========
