@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -42,11 +42,16 @@ class Participants extends Component {
 
         this.state = {
             participants: initialParticipants,
-            contacts: initialContacts
+            contacts: initialContacts,
+            originalParticipants: initialParticipants
         };
-
-        // this.contactList = this.props.navigation.state.params.contacts;
     }
+
+    hasParticipantsChanged = () => {
+        console.log(this.state.participants);
+        console.log(this.state.originalParticipants);
+        return !utils.js.areDifferentByIds(this.state.participants, this.state.originalParticipants)
+    };
 
     closeParticipants = () => {
         this.props.navigation.navigate('Landing')
@@ -117,11 +122,15 @@ class Participants extends Component {
                     <Text style={[ styles.title ]}>{ name }</Text>
 
                     <View style={styles.icon}>
+                        <TouchableOpacity
+                            disabled={this.hasParticipantsChanged()}
+                            onPress={this.saveParticipants}>
                         <Icon
                             name="save"
                             size={utils.icons.size}
-                            color={utils.colours.purple}
-                            onPress={this.saveParticipants} />
+                            color={ this.hasParticipantsChanged() ? utils.colours.gray : utils.colours.purple }
+                             />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
