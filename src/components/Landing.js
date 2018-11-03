@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -235,6 +235,18 @@ class Detail extends Component {
                         </TouchableOpacity>
                     </View>
 
+                    <View style={styles.empty}>
+                        <TouchableOpacity onPress={this.showParticipants}>
+                            <Icon
+                                name="adduser"
+                                size={40}
+                                color={utils.style.colours.purple} />
+                        </TouchableOpacity>
+                        <Text style={styles.emptyText}>Add participants to this pot</Text>
+                    </View>
+
+
+
 
                 </View>
 
@@ -295,6 +307,11 @@ const styles = StyleSheet.create({
         alignContent: 'space-between',
         width: '100%',
     },
+    middle: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 20
+    },
     charactersLeft: {
         // borderRadius: 13,
         // height: 26,
@@ -315,11 +332,6 @@ const styles = StyleSheet.create({
         color: utils.style.colours.white,
         flex: 1
     },
-    middle: {
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingVertical: 20
-    },
     amount: {
         flex: 1,
         fontSize: 30,
@@ -330,7 +342,8 @@ const styles = StyleSheet.create({
     savingsAmount: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginBottom: 20
     },
     cashAmount: {
         fontSize: 40
@@ -343,6 +356,17 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 12,
         borderRadius: 4
+    },
+
+    empty: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    emptyText: {
+        fontSize: 20,
+        marginBottom: 80,
+        color: utils.style.colours.grayText
     },
     footer: {
         paddingVertical: 20,
