@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -139,12 +139,14 @@ class Detail extends Component {
     };
 
     decreaseSavings = () => {
+        Keyboard.dismiss();
         this.setState((state) => {
             return { saveValue: state.saveValue - 50 };
         });
     };
 
     increaseSavings = () => {
+        Keyboard.dismiss();
         this.setState((state) => {
             return { saveValue: state.saveValue + 50 };
         });
