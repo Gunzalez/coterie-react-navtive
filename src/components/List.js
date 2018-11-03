@@ -23,7 +23,7 @@ class List extends Component {
         if( allPots.length === 0 || allPots[(allPots.length - 1)].status !== "new" ){
             allPots.push({
                 status: "new",
-                potId: -1
+                id: -1
             });
         }
 
@@ -33,13 +33,14 @@ class List extends Component {
     }
 
     getFirstItem = () => {
-        let index = 0;
-        for (let i = 0; i < this.state.pots.length; i++) {
-            if (this.state.pots[i].potId === this.props.potDetail.potId) {
-                index = i
+        if(this.props.potDetail.id){
+            for (let i = 0; i < this.state.pots.length; i++) {
+                if (this.state.pots[i].id === this.props.potDetail.id) {
+                    return i
+                }
             }
         }
-        return index
+        return 0
     };
 
     render() {

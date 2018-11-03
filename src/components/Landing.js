@@ -8,6 +8,8 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
+import Row from './LandingRow';
+
 class Detail extends Component {
 
     static propTypes = {
@@ -134,7 +136,8 @@ class Detail extends Component {
             potDetail: this.props.potDetail,
             saveValue: this.savingsMin,
             newName: '',
-            charactersLeft: this.characterCap
+            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0),
+            localPot: Object.assign({}, this.props.potDetail)
         };
     }
 
@@ -168,9 +171,13 @@ class Detail extends Component {
     };
 
     updatePotName = newName => {
+
+        const localPot = this.state.localPot;
+        localPot.name = newName;
+
         this.setState({
             charactersLeft: this.characterCap - newName.length,
-            newName
+            localPot
         })
     };
 
@@ -188,7 +195,7 @@ class Detail extends Component {
                         <Icon
                             name="shrink"
                             size={utils.style.icons.size}
-                            color={utils.style.colours.white}/>
+                            color={utils.style.colours.white} />
                     </TouchableOpacity>
                     <View style={[styles.nameInput]}>
                         <TextInput
@@ -199,7 +206,7 @@ class Detail extends Component {
                             autoFocus={status === 'new'}
                             autoCorrect={false}
                             maxLength={this.characterCap}
-                            value={this.state.newName}
+                            value={this.state.localPot.name}
                             onChangeText={(text) => {this.updatePotName(text)}}
                         />
                         <View style={[styles.charactersLeft]}>
@@ -223,7 +230,6 @@ class Detail extends Component {
                         <View style={styles.amount}>
                             <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
                             <Text style={styles.cashAmount}>{ this.state.saveValue }</Text>
-                            {/*<Text style={[styles.amountText, styles.cashAmount]}>.00</Text>*/}
                         </View>
                         <TouchableOpacity
                             disabled={this.state.saveValue >= this.savingsMax}
@@ -236,17 +242,30 @@ class Detail extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.empty}>
-                        <TouchableOpacity onPress={this.showParticipants}>
-                            <Icon
-                                name="addusergroup"
-                                size={40}
-                                color={utils.style.colours.purple} />
-                        </TouchableOpacity>
-                        <Text style={styles.emptyText}>Add participants to this pot</Text>
-                    </View>
+                    { participants.length < 1 &&
 
+                        <View style={styles.empty}>
+                            <TouchableOpacity onPress={this.showParticipants}>
+                                <Icon
+                                    name="addusergroup"
+                                    size={40}
+                                    color={utils.style.colours.purple}/>
+                            </TouchableOpacity>
+                            <Text style={styles.emptyText}>Add participants to this pot</Text>
+                        </View>
+                    }
 
+                    { participants.length > 0 &&
+
+                        <FlatList
+                            data={this.props.potDetail.participants}
+                            showsVerticalScrollIndicator={false}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={(item) =>
+                                <Row data={item}  />
+                            }
+                        />
+                    }
 
 
                 </View>
@@ -321,7 +340,8 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: utils.style.colours.gray,
         // marginLeft: 15,
-        marginTop: 5
+        marginTop: 5,
+        marginLeft: 15
     },
     characters: {
         color: utils.style.colours.white,
