@@ -176,9 +176,9 @@ class Detail extends Component {
 
     render() {
 
-        const { name = 'Saving Pot Name', savingsAmount = 50, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
+        const { name, savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
 
-        const totPotValue =  (participants.length * savingsAmount) - savingsAmount;
+        const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
         return (
             <View style={[ styles.container ]}>
@@ -193,10 +193,11 @@ class Detail extends Component {
                     <View style={[styles.nameInput]}>
                         <TextInput
                             style={styles.input}
-                            placeholder={'Saving Pot name'}
+                            placeholder={'Type in a name'}
                             underlineColorAndroid={'transparent'}
                             autoCapitalize={'words'}
                             autoFocus={status === 'new'}
+                            autoCorrect={false}
                             maxLength={this.characterCap}
                             value={this.state.newName}
                             onChangeText={(text) => {this.updatePotName(text)}}
@@ -310,7 +311,8 @@ const styles = StyleSheet.create({
     middle: {
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 20
+        paddingTop: 20,
+        backgroundColor: utils.style.colours.white
     },
     charactersLeft: {
         // borderRadius: 13,
