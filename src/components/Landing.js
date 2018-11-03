@@ -238,7 +238,7 @@ class Detail extends Component {
                     <View style={styles.empty}>
                         <TouchableOpacity onPress={this.showParticipants}>
                             <Icon
-                                name="adduser"
+                                name="addusergroup"
                                 size={40}
                                 color={utils.style.colours.purple} />
                         </TouchableOpacity>
@@ -275,7 +275,7 @@ class Detail extends Component {
 
                     <TouchableOpacity onPress={this.showParticipants}>
                         <Icon
-                            name="adduser"
+                            name="addusergroup"
                             size={40}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
