@@ -20,7 +20,9 @@ class Detail extends Component {
         super(props);
 
         this.state = {
-            potDetail: this.props.potDetail
+            potDetail: this.props.potDetail,
+            saveValue: 50,
+            newName: ''
         };
 
         this.contactList = [
@@ -136,6 +138,18 @@ class Detail extends Component {
         this.props.navigateTo('list');
     };
 
+    decreaseSavings = () => {
+        this.setState((state) => {
+            return { saveValue: state.saveValue - 50 };
+        });
+    };
+
+    increaseSavings = () => {
+        this.setState((state) => {
+            return { saveValue: state.saveValue + 50 };
+        });
+    };
+
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
             potDetail: this.state.potDetail,
@@ -143,19 +157,16 @@ class Detail extends Component {
         })
     };
 
-    updatePotName = name => {
+    updatePotName = newName => {
         const characterCount = 20;
         if(characterCount < 25){
-            let newPot = Object.assign(this.state.potDetail, { name });
-            this.setState({
-                potDetail: newPot
-            })
+            this.setState({ newName })
         }
     };
 
     render() {
 
-        const { name = 'Saving Pot Name', savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
+        const { name = 'Saving Pot Name', savingsAmount = 50, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
 
         const totPotValue =  (participants.length * savingsAmount) - savingsAmount;
 
@@ -174,9 +185,9 @@ class Detail extends Component {
                             style={styles.input}
                             placeholder={'Saving Pot name'}
                             underlineColorAndroid={'transparent'}
-                            autoCapitalize={'none'}
+                            autoCapitalize={'words'}
                             autoFocus={status === 'new'}
-                            value={this.state.potDetail.name}
+                            value={this.state.newName}
                             onChangeText={(text) => {this.updatePotName(text)}}
                         />
                         <Text style={[ styles.characters ]}>30</Text>
@@ -184,9 +195,32 @@ class Detail extends Component {
                 </View>
 
                 <View style={styles.middle}>
-                    <View style={styles.form}>
-                        <Text>Amount: £{ savingsAmount } (editable before payment)</Text>
+
+                    <View style={styles.savingsAmount}>
+                        <TouchableOpacity
+                            onPress={this.decreaseSavings}
+                            style={styles.amountControls}>
+                            <Icon
+                                name="minus"
+                                size={utils.style.icons.size}
+                                color={utils.style.colours.purple}/>
+                        </TouchableOpacity>
+                        <View style={styles.amount}>
+                            <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
+                            <Text style={styles.cashAmount}>{ this.state.saveValue }</Text>
+                            {/*<Text style={[styles.amountText, styles.cashAmount]}>.00</Text>*/}
+                        </View>
+                        <TouchableOpacity
+                            onPress={this.increaseSavings}
+                            style={styles.amountControls}>
+                            <Icon
+                                name="plus"
+                                size={utils.style.icons.size}
+                                color={utils.style.colours.purple} />
+                        </TouchableOpacity>
                     </View>
+
+
                 </View>
 
                 <View style={styles.footer}>
@@ -261,7 +295,32 @@ const styles = StyleSheet.create({
     },
     middle: {
         flex: 1,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        paddingVertical: 20
+    },
+    amount: {
+        flex: 1,
+        fontSize: 30,
+        paddingTop: 5,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    savingsAmount: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between'
+    },
+    cashAmount: {
+        fontSize: 40
+    },
+    amountText: {
+        color: utils.style.colours.grayText
+    },
+    amountControls: {
+        backgroundColor: utils.style.colours.gray,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        borderRadius: 4
     },
     footer: {
         paddingVertical: 20,

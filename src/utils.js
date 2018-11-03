@@ -4,7 +4,8 @@ export default {
         colours: {
             purple: '#ba55d3',
             white: '#ffffff',
-            gray: '#cccccc'
+            gray: '#e9e9e9',
+            grayText: '#a8a8a8'
         },
         icons: {
             size: 32
