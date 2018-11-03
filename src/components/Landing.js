@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -143,9 +143,19 @@ class Detail extends Component {
         })
     };
 
+    updatePotName = name => {
+        const characterCount = 20;
+        if(characterCount < 25){
+            let newPot = Object.assign(this.state.potDetail, { name });
+            this.setState({
+                potDetail: newPot
+            })
+        }
+    };
+
     render() {
 
-        const { name = 'Create a new pot', savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
+        const { name = 'Saving Pot Name', savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
 
         const totPotValue =  (participants.length * savingsAmount) - savingsAmount;
 
@@ -153,18 +163,28 @@ class Detail extends Component {
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>{name}</Text>
                     <TouchableOpacity onPress={this.handlePress}>
-                    <Icon
-                        name="shrink"
-                        size={utils.style.icons.size}
-                        color={utils.style.colours.purple}/>
+                        <Icon
+                            name="shrink"
+                            size={utils.style.icons.size}
+                            color={utils.style.colours.white}/>
                     </TouchableOpacity>
+                    <View style={[styles.nameInput]}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder={'Saving Pot name'}
+                            underlineColorAndroid={'transparent'}
+                            autoCapitalize={'none'}
+                            autoFocus={status === 'new'}
+                            value={this.state.potDetail.name}
+                            onChangeText={(text) => {this.updatePotName(text)}}
+                        />
+                        <Text style={[ styles.characters ]}>30</Text>
+                    </View>
                 </View>
 
                 <View style={styles.middle}>
                     <View style={styles.form}>
-                        <Text>Title :{ name } (editable before payment)</Text>
                         <Text>Amount: £{ savingsAmount } (editable before payment)</Text>
                     </View>
                 </View>
@@ -209,26 +229,42 @@ class Detail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 20,
         backgroundColor: '#f5f5f5',
         flex: 1
     },
     top: {
+        paddingTop: 10,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        backgroundColor: utils.style.colours.purple,
+        alignItems: 'flex-end'
+    },
+    nameInput: {
+        paddingTop: 10,
+        alignSelf: 'flex-start',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20
+        alignContent: 'space-between',
+        width: '100%',
     },
-    title: {
+    characters: {
+        color: utils.style.colours.white,
+        width: 40,
+        textAlign: 'right'
+    },
+    input: {
         fontSize: 25,
-        color: utils.style.colours.purple,
-        paddingBottom: 10
+        marginBottom: 15,
+        color: utils.style.colours.white,
+        flex: 1
     },
     middle: {
         flex: 1,
         paddingHorizontal: 20
     },
     footer: {
-        padding: 20,
+        paddingVertical: 20,
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: utils.style.colours.purple

@@ -28,17 +28,19 @@ class Participants extends Component {
             delete contact.checked
         });
 
-        this.props.navigation.state.params.potDetail.participants.map(participant => {
-            this.props.navigation.state.params.contacts.map((contact, index) => {
-                if(contact.id === participant.mobileId){
-                    initialParticipants.push({
-                        mobileId: contact.id,
-                        avatar: this.createAvatar(contact)
-                    });
-                    initialContacts[index].checked = true;
-                }
-            })
-        });
+        if(this.props.navigation.state.params.potDetail.participants){
+            this.props.navigation.state.params.potDetail.participants.map(participant => {
+                this.props.navigation.state.params.contacts.map((contact, index) => {
+                    if(contact.id === participant.mobileId){
+                        initialParticipants.push({
+                            mobileId: contact.id,
+                            avatar: this.createAvatar(contact)
+                        });
+                        initialContacts[index].checked = true;
+                    }
+                })
+            });
+        }
 
         this.state = {
             participants: initialParticipants,
