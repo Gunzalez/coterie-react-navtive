@@ -19,12 +19,6 @@ class Detail extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            potDetail: this.props.potDetail,
-            saveValue: 50,
-            newName: ''
-        };
-
         this.contactList = [
             {
                 name: "Karl",
@@ -131,7 +125,16 @@ class Detail extends Component {
                 surname: "Nightingale",
                 id: 21
             }
-        ]
+        ];
+        this.savingsCap = 500;
+        this.characterCap = 20;
+
+        this.state = {
+            potDetail: this.props.potDetail,
+            saveValue: 50,
+            newName: '',
+            charactersLeft: this.characterCap
+        };
     }
 
     handlePress = () => {
@@ -140,16 +143,20 @@ class Detail extends Component {
 
     decreaseSavings = () => {
         Keyboard.dismiss();
-        this.setState((state) => {
-            return { saveValue: state.saveValue - 50 };
-        });
+        if(this.state.saveValue > 50){
+            this.setState((state) => {
+                return { saveValue: state.saveValue - 50 };
+            });
+        }
     };
 
     increaseSavings = () => {
         Keyboard.dismiss();
-        this.setState((state) => {
-            return { saveValue: state.saveValue + 50 };
-        });
+        if(this.state.saveValue < this.savingsCap){
+            this.setState((state) => {
+                return { saveValue: state.saveValue + 50 };
+            });
+        }
     };
 
     showParticipants = () => {
@@ -160,10 +167,10 @@ class Detail extends Component {
     };
 
     updatePotName = newName => {
-        const characterCount = 20;
-        if(characterCount < 25){
-            this.setState({ newName })
-        }
+        this.setState({
+            charactersLeft: this.characterCap - newName.length,
+            newName
+        })
     };
 
     render() {
@@ -189,10 +196,13 @@ class Detail extends Component {
                             underlineColorAndroid={'transparent'}
                             autoCapitalize={'words'}
                             autoFocus={status === 'new'}
+                            maxLength={this.characterCap}
                             value={this.state.newName}
                             onChangeText={(text) => {this.updatePotName(text)}}
                         />
-                        <Text style={[ styles.characters ]}>30</Text>
+                        <View style={[styles.charactersLeft]}>
+                            <Text style={[ styles.characters ]}>{this.state.charactersLeft}</Text>
+                        </View>
                     </View>
                 </View>
 
@@ -256,8 +266,6 @@ class Detail extends Component {
                     </TouchableOpacity>
                 </View>
 
-
-
             </View>
         );
     }
@@ -284,10 +292,19 @@ const styles = StyleSheet.create({
         alignContent: 'space-between',
         width: '100%',
     },
+    charactersLeft: {
+        // borderRadius: 13,
+        // height: 26,
+        // width: 26,
+        // borderWidth: 1,
+        // borderColor: utils.style.colours.gray,
+        // marginLeft: 15,
+        marginTop: 5
+    },
     characters: {
         color: utils.style.colours.white,
-        width: 40,
-        textAlign: 'right'
+        textAlign: 'center',
+        fontSize: 16
     },
     input: {
         fontSize: 25,
