@@ -126,12 +126,13 @@ class Detail extends Component {
                 id: 21
             }
         ];
-        this.savingsCap = 500;
-        this.characterCap = 20;
+        this.savingsMax = 500;
+        this.savingsMin = 50;
+        this.characterCap = 25;
 
         this.state = {
             potDetail: this.props.potDetail,
-            saveValue: 50,
+            saveValue: this.savingsMin,
             newName: '',
             charactersLeft: this.characterCap
         };
@@ -143,7 +144,7 @@ class Detail extends Component {
 
     decreaseSavings = () => {
         Keyboard.dismiss();
-        if(this.state.saveValue > 50){
+        if(this.state.saveValue > this.savingsMin){
             this.setState((state) => {
                 return { saveValue: state.saveValue - 50 };
             });
@@ -152,7 +153,7 @@ class Detail extends Component {
 
     increaseSavings = () => {
         Keyboard.dismiss();
-        if(this.state.saveValue < this.savingsCap){
+        if(this.state.saveValue < this.savingsMax){
             this.setState((state) => {
                 return { saveValue: state.saveValue + 50 };
             });
@@ -210,12 +211,13 @@ class Detail extends Component {
 
                     <View style={styles.savingsAmount}>
                         <TouchableOpacity
+                            disabled={this.state.saveValue <= this.savingsMin}
                             onPress={this.decreaseSavings}
                             style={styles.amountControls}>
                             <Icon
                                 name="minus"
                                 size={utils.style.icons.size}
-                                color={utils.style.colours.purple}/>
+                                color={this.state.saveValue <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
                         </TouchableOpacity>
                         <View style={styles.amount}>
                             <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
@@ -223,12 +225,13 @@ class Detail extends Component {
                             {/*<Text style={[styles.amountText, styles.cashAmount]}>.00</Text>*/}
                         </View>
                         <TouchableOpacity
+                            disabled={this.state.saveValue >= this.savingsMax}
                             onPress={this.increaseSavings}
                             style={styles.amountControls}>
                             <Icon
                                 name="plus"
                                 size={utils.style.icons.size}
-                                color={utils.style.colours.purple} />
+                                color={this.state.saveValue >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple} />
                         </TouchableOpacity>
                     </View>
 
