@@ -130,15 +130,16 @@ class Detail extends Component {
         ];
         this.savingsMax = 500;
         this.savingsMin = 50;
+        this.savingsInc = 50;
         this.characterCap = 25;
 
         this.state = {
             potDetail: this.props.potDetail,
-            saveValue: this.savingsMin,
-            newName: '',
-            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0),
-            localPot: Object.assign({}, this.props.potDetail)
+            localPot: Object.assign({}, this.props.potDetail),
+            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        console.log(this.state.localPot.participants);
     }
 
     handlePress = () => {
@@ -147,45 +148,41 @@ class Detail extends Component {
 
     decreaseSavings = () => {
         Keyboard.dismiss();
-        if(this.state.saveValue > this.savingsMin){
-            this.setState((state) => {
-                return { saveValue: state.saveValue - 50 };
-            });
+        if(this.state.localPot.savingsAmount > this.savingsMin){
+            const localPot = this.state.localPot;
+            localPot.savingsAmount = localPot.savingsAmount - this.savingsInc;
+            this.setState({ localPot });
         }
     };
 
     increaseSavings = () => {
         Keyboard.dismiss();
-        if(this.state.saveValue < this.savingsMax){
-            this.setState((state) => {
-                return { saveValue: state.saveValue + 50 };
-            });
+        if(this.state.localPot.savingsAmount < this.savingsMax){
+            const localPot = this.state.localPot;
+            localPot.savingsAmount = localPot.savingsAmount + this.savingsInc;
+            this.setState({ localPot });
         }
     };
 
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
-            potDetail: this.state.potDetail,
+            potDetail: this.state.localPot,
             contacts: this.contactList
         })
     };
 
-    updatePotName = newName => {
-
+    updatePotName = name => {
         const localPot = this.state.localPot;
-        localPot.name = newName;
-
-        this.setState({
-            charactersLeft: this.characterCap - newName.length,
-            localPot
-        })
+        localPot.name = name;
+        const charactersLeft = this.characterCap - name.length;
+        this.setState({ charactersLeft, localPot });
     };
 
     render() {
 
-        const { name, savingsAmount, participants = [], status, round, nextParticipantToCollect } = this.state.potDetail;
+        const { participants = [], status, round, nextParticipantToCollect } = this.state.localPot;
 
-        const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
+        // const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
         return (
             <View style={[ styles.container ]}>
@@ -219,26 +216,26 @@ class Detail extends Component {
 
                     <View style={styles.savingsAmount}>
                         <TouchableOpacity
-                            disabled={this.state.saveValue <= this.savingsMin}
+                            disabled={this.state.localPot.savingsAmount <= this.savingsMin}
                             onPress={this.decreaseSavings}
                             style={styles.amountControls}>
                             <Icon
                                 name="minus"
                                 size={utils.style.icons.size}
-                                color={this.state.saveValue <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
+                                color={this.state.localPot.savingsAmount <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
                         </TouchableOpacity>
                         <View style={styles.amount}>
                             <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
-                            <Text style={styles.cashAmount}>{ this.state.saveValue }</Text>
+                            <Text style={styles.cashAmount}>{ this.state.localPot.savingsAmount }</Text>
                         </View>
                         <TouchableOpacity
-                            disabled={this.state.saveValue >= this.savingsMax}
+                            disabled={this.state.localPot.savingsAmount >= this.savingsMax}
                             onPress={this.increaseSavings}
                             style={styles.amountControls}>
                             <Icon
                                 name="plus"
                                 size={utils.style.icons.size}
-                                color={this.state.saveValue >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple} />
+                                color={this.state.localPot.savingsAmount >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple} />
                         </TouchableOpacity>
                     </View>
 
@@ -258,7 +255,7 @@ class Detail extends Component {
                     { participants.length > 0 &&
 
                         <FlatList
-                            data={this.props.potDetail.participants}
+                            data={this.state.localPot.participants}
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={(item) =>

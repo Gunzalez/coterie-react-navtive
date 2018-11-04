@@ -23,7 +23,8 @@ class List extends Component {
         if( allPots.length === 0 || allPots[(allPots.length - 1)].status !== "new" ){
             allPots.push({
                 status: "new",
-                id: -1
+                id: -1,
+                savingsAmount: 50
             });
         }
 
