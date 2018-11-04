@@ -33,6 +33,18 @@
                 {
                     "contactId": "16",
                     "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
+                },
+                {
+                    "contactId": "1",
+                    "id": "41749e12-2b97-44a2-be72-11228fa6df60"
+                },
+                {
+                    "contactId": "14",
+                    "id": "62219a0e-f6ed-4d0c-a6bc-fe9b60c715de"
+                },
+                {
+                    "contactId": "16",
+                    "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
                 }
             ],
             "round": 1,
@@ -42,7 +54,7 @@
         {
             "id": "44caf03b-fe75-4baf-82cf-c358bc1d9384",
             "name": "Created Pot",
-            "nextParticipantToCollect" : "Michael Johnson",
+            "nextParticipantToCollect" : "Dare Devil",
             "nextParticipantsToPay": ["3e852ade-da83-41f6-a714-061d1687601e", "aa5b0b63-d669-4c4e-8371-6b37e50c2283"],
             "participants": [
                 {
@@ -75,7 +87,7 @@
                 }
             ],
             "round": 1,
-            "savingsAmount": 400,
+            "savingsAmount": 200,
             "status": "created"
         }
     ]
