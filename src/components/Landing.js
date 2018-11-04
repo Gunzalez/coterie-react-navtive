@@ -237,6 +237,11 @@ class Detail extends Component {
                         </TouchableOpacity>
                     </View>
 
+
+                </View>
+
+                <View style={[styles.list]}>
+
                     { participants.length < 1 &&
 
                         <View style={styles.empty}>
@@ -261,7 +266,6 @@ class Detail extends Component {
                             }
                         />
                     }
-
 
                 </View>
 
@@ -323,9 +327,15 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     middle: {
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        backgroundColor: '#f5f5f5',
+        borderBottomWidth: 1,
+        borderColor: '#cccccc'
+    },
+    list: {
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 20,
         backgroundColor: utils.style.colours.white
     },
     charactersLeft: {
@@ -359,9 +369,7 @@ const styles = StyleSheet.create({
     savingsAmount: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-        backgroundColor: '#f5f5f5'
+        justifyContent: 'space-between'
     },
     cashAmount: {
         fontSize: 40
@@ -375,7 +383,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 4
     },
-
     empty: {
         flex: 1,
         justifyContent: 'center',
@@ -383,11 +390,11 @@ const styles = StyleSheet.create({
     },
     emptyText: {
         fontSize: 20,
-        marginBottom: 80,
+        marginBottom: 100,
         color: utils.style.colours.grayText
     },
     footer: {
-        paddingVertical: 20,
+        paddingVertical: 15,
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: utils.style.colours.purple
