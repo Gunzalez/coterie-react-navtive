@@ -138,8 +138,6 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
-
-        console.log(this.state.localPot.participants);
     }
 
     handlePress = () => {
@@ -362,7 +360,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
-        marginBottom: 20
+        marginBottom: 20,
+        backgroundColor: '#f5f5f5'
     },
     cashAmount: {
         fontSize: 40
