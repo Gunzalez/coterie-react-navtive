@@ -47,7 +47,7 @@ class PotSlide extends Component {
                 <View style={styles.top}>
                     <TouchableOpacity style={styles.topButton} onPress={this.handlePress}>
                         <Icon name="arrowsalt"
-                              size={utils.style.icons.size}
+                              size={utils.style.icons.top}
                               color={utils.style.colours.white} />
                     </TouchableOpacity>
                     <Text style={[styles.text, styles.title]}>{name}</Text>

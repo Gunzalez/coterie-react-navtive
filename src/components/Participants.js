@@ -43,8 +43,8 @@ class Participants extends Component {
         }
 
         this.state = {
-            participants: initialParticipants,
             contacts: initialContacts,
+            participants: initialParticipants,
             originalParticipants: initialParticipants
         };
     }
@@ -125,7 +125,7 @@ class Participants extends Component {
                             onPress={this.closeParticipants}>
                         <Icon
                             name="down"
-                            size={utils.style.icons.size}
+                            size={utils.style.icons.top}
                             color={utils.style.colours.purple}
                              />
                         </TouchableOpacity>

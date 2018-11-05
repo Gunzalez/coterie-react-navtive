@@ -8,8 +8,8 @@ export default {
             grayText: '#a8a8a8'
         },
         icons: {
-            size: 32,
             top: 32,
+            body: 30,
             footer: 40
         },
         text: {

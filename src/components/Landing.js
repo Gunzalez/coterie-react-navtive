@@ -195,7 +195,7 @@ class Detail extends Component {
                     <TouchableOpacity onPress={this.handlePress}>
                         <Icon
                             name="shrink"
-                            size={utils.style.icons.size}
+                            size={utils.style.icons.top}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
                     <View style={[styles.nameInput]}>
@@ -225,7 +225,7 @@ class Detail extends Component {
                             style={styles.amountControls}>
                             <Icon
                                 name="minus"
-                                size={utils.style.icons.size}
+                                size={utils.style.icons.body}
                                 color={this.state.localPot.savingsAmount <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
                         </TouchableOpacity>
                         <View style={styles.amount}>
@@ -238,7 +238,7 @@ class Detail extends Component {
                             style={styles.amountControls}>
                             <Icon
                                 name="plus"
-                                size={utils.style.icons.size}
+                                size={utils.style.icons.body}
                                 color={this.state.localPot.savingsAmount >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple} />
                         </TouchableOpacity>
                     </View>

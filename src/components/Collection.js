@@ -41,7 +41,7 @@ class Collection extends Component {
                         <TouchableOpacity onPress={this.closeCollection}>
                             <Icon
                                 name="left"
-                                size={utils.style.icons.size}
+                                size={utils.style.icons.top}
                                 color={utils.style.colours.purple }
                             />
                         </TouchableOpacity>
@@ -61,7 +61,7 @@ class Collection extends Component {
                     {/*<TouchableOpacity>*/}
                         {/*<Icon*/}
                             {/*name="left"*/}
-                            {/*size={utils.style.icons.size}*/}
+                            {/*size={utils.style.icons.top}*/}
                             {/*color={utils.style.colours.white} />*/}
                     {/*</TouchableOpacity>*/}
                 </View>
