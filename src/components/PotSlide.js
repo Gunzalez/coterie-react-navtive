@@ -55,23 +55,23 @@ class PotSlide extends Component {
 
                 { status === "new" &&
                     <View style={styles.bottom}>
-                        <Text style={styles.intro}>Saving amount</Text>
                         <Text style={styles.intro}>No of participants</Text>
-                        <Text style={styles.intro}>Saving round</Text>
+                        <Text style={styles.intro}>Saving amount</Text>
+                        <Text style={styles.intro}>Current round</Text>
                         <Text style={styles.intro}>Pot status</Text>
                         <Text style={styles.intro}>Total Pot Value</Text>
-                        <Text style={styles.intro}>Next to collect</Text>
+                        <Text style={styles.intro}>Next participant to collect</Text>
                     </View>
                 }
 
                 { status !== "new" &&
                     <View style={styles.bottom}>
-                        <Text style={styles.text}>Saving £{savingsAmount}</Text>
                         <Text style={styles.text}>{participants.length} Participants</Text>
+                        <Text style={styles.text}>Saving £{savingsAmount}</Text>
                         <Text style={styles.text}>Round: {round}</Text>
                         <Text style={styles.text}>Status: {status}</Text>
                         <Text style={styles.text}>Pot Value £{this.getTotalPotValue(this.props.data)}</Text>
-                        <Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>
+                        <Text style={styles.text}>Next participant to collect: {nextParticipantToCollect}</Text>
                     </View>
                 }
 

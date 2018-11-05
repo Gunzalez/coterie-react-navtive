@@ -282,7 +282,7 @@ class Detail extends Component {
                             <TouchableOpacity onPress={this.showParticipants}>
                                 <Icon
                                     name="addusergroup"
-                                    size={40}
+                                    size={utils.style.icons.footer}
                                     color={utils.style.colours.purple}/>
                             </TouchableOpacity>
                             <Text style={styles.emptyText}>Add participants to this pot</Text>
@@ -308,21 +308,21 @@ class Detail extends Component {
                     <TouchableOpacity>
                         <Icon
                             name="delete"
-                            size={40}
+                            size={utils.style.icons.footer}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <Icon
                             name="save"
-                            size={40}
+                            size={utils.style.icons.footer}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <Icon
                             name="menufold"
-                            size={40}
+                            size={utils.style.icons.footer}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
 
@@ -331,7 +331,7 @@ class Detail extends Component {
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
-                            size={40}
+                            size={utils.style.icons.footer}
                             color={ this.canAddParticipants() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
