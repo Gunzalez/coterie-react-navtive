@@ -22,7 +22,7 @@ export default class App extends Component {
 
         this.state = {
             screen: 'intro',
-            pots: data.pots,
+            pots: data.plans,
             potDetail: {}
         };
     }
