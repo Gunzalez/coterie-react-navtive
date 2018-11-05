@@ -54,9 +54,22 @@ class CollectionScreen extends Component {
     }
 }
 
-const PotDetailNavigator = createStackNavigator({
+const CollectionNavigator = createStackNavigator({
     Landing: {
         screen: LandingScreen
+    },
+    Collection: {
+        screen: CollectionScreen
+    }
+}, {
+    initialRouteName: 'Landing',
+    headerMode: 'none',
+    mode: 'card'
+});
+
+const PotDetailNavigator = createStackNavigator({
+    Landing: {
+        screen: CollectionNavigator
     },
     Participants: {
         screen: ParticipantsScreen
@@ -69,6 +82,7 @@ const PotDetailNavigator = createStackNavigator({
     headerMode: 'none',
     mode: 'modal'
 });
+
 
 class Detail extends Component {
 
