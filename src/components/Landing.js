@@ -128,7 +128,7 @@ class Detail extends Component {
                 id: 21
             }
         ];
-        this.savingsMax = 500;
+        this.savingsMax = 1000;
         this.savingsMin = 50;
         this.savingsInc = 50;
         this.characterCap = 25;
@@ -162,10 +162,17 @@ class Detail extends Component {
         }
     };
 
+    updateLocalParticipants = (participants) => {
+        const localPot = this.state.localPot;
+        localPot.participants = participants;
+        this.setState({ localPot });
+    };
+
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
             potDetail: this.state.localPot,
-            contacts: this.contactList
+            contacts: this.contactList,
+            updateLocalParticipants: this.updateLocalParticipants.bind(this)
         })
     };
 
@@ -331,7 +338,7 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabaled={!this.canUpdatePotDetails()}>
+                        disabled={!this.canUpdatePotDetails()}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}

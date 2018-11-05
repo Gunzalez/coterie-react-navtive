@@ -22,6 +22,8 @@ class Participants extends Component {
     constructor(props) {
         super(props);
 
+        // console.log(this.props.navigation.state.params);
+
         let initialParticipants = [];
         let initialContacts = this.props.navigation.state.params.contacts;
         initialContacts.forEach(contact => {
@@ -33,7 +35,7 @@ class Participants extends Component {
                 this.props.navigation.state.params.contacts.map((contact, index) => {
                     if(contact.id.toString() === participant.contactId){
                         initialParticipants.push({
-                            contactId: contact.id,
+                            contactId: contact.id.toString(),
                             avatar: this.createAvatar(contact)
                         });
                         initialContacts[index].checked = true;
@@ -58,10 +60,12 @@ class Participants extends Component {
     };
 
     saveParticipants = () => {
-        let originalPot = this.props.navigation.state.params.potDetail;
-        let updatedPot = Object.assign(originalPot, { participants:this.state.participants });
+        // let originalPot = this.props.navigation.state.params.potDetail;
+        // let updatedPot = Object.assign(originalPot, { participants:this.state.participants });
         // should update pot in backend
-        this.props.updatePotDetail(updatedPot);
+        // this.props.updatePotDetail(updatedPot);
+        const { updateLocalParticipants } = this.props.navigation.state.params;
+        updateLocalParticipants(this.state.participants);
     };
 
     createAvatar = contact => {
@@ -94,7 +98,7 @@ class Participants extends Component {
             })
         } else { // add to Participants
             tempParticipantsArray.push({
-                contactId: contact.id,
+                contactId: contact.id.toString(),
                 avatar: this.createAvatar(contact)
             });
             setTimeout(() => this.flatList.scrollToEnd(), 200);

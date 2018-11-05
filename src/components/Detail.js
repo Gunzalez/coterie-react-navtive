@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 import { createStackNavigator } from 'react-navigation';
 
-// pages
 import Landing from './Landing';
+
 import Participants from './Participants';
+
 import Collection from './Collection';
 
 class ParticipantsScreen extends Component {
@@ -18,8 +19,7 @@ class ParticipantsScreen extends Component {
         return(
             <Participants
                 navigation={this.props.navigation}
-                updatePotDetail={updatePotDetail}
-            />
+                updatePotDetail={updatePotDetail} />
         )
     }
 }
@@ -34,8 +34,7 @@ class LandingScreen extends Component {
             <Landing
                 navigation={this.props.navigation}
                 navigateTo={navigateTo}
-                potDetail={potDetail}
-            />
+                potDetail={potDetail} />
         )
     }
 }
@@ -48,8 +47,7 @@ class CollectionScreen extends Component {
 
         return(
             <Collection
-                navigation={this.props.navigation}
-            />
+                navigation={this.props.navigation} />
         )
     }
 }
