@@ -189,7 +189,7 @@ class Detail extends Component {
 
     render() {
 
-        const { participants = [], status, savingsAmount, round, nextParticipantToCollect } = this.state.localPot;
+        const { name, participants = [], status, savingsAmount, round, nextParticipantToCollect } = this.state.localPot;
 
         const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
@@ -203,22 +203,39 @@ class Detail extends Component {
                             size={utils.style.icons.top}
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
-                    <View style={[styles.nameInput]}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder={'Type in a name'}
-                            underlineColorAndroid={'transparent'}
-                            autoCapitalize={'words'}
-                            autoFocus={status === 'new'}
-                            autoCorrect={false}
-                            maxLength={this.characterCap}
-                            value={this.state.localPot.name}
-                            onChangeText={(text) => {this.updatePotName(text)}}
-                        />
-                        <View style={[styles.charactersLeft]}>
-                            <Text style={[ styles.characters ]}>{this.state.charactersLeft}</Text>
+
+                    {(status === "created" || status === "new") &&
+
+                        <View style={[styles.nameInput]}>
+
+                            <TextInput
+                                style={styles.input}
+                                placeholder={'Type in a name'}
+                                underlineColorAndroid={'transparent'}
+                                autoCapitalize={'words'}
+                                autoFocus={status === 'new'}
+                                autoCorrect={false}
+                                maxLength={this.characterCap}
+                                value={name}
+                                onChangeText={(text) => {this.updatePotName(text)}}
+                            />
+
+                            <View style={[styles.charactersLeft]}>
+                                <Text style={[styles.characters]}>{this.state.charactersLeft}</Text>
+                            </View>
+
                         </View>
-                    </View>
+
+                    }
+
+                    {(status === "in-progress" || status === "completed") &&
+
+                        <View style={[styles.nameInput]}>
+                            <Text style={[styles.input]}>{name}</Text>
+                        </View>
+
+                    }
+
                 </View>
 
                 <View style={styles.middle}>
