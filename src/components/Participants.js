@@ -31,9 +31,9 @@ class Participants extends Component {
         if(this.props.navigation.state.params.potDetail.participants){
             this.props.navigation.state.params.potDetail.participants.map(participant => {
                 this.props.navigation.state.params.contacts.map((contact, index) => {
-                    if(contact.id === participant.mobileId){
+                    if(contact.id.toString() === participant.contactId){
                         initialParticipants.push({
-                            mobileId: contact.id,
+                            contactId: contact.id,
                             avatar: this.createAvatar(contact)
                         });
                         initialContacts[index].checked = true;
@@ -50,9 +50,7 @@ class Participants extends Component {
     }
 
     hasParticipantsChanged = () => {
-        console.log(this.state.participants);
-        console.log(this.state.originalParticipants);
-        return !utils.js.areDifferentByIds(this.state.participants, this.state.originalParticipants)
+        return JSON.stringify(this.state.participants) === JSON.stringify(this.state.originalParticipants)
     };
 
     closeParticipants = () => {
@@ -81,9 +79,8 @@ class Participants extends Component {
 
         if(contact.checked){ // remove from Participants
 
-
             tempParticipantsArray.map((participant, index) => {
-                if(participant.mobileId === contact.id){
+                if(participant.contactId === contact.id){
 
                     // tempParticipantsArray.splice(index, 1);
                     this.flatList.scrollToIndex({
@@ -97,7 +94,7 @@ class Participants extends Component {
             })
         } else { // add to Participants
             tempParticipantsArray.push({
-                mobileId: contact.id,
+                contactId: contact.id,
                 avatar: this.createAvatar(contact)
             });
             setTimeout(() => this.flatList.scrollToEnd(), 200);

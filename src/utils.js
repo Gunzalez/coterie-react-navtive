@@ -8,7 +8,9 @@ export default {
             grayText: '#a8a8a8'
         },
         icons: {
-            size: 32
+            size: 32,
+            top: 32,
+            footer: 40
         },
         text: {
             header: 22,
@@ -16,25 +18,5 @@ export default {
             copy: 14
         }
     },
-    js: {
-        getIds: function (array) {
-            return array.map(function (x) { return x.id; }).sort();
-        },
-        areDifferentByIds: function (a, b) {
-            let idsA = this.getIds(a);
-            let idsB = this.getIds(b);
-
-            if (idsA.length !== idsB.length) {
-                return true;
-            }
-
-            for (let i = 0; i < idsA.length; ++i) {
-                if (idsA[i] !== idsB[i]) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    }
+    js: {}
 }
