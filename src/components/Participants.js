@@ -125,12 +125,11 @@ class Participants extends Component {
 
                     <View style={styles.icon}>
                         <TouchableOpacity
-                            disabled={this.hasParticipantsChanged()}
-                            onPress={this.saveParticipants}>
+                            onPress={this.closeParticipants}>
                         <Icon
-                            name="save"
+                            name="down"
                             size={utils.style.icons.size}
-                            color={ this.hasParticipantsChanged() ? utils.style.colours.gray : utils.style.colours.purple }
+                            color={utils.style.colours.purple}
                              />
                         </TouchableOpacity>
                     </View>
@@ -162,11 +161,13 @@ class Participants extends Component {
                 </View>
 
                 <View style={styles.footer}>
-                    <TouchableOpacity onPress={this.closeParticipants}>
+                    <TouchableOpacity
+                        disabled={this.hasParticipantsChanged()}
+                        onPress={this.saveParticipants}>
                     <Icon
-                        name="down"
-                        size={utils.style.icons.size}
-                        color={utils.style.colours.white} />
+                        name="save"
+                        size={40}
+                        color={this.hasParticipantsChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
                     </TouchableOpacity>
                 </View>
 
@@ -205,10 +206,10 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     footer: {
-        backgroundColor: utils.style.colours.purple,
-        height: 100,
-        padding: 20,
-        alignItems: 'flex-end'
+        paddingVertical: 15,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        backgroundColor: utils.style.colours.purple
     }
 });
 

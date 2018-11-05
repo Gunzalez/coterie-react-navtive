@@ -38,9 +38,9 @@ class Collection extends Component {
                     </Text>
 
                     <View style={styles.icon}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={this.closeCollection}>
                             <Icon
-                                name="down"
+                                name="left"
                                 size={utils.style.icons.size}
                                 color={utils.style.colours.purple }
                             />
@@ -58,12 +58,12 @@ class Collection extends Component {
                 </View>
 
                 <View style={styles.footer}>
-                    <TouchableOpacity onPress={this.closeCollection}>
-                        <Icon
-                            name="down"
-                            size={utils.style.icons.size}
-                            color={utils.style.colours.white} />
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity>*/}
+                        {/*<Icon*/}
+                            {/*name="left"*/}
+                            {/*size={utils.style.icons.size}*/}
+                            {/*color={utils.style.colours.white} />*/}
+                    {/*</TouchableOpacity>*/}
                 </View>
 
             </View>

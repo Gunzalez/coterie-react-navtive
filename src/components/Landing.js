@@ -345,12 +345,6 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.white
     },
     charactersLeft: {
-        // borderRadius: 13,
-        // height: 26,
-        // width: 26,
-        // borderWidth: 1,
-        // borderColor: utils.style.colours.gray,
-        // marginLeft: 15,
         marginTop: 5,
         marginLeft: 15
     },
