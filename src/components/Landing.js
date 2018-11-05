@@ -169,7 +169,7 @@ class Detail extends Component {
         })
     };
 
-    showCollection = (participant) => {
+    showCollection = participant => {
         this.props.navigation.navigate('Collection', {
             participant: participant
         })
@@ -182,11 +182,16 @@ class Detail extends Component {
         this.setState({ charactersLeft, localPot });
     };
 
+    canAddParticipants = () => {
+        const { status } = this.state.localPot;
+        return status === "created" || status === "new";
+    };
+
     render() {
 
-        const { participants = [], status, round, nextParticipantToCollect } = this.state.localPot;
+        const { participants = [], status, savingsAmount, round, nextParticipantToCollect } = this.state.localPot;
 
-        // const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
+        const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
         return (
             <View style={[ styles.container ]}>
@@ -218,30 +223,50 @@ class Detail extends Component {
 
                 <View style={styles.middle}>
 
-                    <View style={styles.savingsAmount}>
-                        <TouchableOpacity
-                            disabled={this.state.localPot.savingsAmount <= this.savingsMin}
-                            onPress={this.decreaseSavings}
-                            style={styles.amountControls}>
-                            <Icon
-                                name="minus"
-                                size={utils.style.icons.body}
-                                color={this.state.localPot.savingsAmount <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
-                        </TouchableOpacity>
-                        <View style={styles.amount}>
-                            <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
-                            <Text style={styles.cashAmount}>{ this.state.localPot.savingsAmount }</Text>
+                    {(status === "created" || status === "new") &&
+
+                        <View style={styles.savingsSummary}>
+                            <TouchableOpacity
+                                disabled={savingsAmount <= this.savingsMin}
+                                onPress={this.decreaseSavings}
+                                style={styles.amountControls}>
+                                <Icon
+                                    name="minus"
+                                    size={utils.style.icons.body}
+                                    color={savingsAmount <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
+                            </TouchableOpacity>
+                            <View style={styles.amount}>
+                                <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
+                                <Text style={styles.cashAmount}>{savingsAmount}</Text>
+                            </View>
+                            <TouchableOpacity
+                                disabled={savingsAmount >= this.savingsMax}
+                                onPress={this.increaseSavings}
+                                style={styles.amountControls}>
+                                <Icon
+                                    name="plus"
+                                    size={utils.style.icons.body}
+                                    color={savingsAmount >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple}/>
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity
-                            disabled={this.state.localPot.savingsAmount >= this.savingsMax}
-                            onPress={this.increaseSavings}
-                            style={styles.amountControls}>
-                            <Icon
-                                name="plus"
-                                size={utils.style.icons.body}
-                                color={this.state.localPot.savingsAmount >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple} />
-                        </TouchableOpacity>
-                    </View>
+
+                    }
+
+                    {(status === "in-progress" || status === "completed") &&
+
+                        <View style={styles.savingsSummary}>
+                            <View style={styles.amount}>
+                                <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
+                                <Text style={styles.cashAmount}>{totPotValue}</Text>
+                            </View>
+                            <Text>Savings Amount: {savingsAmount}</Text>
+                            <Text>Round: {round}/{participants.length}</Text>
+                        </View>
+
+                    }
+
+
+
 
 
                 </View>
@@ -298,11 +323,13 @@ class Detail extends Component {
                             color={utils.style.colours.white} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={this.showParticipants}>
+                    <TouchableOpacity
+                        disabled={!this.canAddParticipants()}
+                        onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={40}
-                            color={utils.style.colours.white} />
+                            color={ this.canAddParticipants() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 
@@ -366,7 +393,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    savingsAmount: {
+    savingsSummary: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between'
