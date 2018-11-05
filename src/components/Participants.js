@@ -64,7 +64,7 @@ class Participants extends Component {
     saveParticipants = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
-        Toast.show('This is a toast.', Toast.TOP);
+        Toast.show('Changes saved', Toast.TOP);
     };
 
     createAvatar = contact => {
