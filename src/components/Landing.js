@@ -169,6 +169,12 @@ class Detail extends Component {
         })
     };
 
+    showCollection = (participant) => {
+        this.props.navigation.navigate('Collection', {
+            participant: participant
+        })
+    };
+
     updatePotName = name => {
         const localPot = this.state.localPot;
         localPot.name = name;
@@ -262,7 +268,7 @@ class Detail extends Component {
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={(item) =>
-                                <Row data={item}  />
+                                <Row data={item} participantClicked={()=>{this.showCollection(item)} } />
                             }
                         />
                     }

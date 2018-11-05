@@ -8,7 +8,7 @@ import utils from './../utils';
 
 const LandingRow = (props) => {
 
-
+    const { data, participantClicked } = props;
 
     return (
         <View style={[ styles.container ]}>
@@ -20,7 +20,7 @@ const LandingRow = (props) => {
                     name={'right'}
                     size={24}
                     color={utils.style.colours.purple}
-                    // onPress={()=>{contactClicked(data.index)}}
+                    onPress={()=>{participantClicked(data)}}
                 />
             </View>
         </View>
