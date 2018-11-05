@@ -1,94 +1,370 @@
 {
-    "pots": [
+    "pots":[
         {
-            "id": "44caf03b-fe75-4baf-82cf-c358bc1d9381",
-            "name": "In Progress Pot",
-            "nextParticipantToCollect" : "Michael Johnson",
-            "nextParticipantsToPay": ["3e852ade-da83-41f6-a714-061d1687601e", "aa5b0b63-d669-4c4e-8371-6b37e50c2283"],
-            "participants": [
+            "id":"bab732ab-73b7-4739-b092-451c5b9f2888",
+            "name":"Hexagon",
+            "savingsAmount":300,
+            "status":"in-progress",
+            "participants":[
                 {
-                    "contactId": "12",
-                    "id": "ff0d736d-5a23-4ba2-823a-d4ba2d783865"
+                    "contactId":"16",
+                    "id":"0122d695-a480-4fb3-a2a6-68582f9518a3",
+                    "_capabilities":[
+
+                    ]
                 },
                 {
-                    "contactId": "15",
-                    "id": "c68ee291-9172-450e-8c99-e1bd6759affc"
+                    "contactId":"4",
+                    "id":"7b7d4e3e-693e-4a36-9425-3de4108627ed",
+                    "_capabilities":[
+
+                    ]
                 },
                 {
-                    "contactId": "4",
-                    "id": "709f1608-a503-4f58-8b3a-b1f783138dac"
-                },
-                {
-                    "contactId": "11",
-                    "id": "3e852ade-da83-41f6-a714-061d1687601e"
-                },
-                {
-                    "contactId": "1",
-                    "id": "41749e12-2b97-44a2-be72-11228fa6df60"
-                },
-                {
-                    "contactId": "14",
-                    "id": "62219a0e-f6ed-4d0c-a6bc-fe9b60c715de"
-                },
-                {
-                    "contactId": "16",
-                    "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
-                },
-                {
-                    "contactId": "1",
-                    "id": "41749e12-2b97-44a2-be72-11228fa6df60"
-                },
-                {
-                    "contactId": "14",
-                    "id": "62219a0e-f6ed-4d0c-a6bc-fe9b60c715de"
-                },
-                {
-                    "contactId": "16",
-                    "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
+                    "contactId":"13",
+                    "id":"b0064015-c7d7-408c-b03b-6732de1df990",
+                    "_capabilities":[
+
+                    ]
                 }
             ],
-            "round": 1,
-            "savingsAmount": 400,
-            "status": "in-progress"
+            "_links":{
+                "ledger":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888/ledger"
+                },
+                "self":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888"
+                },
+                "participants":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888/participants"
+                }
+            },
+            "_capabilities":[
+
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":"0122d695-a480-4fb3-a2a6-68582f9518a3",
+            "round":1
         },
         {
-            "id": "44caf03b-fe75-4baf-82cf-c358bc1d9384",
-            "name": "Saved Pot",
-            "nextParticipantToCollect" : "Dare Devil",
-            "nextParticipantsToPay": ["3e852ade-da83-41f6-a714-061d1687601e", "aa5b0b63-d669-4c4e-8371-6b37e50c2283"],
-            "participants": [
+            "id":"0304518b-c7f9-4b71-b7d2-adce690af4b9",
+            "name":"PotRuns",
+            "savingsAmount":100,
+            "status":"in-progress",
+            "participants":[
                 {
-                    "contactId": "12",
-                    "id": "ff0d736d-5a23-4ba2-823a-d4ba2d783865"
+                    "contactId":"5",
+                    "id":"c598bbec-f257-42c4-8327-03e4c174e7d9",
+                    "_capabilities":[
+
+                    ]
                 },
                 {
-                    "contactId": "15",
-                    "id": "c68ee291-9172-450e-8c99-e1bd6759affc"
+                    "contactId":"4",
+                    "id":"bf1d56da-9663-4830-8a4e-eb9e396a73c4",
+                    "_capabilities":[
+
+                    ]
                 },
                 {
-                    "contactId": "4",
-                    "id": "709f1608-a503-4f58-8b3a-b1f783138dac"
+                    "contactId":"15",
+                    "id":"b0d49a21-6f59-4c7e-a376-949a6cefb1c8",
+                    "_capabilities":[
+
+                    ]
                 },
                 {
-                    "contactId": "11",
-                    "id": "3e852ade-da83-41f6-a714-061d1687601e"
-                },
-                {
-                    "contactId": "1",
-                    "id": "41749e12-2b97-44a2-be72-11228fa6df60"
-                },
-                {
-                    "contactId": "14",
-                    "id": "62219a0e-f6ed-4d0c-a6bc-fe9b60c715de"
-                },
-                {
-                    "contactId": "16",
-                    "id": "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
+                    "contactId":"13",
+                    "id":"3ab0770d-2722-4272-bb29-61f01097bbb1",
+                    "_capabilities":[
+
+                    ]
                 }
             ],
-            "round": 1,
-            "savingsAmount": 200,
-            "status": "created"
+            "_links":{
+                "ledger":{
+                    "href":"/plans/0304518b-c7f9-4b71-b7d2-adce690af4b9/ledger"
+                },
+                "self":{
+                    "href":"/plans/0304518b-c7f9-4b71-b7d2-adce690af4b9"
+                },
+                "participants":{
+                    "href":"/plans/0304518b-c7f9-4b71-b7d2-adce690af4b9/participants"
+                }
+            },
+            "_capabilities":[
+
+            ],
+            "nextParticipantsToPay":[
+                "c598bbec-f257-42c4-8327-03e4c174e7d9",
+                "bf1d56da-9663-4830-8a4e-eb9e396a73c4",
+                "b0d49a21-6f59-4c7e-a376-949a6cefb1c8"
+            ],
+            "nextParticipantToCollect":"3ab0770d-2722-4272-bb29-61f01097bbb1",
+            "round":4
+        },
+        {
+            "id":"65a23034-37c0-43db-a3ed-32ba6b9dcb3d",
+            "name":"Shout",
+            "savingsAmount":300,
+            "status":"completed",
+            "participants":[
+                {
+                    "contactId":"2",
+                    "id":"b6a35d54-dc85-4540-be90-847918ec8e12",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"4",
+                    "id":"510fd492-a262-4e9f-aa3e-beaf59745898",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"15",
+                    "id":"87debb99-3d59-4dd6-9d46-a05c969ae48a",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"13",
+                    "id":"70b3e0ad-50c3-40d5-b3c9-62b4d5a5cb27",
+                    "_capabilities":[
+
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/65a23034-37c0-43db-a3ed-32ba6b9dcb3d/ledger"
+                },
+                "self":{
+                    "href":"/plans/65a23034-37c0-43db-a3ed-32ba6b9dcb3d"
+                },
+                "participants":{
+                    "href":"/plans/65a23034-37c0-43db-a3ed-32ba6b9dcb3d/participants"
+                }
+            },
+            "_capabilities":[
+                "archivePlan"
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":null,
+            "round":null
+        },
+        {
+            "id":"44caf03b-fe75-4baf-82cf-c358bc1d9381",
+            "name":"Easales",
+            "savingsAmount":400,
+            "status":"in-progress",
+            "participants":[
+                {
+                    "contactId":"12",
+                    "id":"ff0d736d-5a23-4ba2-823a-d4ba2d783865",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"15",
+                    "id":"c68ee291-9172-450e-8c99-e1bd6759affc",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"4",
+                    "id":"709f1608-a503-4f58-8b3a-b1f783138dac",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"11",
+                    "id":"3e852ade-da83-41f6-a714-061d1687601e",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"1",
+                    "id":"41749e12-2b97-44a2-be72-11228fa6df60",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"14",
+                    "id":"62219a0e-f6ed-4d0c-a6bc-fe9b60c715de",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"16",
+                    "id":"aa5b0b63-d669-4c4e-8371-6b37e50c2283",
+                    "_capabilities":[
+
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/44caf03b-fe75-4baf-82cf-c358bc1d9381/ledger"
+                },
+                "self":{
+                    "href":"/plans/44caf03b-fe75-4baf-82cf-c358bc1d9381"
+                },
+                "participants":{
+                    "href":"/plans/44caf03b-fe75-4baf-82cf-c358bc1d9381/participants"
+                }
+            },
+            "_capabilities":[
+
+            ],
+            "nextParticipantsToPay":[
+                "3e852ade-da83-41f6-a714-061d1687601e",
+                "aa5b0b63-d669-4c4e-8371-6b37e50c2283"
+            ],
+            "nextParticipantToCollect":"ff0d736d-5a23-4ba2-823a-d4ba2d783865",
+            "round":1
+        },
+        {
+            "id":"91af0202-a2f3-40f3-8f45-3c03c91cfdaa",
+            "name":"NewPlan",
+            "savingsAmount":600,
+            "status":"created",
+            "participants":[
+                {
+                    "contactId":"16",
+                    "id":"31457d97-96b5-488a-bbe0-a49724373b65",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"13",
+                    "id":"2e6e9db6-8282-49b5-a059-1f69a2fdeca3",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"4",
+                    "id":"70117848-1cb2-4852-9aa2-9a695a27dca7",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"2",
+                    "id":"221e0746-dbc2-4c58-82df-658dfdbf210d",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"6",
+                    "id":"ed1975c5-4a98-4521-afb6-ea86b18cad3f",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa/ledger"
+                },
+                "self":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa"
+                },
+                "participants":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa/participants"
+                }
+            },
+            "_capabilities":[
+                "cancelPlan",
+                "addParticipant",
+                "startPlan"
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":null,
+            "round":null
+        },
+        {
+            "id":"b57b7829-4916-40d3-8a8c-3320af14c978",
+            "name":"Candace Bouv",
+            "savingsAmount":601,
+            "status":"created",
+            "participants":[
+                {
+                    "contactId":"4",
+                    "id":"3a83ba62-8442-4dc1-b58f-72b9429adf55",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"2",
+                    "id":"709d6a92-4d8c-44f8-b78f-61e254191354",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"13",
+                    "id":"faac2f22-659a-4862-94fd-ba4004be4db1",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"15",
+                    "id":"dec9ac64-3623-4823-84b8-8ba76f3040d8",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/b57b7829-4916-40d3-8a8c-3320af14c978/ledger"
+                },
+                "self":{
+                    "href":"/plans/b57b7829-4916-40d3-8a8c-3320af14c978"
+                },
+                "participants":{
+                    "href":"/plans/b57b7829-4916-40d3-8a8c-3320af14c978/participants"
+                }
+            },
+            "_capabilities":[
+                "cancelPlan",
+                "addParticipant",
+                "startPlan"
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":null,
+            "round":null
         }
+    ],
+    "_links":{
+        "self":{
+            "href":"/plans"
+        }
+    },
+    "_capabilities":[
+        "createNewPlan"
     ]
 }

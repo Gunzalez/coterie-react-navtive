@@ -71,7 +71,8 @@ class PotSlide extends Component {
                         <Text style={styles.text}>Round: {round}</Text>
                         <Text style={styles.text}>Status: {status}</Text>
                         <Text style={styles.text}>Pot Value £{ utils.js.thousandth(this.getTotalPotValue(this.props.data))}</Text>
-                        <Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>
+                        {/*<Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>*/}
+                        <Text style={styles.text}>Next to collect: {'Michael Jordan'}</Text>
                     </View>
                 }
 

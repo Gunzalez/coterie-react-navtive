@@ -279,7 +279,8 @@ class Detail extends Component {
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} participants @ £{savingsAmount}</Text>
                                 <Text style={styles.meta}>Round: {round}/{participants.length}</Text>
-                                <Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>
+                                {/*<Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>*/}
+                                <Text style={styles.meta}>Next: {'Michael Jordan'}</Text>
                             </View>
                         </View>
 
