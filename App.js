@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import { StyleSheet, View, StatusBar } from 'react-native';
 
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import Introduction from './src/components/Introduction';
 
 import List from './src/components/List';
@@ -10,8 +12,6 @@ import List from './src/components/List';
 import Detail from './src/components/Detail';
 
 import data from './src/data/DummyPots';
-
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import utils from './src/utils';
 
@@ -22,7 +22,7 @@ export default class App extends Component {
 
         this.state = {
             screen: 'intro',
-            pots: data.plans,
+            pots: data['plans'],
             potDetail: {}
         };
     }

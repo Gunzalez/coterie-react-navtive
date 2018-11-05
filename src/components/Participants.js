@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
+import Toast from 'react-native-simple-toast';
+
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
@@ -60,12 +62,9 @@ class Participants extends Component {
     };
 
     saveParticipants = () => {
-        // let originalPot = this.props.navigation.state.params.potDetail;
-        // let updatedPot = Object.assign(originalPot, { participants:this.state.participants });
-        // should update pot in backend
-        // this.props.updatePotDetail(updatedPot);
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
+        Toast.show('This is a toast.', Toast.TOP);
     };
 
     createAvatar = contact => {
