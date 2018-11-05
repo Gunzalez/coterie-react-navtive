@@ -255,12 +255,15 @@ class Detail extends Component {
                     {(status === "in-progress" || status === "completed") &&
 
                         <View style={styles.savingsSummary}>
-                            <View style={styles.amount}>
+                            <View style={styles.totalAmount}>
                                 <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
                                 <Text style={styles.cashAmount}>{totPotValue}</Text>
                             </View>
-                            <Text>Savings Amount: {savingsAmount}</Text>
-                            <Text>Round: {round}/{participants.length}</Text>
+                            <View style={styles.savingsMeta}>
+                                <Text style={styles.meta}>{participants.length} participants @ £{savingsAmount}</Text>
+                                <Text style={styles.meta}>Round: {round}/{participants.length}</Text>
+                                <Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>
+                            </View>
                         </View>
 
                     }
@@ -393,10 +396,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
+    totalAmount: {
+        flex: 1,
+        fontSize: 30,
+        flexDirection: 'row',
+        textAlign: 'left'
+    },
     savingsSummary: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between'
+    },
+    savingsMeta: {
+        flexDirection: 'column'
+    },
+    meta: {
+        textAlign: 'right'
     },
     cashAmount: {
         fontSize: 40
