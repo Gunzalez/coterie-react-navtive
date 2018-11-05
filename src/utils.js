@@ -18,5 +18,10 @@ export default {
             copy: 14
         }
     },
-    js: {}
+    js: {
+        thousandth: function (value) {
+            const valueString = value.toString();
+            return valueString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    }
 }

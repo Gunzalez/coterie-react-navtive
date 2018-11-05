@@ -237,7 +237,7 @@ class Detail extends Component {
                             </TouchableOpacity>
                             <View style={styles.amount}>
                                 <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
-                                <Text style={styles.cashAmount}>{savingsAmount}</Text>
+                                <Text style={styles.cashAmount}>{utils.js.thousandth(savingsAmount)}</Text>
                             </View>
                             <TouchableOpacity
                                 disabled={savingsAmount >= this.savingsMax}
@@ -257,7 +257,7 @@ class Detail extends Component {
                         <View style={styles.savingsSummary}>
                             <View style={styles.totalAmount}>
                                 <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
-                                <Text style={styles.cashAmount}>{totPotValue}</Text>
+                                <Text style={styles.cashAmount}>{ utils.js.thousandth(totPotValue) }</Text>
                             </View>
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} participants @ £{savingsAmount}</Text>
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
     amount: {
         flex: 1,
         fontSize: 30,
-        paddingTop: 5,
+        paddingTop: 4,
         flexDirection: 'row',
         justifyContent: 'center'
     },
@@ -400,12 +400,14 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 30,
         flexDirection: 'row',
-        textAlign: 'left'
+        textAlign: 'left',
+        paddingTop: 3
     },
     savingsSummary: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        height: 50
     },
     savingsMeta: {
         flexDirection: 'column'
