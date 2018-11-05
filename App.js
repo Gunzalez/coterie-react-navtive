@@ -11,6 +11,8 @@ import Detail from './src/components/Detail';
 
 import data from './src/data/DummyPots';
 
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import utils from './src/utils';
 
 export default class App extends Component {
@@ -74,7 +76,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: utils.style.colours.purple,
-        paddingTop: 20,
+        paddingTop: getStatusBarHeight(),
         flex: 1
     }
 });
