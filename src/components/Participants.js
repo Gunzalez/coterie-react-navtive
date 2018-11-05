@@ -158,6 +158,15 @@ class Participants extends Component {
                 </View>
 
                 <View style={styles.footer}>
+
+                    <TouchableOpacity>
+                        <Icon
+                            name="deleteusergroup"
+                            size={40}
+                            color={utils.style.colours.white} />
+                    </TouchableOpacity>
+
+
                     <TouchableOpacity
                         disabled={this.hasParticipantsChanged()}
                         onPress={this.saveParticipants}>
@@ -166,6 +175,8 @@ class Participants extends Component {
                         size={40}
                         color={this.hasParticipantsChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
                     </TouchableOpacity>
+
+
                 </View>
 
             </View>
