@@ -38,7 +38,7 @@ class PotSlide extends Component {
 
     render() {
 
-        const { name = 'Create a Pot', savingsAmount, participants, status, round, nextParticipantToCollect } = this.props.data;
+        const { name = 'Create a new pot', savingsAmount, participants, status, round, nextParticipantToCollect } = this.props.data;
 
 
         return(

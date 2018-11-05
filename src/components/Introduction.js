@@ -45,7 +45,7 @@ class Introduction extends Component {
         return (
             <View style={styles.container}>
 
-                <View style={styles.carousel}>
+                <View>
 
                     <ScrollView
                         horizontal
