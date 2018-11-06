@@ -11,11 +11,13 @@ import utils from './../utils';
 class Collection extends Component {
 
     static propTypes = {
-        navigation: PropTypes.object.isRequired
+        navigation: PropTypes.object.isRequired,
+        potDetail: PropTypes.object.isRequired
     };
 
     constructor(props) {
         super(props);
+
 
 
     }
@@ -26,16 +28,15 @@ class Collection extends Component {
 
     render() {
 
-        const { navigation } = this.props;
+        const { potDetail } = this.props;
 
+        const { name } = potDetail;
 
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>
-                        {'Collection Screen'}
-                    </Text>
+                    <Text style={[ styles.title ]}>{name}</Text>
 
                     <View style={styles.icon}>
                         <TouchableOpacity onPress={this.closeCollection}>
@@ -81,6 +82,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         margin: 20,
         height: 49
+    },
+    title: {
+        fontSize: 25,
+        color: utils.style.colours.purple,
+        paddingBottom: 10
     },
     bottom: {
         borderTopWidth: 1,

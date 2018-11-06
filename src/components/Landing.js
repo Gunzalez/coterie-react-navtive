@@ -172,13 +172,14 @@ class Detail extends Component {
         this.props.navigation.navigate('Participants', {
             potDetail: this.state.localPot,
             contacts: this.contactList,
-            updateLocalParticipants: this.updateLocalParticipants.bind(this)
+            updateLocalParticipants: this.updateLocalParticipants
         })
     };
 
     showCollection = participant => {
         this.props.navigation.navigate('Collection', {
-            participant: participant
+            participant: participant,
+            potDetail: this.state.localPot
         })
     };
 

@@ -14,12 +14,11 @@ class ParticipantsScreen extends Component {
 
     render(){
 
-        const { updatePotDetail } = this.props.screenProps;
+        // const { updatePotDetail } = this.props.screenProps;
 
         return(
             <Participants
-                navigation={this.props.navigation}
-                updatePotDetail={updatePotDetail} />
+                navigation={this.props.navigation} />
         )
     }
 }
@@ -43,11 +42,12 @@ class CollectionScreen extends Component {
 
     render(){
 
-        // const { navigateTo, potDetail } = this.props.screenProps;
+        const { potDetail } = this.props.screenProps;
 
         return(
             <Collection
-                navigation={this.props.navigation} />
+                navigation={this.props.navigation}
+                potDetail={potDetail} />
         )
     }
 }

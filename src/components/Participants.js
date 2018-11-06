@@ -17,8 +17,7 @@ import Contact from './Contact';
 class Participants extends Component {
 
     static propTypes = {
-        navigation: PropTypes.object.isRequired,
-        updatePotDetail: PropTypes.func.isRequired
+        navigation: PropTypes.object.isRequired
     };
 
     constructor(props) {
