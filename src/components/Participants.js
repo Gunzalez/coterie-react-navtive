@@ -23,8 +23,6 @@ class Participants extends Component {
     constructor(props) {
         super(props);
 
-        // console.log(this.props.navigation.state.params);
-
         let initialParticipants = [];
         let initialContacts = this.props.navigation.state.params.contacts;
         initialContacts.forEach(contact => {
@@ -82,9 +80,9 @@ class Participants extends Component {
         if(contact.checked){ // remove from Participants
 
             tempParticipantsArray.map((participant, index) => {
-                if(participant.contactId === contact.id){
 
-                    // tempParticipantsArray.splice(index, 1);
+                if(participant.contactId === contact.id.toString()){
+
                     this.flatList.scrollToIndex({
                         animated: false,
                         index: index,
