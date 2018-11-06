@@ -46,8 +46,7 @@ class CollectionScreen extends Component {
 
         return(
             <Collection
-                navigation={this.props.navigation}
-                potDetail={potDetail} />
+                navigation={this.props.navigation} />
         )
     }
 }

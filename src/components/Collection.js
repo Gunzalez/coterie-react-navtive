@@ -11,15 +11,11 @@ import utils from './../utils';
 class Collection extends Component {
 
     static propTypes = {
-        navigation: PropTypes.object.isRequired,
-        potDetail: PropTypes.object.isRequired
+        navigation: PropTypes.object.isRequired
     };
 
     constructor(props) {
         super(props);
-
-
-
     }
 
     closeCollection = () => {
@@ -28,9 +24,11 @@ class Collection extends Component {
 
     render() {
 
-        const { potDetail } = this.props;
+        const { potDetail, participant } = this.props.navigation.state.params;
 
         const { name } = potDetail;
+
+        const { id, contactId } = participant.item;
 
         return (
             <View style={[ styles.container ]}>
@@ -54,6 +52,8 @@ class Collection extends Component {
 
                 </View>
                 <View style={styles.bottom}>
+                    <Text>ID is { id }</Text>
+                    <Text>Contact Id is { contactId }</Text>
 
 
                 </View>
