@@ -85,7 +85,7 @@ class Introduction extends Component {
                         <TouchableOpacity style={[ {opacity : this.state.disabled ? 0.3 : 1}, styles.button ]}
                                   disabled={this.state.disabled}
                                   onPress={this.handlePress}>
-                            <Text style={styles.text}>CONTINUE</Text>
+                            <Text style={styles.text}>SKIP</Text>
                         </TouchableOpacity>
                     </View>
 

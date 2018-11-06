@@ -1,16 +1,24 @@
 
-To DO
+ToDO
 =========
-Design Landing form page
 Remove list items with animations
 Test App on Android - DVM and real device
 Hook up Karl's token business, Async
 Look into Screen to Screen animations - Shared Components
-Get real contacts from simulator/real device
 Toast Tweak/Change, may need new module
 Styling footer on Participants and other sub pages
-Collection screen design, and other headers
 Empty participant list - dotted outline avatar
+In Progress screen needs work
+Redesign for different layouts
+Button back to help
+
+
+
+
+ToDo Next
+=================
+Collection screen design, and other headers
+
 
 
 
@@ -18,6 +26,8 @@ Empty participant list - dotted outline avatar
 DOING
 =========
 Develop utils, and use
+Design Landing form page
+Get real contacts from simulator/real device
 
 
 
