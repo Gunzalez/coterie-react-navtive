@@ -55,9 +55,17 @@ class List extends Component {
 
         const { pots } = this.state;
         let potsSaved = 0;
+        let inProgress = 0;
+        let completed = 0;
         pots.forEach(pot => {
             if(pot.status === "created"){
                 potsSaved++
+            }
+            if(pot.status === "in-progress"){
+                inProgress++
+            }
+            if(pot.status === "completed"){
+                completed++
             }
         });
 
@@ -67,8 +75,8 @@ class List extends Component {
                 <View style={styles.top}>
 
                     <View style={styles.header}>
-                        <Text style={styles.title}>Saving Pots</Text>
-                        <Text style={styles.text}>{pots.length - 1} pots: {potsSaved} not started</Text>
+                        <Text style={styles.title}>{pots.length - 1} Saving Pots</Text>
+                        <Text style={styles.text}>{inProgress} running, {potsSaved} saved and {completed} finished.</Text>
                         <Text style={styles.text}>Last viewed: 18.10.2018</Text>
                     </View>
 
@@ -78,8 +86,7 @@ class List extends Component {
                             <Icon
                                 name="questioncircleo"
                                 size={utils.style.icons.top}
-                                color={utils.style.colours.purple}
-                            />
+                                color={utils.style.colours.purple} />
                         </TouchableOpacity>
                     </View>
 
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        color: '#444'
+        color: utils.style.colours.purple
     }
 });
 
