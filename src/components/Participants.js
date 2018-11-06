@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
+import Toast from 'react-native-whc-toast'
+
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
@@ -61,8 +63,8 @@ class Participants extends Component {
         updateLocalParticipants(this.state.participants);
         this.setState({
             originalParticipants:this.state.participants
-        }, ()=> {
-            console.log('Toastie!')
+        }, () => {
+            this.refs.toast.show('Changes now saved', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -194,8 +196,18 @@ class Participants extends Component {
                         color={this.hasParticipantsChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
                     </TouchableOpacity>
 
-
                 </View>
+
+                <Toast
+                    ref="toast"
+                    style = {styles.toast}
+                    textStyle = {styles.text}
+                    position = {Toast.Position.bottom}
+                    fadeInDuration = {200}
+                    fadeOutDuration = {200}
+                    duration = {Toast.Duration.long}
+                    opacity = {0.9}
+                    positionValue = {100} />
 
             </View>
         );
