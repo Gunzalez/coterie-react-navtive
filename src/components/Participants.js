@@ -163,6 +163,22 @@ class Participants extends Component {
 
                 <View style={styles.footer}>
 
+                    <TouchableOpacity
+                        disabled={true}>
+                        <Icon
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        disabled={true}>
+                        <Icon
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
+                    </TouchableOpacity>
+
                     <TouchableOpacity>
                         <Icon
                             name="deleteusergroup"
@@ -205,12 +221,12 @@ const styles = StyleSheet.create({
     },
     bottom: {
         borderTopWidth: 1,
-        borderColor: '#cccccc',
         marginTop: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
+        borderColor: utils.style.colours.grayLight,
         backgroundColor: utils.style.colours.white
     },
     title: {
@@ -221,7 +237,7 @@ const styles = StyleSheet.create({
     footer: {
         paddingVertical: 15,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-around',
         backgroundColor: utils.style.colours.purple
     }
 });

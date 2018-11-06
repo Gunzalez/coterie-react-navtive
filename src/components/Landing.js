@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         backgroundColor: utils.style.colours.purple,
         alignItems: 'flex-end',
-        height: 100
+        height: 105
     },
     nameInput: {
         paddingTop: 10,
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         backgroundColor: '#f5f5f5',
         borderBottomWidth: 1,
-        borderColor: '#cccccc'
+        borderColor: utils.style.colours.grayLight
     },
     list: {
         flex: 1,

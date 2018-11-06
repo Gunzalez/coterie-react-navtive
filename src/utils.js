@@ -6,10 +6,11 @@ export default {
             white: '#ffffff',
             gray: '#e9e9e9',
             grayText: '#a8a8a8',
-            orange: '#fc6621'
+            orange: '#fc6621',
+            grayLight: '#efefef'
         },
         icons: {
-            top: 32,
+            top: 36,
             body: 30,
             footer: 40
         },

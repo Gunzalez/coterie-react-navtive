@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 20,
-        height: 49
+        height: 54
     },
     title: {
         fontSize: 25,
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
     },
     bottom: {
         borderTopWidth: 1,
-        borderColor: '#cccccc',
         marginTop: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
+        borderColor: utils.style.colours.grayLight,
         backgroundColor: utils.style.colours.white
     },
     footer: {
