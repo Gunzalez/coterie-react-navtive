@@ -44,7 +44,7 @@ class PotSlide extends Component {
         return(
             <View style={styles.container}>
 
-                <View style={styles.top}>
+                <View style={[styles.top, status === "created" ? styles.new : null ]}>
                     <TouchableOpacity style={styles.topButton} onPress={this.handlePress}>
                         <Icon name="arrowsalt"
                               size={utils.style.icons.top}
@@ -111,6 +111,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingTop: 10,
         paddingBottom: 10
+    },
+    new: {
+        backgroundColor: utils.style.colours.orange
     },
     title: {
         fontSize: 25,

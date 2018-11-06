@@ -5,7 +5,8 @@ export default {
             purple: '#ba55d3',
             white: '#ffffff',
             gray: '#e9e9e9',
-            grayText: '#a8a8a8'
+            grayText: '#a8a8a8',
+            orange: '#fc6621'
         },
         icons: {
             top: 32,
