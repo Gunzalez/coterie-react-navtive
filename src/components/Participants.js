@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
-import Toast from 'react-native-simple-toast';
-
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
@@ -64,7 +62,7 @@ class Participants extends Component {
         this.setState({
             originalParticipants:this.state.participants
         }, ()=> {
-            Toast.show('Changes saved', Toast.TOP);
+            console.log('Toastie!')
         })
     };
 

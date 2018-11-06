@@ -41,8 +41,7 @@ class Collection extends Component {
                             <Icon
                                 name="left"
                                 size={utils.style.icons.top}
-                                color={utils.style.colours.purple }
-                            />
+                                color={utils.style.colours.purple } />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -54,8 +53,6 @@ class Collection extends Component {
                 <View style={styles.bottom}>
                     <Text>ID is { id }</Text>
                     <Text>Contact Id is { contactId }</Text>
-
-
                 </View>
 
                 <View style={styles.footer}>

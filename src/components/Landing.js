@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.white
     },
     charactersLeft: {
-        marginTop: 5,
+        marginTop: 9,
         marginLeft: 15
     },
     characters: {
