@@ -11,6 +11,8 @@ Empty participant list - dotted outline avatar
 In Progress screen needs work
 Redesign for different layouts
 Button back to help
+Unify font sizes - utils
+Clean up styling- different header styling, not good
 
 
 
