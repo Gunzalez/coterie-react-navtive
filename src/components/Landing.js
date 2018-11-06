@@ -196,7 +196,7 @@ class Detail extends Component {
 
     render() {
 
-        const { name, participants = [], status, savingsAmount, round, nextParticipantToCollect } = this.state.localPot;
+        const { name, participants = [], status, savingsAmount, round = "-", nextParticipantToCollect } = this.state.localPot;
 
         const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
@@ -279,10 +279,17 @@ class Detail extends Component {
                     {(status === "in-progress" || status === "completed") &&
 
                         <View style={styles.savingsSummary}>
+
                             <View style={styles.totalAmount}>
-                                <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
-                                <Text style={styles.cashAmount}>{ utils.js.thousandth(totPotValue) }</Text>
+                                <Text style={styles.label}>Pot Value</Text>
+                                <View style={styles.cashValue}>
+                                    <Text style={[styles.amountText, styles.total]}>£</Text>
+                                    <Text style={[styles.total]}>{ utils.js.thousandth(totPotValue) }</Text>
+                                </View>
                             </View>
+
+
+
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} participants @ £{savingsAmount}</Text>
                                 <Text style={styles.meta}>Round: {round}/{participants.length}</Text>
@@ -292,10 +299,6 @@ class Detail extends Component {
                         </View>
 
                     }
-
-
-
-
 
                 </View>
 
@@ -378,7 +381,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         backgroundColor: utils.style.colours.purple,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        height: 100
     },
     nameInput: {
         paddingTop: 10,
@@ -423,6 +427,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     totalAmount: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
+    },
+    cashValue: {
         flex: 1,
         fontSize: 30,
         flexDirection: 'row',
@@ -441,8 +449,16 @@ const styles = StyleSheet.create({
     meta: {
         textAlign: 'right'
     },
+    label: {
+        color: utils.style.colours.grayText
+    },
     cashAmount: {
         fontSize: 40
+    },
+    total: {
+        fontSize: 37,
+        lineHeight: 37
+
     },
     amountText: {
         color: utils.style.colours.grayText

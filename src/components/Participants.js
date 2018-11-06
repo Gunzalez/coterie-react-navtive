@@ -191,15 +191,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f5f5f5'
-
     },
     top: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20
+        paddingHorizontal: 20,
+        paddingVertical: 10,
     },
     middle: {
-        height: 60
+        // height: 60
+        // backgroundColor: 'green'
     },
     bottom: {
         borderTopWidth: 1,

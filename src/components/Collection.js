@@ -34,7 +34,7 @@ class Collection extends Component {
 
                 <View style={styles.top}>
                     <Text style={[ styles.title ]}>
-                        {'Eggs'}
+                        {'Collection Screen'}
                     </Text>
 
                     <View style={styles.icon}>
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
     top: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20
+        margin: 20,
+        height: 49
     },
     bottom: {
         borderTopWidth: 1,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     },
     footer: {
         backgroundColor: utils.style.colours.purple,
-        height: 100,
+        height: 74,
         padding: 20,
         alignItems: 'flex-end'
     }
