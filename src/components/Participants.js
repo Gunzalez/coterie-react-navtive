@@ -64,7 +64,8 @@ class Participants extends Component {
                 [
                     { text: "NO", onPress: () => {}, style: 'cancel'},
                     { text: "YES", onPress: () => { this.props.navigation.navigate('Landing') }},
-                ]
+                ],
+                { cancelable: false }
             );
 
         } else {

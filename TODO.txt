@@ -1,34 +1,28 @@
 
 ToDO
-=========
-Remove list items with animations
+=================
+Remove participants with animations
 Test App on Android - DVM and real device
 Hook up Karl's token business, Async
 Look into Screen to Screen animations - Shared Components
-Toast Tweak/Change, may need new module
 Styling footer on Participants and other sub pages
 Empty participant list - dotted outline avatar
+Remove all participants from List
 In Progress screen needs work
 Redesign for different layouts
-Button back to help
 Unify font sizes - utils
-Clean up styling- different header styling, not good
+Clean up styling - different header styling, not good
+Collection screen design, and other headers
+Redo layouts for higher resolution screens
+
+
+
 
 
 
 
 ToDo Next
 =================
-Collection screen design, and other headers
-
-
-
-
-
-DOING
-=========
-Develop utils, and use
-Design Landing form page
 Get real contacts from simulator/real device
 
 
@@ -36,6 +30,20 @@ Get real contacts from simulator/real device
 
 
 
+
+ALWAYS DOING
+=================
+Develop utils, and use
+
+
+
+
+
+
 DONE
-=========
+=================
+Design Landing form page
 Move data to JSON files
+Button back to help
+Toast Tweak/Change, may need new module
+Added Alerts
