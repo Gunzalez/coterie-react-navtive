@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 
 import Toast from 'react-native-whc-toast'
 
@@ -50,12 +50,27 @@ class Participants extends Component {
         };
     }
 
-    hasParticipantsChanged = () => {
+    participantsHaveChanged = () => {
         return JSON.stringify(this.state.participants) === JSON.stringify(this.state.originalParticipants)
     };
 
     closeParticipants = () => {
-        this.props.navigation.navigate('Landing')
+
+        if(!this.participantsHaveChanged()){
+
+            Alert.alert(
+                'Unsaved changes',
+                'Discard changes and leave anyway?',
+                [
+                    { text: "NO", onPress: () => {}, style: 'cancel'},
+                    { text: "YES", onPress: () => { this.props.navigation.navigate('Landing') }},
+                ]
+            );
+
+        } else {
+
+            this.props.navigation.navigate('Landing')
+        }
     };
 
     saveParticipants = () => {
@@ -86,7 +101,6 @@ class Participants extends Component {
             tempParticipantsArray.map((participant, index) => {
 
                 if(participant.contactId === contact.id.toString()){
-
                     this.flatList.scrollToIndex({
                         animated: false,
                         index: index,
@@ -188,12 +202,12 @@ class Participants extends Component {
 
 
                     <TouchableOpacity
-                        disabled={this.hasParticipantsChanged()}
+                        disabled={this.participantsHaveChanged()}
                         onPress={this.saveParticipants}>
                     <Icon
                         name="save"
                         size={40}
-                        color={this.hasParticipantsChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
+                        color={this.participantsHaveChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
                     </TouchableOpacity>
 
                 </View>
