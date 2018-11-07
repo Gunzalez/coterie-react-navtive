@@ -316,7 +316,7 @@ class Detail extends Component {
 
                 <View style={[styles.list]}>
 
-                    { participants.length < 1 &&
+                    { participants.length < 1 ?
 
                         <View style={styles.empty}>
                             <TouchableOpacity onPress={this.showParticipants}>
@@ -327,9 +327,8 @@ class Detail extends Component {
                             </TouchableOpacity>
                             <Text style={styles.emptyText}>Add participants to this pot</Text>
                         </View>
-                    }
 
-                    { participants.length > 0 &&
+                        :
 
                         <FlatList
                             data={this.state.localPot.participants}

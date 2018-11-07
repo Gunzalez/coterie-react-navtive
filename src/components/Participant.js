@@ -14,7 +14,18 @@ const Participant = (props) => {
 
     return (
         <View style={[ styles.container, placeHolder ? styles.placeHolder : null ]}>
-            <Text style={[styles.text, placeHolder ? styles.placeHolderText : null]}>{avatar}</Text>
+
+            { placeHolder ?
+
+                <Icon
+                    name={'user'}
+                    size={24}
+                    color={utils.style.colours.grayText}/>
+                :
+
+                <Text style={[styles.text]}>{avatar}</Text>
+            }
+
         </View>
     );
 };
@@ -38,9 +49,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         color: utils.style.colours.white
-    },
-    placeHolderText: {
-        color: utils.style.colours.gray
     }
 });
 
