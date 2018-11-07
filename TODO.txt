@@ -21,7 +21,7 @@ Redo layouts for higher resolution screens
 
 
 
-ToDo Next
+Next ToDo to do
 =================
 Get real contacts from simulator/real device
 

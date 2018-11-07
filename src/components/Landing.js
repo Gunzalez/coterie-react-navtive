@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList } from 'react-native';
 
+import Contacts from 'react-native-contacts';
+
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
@@ -138,6 +140,15 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        // console.log(Contacts);
+
+        Contacts.getAllWithoutPhotos((err, contacts) => {
+            if (err) throw err;
+
+            // contacts returned
+            console.log(contacts)
+        })
     }
 
     handlePress = () => {
