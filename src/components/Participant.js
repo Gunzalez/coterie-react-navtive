@@ -10,11 +10,11 @@ const Participant = (props) => {
 
     const { data } = props;
 
-    const { avatar } = data.item;
+    const { avatar, placeHolder } = data.item;
 
     return (
-        <View style={[ styles.container ]}>
-            <Text style={styles.text}>{avatar}</Text>
+        <View style={[ styles.container, placeHolder ? styles.placeHolder : null ]}>
+            <Text style={[styles.text, placeHolder ? styles.placeHolderText : null]}>{avatar}</Text>
         </View>
     );
 };
@@ -29,9 +29,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    placeHolder: {
+        backgroundColor: utils.style.colours.white,
+        borderWidth: 1,
+        borderColor: utils.style.colours.grayText,
+        borderStyle: 'dashed'
+    },
     text: {
         fontSize: 20,
         color: utils.style.colours.white
+    },
+    placeHolderText: {
+        color: utils.style.colours.gray
     }
 });
 

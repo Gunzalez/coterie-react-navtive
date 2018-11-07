@@ -6,7 +6,6 @@ Test App on Android - DVM and real device
 Hook up Karl's token business, Async
 Look into Screen to Screen animations - Shared Components
 Styling footer on Participants and other sub pages
-Empty participant list - dotted outline avatar
 In Progress screen needs work
 Redesign for different layouts
 Unify font sizes - utils
@@ -23,7 +22,6 @@ Redo layouts for higher resolution screens
 Next ToDo to do
 =================
 Get real contacts from simulator/real device (ON HOLD)
-Remove all participants from List
 
 
 
@@ -42,8 +40,17 @@ Develop utils, and use
 
 DONE
 =================
+Empty participant list - dotted outline avatar
+Remove all participants from List
 Design Landing form page
 Move data to JSON files
 Button back to help
 Toast Tweak/Change, may need new module
 Added Alerts
+
+
+
+
+
+NOT DOING -- yet
+=================

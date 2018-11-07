@@ -158,13 +158,15 @@ class Participants extends Component {
                         <Icon
                             name="down"
                             size={utils.style.icons.top}
-                            color={utils.style.colours.purple}
-                             />
+                            color={utils.style.colours.purple}/>
                         </TouchableOpacity>
                     </View>
                 </View>
 
                 <View style={styles.middle}>
+
+                    { this.state.participants.length > 0 ?
+
                     <FlatList
                         ref={(scrollView) => { this.flatList = scrollView }}
                         data={this.state.participants}
@@ -174,9 +176,13 @@ class Participants extends Component {
                         onMomentumScrollEnd={() => console.log("end")}
 
                         renderItem={(item) =>
-                            <Participant data={item}  />
-                        }
-                    />
+                            <Participant data={item}/>
+                        }/>
+
+                    :
+                        <Participant data={{item:{avatar:"SP", placeHolder:true}}} />
+                    }
+
                 </View>
                 <View style={styles.bottom}>
                     <FlatList
@@ -184,9 +190,8 @@ class Participants extends Component {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={(item) =>
-                            <Contact data={item} contactClicked={this.contactClicked}  />
-                        }
-                    />
+                            <Contact data={item} contactClicked={this.contactClicked}/>
+                        }/>
                 </View>
 
                 <View style={styles.footer}>
@@ -255,7 +260,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     middle: {
-        // height: 60
+        height: 60
         // backgroundColor: 'green'
     },
     bottom: {
