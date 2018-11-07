@@ -77,10 +77,22 @@ class Participants extends Component {
     saveParticipants = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
-        this.setState({
-            originalParticipants:this.state.participants
-        }, () => {
+        this.setState({ originalParticipants: this.state.participants }, () => {
             this.refs.toast.show('Changes now saved', Toast.Duration.short, Toast.Position.bottom);
+        })
+    };
+
+    clearParticipants = () => {
+
+        let unCheckedContacts = [];
+        this.state.contacts.forEach(contact => {
+            delete contact.checked;
+            unCheckedContacts.push(contact);
+        });
+
+        this.setState({
+            participants: [],
+            contacts: unCheckedContacts
         })
     };
 
@@ -126,6 +138,7 @@ class Participants extends Component {
             "participants": tempParticipantsArray
         });
     };
+
 
     render() {
 
@@ -179,6 +192,15 @@ class Participants extends Component {
                 <View style={styles.footer}>
 
                     <TouchableOpacity
+                        disabled={this.state.participants.length < 1}
+                        onPress={this.clearParticipants}>
+                        <Icon
+                            name="deleteusergroup"
+                            size={40}
+                            color={this.state.participants.length < 1 ? utils.style.colours.grayText : utils.style.colours.white} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
                         disabled={true}>
                         <Icon
                             name="delete"
@@ -193,14 +215,6 @@ class Participants extends Component {
                             size={utils.style.icons.footer}
                             color={utils.style.colours.purple} />
                     </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Icon
-                            name="deleteusergroup"
-                            size={40}
-                            color={utils.style.colours.white} />
-                    </TouchableOpacity>
-
 
                     <TouchableOpacity
                         disabled={this.participantsHaveChanged()}
