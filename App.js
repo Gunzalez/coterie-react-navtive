@@ -15,8 +15,6 @@ import data from './src/data/DummyPots';
 
 import utils from './src/utils';
 
-import { AsyncStorage } from "react-native";
-
 import ajax from './src/ajax';
 
 export default class App extends Component {
@@ -27,20 +25,45 @@ export default class App extends Component {
         this.state = {
             screen: 'intro',
             pots: data['plans'],
-            potDetail: {},
-            headerString: null
+            potDetail: {}
         };
 
-        this.doRegistration();
     }
 
-    doRegistration = () => {
-        const headerPromise = ajax.registerAndGetBackToken();
-        headerPromise.then( responseArr => {
-            const headerString = responseArr[responseArr.length - 1];
-            this.setState({ headerString });
-            console.log(this.state)
-        });
+    componentDidMount(){
+
+        this.headers = null;
+
+        ajax.getAccessTokenFromStorage().then( accessToken => {
+
+            if( accessToken ) {
+
+                this.setHeadersWithAccessToken(accessToken);
+
+            } else {
+
+                ajax.registerAndReturnRegistrationString().then( registrationStringArr => {
+
+                    const registrationString = registrationStringArr[registrationStringArr.length - 1];
+
+                    ajax.getAccessTokenRegistrationString(registrationString).then( response => {
+
+                        const accessToken = response['authorisationToken'];
+
+                        ajax.saveAccessTokenToStorage(accessToken).then( _ => {
+
+                            this.setHeadersWithAccessToken(accessToken);
+
+                        });
+                    });
+                });
+            }
+        })
+    }
+
+    setHeadersWithAccessToken = accessToken => {
+        this.headers = new Headers();
+        this.headers.append('Authorization', 'token:' + accessToken);
     };
 
     updateScreen = screen => {
