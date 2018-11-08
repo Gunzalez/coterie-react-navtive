@@ -15,6 +15,10 @@ import data from './src/data/DummyPots';
 
 import utils from './src/utils';
 
+import { AsyncStorage } from "react-native";
+
+import ajax from './src/ajax';
+
 export default class App extends Component {
 
     constructor(props) {
@@ -23,9 +27,21 @@ export default class App extends Component {
         this.state = {
             screen: 'intro',
             pots: data['plans'],
-            potDetail: {}
+            potDetail: {},
+            headerString: null
         };
+
+        this.doRegistration();
     }
+
+    doRegistration = () => {
+        const headerPromise = ajax.registerAndGetBackToken();
+        headerPromise.then( responseArr => {
+            const headerString = responseArr[responseArr.length - 1];
+            this.setState({ headerString });
+            console.log(this.state)
+        });
+    };
 
     updateScreen = screen => {
         this.setState({ screen })

@@ -78,7 +78,7 @@ class Participants extends Component {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
-            this.refs.toast.show('Changes now saved', Toast.Duration.short, Toast.Position.bottom);
+            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -115,20 +115,25 @@ class Participants extends Component {
 
                 if(participant.contactId === contact.id.toString()){
                     this.flatList.scrollToIndex({
-                        animated: false,
+                        animated: true,
                         index: index,
                         viewPosition: 1,
                         viewOffset: 0
                     });
-                    tempParticipantsArray.splice(index, 1);
+                    tempParticipantsArray[index].highlight = true;
+                    // setTimeout(() => tempParticipantsArray.splice(index, 1), 200);
+                    // tempParticipantsArray.splice(index, 1);
                 }
             })
+
         } else { // add to Participants
+
             tempParticipantsArray.push({
                 contactId: contact.id.toString(),
                 avatar: this.createAvatar(contact)
             });
             setTimeout(() => this.flatList.scrollToEnd(), 200);
+
         }
 
         Object.assign(contact, { "checked": !contact.checked });
@@ -173,14 +178,14 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        onMomentumScrollEnd={() => console.log("end")}
+                        onMomentumScrollEnd={(item) => {console.log(item)}}
 
                         renderItem={(item) =>
                             <Participant data={item}/>
                         }/>
 
                     :
-                        <Participant data={{item:{avatar:"SP", placeHolder:true}}} />
+                        <Participant data={{item:{placeHolder:true}}} />
                     }
 
                 </View>

@@ -10,10 +10,12 @@ const Participant = (props) => {
 
     const { data } = props;
 
-    const { avatar, placeHolder } = data.item;
+    const { avatar, placeHolder, highlight } = data.item;
+
+    // console.log(props);
 
     return (
-        <View style={[ styles.container, placeHolder ? styles.placeHolder : null ]}>
+        <View style={[ styles.container, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null ]}>
 
             { placeHolder ?
 
@@ -45,6 +47,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: utils.style.colours.grayText,
         borderStyle: 'dashed'
+    },
+    highlight: {
+        backgroundColor: 'red'
     },
     text: {
         fontSize: 20,

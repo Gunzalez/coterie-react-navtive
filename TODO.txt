@@ -7,11 +7,12 @@ Hook up Karl's token business, Async
 Look into Screen to Screen animations - Shared Components
 Styling footer on Participants and other sub pages
 In Progress screen needs work
-Redesign for different layouts
+Redo Flex layout to handle Super Retina
 Unify font sizes - utils
 Clean up styling - different header styling, not good
 Collection screen design, and other headers
-Redo layouts for higher resolution screens
+Contacts Permission DENIED handler
+PotSlides not in the middle: BUG
 
 
 
