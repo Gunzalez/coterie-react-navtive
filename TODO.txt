@@ -3,7 +3,6 @@ ToDO
 =================
 Remove participants with animations
 Test App on Android - DVM and real device
-Hook up Karl's token business, Async
 Look into Screen to Screen animations - Shared Components
 Styling footer on Participants and other sub pages
 In Progress screen needs work
@@ -41,6 +40,7 @@ Develop utils, and use
 
 DONE
 =================
+Hook up Karl's token business, Async
 Empty participant list - dotted outline avatar
 Remove all participants from List
 Design Landing form page

@@ -40,6 +40,8 @@ export default class App extends Component {
 
                 this.setHeadersWithAccessToken(accessToken);
 
+                console.log(accessToken)
+
             } else {
 
                 ajax.registerAndReturnRegistrationString().then( registrationStringArr => {
@@ -62,8 +64,8 @@ export default class App extends Component {
     }
 
     setHeadersWithAccessToken = accessToken => {
-        this.headers = new Headers();
-        this.headers.append('Authorization', 'token:' + accessToken);
+        // this.headers = new Headers();
+        // this.headers.append('Authorization', 'token:' + accessToken);
     };
 
     updateScreen = screen => {

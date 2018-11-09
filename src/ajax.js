@@ -50,5 +50,26 @@ export default {
         } catch (error) {
             console.error(error);
         }
+    },
+
+    async addAPot(pot, headerOptions = ['Authorization', 'token:' + '===null===']){
+
+        try {
+
+            const headers = new Headers();
+            headers.append(headerOptions);
+
+            const options = { headers };
+            const body = {
+                method: 'POST',
+                body: JSON.stringify({plan: pot})
+            };
+
+            const response = await fetch( apiHost, body, options );
+            return await response.json();
+
+        } catch (error){
+            console.error(error)
+        }
     }
 }
