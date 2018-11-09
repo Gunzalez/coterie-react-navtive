@@ -28,7 +28,7 @@ class MyCarousel extends Component {
         pots: PropTypes.array.isRequired,
         firstItem: PropTypes.number.isRequired,
         navigateTo: PropTypes.func.isRequired,
-        updatePotDetail: PropTypes.func.isRequired
+        setPotDetail: PropTypes.func.isRequired
     };
 
     _renderItem ({item, index}) {
@@ -36,7 +36,7 @@ class MyCarousel extends Component {
             <View style={styles.slide}>
                 <PotSlide data={item}
                     navigateTo={this.props.navigateTo}
-                    updatePotDetail={this.props.updatePotDetail}
+                    setPotDetail={this.props.setPotDetail}
                     activeSlide={this.state.activeSlide}
                     index={index} />
             </View>

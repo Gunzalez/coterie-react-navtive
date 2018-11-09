@@ -23,7 +23,7 @@ class PotSlide extends Component {
 
     handlePress = () => {
         if (this.props.index === this.props.activeSlide) {
-            this.props.updatePotDetail(this.props.data);
+            this.props.setPotDetail(this.props.data);
             this.props.navigateTo('detail');
         }
     };

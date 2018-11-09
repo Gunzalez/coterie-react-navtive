@@ -203,7 +203,7 @@ class Detail extends Component {
         this.setState({ charactersLeft, localPot });
     };
 
-    canUpdatePotDetails = () => {
+    cansetPotDetails = () => {
         const { status } = this.state.localPot;
         return status === "created" || status === "new";
     };
@@ -360,12 +360,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canUpdatePotDetails()}
+                        disabled={!this.cansetPotDetails()}
                         onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.canUpdatePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.cansetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -376,12 +376,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canUpdatePotDetails()}
+                        disabled={!this.cansetPotDetails()}
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.canUpdatePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.cansetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 

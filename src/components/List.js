@@ -14,7 +14,7 @@ class List extends Component {
 
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
-        updatePotDetail: PropTypes.func.isRequired,
+        setPotDetail: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
         pots: PropTypes.array.isRequired
     };
@@ -96,7 +96,7 @@ class List extends Component {
                 <MyCarousel
                     pots={this.state.pots}
                     firstItem={ this.getFirstItem() }
-                    updatePotDetail={ this.props.updatePotDetail }
+                    setPotDetail={ this.props.setPotDetail }
                     navigateTo={ this.props.navigateTo } />
             </View>
         );

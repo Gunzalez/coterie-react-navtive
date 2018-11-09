@@ -67,11 +67,11 @@ export default class App extends Component {
         this.accessToken = accessToken
     };
 
-    updateScreen = screen => {
+    switchScreen = screen => {
         this.setState({ screen })
     };
 
-    updatePotDetail = potDetail => {
+    setPotDetail = potDetail => {
         this.setState({ potDetail })
     };
 
@@ -104,7 +104,7 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
-                    <Introduction navigateTo={this.updateScreen} />
+                    <Introduction navigateTo={this.switchScreen} />
                 </View>
             );
         }
@@ -113,8 +113,8 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
-                    <List navigateTo={this.updateScreen}
-                        updatePotDetail={this.updatePotDetail}
+                    <List navigateTo={this.switchScreen}
+                        setPotDetail={this.setPotDetail}
                         potDetail={potDetail}
                         pots={pots} />
                 </View>
@@ -125,7 +125,7 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
-                    <Detail navigateTo={this.updateScreen}
+                    <Detail navigateTo={this.switchScreen}
                         savePotDetail={this.savePotDetail}
                         potDetail={potDetail} />
                 </View>
