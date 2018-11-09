@@ -23,35 +23,54 @@ class Participants extends Component {
     constructor(props) {
         super(props);
 
-        let initialParticipants = [];
-        let initialContacts = this.props.navigation.state.params.contacts;
-        initialContacts.forEach(contact => {
+        const { contacts, potDetail } = this.props.navigation.state.params;
+        const { participants = [] } = potDetail;
+
+        contacts.forEach(contact => {
             delete contact.checked
         });
 
-        if(this.props.navigation.state.params.potDetail.participants){
-            this.props.navigation.state.params.potDetail.participants.map(participant => {
-                this.props.navigation.state.params.contacts.map((contact, index) => {
+        if(participants){
+            participants.map(participant => {
+                contacts.map((contact, index) => {
                     if(contact.id.toString() === participant.contactId){
-                        initialParticipants.push({
-                            contactId: contact.id.toString(),
-                            avatar: this.createAvatar(contact)
-                        });
-                        initialContacts[index].checked = true;
+                        contacts[index].checked = true;
                     }
                 })
             });
         }
 
         this.state = {
-            contacts: initialContacts,
-            participants: initialParticipants,
-            originalParticipants: initialParticipants
+            contacts: contacts,
+            participants: participants,
+            originalParticipants: participants
         };
     }
 
     participantsHaveChanged = () => {
         return JSON.stringify(this.state.participants) === JSON.stringify(this.state.originalParticipants)
+    };
+
+    getContactDetailFromId = (id, param) => {
+        let returnName = 'Participant';
+        this.state.contacts.forEach(contact => {
+            if(contact.id === id){
+                returnName = contact[param].trim()
+            }
+        });
+        return returnName;
+    };
+
+    returnParticipantsToDisplay = () => {
+        const participants = [];
+        this.state.participants.forEach(participant => {
+            const displayParticipant = Object.assign({}, participant, {
+                name: this.getContactDetailFromId(participant.contactId, 'name'),
+                surname: this.getContactDetailFromId(participant.contactId, 'surname')
+            });
+            participants.push(displayParticipant)
+        });
+        return participants;
     };
 
     closeParticipants = () => {
@@ -96,14 +115,6 @@ class Participants extends Component {
         })
     };
 
-    createAvatar = contact => {
-        let avatar = contact.name.charAt(0).toUpperCase();
-        if(contact.surname){
-            avatar = avatar + contact.surname.charAt(0).toUpperCase()
-        }
-        return avatar;
-    };
-
     contactClicked = (indexOfContactList) => {
         const tempContactsArray = this.state.contacts.slice();
         const tempParticipantsArray = this.state.participants.slice();
@@ -114,23 +125,22 @@ class Participants extends Component {
             tempParticipantsArray.map((participant, index) => {
 
                 if(participant.contactId === contact.id.toString()){
-                    this.flatList.scrollToIndex({
-                        animated: true,
-                        index: index,
-                        viewPosition: 1,
-                        viewOffset: 0
-                    });
-                    tempParticipantsArray[index].highlight = true;
+                    // this.flatList.scrollToIndex({
+                    //     animated: true,
+                    //     index: index,
+                    //     viewPosition: 1,
+                    //     viewOffset: 0
+                    // });
+                    // tempParticipantsArray[index].highlight = true;
                     // setTimeout(() => tempParticipantsArray.splice(index, 1), 200);
-                    // tempParticipantsArray.splice(index, 1);
+                    tempParticipantsArray.splice(index, 1);
                 }
             })
 
         } else { // add to Participants
 
             tempParticipantsArray.push({
-                contactId: contact.id.toString(),
-                avatar: this.createAvatar(contact)
+                contactId: contact.id.toString()
             });
             setTimeout(() => this.flatList.scrollToEnd(), 200);
 
@@ -174,14 +184,13 @@ class Participants extends Component {
 
                     <FlatList
                         ref={(scrollView) => { this.flatList = scrollView }}
-                        data={this.state.participants}
+                        data={this.returnParticipantsToDisplay()}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        onMomentumScrollEnd={(item) => {console.log(item)}}
-
+                        onMomentumScrollEnd={(item) => {console.log(item, this)}}
                         renderItem={(item) =>
-                            <Participant data={item}/>
+                            <Participant data={item} />
                         }/>
 
                     :
