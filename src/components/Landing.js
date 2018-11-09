@@ -28,107 +28,107 @@ class Detail extends Component {
             {
                 name: "Karl",
                 surname: "Walsh",
-                id: 1
+                id: "1"
             },
             {
                 name: "Titi",
                 surname: "Adesanya",
-                id: 2
+                id: "2"
             },
             {
                 name: "Hasan",
                 surname: "Kazan",
-                id: 3
+                id: "3"
             },
             {
                 name: "Segun",
                 surname: "Konibire",
-                id: 4
+                id: "4"
             },
             {
                 name: "Malcolm",
                 surname: "Seaborn",
-                id: 5
+                id: "5"
             },
             {
-                name: "Frank",
-                surname: "Sinatra",
-                id: 6
+                name: "",
+                surname: "",
+                id: "6"
             },
             {
                 name: "Mathew",
-                surname: "Ferry",
-                id: 7
+                surname: "",
+                id: "7"
             },
             {
                 name: "Clifton",
                 surname: "Green",
-                id: 8
+                id: "8"
             },
             {
                 name: "Mary",
                 surname: "Poppins",
-                id: 9
+                id: "9"
             },
             {
                 name: "Jay",
                 surname: "Flaxman",
-                id: 10
+                id: "10"
             },
             {
                 name: "Jaclyn",
                 surname: "Jones",
-                id: 11
+                id: "11"
             },
             {
                 name: "Pilan",
                 surname: "Ramiah",
-                id: 12
+                id: "12"
             },
             {
                 name: "Keon",
                 surname: "Konibire",
-                id: 13
+                id: "13"
             },
             {
                 name: "Kayden",
                 surname: "konibire",
-                id: 14
+                id: "14"
             },
             {
                 name: "Rob",
                 surname: "Curle",
-                id: 15
+                id: "15"
             },
             {
                 name: "Jacky",
                 surname: "Brown",
-                id: 16
+                id: "16"
             },
             {
                 name: "Kevin",
                 surname: "Philips",
-                id: 17
+                id: "17"
             },
             {
                 name: "Lynda",
                 surname: "Dot.Com",
-                id: 18
+                id: "18"
             },
             {
                 name: "Jane",
                 surname: "Red",
-                id: 19
+                id: "19"
             },
             {
                 name: "Susan",
                 surname: "Fox",
-                id: 20
+                id: "20"
             },
             {
                 name: "Florence",
                 surname: "Nightingale",
-                id: 21
+                id: "21"
             }
         ];
         this.savingsMax = 1000;
@@ -203,7 +203,7 @@ class Detail extends Component {
         this.setState({ charactersLeft, localPot });
     };
 
-    cansetPotDetails = () => {
+    canSetPotDetails = () => {
         const { status } = this.state.localPot;
         return status === "created" || status === "new";
     };
@@ -360,12 +360,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.cansetPotDetails()}
+                        disabled={!this.canSetPotDetails()}
                         onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.cansetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -376,12 +376,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.cansetPotDetails()}
+                        disabled={!this.canSetPotDetails()}
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.cansetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 
