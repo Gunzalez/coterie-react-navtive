@@ -10,12 +10,12 @@ const Contact = (props) => {
 
     const { data, contactClicked } = props;
 
-    const { name, surname, checked } = data.item;
+    const { familyName, givenName, checked } = data.item;
 
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={styles.text}>{name} {surname}</Text>
+                <Text style={styles.text}>{familyName} {givenName}</Text>
             </View>
             <View style={[styles.cell]}>
                 <Icon

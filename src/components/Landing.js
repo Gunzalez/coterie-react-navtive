@@ -26,108 +26,108 @@ class Detail extends Component {
 
         this.contactList = [
             {
-                name: "Karl",
-                surname: "Walsh",
+                familyName:"Karl",
+                givenName:"Walsh",
                 id: "1"
             },
             {
-                name: "Titi",
-                surname: "Adesanya",
+                familyName:"Titi",
+                givenName:"Adesanya",
                 id: "2"
             },
             {
-                name: "Hasan",
-                surname: "Kazan",
+                familyName:"Hasan",
+                givenName:"Kazan",
                 id: "3"
             },
             {
-                name: "Segun",
-                surname: "Konibire",
+                familyName:"Segun",
+                givenName:"Konibire",
                 id: "4"
             },
             {
-                name: "Malcolm",
-                surname: "Seaborn",
+                familyName:"Malcolm",
+                givenName:"Seaborn",
                 id: "5"
             },
             {
-                name: "",
-                surname: "",
+                familyName:"Frank",
+                givenName:"Sinatra",
                 id: "6"
             },
             {
-                name: "Mathew",
-                surname: "",
+                familyName:"Mathew",
+                givenName:"Ferry",
                 id: "7"
             },
             {
-                name: "Clifton",
-                surname: "Green",
+                familyName:"Clifton",
+                givenName:"Green",
                 id: "8"
             },
             {
-                name: "Mary",
-                surname: "Poppins",
+                familyName:"Mary",
+                givenName:"Poppins",
                 id: "9"
             },
             {
-                name: "Jay",
-                surname: "Flaxman",
+                familyName:"Jay",
+                givenName:"Flaxman",
                 id: "10"
             },
             {
-                name: "Jaclyn",
-                surname: "Jones",
+                familyName:"Jaclyn",
+                givenName:"Jones",
                 id: "11"
             },
             {
-                name: "Pilan",
-                surname: "Ramiah",
+                familyName:"Pilan",
+                givenName:"Ramiah",
                 id: "12"
             },
             {
-                name: "Keon",
-                surname: "Konibire",
+                familyName:"Keon",
+                givenName:"Konibire",
                 id: "13"
             },
             {
-                name: "Kayden",
-                surname: "konibire",
+                familyName:"Kayden",
+                givenName:"konibire",
                 id: "14"
             },
             {
-                name: "Rob",
-                surname: "Curle",
+                familyName:"Rob",
+                givenName:"Curle",
                 id: "15"
             },
             {
-                name: "Jacky",
-                surname: "Brown",
+                familyName:"Jacky",
+                givenName:"Brown",
                 id: "16"
             },
             {
-                name: "Kevin",
-                surname: "Philips",
+                familyName:"Kevin",
+                givenName:"Philips",
                 id: "17"
             },
             {
-                name: "Lynda",
-                surname: "Dot.Com",
+                familyName:"Lynda",
+                givenName:"Dot.Com",
                 id: "18"
             },
             {
-                name: "Jane",
-                surname: "Red",
+                familyName:"Jane",
+                givenName:"Red",
                 id: "19"
             },
             {
-                name: "Susan",
-                surname: "Fox",
+                familyName:"Susan",
+                givenName:"Fox",
                 id: "20"
             },
             {
-                name: "Florence",
-                surname: "Nightingale",
+                familyName:"Florence",
+                givenName:"Nightingale",
                 id: "21"
             }
         ];
@@ -142,13 +142,10 @@ class Detail extends Component {
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
 
-        // console.log(Contacts);
-
         Contacts.getAllWithoutPhotos((err, contacts) => {
             if (err) throw err;
 
-            // contacts returned
-            console.log(contacts)
+            this.contactList = contacts;
         });
 
     }
@@ -203,7 +200,7 @@ class Detail extends Component {
         this.setState({ charactersLeft, localPot });
     };
 
-    canSetPotDetails = () => {
+    canSavePotDetails = () => {
         const { status } = this.state.localPot;
         return status === "created" || status === "new";
     };
@@ -360,12 +357,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSetPotDetails()}
+                        disabled={!this.canSavePotDetails()}
                         onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.canSetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -376,12 +373,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSetPotDetails()}
+                        disabled={!this.canSavePotDetails()}
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.canSetPotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 

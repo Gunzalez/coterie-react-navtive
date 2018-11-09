@@ -13,7 +13,6 @@ Collection screen design, and other headers
 Contacts Permission DENIED handler
 PotSlides not in the middle: BUG
 
-Change Avatar logic
 
 
 
@@ -42,6 +41,7 @@ Develop utils, and use
 
 DONE
 =================
+Change Avatar logic
 Hook up Karl's token business, Async
 Empty participant list - dotted outline avatar
 Remove all participants from List

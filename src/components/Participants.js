@@ -30,11 +30,14 @@ class Participants extends Component {
             delete contact.checked
         });
 
-        if(participants){
+        if(participants.length){
             participants.map(participant => {
                 contacts.map((contact, index) => {
-                    if(contact.id.toString() === participant.contactId){
+                    if(contact.recordID === participant.contactId) {
                         contacts[index].checked = true;
+                        if (participant.id) {
+                            contacts[index].participantId = participant.id;
+                        }
                     }
                 })
             });
@@ -54,7 +57,7 @@ class Participants extends Component {
     getContactDetailFromId = (id, param) => {
         let returnName = 'Participant';
         this.state.contacts.forEach(contact => {
-            if(contact.id === id){
+            if(contact.recordID === id){
                 returnName = contact[param].trim()
             }
         });
@@ -65,8 +68,8 @@ class Participants extends Component {
         const participants = [];
         this.state.participants.forEach(participant => {
             const displayParticipant = Object.assign({}, participant, {
-                name: this.getContactDetailFromId(participant.contactId, 'name'),
-                surname: this.getContactDetailFromId(participant.contactId, 'surname')
+                familyName: this.getContactDetailFromId(participant.contactId, 'familyName'),
+                givenName: this.getContactDetailFromId(participant.contactId, 'givenName')
             });
             participants.push(displayParticipant)
         });
@@ -81,7 +84,7 @@ class Participants extends Component {
                 'Unsaved changes',
                 'Discard changes and leave anyway?',
                 [
-                    { text: "NO", onPress: () => {}, style: 'cancel'},
+                    { text: "NO", onPress: () => {}, style: 'cancel' },
                     { text: "YES", onPress: () => { this.props.navigation.navigate('Landing') }},
                 ],
                 { cancelable: false }
@@ -96,6 +99,7 @@ class Participants extends Component {
     saveParticipants = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
+        console.log(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
             this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
@@ -116,15 +120,15 @@ class Participants extends Component {
     };
 
     contactClicked = (indexOfContactList) => {
-        const tempContactsArray = this.state.contacts.slice();
         const tempParticipantsArray = this.state.participants.slice();
+        const tempContactsArray = this.state.contacts.slice();
         const contact = tempContactsArray[indexOfContactList];
 
         if(contact.checked){ // remove from Participants
 
             tempParticipantsArray.map((participant, index) => {
 
-                if(participant.contactId === contact.id.toString()){
+                if(participant.contactId === contact.recordID.toString()){
                     // this.flatList.scrollToIndex({
                     //     animated: true,
                     //     index: index,
@@ -139,9 +143,11 @@ class Participants extends Component {
 
         } else { // add to Participants
 
-            tempParticipantsArray.push({
-                contactId: contact.id.toString()
-            });
+            const newParticipant = { contactId: contact.recordID.toString() };
+            if(contact.participantId){
+                newParticipant.id = contact.participantId
+            }
+            tempParticipantsArray.push(newParticipant);
             setTimeout(() => this.flatList.scrollToEnd(), 200);
 
         }

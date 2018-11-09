@@ -10,12 +10,12 @@ const Participant = (props) => {
 
     const { data } = props;
 
-    const { name, surname, placeHolder, highlight } = data.item;
+    const { familyName, givenName, placeHolder, highlight } = data.item;
 
-    const createAvatar = (name, surname) =>{
-        let avatar = name.charAt(0).toUpperCase();
-        if(surname){
-            avatar = avatar + surname.charAt(0).toUpperCase()
+    const createAvatar = (a, b) =>{
+        let avatar = a.charAt(0).toUpperCase();
+        if(b.trim()){
+            avatar = avatar + b.charAt(0).toUpperCase()
         }
         if(avatar.trim().length){
             return avatar;
@@ -35,7 +35,7 @@ const Participant = (props) => {
                     color={utils.style.colours.grayText}/>
                 :
 
-                <Text style={[styles.text]}>{ createAvatar(name, surname) }</Text>
+                <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
             }
 
         </View>
