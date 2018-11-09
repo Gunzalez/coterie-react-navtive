@@ -17,7 +17,8 @@ class Detail extends Component {
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
-        navigation: PropTypes.object.isRequired
+        navigation: PropTypes.object.isRequired,
+        savePotDetail: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -148,7 +149,8 @@ class Detail extends Component {
 
             // contacts returned
             console.log(contacts)
-        })
+        });
+
     }
 
     handlePress = () => {
@@ -206,6 +208,11 @@ class Detail extends Component {
         return status === "created" || status === "new";
     };
 
+    savePotDetail = () => {
+        const { localPot } = this.state;
+        this.props.savePotDetail(localPot);
+    };
+
     render() {
 
         const { name, participants = [], status, savingsAmount, round = "-", nextParticipantToCollect } = this.state.localPot;
@@ -251,6 +258,7 @@ class Detail extends Component {
 
                         <View style={[styles.nameInput]}>
                             <Text style={[styles.input]}>{name}</Text>
+                            <Text style={[styles.meta, { color: utils.style.colours.white, paddingTop: 10 }]}>{round}/{participants.length}</Text>
                         </View>
 
                     }
@@ -303,8 +311,8 @@ class Detail extends Component {
 
 
                             <View style={styles.savingsMeta}>
-                                <Text style={styles.meta}>{participants.length} participants @ £{savingsAmount}</Text>
-                                <Text style={styles.meta}>Round: {round}/{participants.length}</Text>
+                                <Text style={styles.meta}>{participants.length} participants</Text>
+                                <Text style={styles.meta}>£{savingsAmount} each</Text>
                                 {/*<Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>*/}
                                 <Text style={styles.meta}>Next: {'Michael Jordan'}</Text>
                             </View>
@@ -352,7 +360,8 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canUpdatePotDetails()}>
+                        disabled={!this.canUpdatePotDetails()}
+                        onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}

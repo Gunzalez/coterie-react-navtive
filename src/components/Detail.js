@@ -14,11 +14,8 @@ class ParticipantsScreen extends Component {
 
     render(){
 
-        // const { updatePotDetail } = this.props.screenProps;
-
         return(
-            <Participants
-                navigation={this.props.navigation} />
+            <Participants navigation={this.props.navigation} />
         )
     }
 }
@@ -27,12 +24,13 @@ class LandingScreen extends Component {
 
     render(){
 
-        const { navigateTo, potDetail } = this.props.screenProps;
+        const { navigateTo, potDetail, savePotDetail } = this.props.screenProps;
 
         return(
             <Landing
                 navigation={this.props.navigation}
                 navigateTo={navigateTo}
+                savePotDetail={savePotDetail}
                 potDetail={potDetail} />
         )
     }
@@ -42,11 +40,8 @@ class CollectionScreen extends Component {
 
     render(){
 
-        const { potDetail } = this.props.screenProps;
-
         return(
-            <Collection
-                navigation={this.props.navigation} />
+            <Collection navigation={this.props.navigation} />
         )
     }
 }
@@ -83,16 +78,20 @@ const PotDetailNavigator = createStackNavigator({
 
 class Detail extends Component {
 
+    constructor(props){
+        super(props);
+    }
+
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
-        updatePotDetail: PropTypes.func.isRequired,
-        potDetail: PropTypes.object.isRequired
+        potDetail: PropTypes.object.isRequired,
+        savePotDetail: PropTypes.func.isRequired
     };
 
     state = {
         navigateTo: this.props.navigateTo,
         potDetail: this.props.potDetail,
-        updatePotDetail: this.props.updatePotDetail
+        savePotDetail: this.props.savePotDetail
     };
 
     render(){

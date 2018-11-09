@@ -96,8 +96,8 @@ class List extends Component {
                 <MyCarousel
                     pots={this.state.pots}
                     firstItem={ this.getFirstItem() }
-                    navigateTo={ this.props.navigateTo }
-                    updatePotDetail={ this.props.updatePotDetail } />
+                    updatePotDetail={ this.props.updatePotDetail }
+                    navigateTo={ this.props.navigateTo } />
             </View>
         );
     }

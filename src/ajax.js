@@ -52,7 +52,7 @@ export default {
         }
     },
 
-    async addAPot(pot, headerOptions = ['Authorization', 'token:' + '===null===']){
+    async addAPot(pot, headerOptions){
 
         try {
 
@@ -66,7 +66,7 @@ export default {
             };
 
             const response = await fetch( apiHost, body, options );
-            return await response.json();
+            return await response.headers.get("Location").split("/");
 
         } catch (error){
             console.error(error)

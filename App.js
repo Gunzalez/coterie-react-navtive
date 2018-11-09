@@ -34,13 +34,13 @@ export default class App extends Component {
 
         this.headers = null;
 
+        this.accessToken = null;
+
         ajax.getAccessTokenFromStorage().then( accessToken => {
 
             if( accessToken ) {
 
                 this.setHeadersWithAccessToken(accessToken);
-
-                console.log(accessToken)
 
             } else {
 
@@ -64,6 +64,8 @@ export default class App extends Component {
     }
 
     setHeadersWithAccessToken = accessToken => {
+
+        this.accessToken = accessToken
         // this.headers = new Headers();
         // this.headers.append('Authorization', 'token:' + accessToken);
     };
@@ -74,6 +76,24 @@ export default class App extends Component {
 
     updatePotDetail = potDetail => {
         this.setState({ potDetail })
+    };
+
+    savePotDetail = potDetail => {
+
+        if(potDetail.id === -1 && potDetail.status === 'new'){
+
+            // new pot
+            ajax.addAPot(potDetail, 'Authorization', 'token:' + this.accessToken).then( response => {
+                console.log(response)
+            })
+
+        } else {
+
+            // update existing pot
+
+
+        }
+
     };
 
     render() {
@@ -106,7 +126,7 @@ export default class App extends Component {
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
                     <Detail navigateTo={this.updateScreen}
-                        updatePotDetail={this.updatePotDetail}
+                        savePotDetail={this.savePotDetail}
                         potDetail={potDetail} />
                 </View>
             );

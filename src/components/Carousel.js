@@ -27,7 +27,8 @@ class MyCarousel extends Component {
     static propTypes = {
         pots: PropTypes.array.isRequired,
         firstItem: PropTypes.number.isRequired,
-        navigateTo: PropTypes.func.isRequired
+        navigateTo: PropTypes.func.isRequired,
+        updatePotDetail: PropTypes.func.isRequired
     };
 
     _renderItem ({item, index}) {
