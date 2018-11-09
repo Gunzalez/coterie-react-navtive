@@ -82,6 +82,11 @@ export default class App extends Component {
 
         if(potDetail.id === -1 && potDetail.status === 'new'){
 
+            delete potDetail.id;
+            delete potDetail.status;
+
+            console.log(potDetail);
+
             // new pot
             ajax.addAPot(potDetail, 'Authorization', 'token:' + this.accessToken).then( response => {
                 console.log(response)
@@ -90,6 +95,8 @@ export default class App extends Component {
         } else {
 
             // update existing pot
+
+            console.log(potDetail);
 
 
         }

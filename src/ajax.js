@@ -65,8 +65,12 @@ export default {
                 body: JSON.stringify({plan: pot})
             };
 
-            const response = await fetch( apiHost, body, options );
-            return await response.headers.get("Location").split("/");
+
+            console.log(body);
+            console.log(options);
+
+            // const response = await fetch( apiHost, body, options );
+            // return await response.headers.get("Location").split("/");
 
         } catch (error){
             console.error(error)
