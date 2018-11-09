@@ -64,10 +64,7 @@ export default class App extends Component {
     }
 
     setHeadersWithAccessToken = accessToken => {
-
         this.accessToken = accessToken
-        // this.headers = new Headers();
-        // this.headers.append('Authorization', 'token:' + accessToken);
     };
 
     updateScreen = screen => {
@@ -85,22 +82,18 @@ export default class App extends Component {
             delete potDetail.id;
             delete potDetail.status;
 
-            console.log(potDetail);
-
             // new pot
-            ajax.addAPot(potDetail, 'Authorization', 'token:' + this.accessToken).then( response => {
-                console.log(response)
+            ajax.addAPot(potDetail, this.accessToken).then( potIdArr => {
+                const id = potIdArr[potIdArr.length - 1];
+                console.log(id);
             })
 
         } else {
 
             // update existing pot
-
             console.log(potDetail);
 
-
         }
-
     };
 
     render() {

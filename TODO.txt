@@ -13,6 +13,8 @@ Collection screen design, and other headers
 Contacts Permission DENIED handler
 PotSlides not in the middle: BUG
 
+Change Avatar logic
+
 
 
 

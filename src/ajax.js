@@ -52,25 +52,22 @@ export default {
         }
     },
 
-    async addAPot(pot, headerOptions){
-
+    async addAPot(potDetail, accessToken){
         try {
 
             const headers = new Headers();
-            headers.append(headerOptions);
+            const value = 'token:' + accessToken;
+            headers.append('Authorization', value);
+            headers.set('Accept', 'application/json');
+            headers.set('Content-Type', 'application/json');
 
-            const options = { headers };
-            const body = {
+            const options = {
                 method: 'POST',
-                body: JSON.stringify({plan: pot})
+                headers: headers,
+                body: JSON.stringify(potDetail)
             };
-
-
-            console.log(body);
-            console.log(options);
-
-            // const response = await fetch( apiHost, body, options );
-            // return await response.headers.get("Location").split("/");
+            const response = await fetch( apiHost + '/plans/', options );
+            return await response.headers.get("Location").split("/");
 
         } catch (error){
             console.error(error)
