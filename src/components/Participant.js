@@ -10,9 +10,19 @@ const Participant = (props) => {
 
     const { data } = props;
 
-    const { avatar, placeHolder, highlight } = data.item;
+    const { name, surname, placeHolder, highlight } = data.item;
 
-    // console.log(props);
+    const createAvatar = (name, surname) =>{
+        let avatar = name.charAt(0).toUpperCase();
+        if(surname){
+            avatar = avatar + surname.charAt(0).toUpperCase()
+        }
+        if(avatar.trim().length){
+            return avatar;
+        } else {
+            return "PP"
+        }
+    };
 
     return (
         <View style={[ styles.container, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null ]}>
@@ -25,7 +35,7 @@ const Participant = (props) => {
                     color={utils.style.colours.grayText}/>
                 :
 
-                <Text style={[styles.text]}>{avatar}</Text>
+                <Text style={[styles.text]}>{ createAvatar(name, surname) }</Text>
             }
 
         </View>
