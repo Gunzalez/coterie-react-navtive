@@ -35,7 +35,7 @@ class Participants extends Component {
                 contacts.map((contact, index) => {
                     if(contact.recordID === participant.contactId) {
                         contacts[index].checked = true;
-                        if (participant.id) {
+                        if (participant.id){
                             contacts[index].participantId = participant.id;
                         }
                     }
@@ -99,7 +99,7 @@ class Participants extends Component {
     saveParticipants = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
-        console.log(this.state.participants);
+        // console.log(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
             this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
@@ -194,7 +194,7 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        onMomentumScrollEnd={(item) => {console.log(item, this)}}
+                        // onMomentumScrollEnd={(item) => {console.log(item, this)}}
                         renderItem={(item) =>
                             <Participant data={item} />
                         }/>
@@ -254,14 +254,14 @@ class Participants extends Component {
 
                 <Toast
                     ref="toast"
-                    style = {styles.toast}
-                    textStyle = {styles.text}
-                    position = {Toast.Position.bottom}
-                    fadeInDuration = {200}
-                    fadeOutDuration = {200}
-                    duration = {Toast.Duration.long}
-                    opacity = {0.9}
-                    positionValue = {100} />
+                    style={styles.toast}
+                    textStyle={styles.text}
+                    position={Toast.Position.bottom}
+                    fadeInDuration={200}
+                    fadeOutDuration={200}
+                    duration={Toast.Duration.long}
+                    opacity={0.9}
+                    positionValue={100} />
 
             </View>
         );
@@ -281,7 +281,6 @@ const styles = StyleSheet.create({
     },
     middle: {
         height: 60
-        // backgroundColor: 'green'
     },
     bottom: {
         borderTopWidth: 1,

@@ -10,8 +10,9 @@ Redo Flex layout to handle Super Retina
 Unify font sizes - utils
 Clean up styling - different header styling, not good
 Collection screen design, and other headers
-Contacts Permission DENIED handler
 PotSlides not in the middle: BUG
+Flatlist is buggy - may need bigger rows
+
 
 
 
@@ -22,7 +23,8 @@ PotSlides not in the middle: BUG
 
 Next ToDo to do
 =================
-Get real contacts from simulator/real device (ON HOLD)
+Contacts Permission DENIED handler
+
 
 
 
@@ -41,6 +43,7 @@ Develop utils, and use
 
 DONE
 =================
+Get real contacts from simulator/real device
 Change Avatar logic
 Hook up Karl's token business, Async
 Empty participant list - dotted outline avatar
