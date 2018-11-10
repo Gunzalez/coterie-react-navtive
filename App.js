@@ -27,7 +27,6 @@ export default class App extends Component {
             pots: data['plans'],
             potDetail: {}
         };
-
     }
 
     componentDidMount(){
@@ -36,11 +35,7 @@ export default class App extends Component {
 
             if(accessToken.length > 0) {
 
-                this.setHeadersWithAccessToken(accessToken);
-
-                ajax.getAllPots().then( data => {
-                    this.setAllPots(data['plans']);
-                })
+                this.setHeadersWithAccessTokenGetAllPots(accessToken);
 
             } else {
 
@@ -58,11 +53,8 @@ export default class App extends Component {
 
                                 ajax.saveAccessTokenToStorage(accessToken).then( _ => {
 
-                                    this.setHeadersWithAccessToken(accessToken);
+                                    this.setHeadersWithAccessTokenGetAllPots(accessToken);
 
-                                    ajax.getAllPots().then( data => {
-                                        this.setAllPots(data['plans']);
-                                    })
                                 });
                             }
                         });
@@ -72,8 +64,15 @@ export default class App extends Component {
         })
     }
 
-    setHeadersWithAccessToken = accessToken => {
+    setHeadersWithAccessTokenGetAllPots = accessToken => {
         ajax.accessToken = accessToken;
+        ajax.setHeadersForFetch();
+        ajax.getAllPots().then( data => {
+            const pots = data['plans'];
+            console.log(pots);
+            console.log(this.state.pots);
+            // this.setState({ pots })
+        })
     };
 
     switchScreen = screen => {
@@ -82,12 +81,6 @@ export default class App extends Component {
 
     setPotDetail = potDetail => {
         this.setState({ potDetail })
-    };
-
-    setAllPots = (pots) => {
-        console.log(pots);
-        console.log(this.state.pots);
-        // this.setState({ pots })
     };
 
     render() {

@@ -3,7 +3,17 @@ import { AsyncStorage } from "react-native";
 const apiHost = 'https://coterie-rest-app.herokuapp.com';
 
 export default {
-    accessToken: 'Schooch',
+    accessToken: '',
+    headers: null,
+
+    setHeadersForFetch(){
+        const headers = new Headers();
+        const value = 'token:' + this.accessToken;
+        headers.append('Authorization', value);
+        headers.set('Accept', 'application/json');
+        headers.set('Content-Type', 'application/json');
+        this.headers = headers;
+    },
 
     async registerAndReturnRegistrationString(){
         try {
@@ -57,15 +67,9 @@ export default {
     async getAllPots(){
         try {
 
-            const headers = new Headers();
-            const value = 'token:' + this.accessToken;
-            headers.append('Authorization', value);
-            headers.set('Accept', 'application/json');
-            headers.set('Content-Type', 'application/json');
-
             const options = {
                 method: 'GET',
-                headers: headers
+                headers: this.headers
             };
             const response = await fetch( apiHost + '/plans/', options );
             return await response.json();
@@ -78,15 +82,9 @@ export default {
     async getAPot(id){
         try {
 
-            const headers = new Headers();
-            const value = 'token:' + this.accessToken;
-            headers.append('Authorization', value);
-            headers.set('Accept', 'application/json');
-            headers.set('Content-Type', 'application/json');
-
             const options = {
                 method: 'GET',
-                headers: headers
+                headers: this.headers
             };
             const response = await fetch( apiHost + '/plans/' + id, options );
             return await response.json();
@@ -99,15 +97,9 @@ export default {
     async addAPot(potDetail){
         try {
 
-            const headers = new Headers();
-            const value = 'token:' + this.accessToken;
-            headers.append('Authorization', value);
-            headers.set('Accept', 'application/json');
-            headers.set('Content-Type', 'application/json');
-
             const options = {
                 method: 'POST',
-                headers: headers,
+                headers: this.headers,
                 body: JSON.stringify(potDetail)
             };
             const response = await fetch( apiHost + '/plans/', options );

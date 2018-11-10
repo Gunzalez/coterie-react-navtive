@@ -16,6 +16,8 @@ Add names to avatar - in participant carousel
 Icon - new design
 Splash - new design
 Ordering and Grouping of contacts
+Adjust display for crazy no. Pots
+Style New Pot different
 -
 -
 Next ToDo to do
