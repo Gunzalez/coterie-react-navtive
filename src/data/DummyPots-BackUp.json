@@ -58,6 +58,118 @@
             "round":null
         },
         {
+            "id":"91af0202-a2f3-40f3-8f45-3c03c91cfdaa",
+            "name":"NewPlan",
+            "savingsAmount":600,
+            "status":"created",
+            "participants":[
+                {
+                    "contactId":"16",
+                    "id":"31457d97-96b5-488a-bbe0-a49724373b65",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"13",
+                    "id":"2e6e9db6-8282-49b5-a059-1f69a2fdeca3",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"4",
+                    "id":"70117848-1cb2-4852-9aa2-9a695a27dca7",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"2",
+                    "id":"221e0746-dbc2-4c58-82df-658dfdbf210d",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                },
+                {
+                    "contactId":"6",
+                    "id":"ed1975c5-4a98-4521-afb6-ea86b18cad3f",
+                    "_capabilities":[
+                        "removeParticipant"
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa/ledger"
+                },
+                "self":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa"
+                },
+                "participants":{
+                    "href":"/plans/91af0202-a2f3-40f3-8f45-3c03c91cfdaa/participants"
+                }
+            },
+            "_capabilities":[
+                "cancelPlan",
+                "addParticipant",
+                "startPlan"
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":null,
+            "round":null
+        },
+        {
+            "id":"bab732ab-73b7-4739-b092-451c5b9f2888",
+            "name":"Hexagon",
+            "savingsAmount":300,
+            "status":"in-progress",
+            "participants":[
+                {
+                    "contactId":"16",
+                    "id":"0122d695-a480-4fb3-a2a6-68582f9518a3",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"4",
+                    "id":"7b7d4e3e-693e-4a36-9425-3de4108627ed",
+                    "_capabilities":[
+
+                    ]
+                },
+                {
+                    "contactId":"13",
+                    "id":"b0064015-c7d7-408c-b03b-6732de1df990",
+                    "_capabilities":[
+
+                    ]
+                }
+            ],
+            "_links":{
+                "ledger":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888/ledger"
+                },
+                "self":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888"
+                },
+                "participants":{
+                    "href":"/plans/bab732ab-73b7-4739-b092-451c5b9f2888/participants"
+                }
+            },
+            "_capabilities":[
+
+            ],
+            "nextParticipantsToPay":[
+
+            ],
+            "nextParticipantToCollect":"0122d695-a480-4fb3-a2a6-68582f9518a3",
+            "round":1
+        },
+        {
             "id":"0304518b-c7f9-4b71-b7d2-adce690af4b9",
             "name":"PotRuns",
             "savingsAmount":100,

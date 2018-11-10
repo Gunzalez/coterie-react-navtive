@@ -11,8 +11,11 @@ In Progress screen needs work
 Unify font sizes - utils
 Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
-Flatlist is buggy - may need bigger rows
+FlatList is buggy - may need bigger rows
 Add names to avatar - in participant carousel
+Icon - new design
+Splash - new design
+Ordering and Grouping of contacts
 -
 -
 Next ToDo to do

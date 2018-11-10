@@ -34,7 +34,7 @@ export default class App extends Component {
 
         ajax.getAccessTokenFromStorage().then( accessToken => {
 
-            if( accessToken ) {
+            if(accessToken.length > 0) {
 
                 this.setHeadersWithAccessToken(accessToken);
 
@@ -63,7 +63,6 @@ export default class App extends Component {
                                     ajax.getAllPots().then( data => {
                                         this.setAllPots(data['plans']);
                                     })
-
                                 });
                             }
                         });
@@ -87,6 +86,7 @@ export default class App extends Component {
 
     setAllPots = (pots) => {
         console.log(pots);
+        console.log(this.state.pots);
         // this.setState({ pots })
     };
 
