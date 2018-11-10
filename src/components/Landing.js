@@ -386,6 +386,7 @@ class Detail extends Component {
                 <View style={[styles.list]}>
 
                     { !permission &&
+
                         <View style={styles.settings}>
                             <Text style={[styles.settingsHeader]}>Enable Contacts to use this App</Text>
                             <Text style={styles.settingsText}>1. Go to Settings > Saving Pots. If iOS 10.2 or earlier, go to Settings > iCloud.</Text>
@@ -407,23 +408,23 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails() && permission }
+                        disabled={!this.canSavePotDetails() || !permission }
                         onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() && permission  ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
                         <Icon
                             name="menufold"
                             size={utils.style.icons.footer}
-                            color={utils.style.colours.white} />
+                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails() && permission }
+                        disabled={!this.canSavePotDetails() || !permission }
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
