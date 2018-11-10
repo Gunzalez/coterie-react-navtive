@@ -54,6 +54,27 @@ export default {
         }
     },
 
+    async getAllPots(){
+        try {
+
+            const headers = new Headers();
+            const value = 'token:' + this.accessToken;
+            headers.append('Authorization', value);
+            headers.set('Accept', 'application/json');
+            headers.set('Content-Type', 'application/json');
+
+            const options = {
+                method: 'GET',
+                headers: headers
+            };
+            const response = await fetch( apiHost + '/plans/', options );
+            return await response.json();
+
+        }  catch (e) {
+            console.error(e);
+        }
+    },
+
     async getAPot(id){
         try {
 

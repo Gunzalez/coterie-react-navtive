@@ -32,15 +32,15 @@ export default class App extends Component {
 
     componentDidMount(){
 
-        this.headers = null;
-
-        this.accessToken = null;
-
         ajax.getAccessTokenFromStorage().then( accessToken => {
 
             if( accessToken ) {
 
                 this.setHeadersWithAccessToken(accessToken);
+
+                ajax.getAllPots().then( data => {
+                    this.setAllPots(data['plans']);
+                })
 
             } else {
 
@@ -48,16 +48,26 @@ export default class App extends Component {
 
                     const registrationString = registrationStringArr[registrationStringArr.length - 1];
 
-                    ajax.getAccessTokenRegistrationString(registrationString).then( response => {
+                    if(registrationString.length > 0) {
 
-                        const accessToken = response['authorisationToken'];
+                        ajax.getAccessTokenRegistrationString(registrationString).then( response => {
 
-                        ajax.saveAccessTokenToStorage(accessToken).then( _ => {
+                            const accessToken = response['authorisationToken'];
 
-                            this.setHeadersWithAccessToken(accessToken);
+                            if(accessToken.length > 0) {
 
+                                ajax.saveAccessTokenToStorage(accessToken).then( _ => {
+
+                                    this.setHeadersWithAccessToken(accessToken);
+
+                                    ajax.getAllPots().then( data => {
+                                        this.setAllPots(data['plans']);
+                                    })
+
+                                });
+                            }
                         });
-                    });
+                    }
                 });
             }
         })
@@ -73,6 +83,11 @@ export default class App extends Component {
 
     setPotDetail = potDetail => {
         this.setState({ potDetail })
+    };
+
+    setAllPots = (pots) => {
+        console.log(pots);
+        // this.setState({ pots })
     };
 
     render() {
