@@ -144,6 +144,8 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        console.log(this.props.potDetail)
     }
 
     componentDidMount(){
@@ -240,6 +242,22 @@ class Detail extends Component {
     canSavePotDetails = () => {
         const { status } = this.state.localPot;
         return status === "created" || status === "new";
+    };
+
+    canDeletePot = () => {
+        const { id } = this.state.potDetail;
+        return id !== -1;
+    };
+
+    deletePot = () => {
+        const { id } = this.state.potDetail;
+        ajax.deleteAPot(id).then( response => {
+            if(response){
+                console.log('Deleted')
+            } else {
+                console.log('Oh dear')
+            }
+        })
     };
 
     savePotDetail = () => {
@@ -424,11 +442,13 @@ class Detail extends Component {
 
                 <View style={styles.footer}>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                            disabled={!this.canDeletePot() || !permission}
+                            onPress={this.deletePot}>
                         <Icon
                             name="delete"
                             size={utils.style.icons.footer}
-                            color={utils.style.colours.white} />
+                            color={this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity

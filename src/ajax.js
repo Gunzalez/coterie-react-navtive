@@ -96,7 +96,6 @@ export default {
 
     async addAPot(potDetail){
         try {
-
             const options = {
                 method: 'POST',
                 headers: this.headers,
@@ -105,6 +104,20 @@ export default {
             const response = await fetch( apiHost + '/plans/', options );
             return await response.headers.get("Location").split("/");
 
+        } catch (error){
+            console.error(error)
+        }
+    },
+
+    async deleteAPot(id){
+        try {
+            const options = {
+                method: 'POST',
+                headers: this.headers,
+                body: JSON.stringify({ planId : id })
+            };
+            const response = await fetch( apiHost + '/plans.cancel', options );
+            return await response.status === 200;
         } catch (error){
             console.error(error)
         }

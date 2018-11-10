@@ -69,9 +69,9 @@ export default class App extends Component {
         ajax.setHeadersForFetch();
         ajax.getAllPots().then( data => {
             const pots = data['plans'];
-            console.log(pots);
-            console.log(this.state.pots);
-            // this.setState({ pots })
+            // console.log(pots);
+            // console.log(this.state.pots);
+            this.setState({ pots })
         })
     };
 
