@@ -137,18 +137,54 @@ class Detail extends Component {
         this.characterCap = 25;
 
         this.state = {
+            contactsPermission: true,
             potDetail: this.props.potDetail,
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
 
-        Contacts.getAllWithoutPhotos((err, contacts) => {
+    }
+
+    componentDidMount(){
+
+        Contacts.checkPermission((err, permission) => {
             if (err) throw err;
 
+            // Contacts.PERMISSION_AUTHORIZED || Contacts.PERMISSION_UNDEFINED || Contacts.PERMISSION_DENIED
+            if (permission === 'undefined') {
+                Contacts.requestPermission((err, permission) => {
+                    if (err) throw err;
+
+                    if (permission === 'authorized') {
+                        this.getAllContacts();
+                    }
+                    if (permission === 'denied') {
+                        this.setState({
+                            contactsPermission: false
+                        })
+                    }
+
+                })
+            } else {
+
+                if (permission === 'authorized') {
+                    this.getAllContacts();
+                }
+                if (permission === 'denied') {
+                    this.setState({
+                        contactsPermission: false
+                    })
+                }
+            }
+        })
+    };
+
+    getAllContacts = () => {
+        Contacts.getAllWithoutPhotos((err, contacts) => {
+            if (err) throw err;
             this.contactList = contacts;
         });
-
-    }
+    };
 
     handlePress = () => {
         this.props.navigateTo('list');
@@ -215,6 +251,36 @@ class Detail extends Component {
         const { name, participants = [], status, savingsAmount, round = "-", nextParticipantToCollect } = this.state.localPot;
 
         const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
+
+        const permission = this.state.contactsPermission;
+
+        const _renderContent = () => {
+
+            if(participants.length < 1){
+                return (
+                    <View style={styles.empty}>
+                        <TouchableOpacity onPress={this.showParticipants}>
+                            <Icon
+                                name="addusergroup"
+                                size={utils.style.icons.footer}
+                                color={utils.style.colours.purple}/>
+                        </TouchableOpacity>
+                        <Text style={styles.emptyText}>Add participants to this pot</Text>
+                    </View>
+                )
+            }
+
+            return (
+                <FlatList
+                    data={this.state.localPot.participants}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={(item) =>
+                        <Row data={item} participantClicked={()=>{this.showCollection(item)} } />
+                    }
+                />
+            )
+        };
 
         return (
             <View style={[ styles.container ]}>
@@ -305,8 +371,6 @@ class Detail extends Component {
                                 </View>
                             </View>
 
-
-
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} participants</Text>
                                 <Text style={styles.meta}>£{savingsAmount} each</Text>
@@ -321,29 +385,15 @@ class Detail extends Component {
 
                 <View style={[styles.list]}>
 
-                    { participants.length < 1 ?
-
-                        <View style={styles.empty}>
-                            <TouchableOpacity onPress={this.showParticipants}>
-                                <Icon
-                                    name="addusergroup"
-                                    size={utils.style.icons.footer}
-                                    color={utils.style.colours.purple}/>
-                            </TouchableOpacity>
-                            <Text style={styles.emptyText}>Add participants to this pot</Text>
+                    { !permission &&
+                        <View style={styles.settings}>
+                            <Text style={[styles.settingsHeader]}>Enable Contacts to use this App</Text>
+                            <Text style={styles.settingsText}>1. Go to Settings > Saving Pots. If iOS 10.2 or earlier, go to Settings > iCloud.</Text>
+                            <Text style={styles.settingsText}>2. Turn on Contacts</Text>
                         </View>
-
-                        :
-
-                        <FlatList
-                            data={this.state.localPot.participants}
-                            showsVerticalScrollIndicator={false}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={(item) =>
-                                <Row data={item} participantClicked={()=>{this.showCollection(item)} } />
-                            }
-                        />
                     }
+
+                    { permission && _renderContent() }
 
                 </View>
 
@@ -357,12 +407,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails()}
+                        disabled={!this.canSavePotDetails() && permission }
                         onPress={ this.savePotDetail}>
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() && permission  ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -373,12 +423,12 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails()}
+                        disabled={!this.canSavePotDetails() && permission }
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 
@@ -495,6 +545,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 100,
         color: utils.style.colours.grayText
+    },
+    settings: {
+        flex: 1,
+        // justifyContent: 'space-around',
+        alignItems: 'flex-start',
+        paddingTop: 40
+    },
+    settingsHeader: {
+        fontSize: 20,
+        paddingBottom: 10
+    },
+    settingsText: {
+        fontSize: 16,
+        paddingBottom: 10
     },
     footer: {
         paddingVertical: 15,

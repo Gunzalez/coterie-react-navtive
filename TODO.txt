@@ -12,6 +12,8 @@ Clean up styling - different header styling, not good
 Collection screen design, and other headers
 PotSlides not in the middle: BUG
 Flatlist is buggy - may need bigger rows
+Get Address book Contacts (Android)
+Contacts Permission DENIED handler (Android)
 
 
 
@@ -23,7 +25,6 @@ Flatlist is buggy - may need bigger rows
 
 Next ToDo to do
 =================
-Contacts Permission DENIED handler
 
 
 
@@ -43,7 +44,8 @@ Develop utils, and use
 
 DONE
 =================
-Get real contacts from simulator/real device
+Contacts Permission DENIED handler iOS
+Get real contacts from simulator/real device iOS
 Change Avatar logic
 Hook up Karl's token business, Async
 Empty participant list - dotted outline avatar
