@@ -64,7 +64,7 @@ export default class App extends Component {
     }
 
     setHeadersWithAccessToken = accessToken => {
-        this.accessToken = accessToken
+        ajax.accessToken = accessToken;
     };
 
     switchScreen = screen => {
@@ -73,27 +73,6 @@ export default class App extends Component {
 
     setPotDetail = potDetail => {
         this.setState({ potDetail })
-    };
-
-    savePotDetail = potDetail => {
-
-        if(potDetail.id === -1 && potDetail.status === 'new'){
-
-            delete potDetail.id;
-            delete potDetail.status;
-
-            // new pot
-            ajax.addAPot(potDetail, this.accessToken).then( potIdArr => {
-                const id = potIdArr[potIdArr.length - 1];
-                console.log(id);
-            })
-
-        } else {
-
-            // update existing pot
-            console.log(potDetail);
-
-        }
     };
 
     render() {
@@ -126,7 +105,7 @@ export default class App extends Component {
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
                     <Detail navigateTo={this.switchScreen}
-                        savePotDetail={this.savePotDetail}
+                        setPotDetail={this.setPotDetail}
                         potDetail={potDetail} />
                 </View>
             );

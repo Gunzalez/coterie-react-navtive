@@ -8,6 +8,8 @@ import Contacts from 'react-native-contacts';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
+import ajax from './../ajax';
+
 import utils from './../utils';
 
 import Row from './LandingRow';
@@ -18,7 +20,7 @@ class Detail extends Component {
         navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
         navigation: PropTypes.object.isRequired,
-        savePotDetail: PropTypes.func.isRequired
+        setPotDetail: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -143,6 +145,8 @@ class Detail extends Component {
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
 
+        console.log(ajax.accessToken);
+
     }
 
     componentDidMount(){
@@ -243,7 +247,30 @@ class Detail extends Component {
 
     savePotDetail = () => {
         const { localPot } = this.state;
-        this.props.savePotDetail(localPot);
+
+        if(localPot.id === -1 && localPot.status === 'new'){
+
+            delete localPot.id;
+            delete localPot.status;
+
+            ajax.addAPot(localPot).then( potIdArr => {
+                const newPotId = potIdArr[potIdArr.length - 1];
+
+                ajax.getAPot(newPotId).then( potDetail => {
+                    this.setState({ potDetail, localPot: potDetail });
+                }, () => {
+                    this.props.setPotDetail(this.state.potDetail)
+                })
+            })
+
+        } else {
+
+            console.log(localPot);
+
+        }
+
+
+
     };
 
     render() {

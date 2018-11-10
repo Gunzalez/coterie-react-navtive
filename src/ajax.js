@@ -3,6 +3,8 @@ import { AsyncStorage } from "react-native";
 const apiHost = 'https://coterie-rest-app.herokuapp.com';
 
 export default {
+    accessToken: 'Schooch',
+
     async registerAndReturnRegistrationString(){
         try {
             const response = await fetch( apiHost + '/registrations', {
@@ -52,11 +54,32 @@ export default {
         }
     },
 
-    async addAPot(potDetail, accessToken){
+    async getAPot(id){
         try {
 
             const headers = new Headers();
-            const value = 'token:' + accessToken;
+            const value = 'token:' + this.accessToken;
+            headers.append('Authorization', value);
+            headers.set('Accept', 'application/json');
+            headers.set('Content-Type', 'application/json');
+
+            const options = {
+                method: 'GET',
+                headers: headers
+            };
+            const response = await fetch( apiHost + '/plans/' + id, options );
+            return await response.json();
+
+        }  catch (e) {
+            console.error(e);
+        }
+    },
+
+    async addAPot(potDetail){
+        try {
+
+            const headers = new Headers();
+            const value = 'token:' + this.accessToken;
             headers.append('Authorization', value);
             headers.set('Accept', 'application/json');
             headers.set('Content-Type', 'application/json');
