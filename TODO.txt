@@ -1,30 +1,23 @@
 
 ToDO
 =================
-Remove participants with animations
 Test App on Android - DVM and real device
-Look into Screen to Screen animations - Shared Components
-Styling footer on Participants and other sub pages
-In Progress screen needs work
-Redo Flex layout to handle Super Retina
-Unify font sizes - utils
-Clean up styling - different header styling, not good
-Collection screen design, and other headers
-PotSlides not in the middle: BUG
-Flatlist is buggy - may need bigger rows
 Get Address book Contacts (Android)
 Contacts Permission DENIED handler (Android)
-
-
-
-
-
-
-
-
-
+Remove participants with animations *
+Look into Screen to Screen animations - shared Components *
+Styling footer on Participants and other sub pages
+In Progress screen needs work
+Unify font sizes - utils
+Clean up styling - different header styling, not good
+PotSlides not in the middle: BUG
+Flatlist is buggy - may need bigger rows
+Add names to avatar - in participant carousel
+-
+-
 Next ToDo to do
 =================
+Collection screen design, and other headers
 
 
 
@@ -32,10 +25,15 @@ Next ToDo to do
 
 
 
-
+Doing Todo
+=================
+Redo Flex layout to handle Super Retina
+-
+-
 ALWAYS DOING
 =================
 Develop utils, and use
+
 
 
 
@@ -55,6 +53,8 @@ Move data to JSON files
 Button back to help
 Toast Tweak/Change, may need new module
 Added Alerts
+
+
 
 
 

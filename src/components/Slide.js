@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
+import utils from "../utils";
 
 const { width } = Dimensions.get('window');
 
@@ -20,9 +21,7 @@ class Slide extends Component {
 
         return (
             <View style={styles.container}>
-                <View>
-                    <Text style={styles.title}>{title}</Text>
-                </View>
+                <Text style={styles.title}>{title}</Text>
                 <View style={styles.bottom}>
                     <View style={styles.image}>
                         <Text>{media}</Text>
@@ -40,8 +39,8 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     image: {
-        width: '65%',
-        height: '85%',
+        width: '60%',
+        height: '75%',
         backgroundColor: 'red',
         borderRadius: 6,
         justifyContent: 'center',
@@ -53,8 +52,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 22,
-        color: '#444',
+        fontSize: 25,
+        color: utils.style.colours.purple,
         textAlign: 'center',
         paddingHorizontal: 30
     },

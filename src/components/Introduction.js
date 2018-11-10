@@ -45,7 +45,7 @@ class Introduction extends Component {
         return (
             <View style={styles.container}>
 
-                <View>
+                <View style={styles.scrollView}>
 
                     <ScrollView
                         horizontal
@@ -100,13 +100,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f5f5f5'
     },
-    content: {
+    scrollView: {
         flex: 1,
+        marginBottom: 20
+    },
+    content: {
         flexDirection: 'column',
         justifyContent: 'space-between'
     },
     dots: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     dot: {
         marginHorizontal: 5,
@@ -124,7 +127,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     button: {
-        marginBottom: 40,
+        marginVertical: 50,
         backgroundColor: utils.style.colours.purple,
         width: '60%',
         paddingVertical: 12,
