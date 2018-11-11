@@ -17,7 +17,6 @@ Splash - new design
 Ordering and Grouping of contacts
 Adjust display for crazy no. Pots
 Style New Pot different
-Add warning before removing participants
 Add warning for unsaved changes in new pot
 Check pots length for the Continue/Skip button
 -
@@ -50,6 +49,7 @@ Develop utils, and use
 DONE
 =================
 Add names to avatar - in participant carousel
+Add warning before removing participants
 Add Warning before deleting Pot
 Contacts Permission DENIED handler iOS
 Get real contacts from simulator/real device iOS

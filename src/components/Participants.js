@@ -106,16 +106,28 @@ class Participants extends Component {
 
     clearParticipants = () => {
 
-        let unCheckedContacts = [];
-        this.state.contacts.forEach(contact => {
-            delete contact.checked;
-            unCheckedContacts.push(contact);
-        });
+        Alert.alert(
+            'Delete all participants?',
+            'Remove all added participants. Are you sure?',
+            [
+                { text: "NO", onPress: () => {}, style: 'cancel' },
+                { text: "YES", onPress: () => {
 
-        this.setState({
-            participants: [],
-            contacts: unCheckedContacts
-        })
+                    let unCheckedContacts = [];
+                    this.state.contacts.forEach(contact => {
+                        delete contact.checked;
+                        unCheckedContacts.push(contact);
+                    });
+
+                    this.setState({
+                        participants: [],
+                        contacts: unCheckedContacts
+                    })
+
+                }},
+            ],
+            { cancelable: false }
+        );
     };
 
     contactClicked = (indexOfContactList) => {
