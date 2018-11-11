@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     middle: {
-        height: 60
+        height: 85
     },
     bottom: {
         borderTopWidth: 1,

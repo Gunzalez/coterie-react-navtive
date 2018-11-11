@@ -10,7 +10,7 @@ const Participant = (props) => {
 
     const { data } = props;
 
-    const { familyName, givenName, placeHolder, highlight } = data.item;
+    const { familyName, givenName = 'Participant', placeHolder, highlight } = data.item;
 
     const createAvatar = (a, b) =>{
         let avatar = a.charAt(0).toUpperCase();
@@ -25,7 +25,9 @@ const Participant = (props) => {
     };
 
     return (
-        <View style={[ styles.container, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null ]}>
+        <View style={[ styles.container]}>
+
+            <View style={[ styles.circle, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null ]}>
 
             { placeHolder ?
 
@@ -38,7 +40,11 @@ const Participant = (props) => {
                 <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
             }
 
-            <Text style={styles.name}>{familyName} {givenName}</Text>
+            </View>
+
+            <Text style={styles.name}
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}>{familyName} {givenName}</Text>
 
         </View>
     );
@@ -46,6 +52,10 @@ const Participant = (props) => {
 
 const styles = StyleSheet.create({
     container: {
+        width: 70,
+        marginHorizontal: 4
+    },
+    circle: {
         width: 60,
         height: 60,
         borderRadius: 30,
@@ -53,6 +63,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 6,
         justifyContent: 'center',
         alignItems: 'center'
+
     },
     placeHolder: {
         backgroundColor: utils.style.colours.white,
@@ -68,7 +79,10 @@ const styles = StyleSheet.create({
         color: utils.style.colours.white
     },
     name: {
-        width: 50
+        paddingTop: 5,
+        width: '100%',
+        textAlign: 'center',
+        color: utils.style.colours.grayText
     }
 });
 

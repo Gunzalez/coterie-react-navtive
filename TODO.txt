@@ -12,7 +12,6 @@ Unify font sizes - utils
 Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
 FlatList is buggy - may need bigger rows
-Add names to avatar - in participant carousel
 Icon - new design
 Splash - new design
 Ordering and Grouping of contacts
@@ -50,7 +49,8 @@ Develop utils, and use
 
 DONE
 =================
-Add Warning before delete
+Add names to avatar - in participant carousel
+Add Warning before deleting Pot
 Contacts Permission DENIED handler iOS
 Get real contacts from simulator/real device iOS
 Change Avatar logic
