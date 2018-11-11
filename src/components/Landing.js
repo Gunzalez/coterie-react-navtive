@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList, Alert, Modal, ActivityIndicator } from 'react-native';
 
 import Contacts from 'react-native-contacts';
 
@@ -34,6 +34,7 @@ class Detail extends Component {
         this.characterCap = 25;
 
         this.state = {
+            busy: false,
             contacts: [],
             contactsPermission: true,
             potDetail: this.props.potDetail,
@@ -157,15 +158,20 @@ class Detail extends Component {
     };
 
     deletePot = () => {
-        const { id } = this.state.potDetail;
-        ajax.deleteAPot(id).then( response => {
-            if(response){
-                const { removePotFromList } = this.props;
-                removePotFromList(id, ()=>{this.props.navigateTo('list')});
-            }
-        })
+        this.setState({
+            busy: true
+        }, ()=>{
+            const { id } = this.state.potDetail;
+            ajax.deleteAPot(id).then( response => {
+                if(response){
+                    const { removePotFromList } = this.props;
+                    removePotFromList(id, () => {
+                        this.props.navigateTo('list')
+                    });
+                }
+            })
+        });
     };
-
 
     getContactDetailFromId = (id, param) => {
         let returnName = 'Participant';
@@ -406,6 +412,19 @@ class Detail extends Component {
                     </TouchableOpacity>
                 </View>
 
+                    <Modal
+                        animationType={'none'}
+                        transparent={true}
+                        presentationStyle={'overFullScreen'}
+                        visible={this.state.busy}>
+                        <View style={styles.modal}>
+                            <ActivityIndicator
+                                animating={this.state.busy}
+                                color={utils.style.colours.white}
+                                size={'large'}/>
+                        </View>
+                    </Modal>
+
             </View>
         );
     }
@@ -415,6 +434,17 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#f5f5f5',
         flex: 1
+    },
+    modal: {
+        flex: 1,
+        paddingTop: 40,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'rgba(52, 52, 52, 0.3)'
+    },
+    activityIndicator: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
     },
     top: {
         paddingTop: 10,
