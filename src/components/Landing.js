@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList, Alert } from 'react-native';
 
 import Contacts from 'react-native-contacts';
 
@@ -140,6 +140,19 @@ class Detail extends Component {
     canDeletePot = () => {
         const { id, status} = this.state.potDetail;
         return id !== -1 || status === "new";
+    };
+
+    askToDeletePot = () => {
+        const { name } = this.state.localPot;
+        Alert.alert(
+            'Delete this Pot?',
+            'This will delete "'+name + '" completely. Are you sure?',
+            [
+                { text: "NO", onPress: () => {}, style: 'cancel' },
+                { text: "YES", onPress: () => { this.deletePot() }},
+            ],
+            { cancelable: false }
+        );
     };
 
     deletePot = () => {
@@ -359,7 +372,7 @@ class Detail extends Component {
 
                     <TouchableOpacity
                             disabled={!this.canDeletePot() || !permission}
-                            onPress={this.deletePot}>
+                            onPress={this.askToDeletePot}>
                         <Icon
                             name="delete"
                             size={utils.style.icons.footer}
