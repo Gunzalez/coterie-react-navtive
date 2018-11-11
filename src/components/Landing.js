@@ -27,119 +27,13 @@ class Detail extends Component {
     constructor(props) {
         super(props);
 
-        this.contactList = [
-            {
-                familyName:"Karl",
-                givenName:"Walsh",
-                id: "1"
-            },
-            {
-                familyName:"Titi",
-                givenName:"Adesanya",
-                id: "2"
-            },
-            {
-                familyName:"Hasan",
-                givenName:"Kazan",
-                id: "3"
-            },
-            {
-                familyName:"Segun",
-                givenName:"Konibire",
-                id: "4"
-            },
-            {
-                familyName:"Malcolm",
-                givenName:"Seaborn",
-                id: "5"
-            },
-            {
-                familyName:"Frank",
-                givenName:"Sinatra",
-                id: "6"
-            },
-            {
-                familyName:"Mathew",
-                givenName:"Ferry",
-                id: "7"
-            },
-            {
-                familyName:"Clifton",
-                givenName:"Green",
-                id: "8"
-            },
-            {
-                familyName:"Mary",
-                givenName:"Poppins",
-                id: "9"
-            },
-            {
-                familyName:"Jay",
-                givenName:"Flaxman",
-                id: "10"
-            },
-            {
-                familyName:"Jaclyn",
-                givenName:"Jones",
-                id: "11"
-            },
-            {
-                familyName:"Pilan",
-                givenName:"Ramiah",
-                id: "12"
-            },
-            {
-                familyName:"Keon",
-                givenName:"Konibire",
-                id: "13"
-            },
-            {
-                familyName:"Kayden",
-                givenName:"konibire",
-                id: "14"
-            },
-            {
-                familyName:"Rob",
-                givenName:"Curle",
-                id: "15"
-            },
-            {
-                familyName:"Jacky",
-                givenName:"Brown",
-                id: "16"
-            },
-            {
-                familyName:"Kevin",
-                givenName:"Philips",
-                id: "17"
-            },
-            {
-                familyName:"Lynda",
-                givenName:"Dot.Com",
-                id: "18"
-            },
-            {
-                familyName:"Jane",
-                givenName:"Red",
-                id: "19"
-            },
-            {
-                familyName:"Susan",
-                givenName:"Fox",
-                id: "20"
-            },
-            {
-                familyName:"Florence",
-                givenName:"Nightingale",
-                id: "21"
-            }
-        ];
         this.savingsMax = 1000;
         this.savingsMin = 50;
         this.savingsInc = 50;
         this.characterCap = 25;
 
         this.state = {
+            contacts: [],
             contactsPermission: true,
             potDetail: this.props.potDetail,
             localPot: Object.assign({}, this.props.potDetail),
@@ -184,7 +78,7 @@ class Detail extends Component {
     getAllContacts = () => {
         Contacts.getAllWithoutPhotos((err, contacts) => {
             if (err) throw err;
-            this.contactList = contacts;
+            this.setState({ contacts })
         });
     };
 
@@ -219,7 +113,7 @@ class Detail extends Component {
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
             potDetail: this.state.localPot,
-            contacts: this.contactList,
+            contacts: this.state.contacts,
             updateLocalParticipants: this.updateLocalParticipants
         })
     };
@@ -256,6 +150,29 @@ class Detail extends Component {
                 removePotFromList(id, ()=>{this.props.navigateTo('list')});
             }
         })
+    };
+
+
+    getContactDetailFromId = (id, param) => {
+        let returnName = 'Participant';
+        this.state.contacts.forEach(contact => {
+            if(contact.recordID === id){
+                returnName = contact[param].trim()
+            }
+        });
+        return returnName;
+    };
+
+    returnParticipantsToDisplay = () => {
+        const participants = [];
+        this.state.localPot.participants.forEach(participant => {
+            const displayParticipant = Object.assign({}, participant, {
+                familyName: this.getContactDetailFromId(participant.contactId, 'familyName'),
+                givenName: this.getContactDetailFromId(participant.contactId, 'givenName')
+            });
+            participants.push(displayParticipant)
+        });
+        return participants;
     };
 
     savePotDetail = () => {
@@ -312,7 +229,7 @@ class Detail extends Component {
 
             return (
                 <FlatList
-                    data={this.state.localPot.participants}
+                    data={this.returnParticipantsToDisplay()}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={(item) =>

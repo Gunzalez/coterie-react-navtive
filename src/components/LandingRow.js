@@ -10,10 +10,12 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
+    const { familyName, givenName } = data.item;
+
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={styles.text}>Person</Text>
+                <Text style={styles.text}>{familyName} {givenName}</Text>
             </View>
             <View style={[styles.cell]}>
                 <Icon

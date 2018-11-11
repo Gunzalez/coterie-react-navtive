@@ -7,7 +7,7 @@ Contacts Permission DENIED handler (Android)
 Remove participants with animations *
 Look into Screen to Screen animations - shared Components *
 Styling footer on Participants and other sub pages
-In Progress screen needs work
+In Progress Detail screen needs work
 Unify font sizes - utils
 Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
@@ -21,6 +21,7 @@ Style New Pot different
 Add Warning before delete
 Add warning before removing participants
 Add warning for unsaved changes in new pot
+Check pots length for the Continue/Skip button
 -
 -
 Next ToDo to do
