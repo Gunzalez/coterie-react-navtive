@@ -21,6 +21,7 @@ class Detail extends Component {
         potDetail: PropTypes.object.isRequired,
         navigation: PropTypes.object.isRequired,
         setPotDetail: PropTypes.func.isRequired,
+        addPotToList: PropTypes.func.isRequired,
         removePotFromList: PropTypes.func.isRequired
     };
 
@@ -200,9 +201,9 @@ class Detail extends Component {
                 const newPotId = potIdArr[potIdArr.length - 1];
 
                 ajax.getAPot(newPotId).then( potDetail => {
-                    this.setState({ potDetail, localPot: potDetail });
-                }, () => {
-                    this.props.setPotDetail(this.state.potDetail)
+                    this.setState({ potDetail, localPot: potDetail }, ()=> {
+                        this.props.addPotToList(this.state.potDetail)
+                    });
                 })
             })
 

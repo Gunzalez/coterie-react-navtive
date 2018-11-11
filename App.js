@@ -91,6 +91,17 @@ export default class App extends Component {
         })
     };
 
+    addPotToList = potDetail => {
+        const pots = this.state.pots.slice();
+        pots.forEach((pot, index) => {
+            if(pot.id === -1 || pot.status === "new"){
+                pots.splice(index, 1);
+            }
+        });
+        pots.push(potDetail);
+        this.setState({ pots, potDetail });
+    };
+
     render() {
 
         const { screen, pots, potDetail } = this.state;
@@ -122,6 +133,7 @@ export default class App extends Component {
                     <StatusBar barStyle={"light-content"} />
                     <Detail navigateTo={this.switchScreen}
                         setPotDetail={this.setPotDetail}
+                        addPotToList={this.addPotToList}
                         removePotFromList={this.removePotFromList}
                         potDetail={potDetail} />
                 </View>
