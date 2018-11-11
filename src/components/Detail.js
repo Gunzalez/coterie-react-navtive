@@ -24,13 +24,14 @@ class LandingScreen extends Component {
 
     render(){
 
-        const { navigateTo, potDetail, setPotDetail } = this.props.screenProps;
+        const { navigateTo, potDetail, setPotDetail, removePotFromList } = this.props.screenProps;
 
         return(
             <Landing
                 navigation={this.props.navigation}
                 navigateTo={navigateTo}
                 setPotDetail={setPotDetail}
+                removePotFromList={removePotFromList}
                 potDetail={potDetail} />
         )
     }
@@ -85,13 +86,15 @@ class Detail extends Component {
     static propTypes = {
         navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
-        setPotDetail: PropTypes.func.isRequired
+        setPotDetail: PropTypes.func.isRequired,
+        removePotFromList: PropTypes.func.isRequired
     };
 
     state = {
         navigateTo: this.props.navigateTo,
         potDetail: this.props.potDetail,
-        setPotDetail: this.props.setPotDetail
+        setPotDetail: this.props.setPotDetail,
+        removePotFromList: this.props.removePotFromList
     };
 
     render(){

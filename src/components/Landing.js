@@ -20,7 +20,8 @@ class Detail extends Component {
         navigateTo: PropTypes.func.isRequired,
         potDetail: PropTypes.object.isRequired,
         navigation: PropTypes.object.isRequired,
-        setPotDetail: PropTypes.func.isRequired
+        setPotDetail: PropTypes.func.isRequired,
+        removePotFromList: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -144,8 +145,6 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
-
-        console.log(this.props.potDetail)
     }
 
     componentDidMount(){
@@ -245,17 +244,16 @@ class Detail extends Component {
     };
 
     canDeletePot = () => {
-        const { id } = this.state.potDetail;
-        return id !== -1;
+        const { id, status} = this.state.potDetail;
+        return id !== -1 || status === "new";
     };
 
     deletePot = () => {
         const { id } = this.state.potDetail;
         ajax.deleteAPot(id).then( response => {
             if(response){
-                console.log('Deleted')
-            } else {
-                console.log('Oh dear')
+                const { removePotFromList } = this.props;
+                removePotFromList(id, ()=>{this.props.navigateTo('list')});
             }
         })
     };

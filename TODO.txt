@@ -18,6 +18,9 @@ Splash - new design
 Ordering and Grouping of contacts
 Adjust display for crazy no. Pots
 Style New Pot different
+Add Warning before delete
+Add warning before removing participants
+Add warning for unsaved changes in new pot
 -
 -
 Next ToDo to do

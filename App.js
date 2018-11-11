@@ -69,8 +69,6 @@ export default class App extends Component {
         ajax.setHeadersForFetch();
         ajax.getAllPots().then( data => {
             const pots = data['plans'];
-            // console.log(pots);
-            // console.log(this.state.pots);
             this.setState({ pots })
         })
     };
@@ -81,6 +79,18 @@ export default class App extends Component {
 
     setPotDetail = potDetail => {
         this.setState({ potDetail })
+    };
+
+    removePotFromList = (id, callback) => {
+        const pots = this.state.pots.slice();
+        pots.forEach((pot, index) => {
+            if(pot.id === id || pot.id === -1 || pot.status === "new"){
+                pots.splice(index, 1);
+            }
+        });
+        this.setState({ pots }, ()=>{
+            callback();
+        })
     };
 
     render() {
@@ -114,6 +124,7 @@ export default class App extends Component {
                     <StatusBar barStyle={"light-content"} />
                     <Detail navigateTo={this.switchScreen}
                         setPotDetail={this.setPotDetail}
+                        removePotFromList={this.removePotFromList}
                         potDetail={potDetail} />
                 </View>
             );
