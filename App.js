@@ -11,8 +11,6 @@ import List from './src/components/List';
 
 import Detail from './src/components/Detail';
 
-import data from './src/data/DummyPots';
-
 import utils from './src/utils';
 
 import ajax from './src/ajax';
@@ -24,7 +22,7 @@ export default class App extends Component {
 
         this.state = {
             screen: 'intro',
-            pots: data['plans'],
+            pots: [],
             potDetail: {}
         };
     }

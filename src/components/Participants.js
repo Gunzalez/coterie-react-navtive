@@ -99,7 +99,6 @@ class Participants extends Component {
     saveParticipants = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
-        // console.log(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
             this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })

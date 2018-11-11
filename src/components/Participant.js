@@ -38,6 +38,8 @@ const Participant = (props) => {
                 <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
             }
 
+            <Text style={styles.name}>{familyName} {givenName}</Text>
+
         </View>
     );
 };
@@ -64,6 +66,9 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         color: utils.style.colours.white
+    },
+    name: {
+        width: 50
     }
 });
 
