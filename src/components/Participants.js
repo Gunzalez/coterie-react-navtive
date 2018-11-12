@@ -130,6 +130,23 @@ class Participants extends Component {
         );
     };
 
+    deleteHighlightedParticipant = () => {
+
+        console.log('Prince Lutor');
+
+        const tempParticipantsArray = this.state.participants.slice();
+        tempParticipantsArray.map((participant, index) => {
+            if(participant.highlight){
+                tempParticipantsArray.splice(index, 1);
+            }
+        });
+        this.setState({
+            "participants": tempParticipantsArray
+        });
+
+
+    };
+
     contactClicked = (indexOfContactList) => {
         const tempParticipantsArray = this.state.participants.slice();
         const tempContactsArray = this.state.contacts.slice();
@@ -140,15 +157,15 @@ class Participants extends Component {
             tempParticipantsArray.map((participant, index) => {
 
                 if(participant.contactId === contact.recordID.toString()){
-                    // this.flatList.scrollToIndex({
-                    //     animated: true,
-                    //     index: index,
-                    //     viewPosition: 1,
-                    //     viewOffset: 0
-                    // });
-                    // tempParticipantsArray[index].highlight = true;
+                    tempParticipantsArray[index].highlight = true;
+                    this.flatList.scrollToIndex({
+                        animated: true,
+                        index: index,
+                        viewPosition: 1,
+                        viewOffset: 0
+                    });
                     // setTimeout(() => tempParticipantsArray.splice(index, 1), 200);
-                    tempParticipantsArray.splice(index, 1);
+                    // tempParticipantsArray.splice(index, 1);
                 }
             })
 
@@ -205,7 +222,7 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
-                        // onMomentumScrollEnd={(item) => {console.log(item, this)}}
+                        onMomentumScrollEnd={()=>{this.deleteHighlightedParticipant()}}
                         renderItem={(item) =>
                             <Participant data={item} />
                         }/>
