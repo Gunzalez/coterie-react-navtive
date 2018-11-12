@@ -8,7 +8,7 @@ export default {
 
     setHeadersForFetch(){
         const headers = new Headers();
-        const value = 'token:' + this.accessToken;
+        const value = `token: ${this.accessToken}`;
         headers.append('Authorization', value);
         headers.set('Accept', 'application/json');
         headers.set('Content-Type', 'application/json');
