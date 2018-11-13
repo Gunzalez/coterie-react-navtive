@@ -107,8 +107,8 @@ class Participants extends Component {
     clearParticipants = () => {
 
         Alert.alert(
-            'Delete all participants?',
-            'Remove all added participants. Are you sure?',
+            'Remove participants?',
+            'Clears all added contacts. Are you sure?',
             [
                 { text: "NO", onPress: () => {}, style: 'cancel' },
                 { text: "YES", onPress: () => {
@@ -147,45 +147,30 @@ class Participants extends Component {
 
     };
 
+
+
     contactClicked = (indexOfContactList) => {
         const tempParticipantsArray = this.state.participants.slice();
         const tempContactsArray = this.state.contacts.slice();
         const contact = tempContactsArray[indexOfContactList];
 
-        if(contact.checked){ // remove from Participants
+        if(!contact.checked){ // remove from Participants
 
-            tempParticipantsArray.map((participant, index) => {
-
-                if(participant.contactId === contact.recordID.toString()){
-                    tempParticipantsArray[index].highlight = true;
-                    this.flatList.scrollToIndex({
-                        animated: true,
-                        index: index,
-                        viewPosition: 1,
-                        viewOffset: 0
-                    });
-                    // setTimeout(() => tempParticipantsArray.splice(index, 1), 200);
-                    // tempParticipantsArray.splice(index, 1);
-                }
-            })
-
-        } else { // add to Participants
-
-            const newParticipant = { contactId: contact.recordID.toString() };
+            // add to Participants
+            const newParticipant = { contactId: contact.recordID, animate: true };
             if(contact.participantId){
                 newParticipant.id = contact.participantId
             }
             tempParticipantsArray.push(newParticipant);
             setTimeout(() => this.flatList.scrollToEnd(), 200);
 
+            Object.assign(contact, { "checked": !contact.checked });
+
+            this.setState({
+                "contacts": tempContactsArray,
+                "participants": tempParticipantsArray
+            });
         }
-
-        Object.assign(contact, { "checked": !contact.checked });
-
-        this.setState({
-            "contacts": tempContactsArray,
-            "participants": tempParticipantsArray
-        });
     };
 
 

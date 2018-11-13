@@ -1,54 +1,91 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import PropTypes from 'prop-types';
+
+import { StyleSheet, View, Text, Animated } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
-const Participant = (props) => {
 
-    const { data } = props;
+class Participant extends Component {
 
-    const { familyName, givenName = 'Participant', placeHolder, highlight } = data.item;
-
-    const createAvatar = (a, b) =>{
-        let avatar = a.charAt(0).toUpperCase();
-        if(b.trim()){
-            avatar = avatar + b.charAt(0).toUpperCase()
-        }
-        if(avatar.trim().length){
-            return avatar;
-        } else {
-            return "PP"
-        }
+    static propTypes = {
+        data: PropTypes.object.isRequired
     };
 
-    return (
-        <View style={[ styles.container]}>
+    constructor(props){
+        super(props);
+        this.state = {
+            opacity: new Animated.Value(0)
+        }
+    }
 
-            <View style={[ styles.circle, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null ]}>
+    componentDidMount(){
+        this.entryAnimation();
+    }
 
-            { placeHolder ?
+    entryAnimation = () => {
+        Animated.timing(this.state.opacity, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true
+        }).start()
+    };
 
-                <Icon
-                    name={'user'}
-                    size={24}
-                    color={utils.style.colours.grayText}/>
-                :
+    render(){
 
-                <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
+        const createAvatar = (a, b) =>{
+            let avatar = a.charAt(0).toUpperCase();
+            if(b.trim()){
+                avatar = avatar + b.charAt(0).toUpperCase()
             }
+            if(avatar.trim().length){
+                return avatar;
+            } else {
+                return "PP"
+            }
+        };
+
+        const  { data } = this.props;
+
+        const { familyName, givenName, placeHolder, highlight } = data.item;
+
+        return (
+            <View style={[ styles.container, highlight ? styles.narrow : null]}>
+
+                <Animated.View style={[ styles.circle, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null, {
+                    opacity: this.state.opacity,
+                    transform: [
+                        {
+                            scale: this.state.opacity.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [0.85, 1]
+                            })
+                        }]}]}>
+
+                    { placeHolder ?
+
+                        <Icon
+                            name={'user'}
+                            size={24}
+                            color={utils.style.colours.grayText}/>
+                        :
+
+                        <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
+                    }
+
+                </Animated.View>
+
+                <Text style={styles.name}
+                      numberOfLines={1}
+                      ellipsizeMode={'tail'}>{familyName}</Text>
 
             </View>
-
-            <Text style={styles.name}
-                  numberOfLines={1}
-                  ellipsizeMode={'tail'}>{familyName} {givenName}</Text>
-
-        </View>
-    );
-};
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -62,7 +99,8 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.purple,
         marginHorizontal: 6,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        opacity: 0
 
     },
     placeHolder: {
@@ -72,7 +110,11 @@ const styles = StyleSheet.create({
         borderStyle: 'dashed'
     },
     highlight: {
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        width: 40
+    },
+    narrow: {
+        width: 40
     },
     text: {
         fontSize: 20,
