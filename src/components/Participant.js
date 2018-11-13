@@ -65,6 +65,15 @@ class Participant extends Component {
                             })
                         }]}]}>
 
+                    { !placeHolder &&
+                        <View style={[styles.closeBackground]}>
+                            <Icon
+                                name={'closecircle'}
+                                size={20}
+                                color={'red'} />
+                        </View>
+                    }
+
                     { placeHolder ?
 
                         <Icon
@@ -101,7 +110,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         opacity: 0
-
+    },
+    closeBackground: {
+        position: 'absolute',
+        right: -5,
+        top: -2,
+        backgroundColor: '#f5f5f5',
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        padding: 2
     },
     placeHolder: {
         backgroundColor: utils.style.colours.white,
