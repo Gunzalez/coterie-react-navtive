@@ -432,7 +432,7 @@ class Detail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: utils.style.colours.background,
         flex: 1
     },
     modal: {
@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
     middle: {
         paddingHorizontal: 20,
         paddingVertical: 15,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: utils.style.colours.background,
         borderBottomWidth: 1,
         borderColor: utils.style.colours.grayLight
     },

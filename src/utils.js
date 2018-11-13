@@ -7,7 +7,8 @@ export default {
             gray: '#e9e9e9',
             grayText: '#a8a8a8',
             orange: '#fc6621',
-            grayLight: '#efefef'
+            grayLight: '#efefef',
+            background: '#f5f5f5'
         },
         icons: {
             top: 36,

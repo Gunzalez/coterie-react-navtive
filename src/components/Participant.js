@@ -70,7 +70,7 @@ class Participant extends Component {
                             <Icon
                                 name={'closecircle'}
                                 size={20}
-                                color={'red'} />
+                                color={utils.style.colours.grayText} />
                         </View>
                     }
 
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -5,
         top: -2,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: utils.style.colours.background,
         width: 24,
         height: 24,
         borderRadius: 12,
