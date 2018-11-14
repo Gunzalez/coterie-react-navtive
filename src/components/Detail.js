@@ -24,7 +24,7 @@ class LandingScreen extends Component {
 
     render(){
 
-        const { navigateTo, potDetail, setPotDetail, removePotFromList, addPotToList } = this.props.screenProps;
+        const { navigateTo, potDetail, setPotDetail, removePotFromList, addPotToList, updatePotInList } = this.props.screenProps;
 
         return(
             <Landing
@@ -33,6 +33,7 @@ class LandingScreen extends Component {
                 setPotDetail={setPotDetail}
                 addPotToList={addPotToList}
                 removePotFromList={removePotFromList}
+                updatePotInList={updatePotInList}
                 potDetail={potDetail} />
         )
     }
@@ -89,6 +90,7 @@ class Detail extends Component {
         potDetail: PropTypes.object.isRequired,
         setPotDetail: PropTypes.func.isRequired,
         addPotToList: PropTypes.func.isRequired,
+        updatePotInList: PropTypes.func.isRequired,
         removePotFromList: PropTypes.func.isRequired
     };
 
@@ -97,6 +99,7 @@ class Detail extends Component {
         potDetail: this.props.potDetail,
         setPotDetail: this.props.setPotDetail,
         addPotToList: this.props.addPotToList,
+        updatePotInList: this.props.updatePotInList,
         removePotFromList: this.props.removePotFromList
     };
 

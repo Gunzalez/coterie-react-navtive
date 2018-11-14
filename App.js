@@ -104,6 +104,25 @@ export default class App extends Component {
         this.setState({ pots, potDetail });
     };
 
+    updatePotInList = potDetail => {
+        const pots = [];
+        this.state.pots.forEach( pot => {
+            if(pot.id === potDetail.id){
+                const updatedPot = Object.assign({}, potDetail);
+                pots.push(updatedPot)
+            } else {
+                const existingPot = Object.assign({}, pot);
+                pots.push(existingPot)
+            }
+        });
+        pots.forEach((pot, index) => {
+            if(pot.id === -1 || pot.status === "new"){
+                pots.splice(index, 1);
+            }
+        });
+        this.setState({ pots, potDetail });
+    };
+
     render() {
 
         const { screen, pots, potDetail } = this.state;
@@ -136,6 +155,7 @@ export default class App extends Component {
                     <Detail navigateTo={this.switchScreen}
                         setPotDetail={this.setPotDetail}
                         addPotToList={this.addPotToList}
+                        updatePotInList={this.updatePotInList}
                         removePotFromList={this.removePotFromList}
                         potDetail={potDetail} />
                 </View>

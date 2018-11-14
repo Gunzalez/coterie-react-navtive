@@ -22,6 +22,7 @@ class Detail extends Component {
         navigation: PropTypes.object.isRequired,
         setPotDetail: PropTypes.func.isRequired,
         addPotToList: PropTypes.func.isRequired,
+        updatePotInList: PropTypes.func.isRequired,
         removePotFromList: PropTypes.func.isRequired
     };
 
@@ -215,7 +216,10 @@ class Detail extends Component {
 
         } else {
 
-            console.log(localPot);
+            // should doajax call before this: Karl building PUT endpoint on weekend
+            this.setState({ potDetail: localPot }, () => {
+                this.props.updatePotInList(this.state.potDetail);
+            });
 
         }
 
