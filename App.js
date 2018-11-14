@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, YellowBox } from 'react-native';
 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
@@ -14,6 +14,8 @@ import Detail from './src/components/Detail';
 import utils from './src/utils';
 
 import ajax from './src/ajax';
+
+YellowBox['ignoreWarnings'](['Require cycle']); // well that was painful
 
 export default class App extends Component {
 
