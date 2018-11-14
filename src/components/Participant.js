@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, Animated } from 'react-native';
+import { StyleSheet, View, Text, Animated, TouchableWithoutFeedback } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
-
 class Participant extends Component {
 
     static propTypes = {
-        data: PropTypes.object.isRequired
+        data: PropTypes.object.isRequired,
+        participantClicked: PropTypes.func
     };
 
     constructor(props){
         super(props);
         this.state = {
-            opacity: new Animated.Value(0)
+            opacity: new Animated.Value(0),
+            width: new Animated.Value(70)
         }
     }
 
@@ -34,26 +35,38 @@ class Participant extends Component {
         }).start()
     };
 
+    exitAnimation = (contactId) => {
+        Animated.sequence([
+            Animated.timing(this.state.opacity, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true
+            }),
+            Animated.timing(this.state.width, {
+                toValue: 0,
+                duration: 200
+            })
+        ]).start(()=>{
+            this.props.participantClicked(contactId);
+        })
+    };
+
     render(){
 
         const createAvatar = (a, b) =>{
             let avatar = a.charAt(0).toUpperCase();
-            if(b.trim()){
+            if(b && b.trim()){
                 avatar = avatar + b.charAt(0).toUpperCase()
             }
-            if(avatar.trim().length){
-                return avatar;
-            } else {
-                return "PP"
-            }
+            return avatar;
         };
 
         const  { data } = this.props;
 
-        const { familyName, givenName, placeHolder, highlight } = data.item;
+        const { familyName = "Saver", contactId, givenName, placeHolder, highlight } = data.item;
 
         return (
-            <View style={[ styles.container, highlight ? styles.narrow : null]}>
+            <Animated.View style={[ styles.container, highlight ? styles.narrow : null, { width: this.state.width }]}>
 
                 <Animated.View style={[ styles.circle, placeHolder ? styles.placeHolder : null, highlight ? styles.highlight : null, {
                     opacity: this.state.opacity,
@@ -66,12 +79,16 @@ class Participant extends Component {
                         }]}]}>
 
                     { !placeHolder &&
-                        <View style={[styles.closeBackground]}>
-                            <Icon
-                                name={'closecircle'}
-                                size={20}
-                                color={utils.style.colours.grayText} />
-                        </View>
+
+                        <TouchableWithoutFeedback
+                            onPress={()=>{this.exitAnimation(contactId)}}>
+                            <View style={[styles.closeBackground]}>
+                                <Icon
+                                    name={'closecircle'}
+                                    size={20}
+                                    color={utils.style.colours.grayText} />
+                            </View>
+                        </TouchableWithoutFeedback>
                     }
 
                     { placeHolder ?
@@ -91,7 +108,7 @@ class Participant extends Component {
                       numberOfLines={1}
                       ellipsizeMode={'tail'}>{familyName}</Text>
 
-            </View>
+            </Animated.View>
         )
     }
 }
@@ -99,7 +116,8 @@ class Participant extends Component {
 const styles = StyleSheet.create({
     container: {
         width: 70,
-        marginHorizontal: 4
+        marginHorizontal: 4,
+        alignItems: 'center'
     },
     circle: {
         width: 60,
@@ -140,7 +158,7 @@ const styles = StyleSheet.create({
     },
     name: {
         paddingTop: 5,
-        width: '100%',
+        width: '80%',
         textAlign: 'center',
         color: utils.style.colours.grayText
     }

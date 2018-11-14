@@ -55,7 +55,7 @@ class Participants extends Component {
     };
 
     getContactDetailFromId = (id, param) => {
-        let returnName = 'Participant';
+        let returnName = '';
         this.state.contacts.forEach(contact => {
             if(contact.recordID === id){
                 returnName = contact[param].trim()
@@ -130,26 +130,9 @@ class Participants extends Component {
         );
     };
 
-    deleteHighlightedParticipant = () => {
-
-        console.log('Prince Lutor');
-
-        const tempParticipantsArray = this.state.participants.slice();
-        tempParticipantsArray.map((participant, index) => {
-            if(participant.highlight){
-                tempParticipantsArray.splice(index, 1);
-            }
-        });
-        this.setState({
-            "participants": tempParticipantsArray
-        });
-
-
-    };
-
-
 
     contactClicked = (indexOfContactList) => {
+
         const tempParticipantsArray = this.state.participants.slice();
         const tempContactsArray = this.state.contacts.slice();
         const contact = tempContactsArray[indexOfContactList];
@@ -157,20 +140,66 @@ class Participants extends Component {
         if(!contact.checked){ // remove from Participants
 
             // add to Participants
-            const newParticipant = { contactId: contact.recordID, animate: true };
+            const newParticipant = { contactId: contact.recordID };
             if(contact.participantId){
                 newParticipant.id = contact.participantId
             }
             tempParticipantsArray.push(newParticipant);
             setTimeout(() => this.flatList.scrollToEnd(), 200);
 
-            Object.assign(contact, { "checked": !contact.checked });
+            Object.assign(contact, { "checked": true });
 
             this.setState({
-                "contacts": tempContactsArray,
-                "participants": tempParticipantsArray
+                contacts: tempContactsArray,
+                participants: tempParticipantsArray
             });
         }
+    };
+
+
+    participantClicked = (contactId) => {
+
+        console.log(contactId); // shows id
+
+        // clone the arrays
+        const tempParticipantsArray = this.state.participants.slice();
+        const tempContactsArray = this.state.contacts.slice();
+
+        console.log('the state Before');
+        console.log(this.state.contacts); // shows 6 items
+        console.log(this.state.participants); // shows 5 items
+        console.log('======');
+
+        tempParticipantsArray.forEach((participant, index) => {
+           if(participant.contactId === contactId){
+               tempParticipantsArray.splice(index, 1);
+               console.log(tempParticipantsArray); // shows 4 items
+               console.log('^^ new list participants')
+           }
+        });
+
+        tempContactsArray.forEach(contact => {
+            if(contact.recordID === contactId){
+                delete contact.checked;
+            }
+        });
+
+        console.log('New list: contacts and participants');
+        console.log(tempContactsArray); // shows 6 items
+        console.log(tempParticipantsArray); // shows 4 items
+        console.log('======');
+
+        this.setState({
+            contacts: tempContactsArray,
+            participants: tempParticipantsArray
+        }, () => {
+
+            console.log('the state After');
+            console.log(this.state.contacts); // shows 6 items
+            console.log(this.state.participants); // shows 4 items
+            console.log('======');
+
+        });
     };
 
 
@@ -206,10 +235,10 @@ class Participants extends Component {
                         data={this.returnParticipantsToDisplay()}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
+                        extraData={this.state.participants}
                         keyExtractor={(item, index) => index.toString()}
-                        onMomentumScrollEnd={()=>{this.deleteHighlightedParticipant()}}
                         renderItem={(item) =>
-                            <Participant data={item} />
+                            <Participant data={item} participantClicked={this.participantClicked} />
                         }/>
 
                     :
