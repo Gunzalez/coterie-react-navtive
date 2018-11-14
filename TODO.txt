@@ -19,6 +19,7 @@ Adjust display for crazy no. Pots
 Style New Pot different
 Add warning for unsaved changes in new pot
 Check pots length for the Continue/Skip button
+Performance points at using iOS native for FlatList
 -
 -
 Next ToDo to do
