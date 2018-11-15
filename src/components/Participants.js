@@ -48,6 +48,8 @@ class Participants extends Component {
             participants: participants,
             originalParticipants: participants
         };
+
+        this.currentVisibleParticipants = []
     }
 
     participantsHaveChanged = () => {
@@ -155,6 +157,13 @@ class Participants extends Component {
 
         } else {
 
+            const arrayOfVisibleIds = [];
+            this.currentVisibleParticipants.map( participant => {
+                arrayOfVisibleIds.push(participant.key)
+            });
+
+            const isOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
+            console.log(isOffScreen);
         }
     };
 
@@ -183,8 +192,9 @@ class Participants extends Component {
     };
 
     onViewableItemsChanged = ({ viewableItems, changed }) => {
-        console.log("Visible items are", viewableItems);
-        console.log("Changed in this iteration", changed);
+        this.currentVisibleParticipants = viewableItems;
+        // console.log("Visible items are", viewableItems);
+        // console.log("Changed in this iteration", changed);
     };
 
     viewAbilityConfig = {
