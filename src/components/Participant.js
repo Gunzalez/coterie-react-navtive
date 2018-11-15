@@ -30,7 +30,7 @@ class Participant extends Component {
     entryAnimation = () => {
         Animated.timing(this.state.opacity, {
             toValue: 1,
-            duration: 200,
+            duration: 100,
             useNativeDriver: true
         }).start()
     };
@@ -39,12 +39,12 @@ class Participant extends Component {
         Animated.sequence([
             Animated.timing(this.state.opacity, {
                 toValue: 0,
-                duration: 200,
+                duration: 100,
                 useNativeDriver: true
             }),
             Animated.timing(this.state.width, {
                 toValue: 0,
-                duration: 200
+                duration: 50
             })
         ]).start(()=>{
             this.props.participantClicked(contactId);
@@ -53,7 +53,7 @@ class Participant extends Component {
 
     render(){
 
-        const createAvatar = (a, b) =>{
+        const createAvatar = (a, b) => {
             let avatar = a.charAt(0).toUpperCase();
             if(b && b.trim()){
                 avatar = avatar + b.charAt(0).toUpperCase()
@@ -63,7 +63,7 @@ class Participant extends Component {
 
         const  { data } = this.props;
 
-        const { familyName = "Saver", contactId, givenName, placeHolder, highlight } = data.item;
+        const { familyName = "Participant", contactId, givenName, placeHolder, highlight } = data.item;
 
         return (
             <Animated.View style={[ styles.container, highlight ? styles.narrow : null, { width: this.state.width }]}>
@@ -115,7 +115,7 @@ class Participant extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: 70,
+        // width: 70,
         marginHorizontal: 4,
         alignItems: 'center'
     },

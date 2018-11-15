@@ -159,23 +159,13 @@ class Participants extends Component {
 
     participantClicked = (contactId) => {
 
-        console.log(contactId); // shows id
-
-        // clone the arrays
         const tempParticipantsArray = this.state.participants.slice();
         const tempContactsArray = this.state.contacts.slice();
 
-        console.log('the state Before');
-        console.log(this.state.contacts); // shows 6 items
-        console.log(this.state.participants); // shows 5 items
-        console.log('======');
-
         tempParticipantsArray.forEach((participant, index) => {
-           if(participant.contactId === contactId){
-               tempParticipantsArray.splice(index, 1);
-               console.log(tempParticipantsArray); // shows 4 items
-               console.log('^^ new list participants')
-           }
+            if(participant.contactId === contactId){
+                tempParticipantsArray.splice(index, 1);
+            }
         });
 
         tempContactsArray.forEach(contact => {
@@ -184,21 +174,9 @@ class Participants extends Component {
             }
         });
 
-        console.log('New list: contacts and participants');
-        console.log(tempContactsArray); // shows 6 items
-        console.log(tempParticipantsArray); // shows 4 items
-        console.log('======');
-
         this.setState({
             contacts: tempContactsArray,
             participants: tempParticipantsArray
-        }, () => {
-
-            console.log('the state After');
-            console.log(this.state.contacts); // shows 6 items
-            console.log(this.state.participants); // shows 4 items
-            console.log('======');
-
         });
     };
 
@@ -235,8 +213,7 @@ class Participants extends Component {
                         data={this.returnParticipantsToDisplay()}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        extraData={this.state.participants}
-                        keyExtractor={(item, index) => index.toString()}
+                        keyExtractor={item => item.contactId.toString()}
                         renderItem={(item) =>
                             <Participant data={item} participantClicked={this.participantClicked} />
                         }/>
