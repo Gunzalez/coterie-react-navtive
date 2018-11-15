@@ -15,7 +15,7 @@ const LandingRow = (props) => {
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={styles.text}>{familyName} {givenName}</Text>
+                <Text style={styles.text}>{givenName} {familyName}</Text>
             </View>
             <View style={[styles.cell]}>
                 <Icon

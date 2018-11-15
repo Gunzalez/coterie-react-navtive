@@ -99,14 +99,14 @@ class Participant extends Component {
                             color={utils.style.colours.grayText}/>
                         :
 
-                        <Text style={[styles.text]}>{ createAvatar(familyName, givenName) }</Text>
+                        <Text style={[styles.text]}>{ createAvatar(givenName, familyName) }</Text>
                     }
 
                 </Animated.View>
 
                 <Text style={[styles.name]}
                       numberOfLines={1}
-                      ellipsizeMode={'tail'}>{familyName}</Text>
+                      ellipsizeMode={'tail'}>{givenName}</Text>
 
             </Animated.View>
         )

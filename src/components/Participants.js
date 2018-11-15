@@ -152,6 +152,9 @@ class Participants extends Component {
                 contacts: tempContactsArray,
                 participants: tempParticipantsArray
             });
+
+        } else {
+
         }
     };
 
@@ -179,13 +182,22 @@ class Participants extends Component {
         });
     };
 
+    onViewableItemsChanged = ({ viewableItems, changed }) => {
+        console.log("Visible items are", viewableItems);
+        console.log("Changed in this iteration", changed);
+    };
+
+    viewAbilityConfig = {
+        itemVisiblePercentThreshold: 1
+    };
+
+
 
     render() {
 
         const { navigation } = this.props;
 
         const { name } = navigation.state.params.potDetail;
-
         return (
             <View style={[ styles.container ]}>
 
@@ -210,11 +222,13 @@ class Participants extends Component {
                     <FlatList
                         ref={(scrollView) => { this.flatList = scrollView }}
                         data={this.returnParticipantsToDisplay()}
+                        onViewableItemsChanged={this.onViewableItemsChanged}
+                        viewabilityConfig={this.viewAbilityConfig}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.contactId.toString()}
                         renderItem={(item) =>
-                            <Participant data={item} participantClicked={this.participantClicked} />
+                            <Participant data={item} ref={item.contactId} participantClicked={this.participantClicked} />
                         }/>
 
                     :
