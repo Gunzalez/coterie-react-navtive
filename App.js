@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import { StyleSheet, View, StatusBar, YellowBox } from 'react-native';
 
+import SplashScreen from 'react-native-splash-screen';
+
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import Introduction from './src/components/Introduction';
@@ -69,7 +71,9 @@ export default class App extends Component {
         ajax.setHeadersForFetch();
         ajax.getAllPots().then( data => {
             const pots = data['plans'];
-            this.setState({ pots })
+            this.setState({ pots }, ()=> {
+                SplashScreen.hide();
+            })
         })
     };
 

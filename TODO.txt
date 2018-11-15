@@ -4,7 +4,6 @@ ToDO
 Test App on Android - DVM and real device
 Get Address book Contacts (Android)
 Contacts Permission DENIED handler (Android)
-Remove participants with animations *
 Look into Screen to Screen animations - shared Components *
 Styling footer on Participants and other sub pages
 In Progress Detail screen needs work
@@ -20,6 +19,8 @@ Style New Pot different
 Add warning for unsaved changes in new pot
 Check pots length for the Continue/Skip button
 Performance points at using iOS native for FlatList
+Participants count, displayed, and maybe contacts total
+Search bar for contacts filter *
 -
 -
 Next ToDo to do
@@ -49,6 +50,7 @@ Develop utils, and use
 
 DONE
 =================
+Remove participants with animations *
 Add names to avatar - in participant carousel
 Add warning before removing participants
 Add Warning before deleting Pot

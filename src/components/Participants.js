@@ -137,9 +137,8 @@ class Participants extends Component {
         const tempContactsArray = this.state.contacts.slice();
         const contact = tempContactsArray[indexOfContactList];
 
-        if(!contact.checked){ // remove from Participants
+        if(!contact.checked){
 
-            // add to Participants
             const newParticipant = { contactId: contact.recordID };
             if(contact.participantId){
                 newParticipant.id = contact.participantId

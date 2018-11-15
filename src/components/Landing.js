@@ -149,7 +149,7 @@ class Detail extends Component {
         const { name } = this.state.localPot;
         Alert.alert(
             'Delete this Pot?',
-            'This will delete "'+name + '" completely. Are you sure?',
+            'This will delete "' +name + '" completely. Are you sure?',
             [
                 { text: "NO", onPress: () => {}, style: 'cancel' },
                 { text: "YES", onPress: () => { this.deletePot() }},
@@ -216,15 +216,12 @@ class Detail extends Component {
 
         } else {
 
-            // should doajax call before this: Karl building PUT endpoint on weekend
+            // should do ajax call before this: Karl building PUT endpoint on weekend
             this.setState({ potDetail: localPot }, () => {
                 this.props.updatePotInList(this.state.potDetail);
             });
 
         }
-
-
-
     };
 
     render() {

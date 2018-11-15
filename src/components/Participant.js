@@ -30,7 +30,7 @@ class Participant extends Component {
     entryAnimation = () => {
         Animated.timing(this.state.opacity, {
             toValue: 1,
-            duration: 100,
+            duration: 150,
             useNativeDriver: true
         }).start()
     };
@@ -39,12 +39,12 @@ class Participant extends Component {
         Animated.sequence([
             Animated.timing(this.state.opacity, {
                 toValue: 0,
-                duration: 100,
+                duration: 150,
                 useNativeDriver: true
             }),
             Animated.timing(this.state.width, {
                 toValue: 0,
-                duration: 50
+                duration: 100
             })
         ]).start(()=>{
             this.props.participantClicked(contactId);
@@ -104,7 +104,7 @@ class Participant extends Component {
 
                 </Animated.View>
 
-                <Text style={styles.name}
+                <Text style={[styles.name]}
                       numberOfLines={1}
                       ellipsizeMode={'tail'}>{familyName}</Text>
 
