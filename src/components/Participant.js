@@ -19,7 +19,7 @@ class Participant extends Component {
         super(props);
         this.state = {
             opacity: new Animated.Value(0),
-            width: new Animated.Value(70)
+            width: new Animated.Value(67)
         }
     }
 

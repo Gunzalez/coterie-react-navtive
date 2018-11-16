@@ -162,8 +162,8 @@ class Participants extends Component {
                 arrayOfVisibleIds.push(participant.key)
             });
 
-            const isOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
-            console.log(isOffScreen);
+            const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
+            console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
         }
     };
 
@@ -191,17 +191,13 @@ class Participants extends Component {
         });
     };
 
-    onViewableItemsChanged = ({ viewableItems, changed }) => {
+    onViewableItemsChanged = ({ viewableItems }) => {
         this.currentVisibleParticipants = viewableItems;
-        // console.log("Visible items are", viewableItems);
-        // console.log("Changed in this iteration", changed);
     };
 
     viewAbilityConfig = {
         itemVisiblePercentThreshold: 1
     };
-
-
 
     render() {
 
@@ -237,8 +233,8 @@ class Participants extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.contactId.toString()}
-                        renderItem={(item) =>
-                            <Participant data={item} ref={item.contactId} participantClicked={this.participantClicked} />
+                        renderItem={(item) => <Participant data={item}
+                                                    participantClicked={this.participantClicked} />
                         }/>
 
                     :
