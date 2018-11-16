@@ -49,7 +49,8 @@ class Participants extends Component {
             originalParticipants: participants
         };
 
-        this.currentVisibleParticipants = []
+        this.currentVisibleParticipants = [];
+        this.rowRefs = {};
     }
 
     participantsHaveChanged = () => {
@@ -164,6 +165,8 @@ class Participants extends Component {
 
             const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
             console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
+            console.log(this.rowRefs);
+            this.rowRefs[contact.recordID].exitAnimation(contact.recordID);
         }
     };
 
@@ -234,6 +237,7 @@ class Participants extends Component {
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.contactId.toString()}
                         renderItem={(item) => <Participant data={item}
+                                                           ref={(SwipeRow) => { this.rowRefs[item.item.contactId] = SwipeRow; }}
                                                     participantClicked={this.participantClicked} />
                         }/>
 

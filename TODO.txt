@@ -12,7 +12,6 @@ Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
 FlatList is buggy - may need bigger rows
 Icon - new design
-Splash - new design
 Ordering and Grouping of contacts
 Adjust display for crazy no. Pots
 Style New Pot different
@@ -21,6 +20,7 @@ Check pots length for the Continue/Skip button
 Performance points at using iOS native for FlatList
 Participants count, displayed, and maybe contacts total
 Search bar for contacts filter *
+get reference to flatList items *
 -
 -
 Next ToDo to do
@@ -50,6 +50,7 @@ Develop utils, and use
 
 DONE
 =================
+Splash - new design
 Remove participants with animations *
 Add names to avatar - in participant carousel
 Add warning before removing participants
