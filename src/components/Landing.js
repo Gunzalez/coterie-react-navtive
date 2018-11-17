@@ -174,22 +174,12 @@ class Detail extends Component {
         });
     };
 
-    getContactDetailFromId = (id, param) => {
-        let returnName = 'Participant';
-        this.state.contacts.forEach(contact => {
-            if(contact.recordID === id){
-                returnName = contact[param].trim()
-            }
-        });
-        return returnName;
-    };
-
     returnParticipantsToDisplay = () => {
         const participants = [];
         this.state.localPot.participants.forEach(participant => {
             const displayParticipant = Object.assign({}, participant, {
-                familyName: this.getContactDetailFromId(participant.contactId, 'familyName'),
-                givenName: this.getContactDetailFromId(participant.contactId, 'givenName')
+                familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
+                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts)
             });
             participants.push(displayParticipant)
         });

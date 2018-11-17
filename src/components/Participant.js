@@ -63,7 +63,7 @@ class Participant extends Component {
 
         const  { data } = this.props;
 
-        const { familyName = "Participant", contactId, givenName, placeHolder, highlight } = data.item;
+        const { givenName = "Participant", contactId, familyName, placeHolder, highlight } = data.item;
 
         return (
             <Animated.View style={[ styles.container, highlight ? styles.narrow : null, { width: this.state.width }]}>

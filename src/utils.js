@@ -30,13 +30,22 @@ export default {
             array.sort(function(a, b){
                 const nameA = a.givenName.toLowerCase();
                 const nameB = b.givenName.toLowerCase();
-                if (nameA < nameB) //sort string ascending
+                if (nameA < nameB)
                     return -1;
                 if (nameA > nameB)
                     return 1;
-                return 0 //default return value (no sorting)
+                return 0
             });
             return array;
+        },
+        getContactDetailFromId (id, param, contacts){
+            let returnName = 'Participant';
+            contacts.forEach(contact => {
+                if(contact.recordID === id){
+                    returnName = contact[param].trim()
+                }
+            });
+            return returnName;
         }
     }
 }

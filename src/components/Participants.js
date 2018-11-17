@@ -57,22 +57,12 @@ class Participants extends Component {
         return JSON.stringify(this.state.participants) === JSON.stringify(this.state.originalParticipants)
     };
 
-    getContactDetailFromId = (id, param) => {
-        let returnName = '';
-        this.state.contacts.forEach(contact => {
-            if(contact.recordID === id){
-                returnName = contact[param].trim()
-            }
-        });
-        return returnName;
-    };
-
     returnParticipantsToDisplay = () => {
         const participants = [];
         this.state.participants.forEach(participant => {
             const displayParticipant = Object.assign({}, participant, {
-                familyName: this.getContactDetailFromId(participant.contactId, 'familyName'),
-                givenName: this.getContactDetailFromId(participant.contactId, 'givenName')
+                familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
+                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts)
             });
             participants.push(displayParticipant)
         });
@@ -167,9 +157,9 @@ class Participants extends Component {
                 arrayOfVisibleIds.push(participant.key)
             });
 
-            const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
-            console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
-            console.log(this.rowRefs);
+            // const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
+            // console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
+
             this.rowRefs[contact.recordID].exitAnimation(contact.recordID);
         }
     };
@@ -232,18 +222,18 @@ class Participants extends Component {
 
                     { this.state.participants.length > 0 ?
 
-                    <FlatList
-                        ref={(scrollView) => { this.flatList = scrollView }}
-                        data={this.returnParticipantsToDisplay()}
-                        onViewableItemsChanged={this.onViewableItemsChanged}
-                        viewabilityConfig={this.viewAbilityConfig}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        keyExtractor={item => item.contactId.toString()}
-                        renderItem={(item) => <Participant data={item}
-                                                    ref={(SwipeRow) => { this.rowRefs[item.item.contactId] = SwipeRow; }}
-                                                    participantClicked={ this.participantClicked } />
-                        }/>
+                        <FlatList
+                            ref={(scrollView) => { this.flatList = scrollView }}
+                            data={this.returnParticipantsToDisplay()}
+                            onViewableItemsChanged={this.onViewableItemsChanged}
+                            viewabilityConfig={this.viewAbilityConfig}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            keyExtractor={item => item.contactId.toString()}
+                            renderItem={(item) => <Participant data={item}
+                                                        ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}
+                                                        participantClicked={ this.participantClicked } />
+                            }/>
 
                     :
                         <Participant data={{item:{placeHolder:true}}} />
@@ -256,7 +246,7 @@ class Participants extends Component {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={(item) =>
-                            <Contact data={item} contactClicked={this.contactClicked}/>
+                            <Contact data={item} contactClicked={this.contactClicked} />
                         }/>
                 </View>
 
