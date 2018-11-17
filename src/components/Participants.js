@@ -79,6 +79,10 @@ class Participants extends Component {
         return participants;
     };
 
+    returnContactsToDisplay = () => {
+        return utils.js.sort(this.state.contacts);
+    };
+
     closeParticipants = () => {
 
         if(!this.participantsHaveChanged()){
@@ -237,8 +241,8 @@ class Participants extends Component {
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={item => item.contactId.toString()}
                         renderItem={(item) => <Participant data={item}
-                                                           ref={(SwipeRow) => { this.rowRefs[item.item.contactId] = SwipeRow; }}
-                                                    participantClicked={this.participantClicked} />
+                                                    ref={(SwipeRow) => { this.rowRefs[item.item.contactId] = SwipeRow; }}
+                                                    participantClicked={ this.participantClicked } />
                         }/>
 
                     :
@@ -248,7 +252,7 @@ class Participants extends Component {
                 </View>
                 <View style={styles.bottom}>
                     <FlatList
-                        data={this.state.contacts}
+                        data={this.returnContactsToDisplay()}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={(item) =>

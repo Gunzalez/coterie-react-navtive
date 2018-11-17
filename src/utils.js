@@ -25,6 +25,18 @@ export default {
         thousandth: function (value) {
             const valueString = value.toString();
             return valueString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+        sort: function (array) {
+            array.sort(function(a, b){
+                const nameA = a.givenName.toLowerCase();
+                const nameB = b.givenName.toLowerCase();
+                if (nameA < nameB) //sort string ascending
+                    return -1;
+                if (nameA > nameB)
+                    return 1;
+                return 0 //default return value (no sorting)
+            });
+            return array;
         }
     }
 }

@@ -193,6 +193,7 @@ class Detail extends Component {
             });
             participants.push(displayParticipant)
         });
+        // const sortedParticipants = utils.js.sort(participants);
         return participants;
     };
 
