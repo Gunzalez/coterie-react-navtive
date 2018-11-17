@@ -4,6 +4,7 @@ ToDO
 Test App on Android - DVM and real device
 Get Address book Contacts (Android)
 Contacts Permission DENIED handler (Android)
+
 Look into Screen to Screen animations - shared Components *
 Styling footer on Participants and other sub pages
 In Progress Detail screen needs work
@@ -12,7 +13,6 @@ Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
 FlatList is buggy - may need bigger rows
 Icon - new design
-Ordering and Grouping of contacts
 Adjust display for crazy no. Pots
 Style New Pot different
 Add warning for unsaved changes in new pot
@@ -25,6 +25,7 @@ Search bar for contacts filter *
 Next ToDo to do
 =================
 Collection screen design, and other headers
+Ordering and Grouping of contacts - Ordering now done
 
 
 

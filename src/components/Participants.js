@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert, TextInput } from 'react-native';
 
 import Toast from 'react-native-whc-toast'
 
@@ -240,6 +240,17 @@ class Participants extends Component {
                     }
 
                 </View>
+                <TextInput
+                    style={styles.searchBar}
+                    onChangeText={(text) => this.setState({text})}
+                    value={this.state.text}
+                    placeholderTextColor={utils.style.colours.gray}
+                    autoCorrect={false}
+                    placeholder={'Filter contacts'}
+                    underlineColorAndroid={'transparent'}
+                    autoCapitalize={'words'}
+                    clearButtonMode={'while-editing'}
+                />
                 <View style={styles.bottom}>
                     <FlatList
                         data={this.returnContactsToDisplay()}
@@ -314,6 +325,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingVertical: 10,
+    },
+    searchBar:{
+        marginHorizontal: 15,
+        marginTop: 10,
+        backgroundColor: utils.style.colours.white,
+        padding: 10,
+        borderRadius: 5,
+        color: utils.style.colours.grayText
+
     },
     middle: {
         height: 85
