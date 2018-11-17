@@ -218,7 +218,7 @@ class Participants extends Component {
                     </View>
                 </View>
 
-                <View style={styles.middle}>
+                <View style={styles.participants}>
 
                     { this.state.participants.length > 0 ?
 
@@ -240,17 +240,19 @@ class Participants extends Component {
                     }
 
                 </View>
-                <TextInput
-                    style={styles.searchBar}
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
-                    placeholderTextColor={utils.style.colours.gray}
-                    autoCorrect={false}
-                    placeholder={'Filter contacts'}
-                    underlineColorAndroid={'transparent'}
-                    autoCapitalize={'words'}
-                    clearButtonMode={'while-editing'}
-                />
+                <View style={styles.searchBarBox}>
+                    <TextInput
+                        style={styles.searchBar}
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}
+                        placeholderTextColor={utils.style.colours.grayText}
+                        autoCorrect={false}
+                        placeholder={'Filter contacts'}
+                        underlineColorAndroid={'transparent'}
+                        autoCapitalize={'words'}
+                        clearButtonMode={'while-editing'}
+                    />
+                </View>
                 <View style={styles.bottom}>
                     <FlatList
                         data={this.returnContactsToDisplay()}
@@ -324,28 +326,30 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 10
+    },
+    searchBarBox: {
+        backgroundColor: utils.style.colours.white
     },
     searchBar:{
         marginHorizontal: 15,
         marginTop: 10,
-        backgroundColor: utils.style.colours.white,
+        marginBottom: 5,
+        backgroundColor: utils.style.colours.grayLight,
         padding: 10,
-        borderRadius: 5,
+        borderRadius: 2,
         color: utils.style.colours.grayText
-
     },
-    middle: {
-        height: 85
+    participants: {
+        borderBottomWidth: 1,
+        borderColor: utils.style.colours.grayLight,
+        height: 90
     },
     bottom: {
-        borderTopWidth: 1,
-        marginTop: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
-        borderColor: utils.style.colours.grayLight,
         backgroundColor: utils.style.colours.white
     },
     title: {
