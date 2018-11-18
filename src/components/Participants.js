@@ -45,7 +45,6 @@ class Participants extends Component {
 
         this.state = {
             contacts: contacts,
-            filteredContacts: [],
             participants: participants,
             originalParticipants: participants
         };
