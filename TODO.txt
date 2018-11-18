@@ -1,10 +1,6 @@
 
 ToDO
 =================
-Test App on Android - DVM and real device
-Get Address book Contacts (Android)
-Contacts Permission DENIED handler (Android)
-
 Look into Screen to Screen animations - shared Components *
 Styling footer on Participants and other sub pages
 In Progress Detail screen needs work
@@ -19,7 +15,6 @@ Add warning for unsaved changes in new pot
 Check pots length for the Continue/Skip button
 Performance points at using iOS native for FlatList
 Participants count, displayed, and maybe contacts total
-Search bar for contacts filter *
 -
 -
 Next ToDo to do
@@ -50,6 +45,7 @@ Develop utils, and use
 
 DONE
 =================
+Search bar for contacts filter *
 get reference to flatList items *
 Splash - new design
 Remove participants with animations *
@@ -76,3 +72,6 @@ Added Alerts
 
 NOT DOING -- yet
 =================
+Test App on Android - DVM and real device
+Get Address book Contacts (Android)
+Contacts Permission DENIED handler (Android)

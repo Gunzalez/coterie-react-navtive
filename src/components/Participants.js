@@ -45,6 +45,7 @@ class Participants extends Component {
 
         this.state = {
             contacts: contacts,
+            filteredContacts: [],
             participants: participants,
             originalParticipants: participants
         };
@@ -70,7 +71,19 @@ class Participants extends Component {
     };
 
     returnContactsToDisplay = () => {
-        return utils.js.sort(this.state.contacts);
+        const { contacts, term } = this.state;
+        if(term && term.trim().length){
+            const filteredContacts = contacts.filter(contact => {
+                return contact.givenName.toLowerCase().includes(term.toLowerCase()) || contact.familyName.toLowerCase().includes(term.toLowerCase())
+            });
+            return utils.js.sort(filteredContacts)
+        } else {
+            return utils.js.sort(contacts)
+        }
+    };
+
+    filterContacts = term => {
+        this.setState({ term })
     };
 
     closeParticipants = () => {
@@ -128,14 +141,13 @@ class Participants extends Component {
     };
 
 
-    contactClicked = (indexOfContactList) => {
+    contactClicked = (data) => {
 
-        const tempParticipantsArray = this.state.participants.slice();
-        const tempContactsArray = this.state.contacts.slice();
-        const contact = tempContactsArray[indexOfContactList];
+        const contact = data.item;
 
         if(!contact.checked){
 
+            const tempParticipantsArray = this.state.participants.slice();
             const newParticipant = { contactId: contact.recordID };
             if(contact.participantId){
                 newParticipant.id = contact.participantId
@@ -143,7 +155,12 @@ class Participants extends Component {
             tempParticipantsArray.push(newParticipant);
             setTimeout(() => this.flatList.scrollToEnd(), 200);
 
-            Object.assign(contact, { "checked": true });
+            const tempContactsArray = this.state.contacts.slice();
+            tempContactsArray.forEach( tempContact =>{
+                if (tempContact.recordID === contact.recordID){
+                    tempContact.checked = true
+                }
+            });
 
             this.setState({
                 contacts: tempContactsArray,
@@ -152,20 +169,19 @@ class Participants extends Component {
 
         } else {
 
+            this.rowRefs[contact.recordID].exitAnimation(contact.recordID);
+
             const arrayOfVisibleIds = [];
             this.currentVisibleParticipants.map( participant => {
                 arrayOfVisibleIds.push(participant.key)
             });
-
             // const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
             // console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
-
-            this.rowRefs[contact.recordID].exitAnimation(contact.recordID);
         }
     };
 
 
-    participantClicked = (contactId) => {
+    participantClicked = contactId => {
 
         const tempParticipantsArray = this.state.participants.slice();
         const tempContactsArray = this.state.contacts.slice();
@@ -243,13 +259,12 @@ class Participants extends Component {
                 <View style={styles.searchBarBox}>
                     <TextInput
                         style={styles.searchBar}
-                        onChangeText={(text) => this.setState({text})}
-                        value={this.state.text}
+                        onChangeText={this.filterContacts}
                         placeholderTextColor={utils.style.colours.grayText}
                         autoCorrect={false}
                         placeholder={'Filter contacts'}
                         underlineColorAndroid={'transparent'}
-                        autoCapitalize={'words'}
+                        autoCapitalize={'none'}
                         clearButtonMode={'while-editing'}
                     />
                 </View>
@@ -257,12 +272,11 @@ class Participants extends Component {
                     <FlatList
                         data={this.returnContactsToDisplay()}
                         showsVerticalScrollIndicator={false}
-                        keyExtractor={(item, index) => index.toString()}
+                        keyExtractor={item => item.recordID.toString()}
                         renderItem={(item) =>
-                            <Contact data={item} contactClicked={this.contactClicked} />
+                            <Contact data={item} contactClicked={()=>this.contactClicked(item)} />
                         }/>
                 </View>
-
                 <View style={styles.footer}>
 
                     <TouchableOpacity
@@ -300,7 +314,6 @@ class Participants extends Component {
                     </TouchableOpacity>
 
                 </View>
-
                 <Toast
                     ref="toast"
                     style={styles.toast}
