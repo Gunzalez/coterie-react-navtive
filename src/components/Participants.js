@@ -272,6 +272,7 @@ class Participants extends Component {
                         data={this.returnContactsToDisplay()}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={item => item.recordID.toString()}
+                        keyboardShouldPersistTaps={'handled'}
                         renderItem={(item) =>
                             <Contact data={item} contactClicked={()=>this.contactClicked(item)} />
                         }/>

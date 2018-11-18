@@ -15,6 +15,7 @@ Add warning for unsaved changes in new pot
 Check pots length for the Continue/Skip button
 Performance points at using iOS native for FlatList
 Participants count, displayed, and maybe contacts total
+Re-order schedule
 -
 -
 Next ToDo to do
