@@ -11,18 +11,20 @@ FlatList is buggy - may need bigger rows
 Icon - new design
 Adjust display for crazy no. Pots
 Style New Pot different
-Add warning for unsaved changes in new pot
-Check pots length for the Continue/Skip button
+Continue/Skip button text, is first time?
 Performance points at using iOS native for FlatList
-Participants count, displayed, and maybe contacts total
-Re-order schedule
+Participants count on Landing and Participants (contacts count?)
+Space for next to collect
+Re-order Schedule
+Payments & Starting a pot
+See about adding a new Contact direct from Saving Pots
+Collection screen design, and other headers
 -
 -
 Next ToDo to do
 =================
-Collection screen design, and other headers
-Ordering and Grouping of contacts - Ordering now done
-
+Grouping contacts list on Participants screen
+Add Warning for unsaved changes in new pot
 
 
 

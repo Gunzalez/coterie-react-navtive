@@ -216,11 +216,16 @@ class Participants extends Component {
         const { navigation } = this.props;
 
         const { name } = navigation.state.params.potDetail;
+
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>{ name }</Text>
+
+                    <View style={[styles.potMeta]}>
+                        <Text style={[ styles.title ]}>{ name }</Text>
+                        <Text style={[ styles.count ]}>Participants in this pot: <Text style={[styles.darker]}>{this.state.participants.length}</Text></Text>
+                    </View>
 
                     <View style={styles.icon}>
                         <TouchableOpacity
@@ -231,6 +236,7 @@ class Participants extends Component {
                             color={utils.style.colours.purple}/>
                         </TouchableOpacity>
                     </View>
+
                 </View>
 
                 <View style={styles.participants}>
@@ -341,13 +347,33 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10
     },
+    title: {
+        fontSize: 25,
+        color: utils.style.colours.purple,
+        paddingBottom: 2
+    },
+    count: {
+        color: utils.style.colours.grayText,
+        paddingBottom: 5
+    },
+    darker: {
+        color: utils.style.colours.grayDark
+    },
+    icon: {
+        paddingLeft: 10
+    },
+    potMeta: {
+        flexDirection: 'column',
+        flex: 1,
+        marginRight: 5
+    },
     searchBarBox: {
         backgroundColor: utils.style.colours.white
     },
     searchBar:{
         marginHorizontal: 15,
         marginTop: 10,
-        marginBottom: 5,
+        marginBottom: 10,
         backgroundColor: utils.style.colours.grayLight,
         padding: 10,
         borderRadius: 2,
@@ -364,11 +390,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
         backgroundColor: utils.style.colours.white
-    },
-    title: {
-        fontSize: 25,
-        color: utils.style.colours.purple,
-        paddingBottom: 10
     },
     footer: {
         paddingVertical: 15,
