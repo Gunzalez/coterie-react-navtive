@@ -14,7 +14,7 @@ import Participant from './Participant';
 
 import Contact from './Contact';
 
-class Participants extends Component {
+class Schedule extends Component {
 
     static propTypes = {
         navigation: PropTypes.object.isRequired
@@ -239,40 +239,29 @@ class Participants extends Component {
 
                 </View>
 
-                <View style={styles.participants}>
+                {/*<View style={styles.participants}>*/}
 
-                    { this.state.participants.length > 0 ?
+                    {/*{ this.state.participants.length > 0 ?*/}
 
-                        <FlatList
-                            ref={(scrollView) => { this.flatList = scrollView }}
-                            data={this.returnParticipantsToDisplay()}
-                            onViewableItemsChanged={this.onViewableItemsChanged}
-                            viewabilityConfig={this.viewAbilityConfig}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            keyExtractor={item => item.contactId.toString()}
-                            renderItem={(item) => <Participant data={item}
-                                                        ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}
-                                                        participantClicked={ this.participantClicked } />
-                            }/>
+                        {/*<FlatList*/}
+                            {/*ref={(scrollView) => { this.flatList = scrollView }}*/}
+                            {/*data={this.returnParticipantsToDisplay()}*/}
+                            {/*onViewableItemsChanged={this.onViewableItemsChanged}*/}
+                            {/*viewabilityConfig={this.viewAbilityConfig}*/}
+                            {/*horizontal={true}*/}
+                            {/*showsHorizontalScrollIndicator={false}*/}
+                            {/*keyExtractor={item => item.contactId.toString()}*/}
+                            {/*renderItem={(item) => <Participant data={item}*/}
+                                                        {/*ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}*/}
+                                                        {/*participantClicked={ this.participantClicked } />*/}
+                            {/*}/>*/}
 
-                    :
-                        <Participant data={{item:{placeHolder:true}}} />
-                    }
+                    {/*:*/}
+                        {/*<Participant data={{item:{placeHolder:true}}} />*/}
+                    {/*}*/}
 
-                </View>
-                <View style={styles.searchBarBox}>
-                    <TextInput
-                        style={styles.searchBar}
-                        onChangeText={this.filterContacts}
-                        placeholderTextColor={utils.style.colours.grayText}
-                        autoCorrect={false}
-                        placeholder={'Filter contacts'}
-                        underlineColorAndroid={'transparent'}
-                        autoCapitalize={'none'}
-                        clearButtonMode={'while-editing'}
-                    />
-                </View>
+                {/*</View>*/}
+
                 <View style={styles.bottom}>
                     <FlatList
                         data={this.returnContactsToDisplay()}
@@ -367,18 +356,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 5
     },
-    searchBarBox: {
-        backgroundColor: utils.style.colours.white
-    },
-    searchBar:{
-        marginHorizontal: 15,
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: utils.style.colours.grayLight,
-        padding: 10,
-        borderRadius: 8,
-        color: utils.style.colours.grayText
-    },
     participants: {
         borderBottomWidth: 1,
         borderColor: utils.style.colours.grayLight,
@@ -399,4 +376,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Participants
+export default Schedule

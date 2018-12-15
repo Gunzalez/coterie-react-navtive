@@ -10,12 +10,23 @@ import Participants from './Participants';
 
 import Collection from './Collection';
 
+import Schedule from './Schedule';
+
 class ParticipantsScreen extends Component {
 
     render(){
 
         return(
             <Participants navigation={this.props.navigation} />
+        )
+    }
+}
+
+class ScheduleScreen extends Component {
+
+    render(){
+        return(
+            <Schedule navigation={this.props.navigation} />
         )
     }
 }
@@ -71,6 +82,9 @@ const PotDetailNavigator = createStackNavigator({
     },
     Collection: {
         screen: CollectionScreen
+    },
+    Schedule: {
+        screen: ScheduleScreen
     }
 },{
     initialRouteName: 'Landing',

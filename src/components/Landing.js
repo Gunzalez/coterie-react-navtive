@@ -121,6 +121,14 @@ class Detail extends Component {
         })
     };
 
+    showSchedule = () => {
+        this.props.navigation.navigate('Schedule', {
+            potDetail: this.state.localPot,
+            contacts: this.state.contacts,
+            updateLocalParticipants: this.updateLocalParticipants
+        })
+    };
+
     showCollection = participant => {
         this.props.navigation.navigate('Collection', {
             participant: participant,
@@ -387,7 +395,8 @@ class Detail extends Component {
                             color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.showSchedule}>
                         <Icon
                             name="menufold"
                             size={utils.style.icons.footer}
