@@ -12,7 +12,7 @@ import utils from './../utils';
 
 import Participant from './Participant';
 
-import Contact from './Contact';
+import Saver from './Saver';
 
 class Schedule extends Component {
 
@@ -48,9 +48,6 @@ class Schedule extends Component {
             participants: participants,
             originalParticipants: participants
         };
-
-        this.currentVisibleParticipants = [];
-        this.rowRefs = {};
     }
 
     participantsHaveChanged = () => {
@@ -140,76 +137,7 @@ class Schedule extends Component {
     };
 
 
-    contactClicked = (data) => {
 
-        const contact = data.item;
-
-        if(!contact.checked){
-
-            const tempParticipantsArray = this.state.participants.slice();
-            const newParticipant = { contactId: contact.recordID };
-            if(contact.participantId){
-                newParticipant.id = contact.participantId
-            }
-            tempParticipantsArray.push(newParticipant);
-            setTimeout(() => this.flatList.scrollToEnd(), 200);
-
-            const tempContactsArray = this.state.contacts.slice();
-            tempContactsArray.forEach( tempContact =>{
-                if (tempContact.recordID === contact.recordID){
-                    tempContact.checked = true
-                }
-            });
-
-            this.setState({
-                contacts: tempContactsArray,
-                participants: tempParticipantsArray
-            });
-
-        } else {
-
-            this.rowRefs[contact.recordID].exitAnimation(contact.recordID);
-
-            const arrayOfVisibleIds = [];
-            this.currentVisibleParticipants.map( participant => {
-                arrayOfVisibleIds.push(participant.key)
-            });
-            // const isParticipantOffScreen = arrayOfVisibleIds.indexOf(contact.recordID) === -1;
-            // console.log(isParticipantOffScreen ? 'will scroll and delete': 'will delete');
-        }
-    };
-
-
-    participantClicked = contactId => {
-
-        const tempParticipantsArray = this.state.participants.slice();
-        const tempContactsArray = this.state.contacts.slice();
-
-        tempParticipantsArray.forEach((participant, index) => {
-            if(participant.contactId === contactId){
-                tempParticipantsArray.splice(index, 1);
-            }
-        });
-
-        tempContactsArray.forEach(contact => {
-            if(contact.recordID === contactId){
-                delete contact.checked;
-            }
-        });
-
-        this.setState({
-            contacts: tempContactsArray,
-            participants: tempParticipantsArray
-        });
-    };
-
-    onViewableItemsChanged = ({ viewableItems }) => {
-        this.currentVisibleParticipants = viewableItems;
-    };
-
-    viewAbilityConfig = {
-        itemVisiblePercentThreshold: 1
-    };
 
     render() {
 
@@ -269,7 +197,7 @@ class Schedule extends Component {
                         keyExtractor={item => item.recordID.toString()}
                         keyboardShouldPersistTaps={'handled'}
                         renderItem={(item) =>
-                            <Contact data={item} contactClicked={()=>this.contactClicked(item)} />
+                            <Saver data={item} contactClicked={()=>this.contactClicked(item)} />
                         }/>
                 </View>
                 <View style={styles.footer}>

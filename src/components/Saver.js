@@ -2,11 +2,11 @@ import React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
 
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import utils from './../utils';
 
-const Contact = (props) => {
+const Saver = (props) => {
 
     const { data, contactClicked } = props;
 
@@ -19,7 +19,7 @@ const Contact = (props) => {
             </View>
             <View style={[styles.cell]}>
                 <Icon
-                    name={ checked ? 'radio-button-checked' : 'radio-button-unchecked' }
+                    name={ 'ios-reorder' }
                     size={28}
                     color={utils.style.colours.purple}
                     onPress={()=>{contactClicked(data.index)}}
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Contact
+export default Saver
