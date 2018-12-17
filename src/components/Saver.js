@@ -4,25 +4,40 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import Icon from "react-native-vector-icons/Ionicons";
 
+import FontIcon from "react-native-vector-icons/FontAwesome";
+
 import utils from './../utils';
 
 const Saver = (props) => {
 
-    const { data } = props;
+    const { data, active } = props;
 
-    const { familyName, givenName } = data.item;
+    const { familyName, givenName } = data;
 
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={styles.text}>{givenName} {familyName}</Text>
+                <Text style={[styles.text, active ? styles.active : '']}>{givenName} {familyName}</Text>
             </View>
             <View style={[styles.cell]}>
-                <Icon
-                    name={ 'ios-reorder' }
-                    size={28}
-                    color={utils.style.colours.purple}
-                />
+
+                {( active ) ?
+
+                    <FontIcon
+                        name={ 'sort' }
+                        size={28}
+                        color={ utils.style.colours.purple  }
+                    />
+
+                    :
+
+                    <Icon
+                        name={ 'ios-reorder' }
+                        size={28}
+                        color={ utils.style.colours.grayLight }
+                    />
+                }
+
             </View>
         </View>
     );
@@ -34,7 +49,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flex: 1,
         borderBottomWidth: 1,
-        borderColor: '#eaeaea'
+        borderColor: utils.style.colours.grayLight
+    },
+    active: {
+        color: utils.style.colours.purple
     },
     cell: {
         height: 42,

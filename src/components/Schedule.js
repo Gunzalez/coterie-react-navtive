@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Alert, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+
+import SortableList from 'react-native-sortable-list';
 
 import Toast from 'react-native-whc-toast'
 
@@ -60,7 +62,6 @@ class Schedule extends Component {
         return participants;
     };
 
-
     closeSchedule = () => {
 
         if(!this.participantsHaveChanged()){
@@ -89,8 +90,9 @@ class Schedule extends Component {
         })
     };
 
-
-
+    orderChanged = () => {
+        console.log(this.state.participants)
+    };
 
     render() {
 
@@ -122,14 +124,15 @@ class Schedule extends Component {
 
 
                 <View style={styles.bottom}>
-                    <FlatList
+
+                    <SortableList
+                        style={styles.list}
+                        // contentContainerStyle={styles.contentContainer}
                         data={this.returnParticipantsToDisplay()}
-                        showsVerticalScrollIndicator={false}
-                        keyExtractor={item => item.contactId.toString()}
-                        keyboardShouldPersistTaps={'handled'}
-                        renderItem={(item) =>
-                            <Saver data={item} />
-                        }/>
+                        onChangeOrder={this.orderChanged}
+                        renderRow={({data, active}) =>
+                            <Saver data={data} active={active} />
+                        } />
                 </View>
                 <View style={styles.footer}>
 
@@ -165,8 +168,8 @@ class Schedule extends Component {
                         size={40}
                         color={this.participantsHaveChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
                     </TouchableOpacity>
-
                 </View>
+
                 <Toast
                     ref="toast"
                     style={styles.toast}
@@ -193,6 +196,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingVertical: 10
+    },
+    list: {
+        flex: 1,
     },
     title: {
         fontSize: 25,
