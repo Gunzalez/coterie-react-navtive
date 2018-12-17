@@ -8,9 +8,9 @@ import utils from './../utils';
 
 const Saver = (props) => {
 
-    const { data, contactClicked } = props;
+    const { data } = props;
 
-    const { familyName, givenName, checked } = data.item;
+    const { familyName, givenName } = data.item;
 
     return (
         <View style={[ styles.container ]}>
@@ -22,7 +22,6 @@ const Saver = (props) => {
                     name={ 'ios-reorder' }
                     size={28}
                     color={utils.style.colours.purple}
-                    onPress={()=>{contactClicked(data.index)}}
                 />
             </View>
         </View>

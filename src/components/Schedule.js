@@ -10,8 +10,6 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
 
-import Participant from './Participant';
-
 import Saver from './Saver';
 
 class Schedule extends Component {
@@ -25,10 +23,6 @@ class Schedule extends Component {
 
         const { contacts, potDetail } = this.props.navigation.state.params;
         const { participants = [] } = potDetail;
-
-        contacts.forEach(contact => {
-            delete contact.checked
-        });
 
         if(participants.length){
             participants.map(participant => {
@@ -66,23 +60,8 @@ class Schedule extends Component {
         return participants;
     };
 
-    returnContactsToDisplay = () => {
-        const { contacts, term } = this.state;
-        if(term && term.trim().length){
-            const filteredContacts = contacts.filter(contact => {
-                return contact.givenName.toLowerCase().includes(term.toLowerCase()) || contact.familyName.toLowerCase().includes(term.toLowerCase())
-            });
-            return utils.js.sort(filteredContacts)
-        } else {
-            return utils.js.sort(contacts)
-        }
-    };
 
-    filterContacts = term => {
-        this.setState({ term })
-    };
-
-    closeParticipants = () => {
+    closeSchedule = () => {
 
         if(!this.participantsHaveChanged()){
 
@@ -102,38 +81,12 @@ class Schedule extends Component {
         }
     };
 
-    saveParticipants = () => {
+    saveSchedule = () => {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
             this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
-    };
-
-    clearParticipants = () => {
-
-        Alert.alert(
-            'Remove participants?',
-            'Clears all added contacts. Are you sure?',
-            [
-                { text: "NO", onPress: () => {}, style: 'cancel' },
-                { text: "YES", onPress: () => {
-
-                    let unCheckedContacts = [];
-                    this.state.contacts.forEach(contact => {
-                        delete contact.checked;
-                        unCheckedContacts.push(contact);
-                    });
-
-                    this.setState({
-                        participants: [],
-                        contacts: unCheckedContacts
-                    })
-
-                }},
-            ],
-            { cancelable: false }
-        );
     };
 
 
@@ -157,7 +110,7 @@ class Schedule extends Component {
 
                     <View style={styles.icon}>
                         <TouchableOpacity
-                            onPress={this.closeParticipants}>
+                            onPress={this.closeSchedule}>
                         <Icon
                             name="down"
                             size={utils.style.icons.top}
@@ -167,48 +120,25 @@ class Schedule extends Component {
 
                 </View>
 
-                {/*<View style={styles.participants}>*/}
-
-                    {/*{ this.state.participants.length > 0 ?*/}
-
-                        {/*<FlatList*/}
-                            {/*ref={(scrollView) => { this.flatList = scrollView }}*/}
-                            {/*data={this.returnParticipantsToDisplay()}*/}
-                            {/*onViewableItemsChanged={this.onViewableItemsChanged}*/}
-                            {/*viewabilityConfig={this.viewAbilityConfig}*/}
-                            {/*horizontal={true}*/}
-                            {/*showsHorizontalScrollIndicator={false}*/}
-                            {/*keyExtractor={item => item.contactId.toString()}*/}
-                            {/*renderItem={(item) => <Participant data={item}*/}
-                                                        {/*ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}*/}
-                                                        {/*participantClicked={ this.participantClicked } />*/}
-                            {/*}/>*/}
-
-                    {/*:*/}
-                        {/*<Participant data={{item:{placeHolder:true}}} />*/}
-                    {/*}*/}
-
-                {/*</View>*/}
 
                 <View style={styles.bottom}>
                     <FlatList
-                        data={this.returnContactsToDisplay()}
+                        data={this.returnParticipantsToDisplay()}
                         showsVerticalScrollIndicator={false}
-                        keyExtractor={item => item.recordID.toString()}
+                        keyExtractor={item => item.contactId.toString()}
                         keyboardShouldPersistTaps={'handled'}
                         renderItem={(item) =>
-                            <Saver data={item} contactClicked={()=>this.contactClicked(item)} />
+                            <Saver data={item} />
                         }/>
                 </View>
                 <View style={styles.footer}>
 
                     <TouchableOpacity
-                        disabled={this.state.participants.length < 1}
-                        onPress={this.clearParticipants}>
+                        disabled={true}>
                         <Icon
-                            name="deleteusergroup"
-                            size={40}
-                            color={this.state.participants.length < 1 ? utils.style.colours.grayText : utils.style.colours.white} />
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -229,7 +159,7 @@ class Schedule extends Component {
 
                     <TouchableOpacity
                         disabled={this.participantsHaveChanged()}
-                        onPress={this.saveParticipants}>
+                        onPress={this.saveSchedule}>
                     <Icon
                         name="save"
                         size={40}
