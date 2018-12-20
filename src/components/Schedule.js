@@ -90,8 +90,9 @@ class Schedule extends Component {
 
     saveSchedule = () => {
 
+        const newOrderParticipants = this.state.schedule.map(i => this.state.participants[i]);
         const { updateLocalParticipants } = this.props.navigation.state.params;
-        updateLocalParticipants(this.state.participants);
+        updateLocalParticipants(newOrderParticipants);
 
         this.setState({
             initialSchedule: this.state.schedule
@@ -101,11 +102,8 @@ class Schedule extends Component {
     };
 
     setSchedule = schedule => {
-
-        const newOrderParticipants = schedule.map(i => this.state.participants[i]);
         this.setState({
-            schedule,
-            participants: newOrderParticipants
+            schedule
         }, ()=>{
             console.log(this.state)
         });
@@ -139,12 +137,17 @@ class Schedule extends Component {
 
                 </View>
 
+                <View style={styles.intro}>
+                    <Text>The following participants have not collected and can be reordered</Text>
+                </View>
+
 
                 <View style={styles.bottom}>
 
                     <SortableList
                         style={styles.list}
                         data={this.returnParticipantsToDisplay()}
+                        order={this.state.schedule}
                         onChangeOrder={(nextOrder)=>{
                             this.debouncedSetSchedule(nextOrder);
                         }}
@@ -214,6 +217,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingVertical: 10
+    },
+    intro: {
+        paddingHorizontal: 20,
+        paddingVertical: 10
+
     },
     list: {
         flex: 1,
