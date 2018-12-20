@@ -17,7 +17,7 @@ const Saver = (props) => {
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={[styles.text, active ? styles.active : '']}>{givenName} {familyName}</Text>
+                <Text style={[styles.text, active ? styles.active : null]}>{givenName} {familyName}</Text>
             </View>
             <View style={[styles.cell]}>
 

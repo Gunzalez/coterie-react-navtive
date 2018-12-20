@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
 
+import { throttle, debounce } from 'throttle-debounce';
+
 import SortableList from 'react-native-sortable-list';
 
 import Toast from 'react-native-whc-toast'
@@ -25,6 +27,7 @@ class Schedule extends Component {
 
         const { contacts, potDetail } = this.props.navigation.state.params;
         const { participants = [] } = potDetail;
+        const originalOrder = Array.from(new Array(participants.length),(val,index)=> index.toString());
 
         if(participants.length){
             participants.map(participant => {
@@ -39,15 +42,18 @@ class Schedule extends Component {
             });
         }
 
+        this.debouncedSetSchedule = debounce(500, this.setSchedule);
+
         this.state = {
             contacts: contacts,
             participants: participants,
-            originalParticipants: participants
+            schedule: originalOrder,
+            initialSchedule: originalOrder
         };
     }
 
-    participantsHaveChanged = () => {
-        return JSON.stringify(this.state.participants) === JSON.stringify(this.state.originalParticipants)
+    isScheduleTheSame = () => {
+        return JSON.stringify(this.state.schedule) === JSON.stringify(this.state.initialSchedule)
     };
 
     returnParticipantsToDisplay = () => {
@@ -64,7 +70,7 @@ class Schedule extends Component {
 
     closeSchedule = () => {
 
-        if(!this.participantsHaveChanged()){
+        if(!this.isScheduleTheSame()){
 
             Alert.alert(
                 'Unsaved changes',
@@ -83,15 +89,26 @@ class Schedule extends Component {
     };
 
     saveSchedule = () => {
+
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
-        this.setState({ originalParticipants: this.state.participants }, () => {
-            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
-        })
+
+        this.setState({
+            initialSchedule: this.state.schedule
+        },()=>{
+            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom); 
+        });
     };
 
-    orderChanged = () => {
-        console.log(this.state.participants)
+    setSchedule = schedule => {
+
+        const newOrderParticipants = schedule.map(i => this.state.participants[i]);
+        this.setState({
+            schedule,
+            participants: newOrderParticipants
+        }, ()=>{
+            console.log(this.state)
+        });
     };
 
     render() {
@@ -127,9 +144,10 @@ class Schedule extends Component {
 
                     <SortableList
                         style={styles.list}
-                        // contentContainerStyle={styles.contentContainer}
                         data={this.returnParticipantsToDisplay()}
-                        onChangeOrder={this.orderChanged}
+                        onChangeOrder={(nextOrder)=>{
+                            this.debouncedSetSchedule(nextOrder);
+                        }}
                         renderRow={({data, active}) =>
                             <Saver data={data} active={active} />
                         } />
@@ -161,12 +179,12 @@ class Schedule extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={this.participantsHaveChanged()}
+                        disabled={ this.isScheduleTheSame()}
                         onPress={this.saveSchedule}>
                     <Icon
                         name="save"
                         size={40}
-                        color={this.participantsHaveChanged() ? utils.style.colours.grayText : utils.style.colours.white} />
+                        color={ this.isScheduleTheSame() ? utils.style.colours.grayText : utils.style.colours.white } />
                     </TouchableOpacity>
                 </View>
 
