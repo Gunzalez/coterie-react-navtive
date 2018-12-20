@@ -42,6 +42,8 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        console.log(this.props.potDetail);
     }
 
     componentDidMount(){
@@ -62,7 +64,6 @@ class Detail extends Component {
                             contactsPermission: false
                         })
                     }
-
                 })
             } else {
 
