@@ -102,11 +102,7 @@ class Schedule extends Component {
     };
 
     setSchedule = schedule => {
-        this.setState({
-            schedule
-        }, ()=>{
-            console.log(this.state)
-        });
+        this.setState({ schedule });
     };
 
     render() {
@@ -122,7 +118,7 @@ class Schedule extends Component {
 
                     <View style={[styles.potMeta]}>
                         <Text style={[ styles.title ]}>{ name }</Text>
-                        <Text style={[ styles.count ]}>Participants in this pot: <Text style={[styles.darker]}>{this.state.participants.length}</Text></Text>
+                        <Text style={[ styles.subTitle ]}>Participants in this pot: <Text style={[styles.darker]}>{this.state.participants.length}</Text></Text>
                     </View>
 
                     <View style={styles.icon}>
@@ -140,7 +136,6 @@ class Schedule extends Component {
                 <View style={styles.intro}>
                     <Text>The following participants have not collected and can be reordered</Text>
                 </View>
-
 
                 <View style={styles.bottom}>
 
@@ -221,7 +216,6 @@ const styles = StyleSheet.create({
     intro: {
         paddingHorizontal: 20,
         paddingVertical: 10
-
     },
     list: {
         flex: 1,
@@ -231,7 +225,7 @@ const styles = StyleSheet.create({
         color: utils.style.colours.purple,
         paddingBottom: 1
     },
-    count: {
+    subTitle: {
         color: utils.style.colours.grayText,
         paddingBottom: 5
     },

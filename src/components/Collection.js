@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Alert} from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
 import utils from './../utils';
+
+import Toast from "react-native-whc-toast";
 
 class Collection extends Component {
 
@@ -16,25 +18,91 @@ class Collection extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            transacted: false,
+            initialState: false,
+            disabled: false,
+            transaction: 'payment'
+        };
+
+        this.copy = {
+            collection: {
+                button: {
+                    unClicked: 'CLICK TO COLLECT',
+                    clicked: 'COLLECTED'
+                },
+                intro: "This participant is due to collect the pot value for this round."
+            },
+            payment: {
+                button: {
+                    unClicked: 'CLICK TO PAY',
+                    clicked: 'PAID'
+                },
+                intro: "This participant is due to pay the saving amount for this round."
+            }
+        }
     }
 
+
+    handlePress = () => {
+        this.setState({
+            transacted: !this.state.transacted
+        })
+    };
+
+
     closeCollection = () => {
-        this.props.navigation.navigate('Landing')
+
+        if(this.hasMadeAChange()){
+
+            Alert.alert(
+                'Unsaved changes',
+                'Discard changes and leave anyway?',
+                [
+                    { text: "NO", onPress: () => {}, style: 'cancel' },
+                    { text: "YES", onPress: () => { this.props.navigation.navigate('Landing') }},
+                ],
+                { cancelable: false }
+            );
+
+        } else {
+
+            this.props.navigation.navigate('Landing')
+        }
+    };
+
+    hasMadeAChange = () => {
+        return this.state.transacted !== this.state.initialState
     };
 
     render() {
 
         const { potDetail, participant } = this.props.navigation.state.params;
 
-        const { name } = potDetail;
+        const { name, round, savingsAmount, participants } = potDetail;
 
-        const { id, contactId } = participant.item;
+        const { id, contactId, familyName, givenName } = participant.item;
+
+        const potValue = savingsAmount * (participants.length - 1);
+
+        const curValue = savingsAmount * 2;
+
+        const thisRound = round === null ? 1 : round;
+
+        const { transacted, disabled } = this.state;
+
+        const copy = this.copy[this.state.transaction];
 
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
-                    <Text style={[ styles.title ]}>{name}</Text>
+
+                    <View style={[styles.potMeta]}>
+                        <Text style={[ styles.title ]}>{ name }</Text>
+                        <Text style={[ styles.subTitle ]}>Current round: <Text style={[styles.darker]}>{ thisRound }</Text></Text>
+                    </View>
 
                     <View style={styles.icon}>
                         <TouchableOpacity onPress={this.closeCollection}>
@@ -46,23 +114,72 @@ class Collection extends Component {
                     </View>
                 </View>
 
-                <View style={styles.middle}>
-
-
+                <View style={styles.intro}>
+                    <Text>{ copy.intro }</Text>
                 </View>
+
+                <View style={styles.middle}>
+                    <Text>{givenName} {familyName}</Text>
+                    <Text>Current pot value £{curValue}</Text>
+                    <Text>Full pot value £{potValue}</Text>
+                    <Text>Saving amount £{savingsAmount}</Text>
+                </View>
+
                 <View style={styles.bottom}>
-                    <Text>ID is { id }</Text>
-                    <Text>Contact Id is { contactId }</Text>
+                    <TouchableOpacity style={[styles.button, transacted ? styles.transacted : null ]}
+                                      disabled={disabled}
+                                      onPress={this.handlePress}>
+                        <Text style={[styles.buttonText, transacted ? styles.transactedButtonText : null]}>
+                            { transacted ? copy.button.clicked : copy.button.unClicked }
+                        </Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.footer}>
-                    {/*<TouchableOpacity>*/}
-                        {/*<Icon*/}
-                            {/*name="left"*/}
-                            {/*size={utils.style.icons.top}*/}
-                            {/*color={utils.style.colours.white} />*/}
-                    {/*</TouchableOpacity>*/}
+
+                    <TouchableOpacity
+                        disabled={true}>
+                        <Icon
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        disabled={true}>
+                        <Icon
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        disabled={true}>
+                        <Icon
+                            name="delete"
+                            size={utils.style.icons.footer}
+                            color={utils.style.colours.purple} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        disabled={ !this.hasMadeAChange() }>
+                        <Icon
+                            name="save"
+                            size={40}
+                            color={ !this.hasMadeAChange() ? utils.style.colours.grayText : utils.style.colours.white  } />
+                    </TouchableOpacity>
                 </View>
+
+                <Toast
+                    ref="toast"
+                    style={styles.toast}
+                    textStyle={styles.text}
+                    position={Toast.Position.bottom}
+                    fadeInDuration={200}
+                    fadeOutDuration={200}
+                    duration={Toast.Duration.long}
+                    opacity={0.9}
+                    positionValue={100} />
 
             </View>
         );
@@ -77,29 +194,83 @@ const styles = StyleSheet.create({
     top: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20,
-        height: 54
+        paddingHorizontal: 20,
+        paddingVertical: 10
+    },
+    intro: {
+        paddingHorizontal: 20,
+        paddingVertical: 10
+    },
+    list: {
+        flex: 1,
     },
     title: {
         fontSize: 25,
         color: utils.style.colours.purple,
-        paddingBottom: 10
+        paddingBottom: 1
     },
-    bottom: {
-        borderTopWidth: 1,
-        marginTop: 10,
+    subTitle: {
+        color: utils.style.colours.grayText,
+        paddingBottom: 5
+    },
+    darker: {
+        color: utils.style.colours.grayDark
+    },
+    icon: {
+        paddingLeft: 10
+    },
+    button: {
+        marginVertical: 50,
+        width: '60%',
+        backgroundColor: utils.style.colours.white,
+        paddingVertical: 12,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderRadius: 8,
+        borderColor: utils.style.colours.purple,
+        borderWidth: 1
+    },
+    buttonText: {
+        color: utils.style.colours.purple
+
+    },
+    transacted: {
+        backgroundColor: utils.style.colours.purple
+    },
+    transactedButtonText: {
+        color: utils.style.colours.white
+    },
+    potMeta: {
+        flexDirection: 'column',
         flex: 1,
+        marginRight: 5
+    },
+    participants: {
+        borderBottomWidth: 1,
+        borderColor: utils.style.colours.grayLight,
+        height: 90
+    },
+    middle: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         paddingHorizontal: 20,
-        borderColor: utils.style.colours.grayLight,
+        paddingVertical: 10,
+        backgroundColor: utils.style.colours.white
+    },
+    bottom: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         backgroundColor: utils.style.colours.white
     },
     footer: {
-        backgroundColor: utils.style.colours.purple,
-        height: 74,
-        padding: 20,
-        alignItems: 'flex-end'
+        paddingVertical: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: utils.style.colours.purple
     }
 });
 
