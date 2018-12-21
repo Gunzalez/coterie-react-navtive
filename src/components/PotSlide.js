@@ -38,8 +38,9 @@ class PotSlide extends Component {
 
     render() {
 
-        const { name = 'Create a new pot', savingsAmount, participants, status, round = '-', nextParticipantToCollect } = this.props.data;
+        const { name = 'Create a new pot', savingsAmount, participants, status, round } = this.props.data;
 
+        const thisRound = round !== null ? round : 1;
 
         return(
             <View style={styles.container}>
@@ -60,7 +61,6 @@ class PotSlide extends Component {
                         <Text style={styles.intro}>Current round</Text>
                         <Text style={styles.intro}>Pot status</Text>
                         <Text style={styles.intro}>Total Pot Value</Text>
-                        <Text style={styles.intro}>Next participant to collect</Text>
                     </View>
                 }
 
@@ -68,11 +68,9 @@ class PotSlide extends Component {
                     <View style={styles.bottom}>
                         <Text style={styles.text}>{participants.length} Participants</Text>
                         <Text style={styles.text}>Saving £{ utils.js.thousandth(savingsAmount) }</Text>
-                        <Text style={styles.text}>Round: {round}/{participants.length}</Text>
+                        <Text style={styles.text}>Round: {thisRound}/{participants.length}</Text>
                         <Text style={styles.text}>Status: {status}</Text>
                         <Text style={styles.text}>Pot Value £{ utils.js.thousandth(this.getTotalPotValue(this.props.data))}</Text>
-                        {/*<Text style={styles.text}>Next to collect: {nextParticipantToCollect}</Text>*/}
-                        <Text style={styles.text}>Next to collect: {'Michael Jordan'}</Text>
                     </View>
                 }
 

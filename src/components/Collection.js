@@ -45,8 +45,6 @@ class Collection extends Component {
                 intro: "This participant is due to pay the saving amount for this round."
             }
         };
-
-        console.log(props);
     }
 
 

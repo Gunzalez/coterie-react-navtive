@@ -42,8 +42,6 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
-
-        console.log(this.props.potDetail);
     }
 
     componentDidMount(){
@@ -402,8 +400,8 @@ class Detail extends Component {
                 <View style={styles.footer}>
 
                     <TouchableOpacity
-                            disabled={!this.canDeletePot() || !permission}
-                            onPress={this.askToDeletePot}>
+                        disabled={!this.canDeletePot() || !permission}
+                        onPress={this.askToDeletePot}>
                         <Icon
                             name="delete"
                             size={utils.style.icons.footer}
