@@ -20,7 +20,6 @@ class Introduction extends Component {
         navigateTo: PropTypes.func.isRequired
     };
 
-
     state = {
         index: 0,
         disabled: false

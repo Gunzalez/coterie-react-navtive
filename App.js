@@ -74,7 +74,7 @@ export default class App extends Component {
             this.setState({ pots }, ()=> {
                 SplashScreen.hide();
             })
-        })
+        });
     };
 
     switchScreen = screen => {

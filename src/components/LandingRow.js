@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -14,7 +14,9 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, transactionType = 'collection' } = data.item;
+    const { familyName, givenName, transactionType, disabled, transacted } = data.item;
+
+    const strapLine = transactionType === 'collection' ? 'Collection due' : 'Payment due';
 
     return (
         <View style={[ styles.container ]}>
@@ -25,7 +27,7 @@ const LandingRow = (props) => {
                     <IconII
                         name={'shopping-basket'}
                         size={32}
-                        color={utils.style.colours.gray}
+                        color={ utils.style.colours.gray }
                     />
 
                     :
@@ -33,7 +35,7 @@ const LandingRow = (props) => {
                     <IconIII
                         name={'cash-usd'}
                         size={32}
-                        color={utils.style.colours.gray}
+                        color={ transacted ? utils.style.colours.purple : utils.style.colours.gray }
                     />
 
                 }
@@ -41,15 +43,18 @@ const LandingRow = (props) => {
             </View>
             <View style={[styles.copy]}>
                 <Text style={styles.name}>{givenName} {familyName}</Text>
-                <Text style={styles.text}>Collection due</Text>
+                <Text style={styles.text}>{strapLine}</Text>
             </View>
             <View style={[styles.button]}>
-                <Icon
-                    name={'right'}
-                    size={24}
-                    color={utils.style.colours.purple}
-                    onPress={()=>{participantClicked(data)}}
-                />
+                <TouchableOpacity
+                    disabled={disabled}
+                    onPress={()=>{participantClicked(data)}}>
+                    <Icon
+                        name={'right'}
+                        size={24}
+                        color={ disabled ? utils.style.colours.gray : utils.style.colours.purple }
+                    />
+                </TouchableOpacity>
             </View>
         </View>
     );

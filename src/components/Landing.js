@@ -183,12 +183,35 @@ class Detail extends Component {
         });
     };
 
+    startPot = () => {
+        this.setState({
+            busy: true
+        }, ()=>{
+            const { id } = this.state.potDetail;
+            ajax.startAPot(id).then( response => {
+                if(response){
+
+                    console.log('Pot started')
+                }
+            })
+        });
+    };
+
     returnParticipantsToDisplay = () => {
         const participants = [];
-        this.state.localPot.participants.forEach(participant => {
+        this.state.localPot.participants.forEach((participant, index) => {
+
+
+
+
+
             const displayParticipant = Object.assign({}, participant, {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
-                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts)
+                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
+
+                transactionType: index === 0 ? 'collection' : 'payment',
+                transacted: index === 2,
+                disabled: index === 0
             });
             participants.push(displayParticipant)
         });

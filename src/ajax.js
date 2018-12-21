@@ -66,7 +66,6 @@ export default {
 
     async getAllPots(){
         try {
-
             const options = {
                 method: 'GET',
                 headers: this.headers
@@ -81,7 +80,6 @@ export default {
 
     async getAPot(id){
         try {
-
             const options = {
                 method: 'GET',
                 headers: this.headers
@@ -106,6 +104,21 @@ export default {
 
         } catch (error){
             console.error(error)
+        }
+    },
+
+    async startAPot(id){
+        try {
+            const options = {
+                method: 'POST',
+                headers: this.headers,
+                body: { planId : id }
+            };
+            const response = await fetch( apiHost + '/plans.start', options );
+            return await response.status === 200;
+
+        }  catch (e) {
+            console.error(e);
         }
     },
 

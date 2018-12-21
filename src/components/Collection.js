@@ -19,11 +19,14 @@ class Collection extends Component {
     constructor(props) {
         super(props);
 
+        const { participant } = this.props.navigation.state.params;
+        const { transacted, transactionType } = participant.item;
+
         this.state = {
-            transacted: false,
-            initialState: false,
+            transacted: transacted,
+            initialState: transacted,
             disabled: false,
-            transaction: 'payment'
+            transactionType: transactionType
         };
 
         this.copy = {
@@ -41,7 +44,9 @@ class Collection extends Component {
                 },
                 intro: "This participant is due to pay the saving amount for this round."
             }
-        }
+        };
+
+        console.log(props);
     }
 
 
@@ -92,7 +97,7 @@ class Collection extends Component {
 
         const { transacted, disabled } = this.state;
 
-        const copy = this.copy[this.state.transaction];
+        const copy = this.copy[this.state.transactionType];
 
         return (
             <View style={[ styles.container ]}>
