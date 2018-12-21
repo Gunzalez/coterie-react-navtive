@@ -42,6 +42,8 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        console.log(this.props.potDetail)
     }
 
     componentDidMount(){
@@ -197,20 +199,20 @@ class Detail extends Component {
 
     returnParticipantsToDisplay = () => {
         const participants = [];
-        this.state.localPot.participants.forEach((participant, index) => {
-
-
-
-
+        this.state.localPot.participants.forEach(participant => {
 
             const displayParticipant = Object.assign({}, participant, {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
-
-                transactionType: index === 0 ? 'collection' : 'payment',
-                transacted: index === 2,
-                disabled: index === 0
+                transactionType: participant.id === this.state.potDetail['nextParticipantToCollect'] ? 'collection' : 'payment'
             });
+
+            if(participant.id === this.state.potDetail['nextParticipantToCollect']){
+                displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
+            } else {
+                displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
+            }
+
             participants.push(displayParticipant)
         });
         // const sortedParticipants = utils.js.sort(participants);

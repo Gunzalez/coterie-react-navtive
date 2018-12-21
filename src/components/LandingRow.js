@@ -14,9 +14,25 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, transactionType, disabled, transacted } = data.item;
+    const { familyName, givenName, transactionType, transacted, readyToCollect } = data.item;
 
-    const strapLine = transactionType === 'collection' ? 'Collection due' : 'Payment due';
+    let strapLine = '';
+    let disabled = true;
+    if(transactionType === 'collection'){
+        strapLine = "Awaiting payments";
+        if(readyToCollect){
+            strapLine = "Ready to collect";
+            disabled = false;
+        }
+    } else {
+        strapLine = "Payment is due";
+        disabled = false;
+        if(transacted){
+            strapLine = "Payment taken"
+        }
+    }
+
+    // console.log(data.item);
 
     return (
         <View style={[ styles.container ]}>
