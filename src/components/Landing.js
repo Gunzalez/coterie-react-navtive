@@ -199,7 +199,7 @@ class Detail extends Component {
 
     returnParticipantsToDisplay = () => {
         const participants = [];
-        this.state.localPot.participants.forEach(participant => {
+        this.state.localPot.participants.forEach((participant, index) => {
 
             const displayParticipant = Object.assign({}, participant, {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
@@ -207,11 +207,25 @@ class Detail extends Component {
                 transactionType: participant.id === this.state.potDetail['nextParticipantToCollect'] ? 'collection' : 'payment'
             });
 
-            if(participant.id === this.state.potDetail['nextParticipantToCollect']){
-                displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
-            } else {
-                displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
+            if(this.state.potDetail.status === 'in-progress'){
+
+                if(participant.id === this.state.potDetail['nextParticipantToCollect']){
+                    displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
+                } else {
+                    displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
+                }
             }
+
+            if(this.state.potDetail.status === 'created'){
+
+                if(index === 0){
+                    displayParticipant.transactionType = 'collection';
+                    displayParticipant.readyToCollect = false
+                } else {
+                    displayParticipant.transacted = false
+                }
+            }
+
 
             participants.push(displayParticipant)
         });
