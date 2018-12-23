@@ -42,8 +42,6 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
-
-        console.log(this.props.potDetail)
     }
 
     componentDidMount(){
@@ -145,13 +143,23 @@ class Detail extends Component {
     };
 
     canSavePotDetails = () => {
+        const { name, participants } = this.state.localPot;
+        return name && name.trim().length > 0 && participants && participants.length > 2;
+    };
+
+    canShowSchedule = () => {
+        const { participants } = this.state.localPot;
+        return participants && participants.length > 2;
+    };
+
+    canAddParticipants = () => {
         const { status } = this.state.localPot;
-        return status === "created" || status === "new";
+        return status !== "in-progress" && status !== "completed";
     };
 
     canDeletePot = () => {
-        const { id, status} = this.state.potDetail;
-        return id !== -1 || status === "new";
+        const { status } = this.state.localPot;
+        return status !== "new";
     };
 
     askToDeletePot = () => {
@@ -190,8 +198,9 @@ class Detail extends Component {
             const { id } = this.state.potDetail;
             ajax.startAPot(id).then( response => {
                 if(response){
-
-                    console.log('Pot started')
+                    this.setState({
+                        busy: false
+                    });
                 }
             })
         });
@@ -214,9 +223,8 @@ class Detail extends Component {
                 } else {
                     displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
                 }
-            }
 
-            if(this.state.potDetail.status === 'created'){
+            } else {
 
                 if(index === 0){
                     displayParticipant.transactionType = 'collection';
@@ -225,7 +233,6 @@ class Detail extends Component {
                     displayParticipant.transacted = false
                 }
             }
-
 
             participants.push(displayParticipant)
         });
@@ -416,12 +423,12 @@ class Detail extends Component {
                 <View style={styles.footer}>
 
                     <TouchableOpacity
-                        disabled={!this.canDeletePot() || !permission}
+                        disabled={ !this.canDeletePot() || !permission}
                         onPress={this.askToDeletePot}>
                         <Icon
                             name="delete"
                             size={utils.style.icons.footer}
-                            color={this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -434,20 +441,21 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
+                        disabled={ !this.canShowSchedule() || !permission }
                         onPress={this.showSchedule}>
                         <Icon
                             name="menufold"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails() || !permission }
+                        disabled={!this.canAddParticipants() || !permission }
                         onPress={this.showParticipants}>
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
                     </TouchableOpacity>
                 </View>
 

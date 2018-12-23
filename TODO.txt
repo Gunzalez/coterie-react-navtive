@@ -15,7 +15,6 @@ Continue/Skip button text, is first time?
 Performance points at using iOS native for FlatList
 Participants count on Landing and Participants (contacts count?)
 Space for next to collect
-Re-order Schedule
 Payments & Starting a pot
 See about adding a new Contact direct from Saving Pots
 Collection screen design, and other headers
@@ -34,6 +33,7 @@ Add Warning for unsaved changes in new pot
 Doing Todo
 =================
 Redo Flex layout to handle Super Retina
+Bigger hit areas for Landing Row and potSlides
 -
 -
 ALWAYS DOING
@@ -48,6 +48,7 @@ Develop utils, and use
 
 DONE
 =================
+Re-order Schedule (but buggy)
 Search bar for contacts filter *
 get reference to flatList items *
 Splash - new design

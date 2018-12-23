@@ -130,7 +130,6 @@ export default class App extends Component {
     render() {
 
         const { screen, pots, potDetail } = this.state;
-        console.log(pots);
 
         if(screen === 'intro'){
             return (

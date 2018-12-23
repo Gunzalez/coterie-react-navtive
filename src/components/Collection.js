@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import {StyleSheet, View, Text, TouchableOpacity, Alert} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert, Modal, ActivityIndicator } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
+
+import ajax from './../ajax';
 
 import utils from './../utils';
 
@@ -25,8 +27,9 @@ class Collection extends Component {
         this.state = {
             transacted: transacted,
             initialState: transacted,
-            disabled: false,
-            transactionType: transactionType
+            disabled: transacted,
+            transactionType: transactionType,
+            busy: false
         };
 
         this.copy = {
@@ -47,13 +50,11 @@ class Collection extends Component {
         };
     }
 
-
     handlePress = () => {
         this.setState({
             transacted: !this.state.transacted
         })
     };
-
 
     closeCollection = () => {
 
@@ -71,8 +72,24 @@ class Collection extends Component {
 
         } else {
 
-            this.props.navigation.navigate('Landing')
+            this.props.navigation.navigate('Landing');
         }
+    };
+
+    makeAPayment = (participantId, pot) => {
+        this.setState({
+            busy: true
+        }, ()=>{
+            console.log(participantId, pot);
+            ajax.makePayment(participantId, pot.id).then(response => {
+                if(response){
+                    this.setState({
+                        busy: false,
+                        initialState: this.state.transacted
+                    })
+                }
+            })
+        });
     };
 
     hasMadeAChange = () => {
@@ -85,7 +102,7 @@ class Collection extends Component {
 
         const { name, round, savingsAmount, participants } = potDetail;
 
-        const { id, contactId, familyName, givenName } = participant.item;
+        const { id, familyName, givenName } = participant.item;
 
         const potValue = savingsAmount * (participants.length - 1);
 
@@ -165,7 +182,8 @@ class Collection extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={ !this.hasMadeAChange() }>
+                        disabled={ !this.hasMadeAChange() }
+                        onPress={()=>{this.makeAPayment(id, potDetail)}}>
                         <Icon
                             name="save"
                             size={40}
@@ -183,6 +201,19 @@ class Collection extends Component {
                     duration={Toast.Duration.long}
                     opacity={0.9}
                     positionValue={100} />
+
+                <Modal
+                    animationType={'none'}
+                    transparent={true}
+                    presentationStyle={'overFullScreen'}
+                    visible={this.state.busy}>
+                    <View style={styles.modal}>
+                        <ActivityIndicator
+                            animating={this.state.busy}
+                            color={utils.style.colours.white}
+                            size={'large'}/>
+                    </View>
+                </Modal>
 
             </View>
         );
@@ -268,6 +299,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         backgroundColor: utils.style.colours.white
+    },
+    modal: {
+        flex: 1,
+        paddingTop: 40,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'rgba(52, 52, 52, 0.3)'
+    },
+    activityIndicator: {
+        flexDirection: 'column',
+        alignItems: 'flex-start'
     },
     footer: {
         paddingVertical: 15,
