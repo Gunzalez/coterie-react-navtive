@@ -76,19 +76,29 @@ class Collection extends Component {
         }
     };
 
-    makeAPayment = (participantId, pot) => {
+    saveTransaction = (participantId, pot) => {
         this.setState({
             busy: true
         }, ()=>{
-            console.log(participantId, pot);
-            ajax.makePayment(participantId, pot.id).then(response => {
-                if(response){
-                    this.setState({
-                        busy: false,
-                        initialState: this.state.transacted
-                    })
-                }
-            })
+            if(this.state.transactionType === 'collection'){
+                ajax.takeCollection(participantId, pot.id).then(response => {
+                    if(response){
+                        this.setState({
+                            busy: false,
+                            initialState: this.state.transacted
+                        })
+                    }
+                })
+            } else {
+                ajax.makePayment(participantId, pot.id).then(response => {
+                    if(response){
+                        this.setState({
+                            busy: false,
+                            initialState: this.state.transacted
+                        })
+                    }
+                })
+            }
         });
     };
 
@@ -183,7 +193,7 @@ class Collection extends Component {
 
                     <TouchableOpacity
                         disabled={ !this.hasMadeAChange() }
-                        onPress={()=>{this.makeAPayment(id, potDetail)}}>
+                        onPress={()=>{this.saveTransaction(id, potDetail)}}>
                         <Icon
                             name="save"
                             size={40}

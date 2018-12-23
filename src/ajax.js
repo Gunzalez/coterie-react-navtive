@@ -122,6 +122,21 @@ export default {
         }
     },
 
+    async takeCollection(participantId, id){
+        try {
+            const options = {
+                headers: this.headers,
+                method: 'POST',
+                body: JSON.stringify({ "participantId" : participantId })
+            };
+            const response = await fetch( apiHost + '/plans/' + id + '/ledger/collections', options );
+            return await response.status === 202;
+
+        }  catch (e) {
+            console.error('error: ' + e);
+        }
+    },
+
     async makePayment(participantId, id){
         try {
             const options = {
