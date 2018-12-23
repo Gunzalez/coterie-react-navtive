@@ -112,7 +112,7 @@ export default {
             const options = {
                 method: 'POST',
                 headers: this.headers,
-                body: { planId : id }
+                body: JSON.stringify({ planId : id })
             };
             const response = await fetch( apiHost + '/plans.start', options );
             return await response.status === 200;
@@ -122,11 +122,26 @@ export default {
         }
     },
 
+    async makePayment(participantId, id){
+        try {
+            const options = {
+                headers: this.headers,
+                method: 'POST',
+                body: JSON.stringify({ "participantId" : participantId })
+            };
+            const response = await fetch( apiHost + '/plans/' + id + '/ledger/payments', options );
+            return await response.status === 202;
+
+        }  catch (e) {
+            console.error('error: ' + e);
+        }
+    },
+
     async deleteAPot(id){
         try {
             const options = {
-                method: 'POST',
                 headers: this.headers,
+                method: 'POST',
                 body: JSON.stringify({ planId : id })
             };
             const response = await fetch( apiHost + '/plans.cancel', options );
