@@ -215,7 +215,11 @@ class Participants extends Component {
 
         const { navigation } = this.props;
 
-        const { name } = navigation.state.params.potDetail;
+        let { name } = navigation.state.params.potDetail;
+
+        if(!name || name.length < 1){
+            name = "No Pot Name";
+        }
 
         return (
             <View style={[ styles.container ]}>
