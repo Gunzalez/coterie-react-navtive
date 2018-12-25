@@ -1,13 +1,18 @@
-Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
+##Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
 
-Require Homebrew and Node.
+###Requires Homebrew and Node.
 
-brew install node
-brew install watchman
-npm install -g react-native-cli
-npm install
+1. brew install node
+
+2. brew install watchman
+
+
+3. npm install -g react-native-cli
+
+4. npm install
 
 Run on simulator iOS (Mac only)
+
 react-native run-ios --simulator="iPhone 6"
 
 
