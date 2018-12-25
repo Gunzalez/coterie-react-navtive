@@ -1,4 +1,6 @@
-### Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
+## Saving Pot - React Native
+
+### [Built using the React Native framework](https://facebook.github.io/react-native/docs/getting-started)
 
 ### Requires Homebrew and Node.
 
@@ -12,8 +14,6 @@
 
 5. npm install
 
-Run on simulator iOS (Mac only)
-
-react-native run-ios --simulator="iPhone 6"
+6. react-native run-ios --simulator="iPhone 6" (to run on simulator Mac iOS only)
 
 
