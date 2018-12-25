@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Keyboard, FlatList, Alert, Modal, ActivityIndicator } from 'react-native';
 
+import Toast from 'react-native-whc-toast'
+
 import Contacts from 'react-native-contacts';
 
 import Icon from "react-native-vector-icons/AntDesign";
@@ -109,7 +111,18 @@ class Detail extends Component {
     updateLocalParticipants = (participants) => {
         const localPot = this.state.localPot;
         localPot.participants = participants;
-        this.setState({ localPot });
+        ajax.updateAPot(localPot).then( response => {
+            if(response){
+                ajax.getAPot(localPot.id).then(potDetail => {
+                    this.setState({
+                        potDetail,
+                        localPot: potDetail
+                    }, ()=> {
+                        this.props.updatePotInList(potDetail)
+                    });
+                })
+            }
+        })
     };
 
     showParticipants = () => {
@@ -143,8 +156,12 @@ class Detail extends Component {
     };
 
     canSavePotDetails = () => {
-        const { name, participants } = this.state.localPot;
-        return name && name.trim().length > 0 && participants && participants.length > 2;
+        const { name, participants, status } = this.state.localPot;
+        return name && name.trim().length > 0 && participants && participants.length > 2 && status !== "in-progress" && status !== "completed";
+    };
+
+    canMakeTransaction = () => {
+        return false
     };
 
     canShowSchedule = () => {
@@ -241,32 +258,51 @@ class Detail extends Component {
     };
 
     savePotDetail = () => {
-        const { localPot } = this.state;
 
-        if(localPot.id === -1 && localPot.status === 'new'){
+        this.setState({
+            busy: true
+        }, () => {
 
-            delete localPot.id;
-            delete localPot.status;
+            const { localPot } = this.state;
 
-            ajax.addAPot(localPot).then( potIdArr => {
-                const newPotId = potIdArr[potIdArr.length - 1];
+            if(localPot.id === -1 && localPot.status === 'new') {
 
-                ajax.getAPot(newPotId).then( potDetail => {
-                    this.setState({ potDetail, localPot: potDetail }, ()=> {
-                        this.props.addPotToList(this.state.potDetail)
-                    });
+                delete localPot.id;
+                delete localPot.status;
+
+                ajax.addAPot(localPot).then( potIdArr => {
+                    const newPotId = potIdArr[potIdArr.length - 1];
+
+                    ajax.getAPot(newPotId).then( potDetail => {
+                        this.setState({
+                            potDetail,
+                            localPot: potDetail,
+                            busy: false
+                        }, () => {
+                            this.props.addPotToList(this.state.potDetail)
+                        });
+                    })
                 })
-            })
 
-        } else {
+            } else {
 
-            // should do ajax call before this: Karl building PUT endpoint on weekend
-            this.setState({ potDetail: localPot }, () => {
-                this.props.updatePotInList(this.state.potDetail);
-            });
-
-        }
+                ajax.updateAPot(localPot).then( response => {
+                    if(response){
+                        ajax.getAPot(localPot.id).then(potDetail => {
+                            this.setState({
+                                potDetail,
+                                localPot: potDetail,
+                                busy: false
+                            }, ()=> {
+                                this.props.updatePotInList(potDetail)
+                            });
+                        })
+                    }
+                })
+            }
+        });
     };
+
 
     render() {
 
@@ -459,18 +495,29 @@ class Detail extends Component {
                     </TouchableOpacity>
                 </View>
 
-                    <Modal
-                        animationType={'none'}
-                        transparent={true}
-                        presentationStyle={'overFullScreen'}
-                        visible={this.state.busy}>
-                        <View style={styles.modal}>
-                            <ActivityIndicator
-                                animating={this.state.busy}
-                                color={utils.style.colours.white}
-                                size={'large'}/>
-                        </View>
-                    </Modal>
+                <Modal
+                    animationType={'none'}
+                    transparent={true}
+                    presentationStyle={'overFullScreen'}
+                    visible={this.state.busy}>
+                    <View style={styles.modal}>
+                        <ActivityIndicator
+                            animating={this.state.busy}
+                            color={utils.style.colours.white}
+                            size={'large'}/>
+                    </View>
+                </Modal>
+
+                <Toast
+                    ref="toast"
+                    style={styles.toast}
+                    textStyle={styles.text}
+                    position={Toast.Position.bottom}
+                    fadeInDuration={200}
+                    fadeOutDuration={200}
+                    duration={Toast.Duration.long}
+                    opacity={0.9}
+                    positionValue={100} />
 
             </View>
         );

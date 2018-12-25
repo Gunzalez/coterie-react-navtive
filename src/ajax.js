@@ -107,6 +107,21 @@ export default {
         }
     },
 
+    async updateAPot(potDetail){
+        try {
+            const options = {
+                headers: this.headers,
+                method: 'PUT',
+                body: JSON.stringify(potDetail)
+            };
+            const response = await fetch( apiHost + '/plans/' + potDetail.id, options );
+            return await response.status === 202;
+
+        }  catch (e) {
+            console.error('error: ' + e);
+        }
+    },
+
     async startAPot(id){
         try {
             const options = {

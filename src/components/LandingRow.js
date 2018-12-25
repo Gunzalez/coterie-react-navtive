@@ -58,8 +58,8 @@ const LandingRow = (props) => {
 
             </View>
             <View style={[styles.copy]}>
-                <Text style={styles.name}>{givenName} {familyName}</Text>
-                <Text style={styles.text}>{strapLine}</Text>
+                <Text style={[styles.name, transactionType === 'collection' && readyToCollect ? styles.ready : null]}>{givenName} {familyName}</Text>
+                <Text style={[styles.text]}>{strapLine}</Text>
             </View>
             <View style={[styles.button]}>
                 <TouchableOpacity
@@ -109,6 +109,9 @@ const styles = StyleSheet.create({
         color: utils.style.colours.grayText,
         lineHeight: 14,
         fontSize: 14
+    },
+    ready: {
+        color: utils.style.colours.purple
     }
 });
 
