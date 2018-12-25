@@ -1,6 +1,6 @@
 Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
 
-Require Homebrew and  Node.
+Require Homebrew and Node.
 
 brew install node
 brew install watchman
