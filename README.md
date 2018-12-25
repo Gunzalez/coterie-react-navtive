@@ -1,6 +1,6 @@
-##Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
+## Built using the React Native framework - (https://facebook.github.io/react-native/docs/getting-started)
 
-###Requires Homebrew and Node.
+### Requires Homebrew and Node.
 
 1. brew install node
 
