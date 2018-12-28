@@ -21,10 +21,15 @@ class Collection extends Component {
     constructor(props) {
         super(props);
 
-        const { participant, reloadPot } = this.props.navigation.state.params;
+        const { participant, potDetail, reloadPot } = this.props.navigation.state.params;
         const { isNextParticipantToCollect, hasParticipantPaid } = participant.item;
+        const { participants, savingsAmount, round } = potDetail;
 
+        this.fullPotValue = savingsAmount * (participants.length - 1);
+        this.thisRound = round === null ? 1 : round;
         this.type = isNextParticipantToCollect ? 'collection' : 'payment';
+        this.savingsAmount = potDetail.savingsAmount;
+        this.name = potDetail.name;
         this.reloadPot = reloadPot;
 
         let disabledButton = true;
@@ -38,25 +43,31 @@ class Collection extends Component {
             initialStatus: disabledButton,
             finalStatus: disabledButton,
             hasParticipantPaid,
+            currentPotValue: this.savingsAmount * 2
         };
 
         this.copy = {
             collection: {
-                button: {
-                    unClicked: 'CLICK TO COLLECT',
-                    clicked: 'COLLECTED'
+                unpaid: {
+                    button: "CLICK TO COLLECT",
+                    intro: "This participant is due to collect the full pot value for round " + this.thisRound + ".",
                 },
-                intro: "This participant is due to collect the pot value for this round."
+                paid: {
+                    button: "COLLECTED",
+                    intro: "This participant has collected the full pot value for round " + this.thisRound + ".",
+                }
             },
             payment: {
-                button: {
-                    unClicked: 'CLICK TO PAY',
-                    clicked: 'PAID'
+                unpaid: {
+                    button: "CLICK TO PAY",
+                    intro: "This participant is due to pay the saving amount for round " + this.thisRound + ".",
                 },
-                intro: "This participant is due to pay the saving amount for this round."
+                paid: {
+                    button: "PAID",
+                    intro: "This participant has paid the saving amount for round " + this.thisRound + ".",
+                }
             }
         };
-
     }
 
     handlePress = () => {
@@ -96,48 +107,43 @@ class Collection extends Component {
             if(this.type === 'collection'){
                 ajax.takeCollection(participantId, pot.id).then(response => {
                     if(response){
-                        this.setState({
-                            busy: false,
-                            initialStatus: this.state.finalStatus
-                        }, ()=>{
-                            this.reloadPot(pot.id);
-                        })
+                        this.udpatePageDetails(pot.id);
                     }
                 })
             } else {
                 ajax.makePayment(participantId, pot.id).then(response => {
                     if(response){
-                        this.setState({
-                            busy: false,
-                            initialStatus: this.state.finalStatus,
-                            hasParticipantPaid: true,
-                            disabled: true,
-                        }, ()=>{
-                            this.reloadPot(pot.id);
-                        })
+                        this.udpatePageDetails(pot.id);
                     }
                 })
             }
         });
     };
 
+
+    udpatePageDetails = (id) => {
+        this.setState({
+            busy: false,
+            initialStatus: this.state.finalStatus,
+            hasParticipantPaid: true,
+            disabled: true,
+        }, ()=>{
+            this.reloadPot(id);
+        })
+    };
+
+
     render() {
 
         const { potDetail, participant } = this.props.navigation.state.params;
 
-        const { name, round, savingsAmount, participants } = potDetail;
-
         const { id, familyName, givenName } = participant.item;
 
-        const potValue = savingsAmount * (participants.length - 1);
+        const { hasParticipantPaid, currentPotValue } = this.state;
 
-        const curValue = savingsAmount * 2;
+        const copy = this.copy[this.type][hasParticipantPaid ? 'paid' : 'unpaid'];
 
-        const thisRound = round === null ? 1 : round;
-
-        const copy = this.copy[this.type];
-
-        const { hasParticipantPaid } = this.state;
+        console.log(copy);
 
         return (
             <View style={[ styles.container ]}>
@@ -145,8 +151,8 @@ class Collection extends Component {
                 <View style={styles.top}>
 
                     <View style={[styles.meta]}>
-                        <Text style={[ styles.title ]}>{ name }</Text>
-                        <Text style={[ styles.subTitle ]}>Current round: <Text style={[styles.darker]}>{ thisRound }</Text></Text>
+                        <Text style={[ styles.title ]}>{ this.name }</Text>
+                        <Text style={[ styles.subTitle ]}>Current round: <Text style={[styles.darker]}>{ this.thisRound }</Text></Text>
                     </View>
 
                     <View style={styles.icon}>
@@ -160,24 +166,35 @@ class Collection extends Component {
                 </View>
 
                 <View style={styles.intro}>
-                    <Text>{ copy.intro }</Text>
+                    <Text>{ hasParticipantPaid || this.hasMadeAChange() ? copy.intro : copy.intro }</Text>
                 </View>
 
                 <View style={styles.middle}>
                     <Text>{givenName} {familyName}</Text>
-                    <Text>Current pot value £{curValue}</Text>
-                    <Text>Full pot value £{potValue}</Text>
-                    <Text>Saving amount £{savingsAmount}</Text>
+                    <Text>Current pot value £{currentPotValue}</Text>
+                    <Text>Full pot value £{this.fullPotValue}</Text>
+                    <Text>Saving amount £{this.savingsAmount}</Text>
                 </View>
 
                 <View style={styles.bottom}>
+                    
                     <TouchableOpacity style={[styles.button, hasParticipantPaid || this.hasMadeAChange() ? styles.paid : null ]}
                                       disabled={ this.state.disabled }
                                       onPress={this.handlePress}>
                         <Text style={[styles.buttonText, hasParticipantPaid || this.hasMadeAChange() ? styles.paidText : null]}>
-                            { copy.button.unClicked }
+                            { hasParticipantPaid || this.hasMadeAChange() ? copy.button : copy.button }
                         </Text>
                     </TouchableOpacity>
+                </View>
+
+
+                <View style={styles.notification}>
+                { this.hasMadeAChange() &&
+
+                    <Text style={[styles.notificationText]}>
+                        REMEMBER TO SAVE
+                    </Text>
+                }
                 </View>
 
                 <View style={styles.footer}>
@@ -279,7 +296,6 @@ const styles = StyleSheet.create({
         paddingLeft: 10
     },
     button: {
-        marginVertical: 50,
         width: '60%',
         backgroundColor: utils.style.colours.white,
         paddingVertical: 12,
@@ -290,14 +306,19 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     buttonText: {
-        color: utils.style.colours.purple
-
+        color: utils.style.colours.purple,
+        fontSize: 16
     },
     paid: {
         backgroundColor: utils.style.colours.purple
     },
     paidText: {
         color: utils.style.colours.white
+    },
+    notificationText: {
+        color: utils.style.colours.purple,
+        fontSize: 20,
+        paddingTop: 10
     },
     meta: {
         flexDirection: 'column',
@@ -317,6 +338,14 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.white
     },
     bottom: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingTop: 40,
+        paddingVertical: 10,
+        backgroundColor: utils.style.colours.white
+    },
+    notification: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -324,6 +353,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         backgroundColor: utils.style.colours.white
+
     },
     modal: {
         flex: 1,
