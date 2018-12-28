@@ -113,17 +113,22 @@ class Detail extends Component {
         localPot.participants = participants;
         ajax.updateAPot(localPot).then( response => {
             if(response){
-                ajax.getAPot(localPot.id).then(potDetail => {
-                    this.setState({
-                        potDetail,
-                        localPot: potDetail
-                    }, ()=> {
-                        this.props.updatePotInList(potDetail)
-                    });
-                })
+                this.reloadPot(localPot.id)
             }
         })
     };
+
+    reloadPot(id){
+        ajax.getAPot(id).then(potDetail => {
+            this.setState({
+                potDetail,
+                localPot: potDetail,
+                busy: false
+            }, ()=> {
+                this.props.updatePotInList(potDetail)
+            });
+        })
+    }
 
     showParticipants = () => {
         this.props.navigation.navigate('Participants', {
@@ -144,7 +149,8 @@ class Detail extends Component {
     showCollection = participant => {
         this.props.navigation.navigate('Collection', {
             participant: participant,
-            potDetail: this.state.localPot
+            potDetail: this.state.localPot,
+            reloadPot: this.reloadPot.bind(this)
         })
     };
 
@@ -230,26 +236,30 @@ class Detail extends Component {
             const displayParticipant = Object.assign({}, participant, {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
-                transactionType: participant.id === this.state.potDetail['nextParticipantToCollect'] ? 'collection' : 'payment'
+                participants: this.state.potDetail.participants,
+                isNextParticipantToCollect: participant.id === this.state.potDetail['nextParticipantToCollect'],
+                isNextParticipantsToPay: this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
+                isReadyToCollect: participant.id === this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].length < 1,
+                hasParticipantPaid: participant.id !== this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
             });
 
-            if(this.state.potDetail.status === 'in-progress'){
-
-                if(participant.id === this.state.potDetail['nextParticipantToCollect']){
-                    displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
-                } else {
-                    displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
-                }
-
-            } else {
-
-                if(index === 0){
-                    displayParticipant.transactionType = 'collection';
-                    displayParticipant.readyToCollect = false
-                } else {
-                    displayParticipant.transacted = false
-                }
-            }
+            // if(this.state.potDetail.status === 'in-progress'){
+            //
+            //     if(participant.id === this.state.potDetail['nextParticipantToCollect']){
+            //         displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
+            //     } else {
+            //         displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
+            //     }
+            //
+            // } else {
+            //
+            //     if(index === 0){
+            //         displayParticipant.transactionType = 'collection';
+            //         displayParticipant.readyToCollect = false
+            //     } else {
+            //         displayParticipant.transacted = false
+            //     }
+            // }
 
             participants.push(displayParticipant)
         });
@@ -288,15 +298,7 @@ class Detail extends Component {
 
                 ajax.updateAPot(localPot).then( response => {
                     if(response){
-                        ajax.getAPot(localPot.id).then(potDetail => {
-                            this.setState({
-                                potDetail,
-                                localPot: potDetail,
-                                busy: false
-                            }, ()=> {
-                                this.props.updatePotInList(potDetail)
-                            });
-                        })
+                        this.reloadPot(localPot.id);
                     }
                 })
             }

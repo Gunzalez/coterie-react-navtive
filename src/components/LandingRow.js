@@ -14,31 +14,32 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, transactionType, transacted, readyToCollect } = data.item;
+    console.log(data);
+
+    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid } = data.item;
+    const type = isNextParticipantToCollect ? 'collection' : 'payment';
 
     let strapLine = '';
     let disabled = true;
-    if(transactionType === 'collection'){
-        strapLine = "Awaiting payments";
-        if(readyToCollect){
+    if(type === 'collection'){
+        strapLine = "Collects when all have paid";
+        if(isReadyToCollect){
             strapLine = "Ready to collect";
             disabled = false;
         }
     } else {
-        strapLine = "Payment is due";
+        strapLine = "This person has not paid";
         disabled = false;
-        if(transacted){
+        if(hasParticipantPaid){
             strapLine = "Payment taken"
         }
     }
-
-    // console.log(data.item);
 
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.icon]}>
 
-                {( transactionType === 'collection') ?
+                {( type === 'collection') ?
 
                     <IconII
                         name={'shopping-basket'}
@@ -51,14 +52,14 @@ const LandingRow = (props) => {
                     <IconIII
                         name={'cash-usd'}
                         size={32}
-                        color={ transacted ? utils.style.colours.purple : utils.style.colours.gray }
+                        color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray }
                     />
 
                 }
 
             </View>
             <View style={[styles.copy]}>
-                <Text style={[styles.name, transactionType === 'collection' && readyToCollect ? styles.ready : null]}>{givenName} {familyName}</Text>
+                <Text style={[styles.name]}>{givenName} {familyName}</Text>
                 <Text style={[styles.text]}>{strapLine}</Text>
             </View>
             <View style={[styles.button]}>
