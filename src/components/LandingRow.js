@@ -20,7 +20,7 @@ const LandingRow = (props) => {
     let strapLine = '';
     let disabled = true;
     if(type === 'collection'){
-        strapLine = "Collects when all have paid";
+        strapLine = "Can collect when all have paid";
         if(isReadyToCollect){
             strapLine = "Ready to collect";
             disabled = false;
