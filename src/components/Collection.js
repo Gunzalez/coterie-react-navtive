@@ -100,7 +100,26 @@ class Collection extends Component {
         }
     };
 
+    askToSaveTransaction = (participantId, pot) => {
+
+        if(pot.status === "created"){
+            Alert.alert(
+                'Start your pot?',
+                'Your first payment will start the pot. Once a pot is started, you can no longer edit the Pot name, the saving amount or the number of participants. Start the Pot?',
+                [
+                    { text: "NO", onPress: () => {}, style: 'cancel' },
+                    { text: "YES", onPress: () => { this.startPotThenSaveTransaction(participantId, pot) }},
+                ],
+                { cancelable: false }
+            );
+        } else if(pot.status === "in-progress")  {
+
+            this.saveTransaction(participantId, pot)
+        }
+    };
+
     saveTransaction = (participantId, pot) => {
+
         this.setState({
             busy: true
         }, ()=>{
@@ -120,6 +139,17 @@ class Collection extends Component {
         });
     };
 
+    startPotThenSaveTransaction = (participantId, pot) => {
+        this.setState({
+            busy: true
+        }, ()=>{
+            ajax.startAPot(pot.id).then( response => {
+                if(response){
+                    this.saveTransaction(participantId, pot)
+                }
+            })
+        });
+    };
 
     updatePageDetails = (id) => {
         this.setState({
@@ -131,7 +161,6 @@ class Collection extends Component {
             this.reloadPot(id);
         })
     };
-
 
     render() {
 
@@ -185,18 +214,18 @@ class Collection extends Component {
                     </TouchableOpacity>
                 </View>
 
-
                 <View style={styles.notification}>
-                { this.hasMadeAChange() &&
 
-                    <Text style={[styles.notificationText]}>
-                        REMEMBER TO SAVE
-                    </Text>
-                }
+                    { this.hasMadeAChange() &&
+
+                        <Text style={[styles.notificationText]}>
+                            REMEMBER TO SAVE
+                        </Text>
+                    }
+
                 </View>
 
                 <View style={styles.footer}>
-
                     <TouchableOpacity
                         disabled={true}>
                         <Icon
@@ -223,7 +252,7 @@ class Collection extends Component {
 
                     <TouchableOpacity
                         disabled={ !this.hasMadeAChange() }
-                        onPress={()=>{this.saveTransaction(id, potDetail)}}>
+                        onPress={()=>{this.askToSaveTransaction(id, potDetail)}}>
                         <Icon
                             name="save"
                             size={40}
@@ -242,17 +271,18 @@ class Collection extends Component {
                     opacity={0.9}
                     positionValue={100} />
 
-                <Modal
-                    animationType={'none'}
-                    transparent={true}
-                    presentationStyle={'overFullScreen'}
-                    visible={this.state.busy}>
+                <Modal animationType={'none'}
+                       transparent={true}
+                       presentationStyle={'overFullScreen'}
+                       visible={this.state.busy}>
+
                     <View style={styles.modal}>
                         <ActivityIndicator
                             animating={this.state.busy}
                             color={utils.style.colours.white}
                             size={'large'}/>
                     </View>
+
                 </Modal>
 
             </View>

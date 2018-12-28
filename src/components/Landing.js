@@ -216,7 +216,7 @@ class Detail extends Component {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
                 participants: this.state.potDetail.participants,
-                canPayAndCollect: this.state.potDetail.status === 'in-progress',
+                canPayAndCollect: this.state.potDetail.status === 'in-progress' || this.state.potDetail.status === 'created' && this.state.potDetail.participants.length > 2,
                 isNextParticipantToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'],
                 isNextParticipantsToPay: this.state.potDetail.status === 'in-progress' && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
                 isReadyToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].length < 1,
@@ -275,7 +275,6 @@ class Detail extends Component {
             })
         }
     };
-
 
     render() {
 
