@@ -411,7 +411,9 @@ class Detail extends Component {
                                 <Text style={styles.meta}>{participants.length} participants</Text>
                                 <Text style={styles.meta}>£{savingsAmount} each</Text>
                                 {/*<Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>*/}
-                                <Text style={styles.meta}>Next: {'Michael Jordan'}</Text>
+                                <Text style={styles.meta}>
+                                    <Text style={styles.label}>Next:</Text>
+                                    {'Michael Jordan'}</Text>
                             </View>
                         </View>
 
