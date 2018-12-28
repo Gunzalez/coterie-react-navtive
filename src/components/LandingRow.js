@@ -27,7 +27,7 @@ const LandingRow = (props) => {
             disabled = false;
         }
     } else {
-        strapLine = "This person has not paid";
+        strapLine = "This participant has not paid";
         disabled = false;
         if(hasParticipantPaid){
             strapLine = "Payment taken"
@@ -39,7 +39,7 @@ const LandingRow = (props) => {
     }
 
     if(status === "completed"){
-        strapLine = 'This person has collected';
+        strapLine = 'This participant has collected';
         type = 'collection'
     }
 
