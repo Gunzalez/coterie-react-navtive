@@ -14,7 +14,7 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid } = data.item;
+    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect } = data.item;
     const type = isNextParticipantToCollect ? 'collection' : 'payment';
 
     let strapLine = '';
@@ -31,6 +31,10 @@ const LandingRow = (props) => {
         if(hasParticipantPaid){
             strapLine = "Payment taken"
         }
+    }
+
+    if(!canPayAndCollect){
+        disabled = true;
     }
 
     return (

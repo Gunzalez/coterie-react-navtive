@@ -113,11 +113,7 @@ class Detail extends Component {
     updateLocalParticipants = (participants) => {
         const localPot = this.state.localPot;
         localPot.participants = participants;
-        ajax.updateAPot(localPot).then( response => {
-            if(response){
-                this.reloadPot(localPot.id)
-            }
-        })
+        this.addNewOrUpdateExistingPot(localPot);
     };
 
     reloadPot(id){
@@ -174,8 +170,8 @@ class Detail extends Component {
     };
 
     canAddParticipants = () => {
-        const { status } = this.state.localPot;
-        return status !== "in-progress" && status !== "completed";
+        const { status, name } = this.state.localPot;
+        return status !== "in-progress" && status !== "completed" && name;
     };
 
     canDeletePot = () => {
@@ -220,6 +216,7 @@ class Detail extends Component {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
                 participants: this.state.potDetail.participants,
+                canPayAndCollect: this.state.potDetail.status === 'in-progress',
                 isNextParticipantToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'],
                 isNextParticipantsToPay: this.state.potDetail.status === 'in-progress' && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
                 isReadyToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].length < 1,
@@ -243,37 +240,40 @@ class Detail extends Component {
         this.setState({
             busy: true
         }, () => {
-
             const { localPot } = this.state;
-
-            if(localPot.id === -1 && localPot.status === 'new') {
-
-                delete localPot.id;
-                delete localPot.status;
-
-                ajax.addAPot(localPot).then( potIdArr => {
-                    const newPotId = potIdArr[potIdArr.length - 1];
-
-                    ajax.getAPot(newPotId).then( potDetail => {
-                        this.setState({
-                            potDetail,
-                            localPot: potDetail,
-                            busy: false
-                        }, () => {
-                            this.props.addPotToList(this.state.potDetail)
-                        });
-                    })
-                })
-
-            } else {
-
-                ajax.updateAPot(localPot).then( response => {
-                    if(response){
-                        this.reloadPot(localPot.id);
-                    }
-                })
-            }
+            this.addNewOrUpdateExistingPot(localPot);
         });
+    };
+
+    addNewOrUpdateExistingPot = (localPot) => {
+
+        if(localPot.id === -1 && localPot.status === 'new') {
+
+            delete localPot.id;
+            delete localPot.status;
+
+            ajax.addAPot(localPot).then( potIdArr => {
+                const newPotId = potIdArr[potIdArr.length - 1];
+
+                ajax.getAPot(newPotId).then( potDetail => {
+                    this.setState({
+                        potDetail,
+                        localPot: potDetail,
+                        busy: false
+                    }, () => {
+                        this.props.addPotToList(this.state.potDetail)
+                    });
+                })
+            })
+
+        } else {
+
+            ajax.updateAPot(localPot).then( response => {
+                if(response){
+                    this.reloadPot(localPot.id);
+                }
+            })
+        }
     };
 
 
@@ -290,13 +290,14 @@ class Detail extends Component {
             if(participants.length < 1){
                 return (
                     <View style={styles.empty}>
-                        <TouchableOpacity onPress={this.showParticipants}>
+                        <TouchableOpacity onPress={this.showParticipants}
+                            disabled={!this.canAddParticipants() || !permission }>
                             <Icon
                                 name="addusergroup"
                                 size={utils.style.icons.footer}
-                                color={utils.style.colours.purple}/>
+                                color={ this.canAddParticipants() && permission ? utils.style.colours.purple : utils.style.colours.grayLight }/>
                         </TouchableOpacity>
-                        <Text style={styles.emptyText}>Add participants to this pot</Text>
+                        <Text style={[ this.canAddParticipants() && permission ? styles.emptyText : styles.emptyTextDisabled ]}>Add participants to this pot</Text>
                     </View>
                 )
             }
@@ -307,7 +308,7 @@ class Detail extends Component {
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={(item) =>
-                        <Row data={item} participantClicked={()=>{this.showCollection(item)} } />
+                        <Row data={item} participantClicked={()=>{this.showCollection(item)}}/>
                     }
                 />
             )
@@ -437,7 +438,7 @@ class Detail extends Component {
                         <Icon
                             name="delete"
                             size={utils.style.icons.footer}
-                            color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -446,7 +447,7 @@ class Detail extends Component {
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -455,7 +456,7 @@ class Detail extends Component {
                         <Icon
                             name="menufold"
                             size={utils.style.icons.footer}
-                            color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -464,7 +465,7 @@ class Detail extends Component {
                         <Icon
                             name="addusergroup"
                             size={utils.style.icons.footer}
-                            color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText} />
+                            color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
                     </TouchableOpacity>
                 </View>
 
@@ -596,7 +597,6 @@ const styles = StyleSheet.create({
     total: {
         fontSize: 37,
         lineHeight: 37
-
     },
     amountText: {
         color: utils.style.colours.grayText
@@ -617,9 +617,13 @@ const styles = StyleSheet.create({
         marginBottom: 100,
         color: utils.style.colours.grayText
     },
+    emptyTextDisabled: {
+        fontSize: 20,
+        marginBottom: 100,
+        color: utils.style.colours.grayLight
+    },
     settings: {
         flex: 1,
-        // justifyContent: 'space-around',
         alignItems: 'flex-start',
         paddingTop: 40
     },
