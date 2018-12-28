@@ -98,7 +98,7 @@ class Collection extends Component {
                     if(response){
                         this.setState({
                             busy: false,
-                            initialState: this.state.c
+                            initialStatus: this.state.finalStatus
                         }, ()=>{
                             this.reloadPot(pot.id);
                         })
@@ -109,8 +109,9 @@ class Collection extends Component {
                     if(response){
                         this.setState({
                             busy: false,
-                            initialState: this.state.finalStatus,
-                            hasParticipantPaid: true
+                            initialStatus: this.state.finalStatus,
+                            hasParticipantPaid: true,
+                            disabled: true,
                         }, ()=>{
                             this.reloadPot(pot.id);
                         })
