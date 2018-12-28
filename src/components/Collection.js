@@ -21,15 +21,23 @@ class Collection extends Component {
     constructor(props) {
         super(props);
 
-        const { participant } = this.props.navigation.state.params;
-        const { transacted, transactionType } = participant.item;
+        const { participant, reloadPot } = this.props.navigation.state.params;
+        const { isNextParticipantToCollect, hasParticipantPaid } = participant.item;
+
+        this.type = isNextParticipantToCollect ? 'collection' : 'payment';
+        this.reloadPot = reloadPot;
+
+        let disabledButton = true;
+        if(isNextParticipantToCollect || !hasParticipantPaid){
+            disabledButton = false;
+        }
 
         this.state = {
-            transacted: transacted,
-            initialState: transacted,
-            disabled: transacted,
-            transactionType: transactionType,
-            busy: false
+            disabled: disabledButton,
+            busy: false,
+            initialStatus: disabledButton,
+            finalStatus: disabledButton,
+            hasParticipantPaid,
         };
 
         this.copy = {
@@ -48,12 +56,17 @@ class Collection extends Component {
                 intro: "This participant is due to pay the saving amount for this round."
             }
         };
+
     }
 
     handlePress = () => {
         this.setState({
-            transacted: !this.state.transacted
+            finalStatus: !this.state.finalStatus
         })
+    };
+
+    hasMadeAChange = () => {
+        return this.state.finalStatus !== this.state.initialStatus
     };
 
     closeCollection = () => {
@@ -80,12 +93,14 @@ class Collection extends Component {
         this.setState({
             busy: true
         }, ()=>{
-            if(this.state.transactionType === 'collection'){
+            if(this.type === 'collection'){
                 ajax.takeCollection(participantId, pot.id).then(response => {
                     if(response){
                         this.setState({
                             busy: false,
-                            initialState: this.state.transacted
+                            initialState: this.state.c
+                        }, ()=>{
+                            this.reloadPot(pot.id);
                         })
                     }
                 })
@@ -94,16 +109,15 @@ class Collection extends Component {
                     if(response){
                         this.setState({
                             busy: false,
-                            initialState: this.state.transacted
+                            initialState: this.state.finalStatus,
+                            hasParticipantPaid: true
+                        }, ()=>{
+                            this.reloadPot(pot.id);
                         })
                     }
                 })
             }
         });
-    };
-
-    hasMadeAChange = () => {
-        return this.state.transacted !== this.state.initialState
     };
 
     render() {
@@ -120,16 +134,16 @@ class Collection extends Component {
 
         const thisRound = round === null ? 1 : round;
 
-        const { transacted, disabled } = this.state;
+        const copy = this.copy[this.type];
 
-        const copy = this.copy[this.state.transactionType];
+        const { hasParticipantPaid } = this.state;
 
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
 
-                    <View style={[styles.potMeta]}>
+                    <View style={[styles.meta]}>
                         <Text style={[ styles.title ]}>{ name }</Text>
                         <Text style={[ styles.subTitle ]}>Current round: <Text style={[styles.darker]}>{ thisRound }</Text></Text>
                     </View>
@@ -156,11 +170,11 @@ class Collection extends Component {
                 </View>
 
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={[styles.button, transacted ? styles.transacted : null ]}
-                                      disabled={disabled}
+                    <TouchableOpacity style={[styles.button, hasParticipantPaid || this.hasMadeAChange() ? styles.paid : null ]}
+                                      disabled={ this.state.disabled }
                                       onPress={this.handlePress}>
-                        <Text style={[styles.buttonText, transacted ? styles.transactedButtonText : null]}>
-                            { transacted ? copy.button.clicked : copy.button.unClicked }
+                        <Text style={[styles.buttonText, hasParticipantPaid || this.hasMadeAChange() ? styles.paidText : null]}>
+                            { copy.button.unClicked }
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -278,13 +292,13 @@ const styles = StyleSheet.create({
         color: utils.style.colours.purple
 
     },
-    transacted: {
+    paid: {
         backgroundColor: utils.style.colours.purple
     },
-    transactedButtonText: {
+    paidText: {
         color: utils.style.colours.white
     },
-    potMeta: {
+    meta: {
         flexDirection: 'column',
         flex: 1,
         marginRight: 5
