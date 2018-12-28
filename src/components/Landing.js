@@ -518,7 +518,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        backgroundColor: utils.style.colours.purple,
+        backgroundColor: utils.style.colours.purpleLight,
         alignItems: 'flex-end',
         height: 105
     },

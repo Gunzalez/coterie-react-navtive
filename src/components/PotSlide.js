@@ -45,7 +45,7 @@ class PotSlide extends Component {
         return(
             <View style={styles.container}>
 
-                <View style={[styles.top, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
+                <View style={[styles.top, status === "completed" ? styles.completed : null, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
                     <TouchableOpacity style={styles.topButton} onPress={this.handlePress}>
                         <Icon name="arrowsalt"
                               size={utils.style.icons.top}
@@ -54,7 +54,8 @@ class PotSlide extends Component {
                     <Text style={[styles.text, styles.title]}>{name}</Text>
                 </View>
 
-                { status === "new" &&
+                { status === "new" ?
+
                     <View style={styles.bottom}>
                         <Text style={styles.intro}>No of participants</Text>
                         <Text style={styles.intro}>Saving amount</Text>
@@ -62,9 +63,9 @@ class PotSlide extends Component {
                         <Text style={styles.intro}>Pot status</Text>
                         <Text style={styles.intro}>Total Pot Value</Text>
                     </View>
-                }
 
-                { status !== "new" &&
+                :
+
                     <View style={styles.bottom}>
                         <Text style={styles.text}>{participants.length} Participants</Text>
                         <Text style={styles.text}>Saving £{ utils.js.thousandth(savingsAmount) }</Text>
@@ -115,6 +116,9 @@ const styles = StyleSheet.create({
     },
     running: {
         backgroundColor: utils.style.colours.purple
+    },
+    completed: {
+        backgroundColor: utils.style.colours.grayDark
     },
     title: {
         fontSize: 25,

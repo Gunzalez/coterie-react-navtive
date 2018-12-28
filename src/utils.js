@@ -2,13 +2,14 @@
 export default {
     style: {
         colours: {
-            purple: '#ba55d3',
+            purple: '#8e44ad',
+            purpleLight: '#9b59b6',
             white: '#ffffff',
             gray: '#e9e9e9',
-            grayText: '#868686',
-            orange: '#fc6621',
+            grayText: '#7f8c8d',
+            orange: '#d35400',
             grayLight: '#efefef',
-            grayDark: '#444444',
+            grayDark: '#111111',
             background: '#f5f5f5'
         },
         icons: {
