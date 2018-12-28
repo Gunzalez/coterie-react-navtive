@@ -44,6 +44,8 @@ class Detail extends Component {
             localPot: Object.assign({}, this.props.potDetail),
             charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
+
+        console.log(this.props.potDetail);
     }
 
     componentDidMount(){
@@ -166,10 +168,6 @@ class Detail extends Component {
         return name && name.trim().length > 0 && participants && participants.length > 2 && status !== "in-progress" && status !== "completed";
     };
 
-    canMakeTransaction = () => {
-        return false
-    };
-
     canShowSchedule = () => {
         const { participants } = this.state.localPot;
         return participants && participants.length > 2;
@@ -214,21 +212,6 @@ class Detail extends Component {
         });
     };
 
-    startPot = () => {
-        this.setState({
-            busy: true
-        }, ()=>{
-            const { id } = this.state.potDetail;
-            ajax.startAPot(id).then( response => {
-                if(response){
-                    this.setState({
-                        busy: false
-                    });
-                }
-            })
-        });
-    };
-
     returnParticipantsToDisplay = () => {
         const participants = [];
         this.state.localPot.participants.forEach((participant, index) => {
@@ -237,29 +220,17 @@ class Detail extends Component {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
                 participants: this.state.potDetail.participants,
-                isNextParticipantToCollect: participant.id === this.state.potDetail['nextParticipantToCollect'],
-                isNextParticipantsToPay: this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
-                isReadyToCollect: participant.id === this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].length < 1,
-                hasParticipantPaid: participant.id !== this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
+                isNextParticipantToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'],
+                isNextParticipantsToPay: this.state.potDetail.status === 'in-progress' && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
+                isReadyToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].length < 1,
+                hasParticipantPaid: this.state.potDetail.status === 'in-progress' && participant.id !== this.state.potDetail['nextParticipantToCollect'] && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
             });
 
-            // if(this.state.potDetail.status === 'in-progress'){
-            //
-            //     if(participant.id === this.state.potDetail['nextParticipantToCollect']){
-            //         displayParticipant.readyToCollect = this.state.potDetail['nextParticipantsToPay'].length === 0
-            //     } else {
-            //         displayParticipant.transacted = this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) === -1
-            //     }
-            //
-            // } else {
-            //
-            //     if(index === 0){
-            //         displayParticipant.transactionType = 'collection';
-            //         displayParticipant.readyToCollect = false
-            //     } else {
-            //         displayParticipant.transacted = false
-            //     }
-            // }
+            if(this.state.potDetail.status === 'created'){
+                if(index === 0){
+                    displayParticipant.isNextParticipantToCollect = true
+                }
+            }
 
             participants.push(displayParticipant)
         });

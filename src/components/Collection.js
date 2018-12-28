@@ -143,8 +143,6 @@ class Collection extends Component {
 
         const copy = this.copy[this.type][hasParticipantPaid ? 'paid' : 'unpaid'];
 
-        console.log(copy);
-
         return (
             <View style={[ styles.container ]}>
 
