@@ -107,13 +107,13 @@ class Collection extends Component {
             if(this.type === 'collection'){
                 ajax.takeCollection(participantId, pot.id).then(response => {
                     if(response){
-                        this.udpatePageDetails(pot.id);
+                        this.updatePageDetails(pot.id);
                     }
                 })
             } else {
                 ajax.makePayment(participantId, pot.id).then(response => {
                     if(response){
-                        this.udpatePageDetails(pot.id);
+                        this.updatePageDetails(pot.id);
                     }
                 })
             }
@@ -121,7 +121,7 @@ class Collection extends Component {
     };
 
 
-    udpatePageDetails = (id) => {
+    updatePageDetails = (id) => {
         this.setState({
             busy: false,
             initialStatus: this.state.finalStatus,
