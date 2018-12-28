@@ -9,21 +9,22 @@ Clean up styling - different header styling, not good
 PotSlides not in the middle: BUG
 FlatList is buggy - may need bigger rows
 Icon - new design
-Adjust display for crazy no. Pots
+Adjust display for crazy no. off Pots
 Style New Pot different
 Continue/Skip button text, is first time?
 Performance points at using iOS native for FlatList
 Participants count on Landing and Participants (contacts count?)
 Space for next to collect
-Payments & Starting a pot
 See about adding a new Contact direct from Saving Pots
 Collection screen design, and other headers
+Grouping contacts list on Participants screen
 -
 -
 Next ToDo to do
 =================
-Grouping contacts list on Participants screen
-Add Warning for unsaved changes in new pot
+Add warning for unsaved changes in new pot
+Retrieve name of next to collect on Landing
+Fix re-schedule, on only those that have not paid
 
 
 
@@ -48,6 +49,7 @@ Develop utils, and use
 
 DONE
 =================
+Payments & Starting a pot
 Re-order Schedule (but buggy)
 Search bar for contacts filter *
 get reference to flatList items *

@@ -42,7 +42,8 @@ class Detail extends Component {
             contactsPermission: true,
             potDetail: this.props.potDetail,
             localPot: Object.assign({}, this.props.potDetail),
-            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
+            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0),
+            nameOfNextToCollect: "Anna"
         };
     }
 
@@ -54,6 +55,7 @@ class Detail extends Component {
             // Contacts.PERMISSION_AUTHORIZED || Contacts.PERMISSION_UNDEFINED || Contacts.PERMISSION_DENIED
             if (permission === 'undefined') {
                 Contacts.requestPermission((err, permission) => {
+
                     if (err) throw err;
 
                     if (permission === 'authorized') {
@@ -65,11 +67,13 @@ class Detail extends Component {
                         })
                     }
                 })
+
             } else {
 
                 if (permission === 'authorized') {
                     this.getAllContacts();
                 }
+
                 if (permission === 'denied') {
                     this.setState({
                         contactsPermission: false
@@ -224,7 +228,7 @@ class Detail extends Component {
 
             if(this.state.potDetail.status === 'created'){
                 if(index === 0){
-                    displayParticipant.isNextParticipantToCollect = true
+                    displayParticipant.isNextParticipantToCollect = true;
                 }
             }
 
@@ -232,6 +236,10 @@ class Detail extends Component {
         });
         // const sortedParticipants = utils.js.sort(participants);
         return participants;
+    };
+
+    returnNextParticipantToCollect = () => {
+        return this.state.nameOfNextToCollect
     };
 
     savePotDetail = () => {
@@ -277,7 +285,7 @@ class Detail extends Component {
 
     render() {
 
-        const { name, participants = [], status, savingsAmount, round = "-", nextParticipantToCollect } = this.state.localPot;
+        const { name, participants = [], status, savingsAmount, round } = this.state.localPot;
 
         const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
@@ -410,10 +418,9 @@ class Detail extends Component {
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} participants</Text>
                                 <Text style={styles.meta}>£{savingsAmount} each</Text>
-                                {/*<Text style={styles.meta}>Next: {nextParticipantToCollect}</Text>*/}
                                 <Text style={styles.meta}>
-                                    <Text style={styles.label}>Next:</Text>
-                                    {'Michael Jordan'}</Text>
+                                    <Text style={styles.label}>Next: </Text>
+                                    { this.returnNextParticipantToCollect() }</Text>
                             </View>
                         </View>
 
