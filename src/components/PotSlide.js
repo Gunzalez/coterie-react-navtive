@@ -40,7 +40,11 @@ class PotSlide extends Component {
 
         const { name = 'Create a new pot', savingsAmount, participants, status, round } = this.props.data;
 
-        const thisRound = round !== null ? round : 1;
+        let thisRound = round !== null ? round : 1;
+
+        if(status === "completed"){
+            thisRound = participants.length
+        }
 
         return(
             <View style={styles.container}>

@@ -165,8 +165,8 @@ class Detail extends Component {
     };
 
     canShowSchedule = () => {
-        const { participants } = this.state.localPot;
-        return participants && participants.length > 2;
+        const { participants, status } = this.state.localPot;
+        return participants && participants.length > 2 && status !== "completed";
     };
 
     canAddParticipants = () => {
@@ -216,6 +216,7 @@ class Detail extends Component {
                 familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
                 givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
                 participants: this.state.potDetail.participants,
+                status: this.state.potDetail.status,
                 canPayAndCollect: this.state.potDetail.status === 'in-progress' || this.state.potDetail.status === 'created' && this.state.potDetail.participants.length > 2,
                 isNextParticipantToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'],
                 isNextParticipantsToPay: this.state.potDetail.status === 'in-progress' && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
@@ -283,6 +284,12 @@ class Detail extends Component {
         const totPotValue = participants.length > 0 ? (participants.length * savingsAmount) - savingsAmount : 0;
 
         const permission = this.state.contactsPermission;
+
+        let thisRound = round !== null ? round : 1;
+
+        if(status === "completed"){
+            thisRound = participants.length
+        }
 
         const _renderContent = () => {
 
@@ -352,7 +359,7 @@ class Detail extends Component {
 
                         <View style={[styles.nameInput]}>
                             <Text style={[styles.input]}>{name}</Text>
-                            <Text style={[styles.meta, { color: utils.style.colours.white, paddingTop: 10 }]}>{round}/{participants.length}</Text>
+                            <Text style={[styles.meta, { color: utils.style.colours.white, paddingTop: 10 }]}>{thisRound}/{participants.length}</Text>
                         </View>
 
                     }

@@ -14,13 +14,14 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect } = data.item;
-    const type = isNextParticipantToCollect ? 'collection' : 'payment';
+    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
+
+    let type = isNextParticipantToCollect ? 'collection' : 'payment';
 
     let strapLine = '';
     let disabled = true;
     if(type === 'collection'){
-        strapLine = "Can collect when all have paid";
+        strapLine = "Can collect once all have paid";
         if(isReadyToCollect){
             strapLine = "Ready to collect";
             disabled = false;
@@ -37,16 +38,21 @@ const LandingRow = (props) => {
         disabled = true;
     }
 
+    if(status === "completed"){
+        strapLine = 'This person has collected';
+        type = 'collection'
+    }
+
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.icon]}>
 
-                {( type === 'collection') ?
+                { type === 'collection' ?
 
                     <IconII
                         name={'shopping-basket'}
                         size={32}
-                        color={ utils.style.colours.gray }
+                        color={ status === "completed" ? utils.style.colours.purple : utils.style.colours.gray }
                     />
 
                     :
