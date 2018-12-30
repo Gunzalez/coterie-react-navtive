@@ -42,8 +42,7 @@ class Detail extends Component {
             contactsPermission: true,
             potDetail: this.props.potDetail,
             localPot: Object.assign({}, this.props.potDetail),
-            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0),
-            nameOfNextToCollect: "Anna"
+            charactersLeft: this.characterCap - (this.props.potDetail.name ? this.props.potDetail.name.length : 0)
         };
     }
 
@@ -239,7 +238,18 @@ class Detail extends Component {
     };
 
     returnNextParticipantToCollect = () => {
-        return this.state.nameOfNextToCollect
+        let nextToCollect = "Nobody";
+        let contactId = null;
+        const { participants, nextParticipantToCollect } = this.state.potDetail;
+        if(nextParticipantToCollect){
+            participants.map( participant => {
+                if(participant.id === nextParticipantToCollect){
+                    contactId = participant.contactId
+                }
+            });
+            nextToCollect = utils.js.getContactDetailFromId(contactId, 'givenName', this.state.contacts)
+        }
+        return nextToCollect
     };
 
     savePotDetail = () => {
@@ -416,8 +426,8 @@ class Detail extends Component {
                             </View>
 
                             <View style={styles.savingsMeta}>
-                                <Text style={styles.meta}>{participants.length} participants</Text>
-                                <Text style={styles.meta}>£{savingsAmount} each</Text>
+                                <Text style={styles.meta}>{participants.length} <Text style={styles.label}>participants</Text></Text>
+                                <Text style={styles.meta}>£{savingsAmount} <Text style={styles.label}>each</Text></Text>
                                 <Text style={styles.meta}>
                                     <Text style={styles.label}>Next: </Text>
                                     { this.returnNextParticipantToCollect() }</Text>
