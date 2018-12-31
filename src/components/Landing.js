@@ -160,6 +160,10 @@ class Detail extends Component {
         this.setState({ charactersLeft, localPot });
     };
 
+    hasEditedNameOrAmount = () => {
+        return this.state.localPot.name !== this.state.potDetail.name || this.state.localPot.savingsAmount !== this.state.potDetail.savingsAmount
+    };
+
     canSavePotDetails = () => {
         const { name, participants, status } = this.state.localPot;
         return name && name.trim().length > 0 && participants && participants.length > 2 && status !== "in-progress" && status !== "completed";
@@ -467,6 +471,13 @@ class Detail extends Component {
                     <TouchableOpacity
                         disabled={!this.canSavePotDetails() || !permission }
                         onPress={ this.savePotDetail}>
+
+                        { this.hasEditedNameOrAmount() &&
+
+                            <View style={styles.changes}>
+
+                            </View>
+                        }
                         <Icon
                             name="save"
                             size={utils.style.icons.footer}
@@ -525,6 +536,16 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: utils.style.colours.background,
         flex: 1
+    },
+    changes: {
+        width: 16,
+        height: 16,
+        borderRadius: 8,
+        backgroundColor: 'red',
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        zIndex: 1
     },
     modal: {
         flex: 1,

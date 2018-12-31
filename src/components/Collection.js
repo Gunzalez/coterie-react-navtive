@@ -159,6 +159,7 @@ class Collection extends Component {
             disabled: true,
         }, ()=>{
             this.reloadPot(id);
+            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -260,17 +261,6 @@ class Collection extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <Toast
-                    ref="toast"
-                    style={styles.toast}
-                    textStyle={styles.text}
-                    position={Toast.Position.bottom}
-                    fadeInDuration={200}
-                    fadeOutDuration={200}
-                    duration={Toast.Duration.long}
-                    opacity={0.9}
-                    positionValue={100} />
-
                 <Modal animationType={'none'}
                        transparent={true}
                        presentationStyle={'overFullScreen'}
@@ -284,6 +274,17 @@ class Collection extends Component {
                     </View>
 
                 </Modal>
+
+                <Toast
+                    ref="toast"
+                    style={styles.toast}
+                    textStyle={styles.text}
+                    position={Toast.Position.bottom}
+                    fadeInDuration={200}
+                    fadeOutDuration={200}
+                    duration={Toast.Duration.long}
+                    opacity={0.9}
+                    positionValue={100} />
 
             </View>
         );

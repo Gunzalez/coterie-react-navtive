@@ -324,6 +324,7 @@ class Participants extends Component {
                     </TouchableOpacity>
 
                 </View>
+
                 <Toast
                     ref="toast"
                     style={styles.toast}
