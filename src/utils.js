@@ -7,9 +7,10 @@ export default {
             white: '#ffffff',
             gray: '#e9e9e9',
             grayText: '#7f8c8d',
-            orange: '#d35400',
+            orange: '#f39c12',
+            yellow: '#f1c40f',
             grayLight: '#efefef',
-            grayDark: '#111111',
+            grayDark: '#2c3e50',
             background: '#f5f5f5'
         },
         icons: {

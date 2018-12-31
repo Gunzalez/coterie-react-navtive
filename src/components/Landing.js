@@ -90,9 +90,7 @@ class Detail extends Component {
     };
 
     handlePress = () => {
-
         if(this.hasEditedNameOrAmount()){
-
             Alert.alert(
                 'Unsaved changes',
                 'Discard changes and leave anyway?',
@@ -106,7 +104,6 @@ class Detail extends Component {
 
             this.props.navigateTo('list');
         }
-
     };
 
     decreaseSavings = () => {
@@ -258,7 +255,7 @@ class Detail extends Component {
     };
 
     returnNextParticipantToCollect = () => {
-        let nextToCollect = "Nobody";
+        let nextToCollect = null;
         let contactId = null;
         const { participants, nextParticipantToCollect } = this.state.potDetail;
         if(nextParticipantToCollect){
@@ -361,7 +358,7 @@ class Detail extends Component {
         return (
             <View style={[ styles.container ]}>
 
-                <View style={styles.top}>
+                <View style={[styles.top, status === "completed" ? styles.completed : null, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
                     <TouchableOpacity onPress={this.handlePress}>
                         <Icon
                             name="shrink"
@@ -451,8 +448,20 @@ class Detail extends Component {
                                 <Text style={styles.meta}>{participants.length} <Text style={styles.label}>participants</Text></Text>
                                 <Text style={styles.meta}>£{savingsAmount} <Text style={styles.label}>each</Text></Text>
                                 <Text style={styles.meta}>
-                                    <Text style={styles.label}>Next: </Text>
-                                    { this.returnNextParticipantToCollect() }</Text>
+
+                                    { this.returnNextParticipantToCollect()  ?
+
+                                        <Text style={styles.label}>Next: </Text>
+
+                                        :
+
+                                        <Text>All have collected</Text>
+
+                                    }
+
+                                    { this.returnNextParticipantToCollect() }
+
+                                </Text>
                             </View>
                         </View>
 
@@ -490,11 +499,15 @@ class Detail extends Component {
                         disabled={!this.canSavePotDetails() || !permission }
                         onPress={ this.savePotDetail}>
 
-                        { this.hasEditedNameOrAmount() &&
+                        { this.hasEditedNameOrAmount() && this.canSavePotDetails() ?
 
                             <View style={styles.changes}>
 
                             </View>
+
+                            :
+
+                            null
                         }
                         <Icon
                             name="save"
@@ -581,9 +594,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        backgroundColor: utils.style.colours.purpleLight,
+        backgroundColor: utils.style.colours.orange,
         alignItems: 'flex-end',
         height: 105
+    },
+    new: {
+        backgroundColor: utils.style.colours.yellow
+    },
+    running: {
+        backgroundColor: utils.style.colours.purpleLight
+    },
+    completed: {
+        backgroundColor: utils.style.colours.grayDark
     },
     nameInput: {
         paddingTop: 10,

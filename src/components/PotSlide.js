@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     new: {
-        backgroundColor: utils.style.colours.orange
+        backgroundColor: utils.style.colours.yellow
     },
     running: {
         backgroundColor: utils.style.colours.purple
