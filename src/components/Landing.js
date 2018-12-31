@@ -90,7 +90,23 @@ class Detail extends Component {
     };
 
     handlePress = () => {
-        this.props.navigateTo('list');
+
+        if(this.hasEditedNameOrAmount()){
+
+            Alert.alert(
+                'Unsaved changes',
+                'Discard changes and leave anyway?',
+                [
+                    { text: "NO", onPress: () => {}, style: 'cancel' },
+                    { text: "YES", onPress: () => { this.props.navigateTo('list'); }},
+                ],
+                { cancelable: false }
+            );
+        } else {
+
+            this.props.navigateTo('list');
+        }
+
     };
 
     decreaseSavings = () => {
@@ -282,7 +298,8 @@ class Detail extends Component {
                         localPot: potDetail,
                         busy: false
                     }, () => {
-                        this.props.addPotToList(this.state.potDetail)
+                        this.props.addPotToList(this.state.potDetail);
+                        this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
                     });
                 })
             })
@@ -292,6 +309,7 @@ class Detail extends Component {
             ajax.updateAPot(localPot).then( response => {
                 if(response){
                     this.reloadPot(localPot.id);
+                    this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
                 }
             })
         }

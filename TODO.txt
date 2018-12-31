@@ -14,7 +14,6 @@ Style New Pot different
 Continue/Skip button text, is first time?
 Performance points at using iOS native for FlatList
 Participants count on Landing and Participants (contacts count?)
-Space for next to collect
 See about adding a new Contact direct from Saving Pots
 Collection screen design, and other headers
 Grouping contacts list on Participants screen,
@@ -79,6 +78,7 @@ Added Alerts
 
 NOT DOING -- yet
 =================
-Test App on Android - DVM and real device
-Get Address book Contacts (Android)
-Contacts Permission DENIED handler (Android)
+Space for next to collect - (Because I can't remember what I meant)
+Test App on Android - DVM and real device - (Will do later)
+Get Address book Contacts (Android) - (Will do later)
+Contacts Permission DENIED handler (Android)- (Will do later)
