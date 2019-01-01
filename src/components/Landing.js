@@ -140,7 +140,6 @@ class Detail extends Component {
             const localPot = Object.assign({}, potDetail);
             this.setState({ potDetail, localPot, busy: false }, ()=> {
                 this.props.updatePotInList(potDetail);
-                this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
             });
         })
     }
@@ -297,8 +296,7 @@ class Detail extends Component {
                 const newPotId = potIdArr[potIdArr.length - 1];
 
                 ajax.getAPot(newPotId).then( potDetail => {
-                    const localPot = Object.assign({}, potDetail); // should be a fresh copy
-                    localPot.fresh = 'fresh';
+                    const localPot = Object.assign({}, potDetail);
                     this.setState({ potDetail, localPot, busy: false }, () => {
                         this.props.addPotToList(this.state.potDetail);
                         this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
@@ -311,6 +309,7 @@ class Detail extends Component {
             ajax.updateAPot(localPot).then( response => {
                 if(response){
                     this.reloadPot(localPot.id);
+                    this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
                 }
             })
         }
