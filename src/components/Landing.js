@@ -111,7 +111,10 @@ class Detail extends Component {
         if(this.state.localPot.savingsAmount > this.savingsMin){
             const localPot = this.state.localPot;
             localPot.savingsAmount = localPot.savingsAmount - this.savingsInc;
-            this.setState({ localPot });
+            this.setState({ localPot }, ()=> {
+                console.log('detail: ' + this.state.potDetail.savingsAmount);
+                console.log('local' + this.state.localPot.savingsAmount);
+            });
         }
     };
 
@@ -292,7 +295,7 @@ class Detail extends Component {
                 ajax.getAPot(newPotId).then( potDetail => {
                     this.setState({
                         potDetail,
-                        localPot: potDetail,
+                        localPot: Object.assign({}, potDetail),
                         busy: false
                     }, () => {
                         this.props.addPotToList(this.state.potDetail);
@@ -569,14 +572,16 @@ const styles = StyleSheet.create({
         flex: 1
     },
     changes: {
-        width: 16,
-        height: 16,
+        width: 18,
+        height: 18,
         borderRadius: 8,
         backgroundColor: 'red',
         position: 'absolute',
-        top: 0,
-        right: 0,
-        zIndex: 1
+        top: -2,
+        right: -2,
+        zIndex: 1,
+        borderColor: utils.style.colours.purple,
+        borderWidth: 2
     },
     modal: {
         flex: 1,
@@ -594,7 +599,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        backgroundColor: utils.style.colours.orange,
+        backgroundColor: utils.style.colours.grayText,
         alignItems: 'flex-end',
         height: 105
     },
