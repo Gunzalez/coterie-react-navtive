@@ -108,12 +108,14 @@ class Detail extends Component {
 
     decreaseSavings = () => {
         Keyboard.dismiss();
+        console.log('before: ');
+        console.log(this.state);
         if(this.state.localPot.savingsAmount > this.savingsMin){
             const localPot = this.state.localPot;
             localPot.savingsAmount = localPot.savingsAmount - this.savingsInc;
             this.setState({ localPot }, ()=> {
-                console.log('detail: ' + this.state.potDetail.savingsAmount);
-                console.log('local' + this.state.localPot.savingsAmount);
+                console.log('after - ');
+                console.log(this.state);
             });
         }
     };
@@ -135,12 +137,10 @@ class Detail extends Component {
 
     reloadPot(id){
         ajax.getAPot(id).then(potDetail => {
-            this.setState({
-                potDetail,
-                localPot: potDetail,
-                busy: false
-            }, ()=> {
-                this.props.updatePotInList(potDetail)
+            const localPot = Object.assign({}, potDetail);
+            this.setState({ potDetail, localPot, busy: false }, ()=> {
+                this.props.updatePotInList(potDetail);
+                this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
             });
         })
     }
@@ -274,12 +274,16 @@ class Detail extends Component {
 
     savePotDetail = () => {
 
-        this.setState({
-            busy: true
-        }, () => {
-            const { localPot } = this.state;
-            this.addNewOrUpdateExistingPot(localPot);
-        });
+        if(this.hasEditedNameOrAmount()){
+
+            this.setState({
+                busy: true
+            }, () => {
+                const { localPot } = this.state;
+                this.addNewOrUpdateExistingPot(localPot);
+            });
+
+        }
     };
 
     addNewOrUpdateExistingPot = (localPot) => {
@@ -293,11 +297,9 @@ class Detail extends Component {
                 const newPotId = potIdArr[potIdArr.length - 1];
 
                 ajax.getAPot(newPotId).then( potDetail => {
-                    this.setState({
-                        potDetail,
-                        localPot: Object.assign({}, potDetail),
-                        busy: false
-                    }, () => {
+                    const localPot = Object.assign({}, potDetail); // should be a fresh copy
+                    localPot.fresh = 'fresh';
+                    this.setState({ potDetail, localPot, busy: false }, () => {
                         this.props.addPotToList(this.state.potDetail);
                         this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
                     });
@@ -309,7 +311,6 @@ class Detail extends Component {
             ajax.updateAPot(localPot).then( response => {
                 if(response){
                     this.reloadPot(localPot.id);
-                    this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
                 }
             })
         }
