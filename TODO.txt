@@ -17,7 +17,7 @@ Unify font sizes - utils
 Clean up styling - different header styling, not good
 FlatList is buggy - may need bigger rows
 Icon - new design
-Adjust display for crazy no. off Pots
+Adjust display for crazy no. of Pots *
 Style New Pot different
 Continue/Skip button text, is first time?
 Participants count on Landing and Participants (contacts count?)
