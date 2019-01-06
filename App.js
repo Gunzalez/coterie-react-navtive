@@ -35,7 +35,7 @@ export default class App extends Component {
 
         ajax.getAccessTokenFromStorage().then( accessToken => {
 
-            if(accessToken.length > 0) {
+            if(accessToken && accessToken.length > 0) {
 
                 this.setHeadersWithAccessTokenGetAllPots(accessToken);
 
@@ -71,7 +71,7 @@ export default class App extends Component {
         ajax.setHeadersForFetch();
         ajax.getAllPots().then( data => {
             const pots = data['plans'];
-            console.log(pots);
+            // console.log(pots);
             this.setState({ pots }, ()=> {
                 SplashScreen.hide();
             })
