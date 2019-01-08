@@ -397,7 +397,7 @@ class Detail extends Component {
 
                         <View style={[styles.nameInput]}>
                             <Text style={[styles.input]}>{name}</Text>
-                            <Text style={[styles.meta, { color: utils.style.colours.white, paddingTop: 10 }]}>{thisRound}/{participants.length}</Text>
+                            <Text style={[styles.meta, { color: utils.style.colours.white, paddingTop: 10 }]}>Rnd {thisRound}</Text>
                         </View>
 
                     }

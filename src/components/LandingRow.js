@@ -21,13 +21,13 @@ const LandingRow = (props) => {
     let strapLine = '';
     let disabled = true;
     if(type === 'collection'){
-        strapLine = "Can collect once all have paid";
+        strapLine = "Collects only when all have paid";
         if(isReadyToCollect){
-            strapLine = "Ready to collect";
+            strapLine = "This participant can collect";
             disabled = false;
         }
     } else {
-        strapLine = "This participant has not paid";
+        strapLine = "Yet to pay";
         disabled = false;
         if(hasParticipantPaid){
             strapLine = "Payment taken"

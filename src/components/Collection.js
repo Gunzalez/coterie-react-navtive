@@ -104,8 +104,8 @@ class Collection extends Component {
 
         if(pot.status === "created"){
             Alert.alert(
-                'Start your pot?',
-                'Your first payment will start the pot. Once a pot is started, you can no longer edit the Pot name, the saving amount or the number of participants. Start the Pot?',
+                'Start the pot?',
+                'Once started, the pot name, saving amount and participants will be fixed.\nStart the pot?',
                 [
                     { text: "NO", onPress: () => {}, style: 'cancel' },
                     { text: "YES", onPress: () => { this.startPotThenSaveTransaction(participantId, pot) }},
