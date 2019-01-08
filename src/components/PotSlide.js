@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -49,14 +49,14 @@ class PotSlide extends Component {
         return(
             <View style={styles.container}>
 
-                <View style={[styles.top, status === "completed" ? styles.completed : null, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
-                    <TouchableOpacity style={styles.topButton} onPress={this.handlePress}>
-                        <Icon name="arrowsalt"
-                              size={utils.style.icons.top}
-                              color={utils.style.colours.white} />
-                    </TouchableOpacity>
-                    <Text style={[styles.text, styles.title]}>{name}</Text>
-                </View>
+                <TouchableWithoutFeedback style={styles.topButton} onPress={this.handlePress}>
+                    <View style={[styles.top, status === "completed" ? styles.completed : null, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
+                            <Icon name="arrowsalt"
+                                  size={utils.style.icons.top}
+                                  color={utils.style.colours.white} />
+                        <Text style={[styles.text, styles.title]}>{name}</Text>
+                    </View>
+                </TouchableWithoutFeedback>
 
                 { status === "new" ?
 
@@ -102,12 +102,15 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     topButton: {
-        alignSelf: 'flex-end'
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     top: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
+        alignItems: 'flex-end',
         backgroundColor: utils.style.colours.grayText,
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.yellow
     },
     running: {
-        backgroundColor: utils.style.colours.purple
+        backgroundColor: utils.style.colours.purpleLight
     },
     completed: {
         backgroundColor: utils.style.colours.grayDark
