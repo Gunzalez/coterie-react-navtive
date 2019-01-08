@@ -108,15 +108,10 @@ class Detail extends Component {
 
     decreaseSavings = () => {
         Keyboard.dismiss();
-        console.log('before: ');
-        console.log(this.state);
         if(this.state.localPot.savingsAmount > this.savingsMin){
             const localPot = this.state.localPot;
             localPot.savingsAmount = localPot.savingsAmount - this.savingsInc;
-            this.setState({ localPot }, ()=> {
-                console.log('after - ');
-                console.log(this.state);
-            });
+            this.setState({ localPot });
         }
     };
 
@@ -203,7 +198,7 @@ class Detail extends Component {
         const { name } = this.state.localPot;
         Alert.alert(
             'Delete this Pot?',
-            'This will delete "' +name + '" completely. Are you sure?',
+            'This will delete "' +name + '" completely.\nAre you sure?',
             [
                 { text: "NO", onPress: () => {}, style: 'cancel' },
                 { text: "YES", onPress: () => { this.deletePot() }},

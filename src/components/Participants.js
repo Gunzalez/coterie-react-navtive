@@ -117,7 +117,7 @@ class Participants extends Component {
 
         Alert.alert(
             'Remove participants?',
-            'Clears all added contacts. Are you sure?',
+            'Clears all added contacts.\nAre you sure?',
             [
                 { text: "NO", onPress: () => {}, style: 'cancel' },
                 { text: "YES", onPress: () => {
