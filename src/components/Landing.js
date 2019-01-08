@@ -336,7 +336,7 @@ class Detail extends Component {
                                 size={utils.style.icons.footer}
                                 color={ this.canAddParticipants() && permission ? utils.style.colours.purple : utils.style.colours.grayLight }/>
                         </TouchableOpacity>
-                        <Text style={[ this.canAddParticipants() && permission ? styles.emptyText : styles.emptyTextDisabled ]}>Add participants to this pot</Text>
+                        <Text style={[ this.canAddParticipants() && permission ? styles.emptyText : styles.emptyTextDisabled ]}>Manage pot participants</Text>
                     </View>
                 )
             }
