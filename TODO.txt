@@ -29,13 +29,14 @@ Restart Pot ( deletes old and starts new )
 Next ToDo to do
 =================
 Redo Flex layout to handle Super Retina
+Collection screen design, and other heading areas
+Current pot value
 
 
 
 Doing Todo
 =================
-Fix re-schedule, on only those that have not paid
-Collection screen design, and other headers
+Fix re-schedule, on only those that have not paid - Karl to do endpoint first
 
 -
 -

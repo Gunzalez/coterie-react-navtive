@@ -411,7 +411,7 @@ class Detail extends Component {
                                 <Icon
                                     name="minus"
                                     size={utils.style.icons.body}
-                                    color={savingsAmount <= this.savingsMin ? utils.style.colours.grayText : utils.style.colours.purple}/>
+                                    color={savingsAmount <= this.savingsMin ? utils.style.colours.white : utils.style.colours.purple}/>
                             </TouchableOpacity>
                             <View style={styles.amount}>
                                 <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
@@ -424,7 +424,7 @@ class Detail extends Component {
                                 <Icon
                                     name="plus"
                                     size={utils.style.icons.body}
-                                    color={savingsAmount >= this.savingsMax ? utils.style.colours.grayText : utils.style.colours.purple}/>
+                                    color={savingsAmount >= this.savingsMax ? utils.style.colours.white : utils.style.colours.purple}/>
                             </TouchableOpacity>
                         </View>
 
