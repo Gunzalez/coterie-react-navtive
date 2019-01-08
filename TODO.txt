@@ -19,7 +19,7 @@ FlatList is buggy - may need bigger rows
 Icon - new design
 Adjust display for crazy no. of Pots *
 Style New Pot different
-Continue/Skip button text, is first time?
+Continue/Skip button text, if first time?
 Participants count on Landing and Participants (contacts count?)
 See about adding a new Contact direct from Saving Pots
 Grouping contacts list on Participants screen,

@@ -16,4 +16,21 @@
 
 6. react-native run-ios --simulator="iPhone 6" (to run on simulator Mac iOS only)
 
+Or
+
+react-native run-ios --simulator="iPhone 5s"
+react-native run-ios --simulator="iPhone 6"
+react-native run-ios --simulator="iPhone 6 Plus"
+react-native run-ios --simulator="iPhone 6s"
+react-native run-ios --simulator="iPhone 6s Plus"
+react-native run-ios --simulator="iPhone 7"
+react-native run-ios --simulator="iPhone 7 Plus"
+react-native run-ios --simulator="iPhone 8"
+react-native run-ios --simulator="iPhone 8 Plus"
+react-native run-ios --simulator="iPhone SE"
+react-native run-ios --simulator="iPhone X"
+react-native run-ios --simulator="iPhone XR"
+react-native run-ios --simulator="iPhone XS"
+react-native run-ios --simulator="iPhone XS Max"
+
 

@@ -375,7 +375,7 @@ class Detail extends Component {
 
                             <TextInput
                                 style={styles.input}
-                                placeholder={'Type in a name'}
+                                placeholder={'Type in a pot name'}
                                 underlineColorAndroid={'transparent'}
                                 autoCapitalize={'words'}
                                 autoFocus={status === 'new'}
