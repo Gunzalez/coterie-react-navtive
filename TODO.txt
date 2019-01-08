@@ -29,7 +29,6 @@ Restart Pot ( deletes old and starts new )
 Next ToDo to do
 =================
 Redo Flex layout to handle Super Retina
-Bigger hit areas for Landing Row and potSlides
 
 
 
@@ -52,6 +51,7 @@ Develop utils, and use
 
 DONE
 =================
+Bigger hit areas for Landing Row and potSlides
 Styling footer on Participants and other sub pages
 Add warning for unsaved changes in new pot
 Retrieve name of next to collect on Landing

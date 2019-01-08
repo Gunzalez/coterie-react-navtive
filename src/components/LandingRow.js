@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -45,42 +45,50 @@ const LandingRow = (props) => {
 
     return (
         <View style={[ styles.container ]}>
-            <View style={[styles.icon]}>
 
-                { type === 'collection' ?
+            <TouchableWithoutFeedback
+                disabled={disabled}
+                onPress={()=>{participantClicked(data)}}>
 
-                    <IconII
-                        name={'shopping-basket'}
-                        size={32}
-                        color={ status === "completed" ? utils.style.colours.purple : utils.style.colours.gray }
-                    />
+                <View style={styles.row}>
 
-                    :
+                    <View style={[styles.icon]}>
 
-                    <IconIII
-                        name={'cash-usd'}
-                        size={32}
-                        color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray }
-                    />
+                        { type === 'collection' ?
 
-                }
+                            <IconII
+                                name={'shopping-basket'}
+                                size={32}
+                                color={ status === "completed" ? utils.style.colours.purple : utils.style.colours.gray }
+                            />
 
-            </View>
-            <View style={[styles.copy]}>
-                <Text style={[styles.name]}>{givenName} {familyName}</Text>
-                <Text style={[styles.text]}>{strapLine}</Text>
-            </View>
-            <View style={[styles.button]}>
-                <TouchableOpacity
-                    disabled={disabled}
-                    onPress={()=>{participantClicked(data)}}>
-                    <Icon
-                        name={'right'}
-                        size={24}
-                        color={ disabled ? utils.style.colours.gray : utils.style.colours.purple }
-                    />
-                </TouchableOpacity>
-            </View>
+                            :
+
+                            <IconIII
+                                name={'cash-usd'}
+                                size={32}
+                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray }
+                            />
+
+                        }
+
+                    </View>
+
+                    <View style={[styles.copy]}>
+                        <Text style={[styles.name]}>{givenName} {familyName}</Text>
+                        <Text style={[styles.text]}>{strapLine}</Text>
+                    </View>
+
+                    <View style={[styles.button]}>
+                        <Icon
+                            name={'right'}
+                            size={24}
+                            color={ disabled ? utils.style.colours.gray : utils.style.colours.purple } />
+                    </View>
+
+                </View>
+
+            </TouchableWithoutFeedback>
         </View>
     );
 };
@@ -93,6 +101,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#eaeaea',
         paddingVertical: 10
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flex: 1
     },
     icon: {
         flexDirection: 'column',
