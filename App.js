@@ -114,10 +114,10 @@ export default class App extends Component {
         this.state.pots.forEach( pot => {
             if(pot.id === potDetail.id){
                 const updatedPot = Object.assign({}, potDetail);
-                pots.push(updatedPot)
+                pots.push(updatedPot);
             } else {
                 const existingPot = Object.assign({}, pot);
-                pots.push(existingPot)
+                pots.push(existingPot);
             }
         });
         pots.forEach((pot, index) => {
@@ -136,7 +136,8 @@ export default class App extends Component {
             return (
                 <View style={styles.container}>
                     <StatusBar barStyle={"light-content"} />
-                    <Introduction navigateTo={this.switchScreen} />
+                    <Introduction navigateTo={this.switchScreen}
+                        pots={pots}/>
                 </View>
             );
         }

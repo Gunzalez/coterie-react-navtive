@@ -17,13 +17,34 @@ const { width } = Dimensions.get('window');
 class Introduction extends Component {
 
     static propTypes = {
-        navigateTo: PropTypes.func.isRequired
+        navigateTo: PropTypes.func.isRequired,
+        pots: PropTypes.array.isRequired
     };
 
-    state = {
-        index: 0,
-        disabled: false
+    constructor(props){
+        super(props);
+
+        this.state = {
+            index: 0,
+            disabled: true
+        };
+    }
+
+    componentDidMount(){
+        if(this.props.pots.length > 0){
+            this.setState({
+                disabled: false
+            })
+        }
     };
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.pots.length > 0){
+            this.setState({
+                disabled: false
+            })
+        }
+    }
 
     scrollX = new Animated.Value(0);
 
@@ -33,9 +54,11 @@ class Introduction extends Component {
 
     handleEndScroll = evt => {
         if(this.state.disabled){
-            this.setState({
-                disabled: evt.nativeEvent.contentSize.width !== (evt.nativeEvent['targetContentOffset'].x + width)
-            })
+            if(evt.nativeEvent.contentSize.width === (evt.nativeEvent['targetContentOffset'].x + width)){
+                this.setState({
+                    disabled: false
+                });
+            }
         }
     };
 

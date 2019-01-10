@@ -199,7 +199,7 @@ class Collection extends Component {
 
                 <View style={styles.middle}>
                     <Text>{givenName} {familyName}</Text>
-                    <Text>Current pot value £{currentPotValue}</Text>
+                    {/*<Text>Current pot value £{currentPotValue}</Text>*/}
                     <Text>Full pot value £{this.fullPotValue}</Text>
                     <Text>Saving amount £{this.savingsAmount}</Text>
                 </View>

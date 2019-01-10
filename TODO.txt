@@ -19,7 +19,6 @@ FlatList is buggy - may need bigger rows
 Icon - new design
 Adjust display for crazy no. of Pots *
 Style New Pot different
-Continue/Skip button text, if first time?
 Participants count on Landing and Participants (contacts count?)
 See about adding a new Contact direct from Saving Pots
 Grouping contacts list on Participants screen,
@@ -30,7 +29,11 @@ Next ToDo to do
 =================
 Redo Flex layout to handle Super Retina
 Collection screen design, and other heading areas
-Current pot value
+Calculate current pot value
+Remove fixed height in styles on Landing layout
+Extract all names from Contacts
+render/setState bug on saving Pot details
+
 
 
 
@@ -52,6 +55,7 @@ Develop utils, and use
 
 DONE
 =================
+Continue/Skip button text, if first time?
 Bigger hit areas for Landing Row and potSlides
 Styling footer on Participants and other sub pages
 Add warning for unsaved changes in new pot
