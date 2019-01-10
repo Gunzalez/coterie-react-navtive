@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import Icon from "react-native-vector-icons/AntDesign";
 
-import IconII from "react-native-vector-icons/Entypo";
+import IconII from "react-native-vector-icons/Ionicons";
 
 import IconIII from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -21,7 +21,7 @@ const LandingRow = (props) => {
     let strapLine = '';
     let disabled = true;
     if(type === 'collection'){
-        strapLine = "Collects only when all have paid";
+        strapLine = "Collects when all have paid";
         if(isReadyToCollect){
             strapLine = "This participant can collect";
             disabled = false;
@@ -57,7 +57,7 @@ const LandingRow = (props) => {
                         { type === 'collection' ?
 
                             <IconII
-                                name={'shopping-basket'}
+                                name={'md-hammer'}
                                 size={32}
                                 color={ status === "completed" ? utils.style.colours.purple : utils.style.colours.gray }
                             />
@@ -65,7 +65,7 @@ const LandingRow = (props) => {
                             :
 
                             <IconIII
-                                name={'cash-usd'}
+                                name={'coin'}
                                 size={32}
                                 color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray }
                             />
