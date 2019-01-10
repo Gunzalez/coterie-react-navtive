@@ -86,10 +86,10 @@ class Collection extends Component {
 
             Alert.alert(
                 'Unsaved changes',
-                'Discard changes and leave anyway?',
+                'Changes will be lost without saving\nLeave anyway?',
                 [
-                    { text: "NO", onPress: () => {}, style: 'cancel' },
-                    { text: "YES", onPress: () => { this.props.navigation.navigate('Landing') }},
+                    { text: "LEAVE", onPress: () => { this.props.navigation.navigate('Landing') }},
+                    { text: "STAY", onPress: () => {}, style: 'cancel' }
                 ],
                 { cancelable: false }
             );

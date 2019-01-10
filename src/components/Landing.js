@@ -93,10 +93,10 @@ class Detail extends Component {
         if(this.hasEditedNameOrAmount()){
             Alert.alert(
                 'Unsaved changes',
-                'Discard changes and leave anyway?',
+                'Changes will be lost without saving\nLeave anyway?',
                 [
-                    { text: "NO", onPress: () => {}, style: 'cancel' },
-                    { text: "YES", onPress: () => { this.props.navigateTo('list'); }},
+                    { text: "LEAVE", onPress: () => { this.props.navigateTo('list'); }},
+                    { text: "STAY", onPress: () => {}, style: 'cancel' }
                 ],
                 { cancelable: false }
             );
