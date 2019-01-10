@@ -6,6 +6,10 @@ import { StyleSheet, View, Text, TouchableOpacity, Alert, Modal, ActivityIndicat
 
 import Icon from "react-native-vector-icons/AntDesign";
 
+import IconII from "react-native-vector-icons/Ionicons";
+
+import IconIII from "react-native-vector-icons/MaterialCommunityIcons";
+
 import ajax from './../ajax';
 
 import utils from './../utils';
@@ -157,7 +161,7 @@ class Collection extends Component {
             initialStatus: this.state.finalStatus,
             hasParticipantPaid: true,
             disabled: true,
-        }, ()=>{
+        }, () => {
             this.reloadPot(id);
             this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
         })
@@ -178,33 +182,76 @@ class Collection extends Component {
 
                 <View style={styles.top}>
 
-                    <View style={[styles.meta]}>
-                        <Text style={[ styles.title ]}>{ this.name }</Text>
-                        <Text style={[ styles.subTitle ]}>Current round: <Text style={[styles.darker]}>{ this.thisRound }</Text></Text>
+                    <TouchableOpacity onPress={this.closeCollection}>
+                        <Icon
+                            name="left"
+                            size={utils.style.icons.top}
+                            color={utils.style.colours.purple } />
+                    </TouchableOpacity>
+
+                    <View style={[styles.nameInput]}>
+                        <Text style={[styles.input]}>{this.name}</Text>
+                        <Text style={[styles.meta]}>Rnd {this.thisRound}</Text>
                     </View>
 
-                    <View style={styles.icon}>
-                        <TouchableOpacity onPress={this.closeCollection}>
-                            <Icon
-                                name="left"
-                                size={utils.style.icons.top}
-                                color={utils.style.colours.purple } />
-                        </TouchableOpacity>
+                </View>
+
+                <View style={styles.row}>
+                    <View style={[styles.statusIcon]}>
+
+                        { this.type === 'collection' ?
+
+                            <IconII
+                                name={'md-hammer'}
+                                size={32}
+                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.grayText  }
+                            />
+                            :
+                            <IconIII
+                                name={'coin'}
+                                size={32}
+                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.grayText }
+                            />
+
+                        }
+
                     </View>
-                </View>
 
-                <View style={styles.intro}>
-                    <Text>{ hasParticipantPaid || this.hasMadeAChange() ? copy.intro : copy.intro }</Text>
-                </View>
+                    <View style={[styles.statusCopy]}>
 
-                <View style={styles.middle}>
-                    <Text>{givenName} {familyName}</Text>
-                    {/*<Text>Current pot value £{currentPotValue}</Text>*/}
-                    <Text>Full pot value £{this.fullPotValue}</Text>
-                    <Text>Saving amount £{this.savingsAmount}</Text>
+                        <Text style={styles.amount}>
+                            <Text style={styles.label}>£</Text>
+                            {utils.js.thousandth(this.savingsAmount)}
+                        </Text>
+
+                        <View style={styles.participant}>
+                            <Text style={styles.participantName}>{givenName} {familyName}</Text>
+                        </View>
+
+                        <Text style={styles.intro}>{ hasParticipantPaid || this.hasMadeAChange() ? copy.intro : copy.intro }</Text>
+
+                        {/*<View style={styles.middle}>*/}
+                            {/*<Text>Full pot value £{this.fullPotValue}</Text>*/}
+                        {/*</View>*/}
+
+                    </View>
                 </View>
 
                 <View style={styles.bottom}>
+
+                    { this.hasMadeAChange() ?
+
+                        <Text style={[styles.notificationText]}>
+                            Save to confirm {this.type}
+                        </Text>
+
+                        :
+
+                        <Text style={[styles.notificationText]}>
+                            &nbsp;
+                        </Text>
+
+                    }
                     
                     <TouchableOpacity style={[styles.button, hasParticipantPaid || this.hasMadeAChange() ? styles.paid : null ]}
                                       disabled={ this.state.disabled }
@@ -213,16 +260,7 @@ class Collection extends Component {
                             { hasParticipantPaid || this.hasMadeAChange() ? copy.button : copy.button }
                         </Text>
                     </TouchableOpacity>
-                </View>
 
-                <View style={styles.notification}>
-
-                    { this.hasMadeAChange() &&
-
-                        <Text style={[styles.notificationText]}>
-                            REMEMBER TO SAVE
-                        </Text>
-                    }
 
                 </View>
 
@@ -297,17 +335,40 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.background
     },
     top: {
-        flexDirection: 'row',
+        paddingTop: 10,
+        flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingVertical: 10
+        alignItems: 'flex-end',
+        height: 105
     },
-    intro: {
-        paddingHorizontal: 20,
-        paddingVertical: 10
+    statusCopy: {
+        flex: 1
+    },
+    nameInput: {
+        paddingTop: 10,
+        alignSelf: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
+        width: '100%',
+    },
+    meta: {
+        textAlign: 'right',
+        color: utils.style.colours.grayText,
+        paddingTop: 10
+    },
+    input: {
+        fontSize: 25,
+        marginBottom: 15,
+        color: utils.style.colours.grayText,
+        flex: 1
     },
     list: {
-        flex: 1,
+        flex: 1
+    },
+    label: {
+        color: utils.style.colours.grayText
     },
     title: {
         fontSize: 25,
@@ -344,45 +405,44 @@ const styles = StyleSheet.create({
     paidText: {
         color: utils.style.colours.white
     },
-    notificationText: {
-        color: utils.style.colours.purple,
+    row: {
+        backgroundColor: utils.style.colours.white,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        flexDirection: 'row'
+    },
+    participantName: {
         fontSize: 20,
-        paddingTop: 10
+        paddingVertical: 10,
+        color: utils.style.colours.grayDark
     },
-    meta: {
-        flexDirection: 'column',
-        flex: 1,
-        marginRight: 5
-    },
-    participants: {
+    participant: {
         borderBottomWidth: 1,
         borderColor: utils.style.colours.grayLight,
-        height: 90
+        marginBottom: 10
     },
-    middle: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        backgroundColor: utils.style.colours.white
+    statusIcon: {
+        paddingRight: 10
+    },
+    amount: {
+        fontSize: 27
     },
     bottom: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        paddingTop: 40,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         paddingVertical: 10,
-        backgroundColor: utils.style.colours.white
+        backgroundColor: utils.style.colours.white,
+        flex: 1
     },
-    notification: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        backgroundColor: utils.style.colours.white
-
+    notificationText: {
+        color: utils.style.colours.purple,
+        fontSize: 15,
+        textTransform: 'uppercase',
+        paddingBottom: 15
+    },
+    intro: {
+        color: utils.style.colours.grayText
     },
     modal: {
         flex: 1,

@@ -28,7 +28,6 @@ Restart Pot ( deletes old and starts new )
 Next ToDo to do
 =================
 Redo Flex layout to handle Super Retina
-Collection screen design, and other heading areas
 Calculate current pot value
 Remove fixed height in styles on Landing layout
 Extract all names from Contacts
@@ -55,6 +54,7 @@ Develop utils, and use
 
 DONE
 =================
+Collection screen design, and other heading areas
 Continue/Skip button text, if first time?
 Bigger hit areas for Landing Row and potSlides
 Styling footer on Participants and other sub pages

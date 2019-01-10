@@ -377,8 +377,7 @@ class Detail extends Component {
                                 autoCorrect={false}
                                 maxLength={this.characterCap}
                                 value={name}
-                                onChangeText={(text) => {this.updatePotName(text)}}
-                            />
+                                onChangeText={(text) => {this.updatePotName(text)}} />
 
                             <View style={[styles.charactersLeft]}>
                                 <Text style={[styles.characters]}>{this.state.charactersLeft}</Text>
@@ -444,7 +443,7 @@ class Detail extends Component {
 
                             <View style={styles.savingsMeta}>
                                 <Text style={styles.meta}>{participants.length} <Text style={styles.label}>participants</Text></Text>
-                                <Text style={styles.meta}>£{savingsAmount} <Text style={styles.label}>each</Text></Text>
+                                <Text style={styles.meta}>£{utils.js.thousandth(savingsAmount)} <Text style={styles.label}>each</Text></Text>
                                 <Text style={styles.meta}>
 
                                     { this.returnNextParticipantToCollect()  ?
