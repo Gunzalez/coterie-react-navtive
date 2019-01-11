@@ -12,8 +12,6 @@ const Contact = (props) => {
 
     const { familyName, givenName, checked } = data.item;
 
-    console.log(data.item);
-
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
