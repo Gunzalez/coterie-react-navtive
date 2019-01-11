@@ -211,15 +211,30 @@ class Detail extends Component {
         this.setState({
             busy: true
         }, ()=>{
-            const { id } = this.state.potDetail;
-            ajax.deleteAPot(id).then( response => {
-                if(response){
-                    const { removePotFromList } = this.props;
-                    removePotFromList(id, () => {
-                        this.props.navigateTo('list')
-                    });
-                }
-            })
+            const { id, status } = this.state.potDetail;
+
+            if ( status === "completed") {
+
+                ajax.archiveAPot(id).then( response => {
+                    if(response){
+                        const { removePotFromList } = this.props;
+                        removePotFromList(id, () => {
+                            this.props.navigateTo('list')
+                        });
+                    }
+                })
+
+            } else {
+
+                ajax.deleteAPot(id).then( response => {
+                    if(response){
+                        const { removePotFromList } = this.props;
+                        removePotFromList(id, () => {
+                            this.props.navigateTo('list')
+                        });
+                    }
+                })
+            }
         });
     };
 

@@ -179,5 +179,19 @@ export default {
         } catch (error){
             console.error(error)
         }
+    },
+
+    async archiveAPot(id){
+        try {
+            const options = {
+                headers: this.headers,
+                method: 'POST',
+                body: JSON.stringify({ planId : id })
+            };
+            const response = await fetch( apiHost + '/plans.archive', options );
+            return await response.status === 200;
+        } catch (error){
+            console.error(error)
+        }
     }
 }
