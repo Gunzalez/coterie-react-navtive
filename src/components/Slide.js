@@ -52,10 +52,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        fontSize: 25,
-        color: utils.style.colours.purple,
+        fontSize: 22,
+        color: utils.style.colours.grayDark,
         textAlign: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
+        lineHeight: 25
     },
 });
 
