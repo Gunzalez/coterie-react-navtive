@@ -82,10 +82,33 @@ class Detail extends Component {
         })
     };
 
+    addSystemName = (array) => {
+        const arrayWithSystemName = array.map( item => {
+            const lastName = item.familyName;
+            let firstName = "";
+            if(item.givenName && item.givenName.length){
+                firstName = item.givenName;
+            } else if (item.displayName && item.displayName.length){
+                firstName = item.displayName;
+            } else if (item['nickname'] && item['nickname'].length) {
+                firstName = item['nickname'];
+            } else if (item.name['formatted'] && item.name['formatted'].length) {
+                firstName = item.name['formatted'];
+            } else if (item.middleName && item.middleName.length) {
+                firstName = item.name.middleName;
+            }
+
+            item.spFirstName = firstName;
+            item.spLastName = lastName;
+            return item;
+        });
+        return arrayWithSystemName;
+    };
+
     getAllContacts = () => {
         Contacts.getAllWithoutPhotos((err, contacts) => {
             if (err) throw err;
-            this.setState({ contacts })
+            this.setState({ contacts: this.addSystemName(contacts) })
         });
     };
 
