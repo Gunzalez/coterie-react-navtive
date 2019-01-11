@@ -90,7 +90,7 @@ class List extends Component {
                         <TouchableOpacity
                             onPress={this.goToIntroduction}>
                             <Icon
-                                name="help-circle"
+                                name="info"
                                 size={40}
                                 color={utils.style.colours.purple} />
                         </TouchableOpacity>

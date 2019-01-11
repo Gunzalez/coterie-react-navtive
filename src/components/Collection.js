@@ -221,7 +221,7 @@ class Collection extends Component {
 
                         <Text style={styles.amount}>
                             <Text style={styles.label}>£</Text>
-                            {utils.js.thousandth(this.savingsAmount)}
+                            { this.type === 'collection' ? utils.js.thousandth(this.fullPotValue) : utils.js.thousandth(this.savingsAmount) }
                         </Text>
 
                         <View style={styles.participant}>
@@ -229,10 +229,6 @@ class Collection extends Component {
                         </View>
 
                         <Text style={styles.intro}>{ hasParticipantPaid || this.hasMadeAChange() ? copy.intro : copy.intro }</Text>
-
-                        {/*<View style={styles.middle}>*/}
-                            {/*<Text>Full pot value £{this.fullPotValue}</Text>*/}
-                        {/*</View>*/}
 
                     </View>
                 </View>
@@ -364,23 +360,8 @@ const styles = StyleSheet.create({
         color: utils.style.colours.grayText,
         flex: 1
     },
-    list: {
-        flex: 1
-    },
     label: {
         color: utils.style.colours.grayText
-    },
-    title: {
-        fontSize: 25,
-        color: utils.style.colours.purple,
-        paddingBottom: 1
-    },
-    subTitle: {
-        color: utils.style.colours.grayText,
-        paddingBottom: 5
-    },
-    darker: {
-        color: utils.style.colours.grayDark
     },
     icon: {
         paddingLeft: 10

@@ -22,14 +22,14 @@ Style New Pot different
 Participants count on Landing and Participants (contacts count?)
 See about adding a new Contact direct from Saving Pots
 Grouping contacts list on Participants screen,
+Redo Flex layout to handle Super Retina
+Calculate current pot value
+Remove fixed height in styles on Landing layout
 Restart Pot ( deletes old and starts new )
 -
 -
 Next ToDo to do
 =================
-Redo Flex layout to handle Super Retina
-Calculate current pot value
-Remove fixed height in styles on Landing layout
 Extract all names from Contacts
 render/setState bug on saving Pot details
 
