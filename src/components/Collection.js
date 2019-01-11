@@ -163,7 +163,7 @@ class Collection extends Component {
             disabled: true,
         }, () => {
             this.reloadPot(id);
-            this.refs.toast.show('Transaction confirmed', Toast.Duration.short, Toast.Position.bottom);
+            this.refs.toast.show(utils.js.toPascalCase(this.type) + ' confirmed', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -235,23 +235,9 @@ class Collection extends Component {
 
                 <View style={styles.bottom}>
 
-                    { this.hasMadeAChange() ?
-
-                        <Text style={[styles.notificationText]}>
-                            {/*<Icon*/}
-                                {/*name="save"*/}
-                                {/*size={16}*/}
-                                {/*color={ utils.style.colours.grayText } />*/}
-                            <Text style={styles.innerNotificationText}>Save to confirm transaction</Text>
-                        </Text>
-
-                        :
-
-                        <Text style={[styles.notificationText]}>
-                            &nbsp;
-                        </Text>
-
-                    }
+                    <Text style={[styles.notificationText, this.hasMadeAChange() ? { color: utils.style.colours.grayDark } : null ]}>
+                        Save to confirm {this.type}
+                    </Text>
                     
                     <TouchableOpacity style={[styles.button, hasParticipantPaid || this.hasMadeAChange() ? styles.paid : null ]}
                                       disabled={ this.state.disabled }
@@ -421,15 +407,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     notificationText: {
-        color: utils.style.colours.grayDark,
+        color: utils.style.colours.white,
         fontSize: 16,
         textTransform: 'uppercase',
         paddingBottom: 15,
         flexDirection: 'row',
         justifyContent: 'center',
-    },
-    innerNotificationText: {
-        marginVertical: 15
     },
     intro: {
         color: utils.style.colours.grayText
