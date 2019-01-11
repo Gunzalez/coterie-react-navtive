@@ -97,7 +97,7 @@ class Schedule extends Component {
         this.setState({
             initialSchedule: this.state.schedule
         },()=>{
-            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom); 
+            this.refs.toast.show('Schedule saved', Toast.Duration.short, Toast.Position.bottom);
         });
     };
 

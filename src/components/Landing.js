@@ -197,8 +197,8 @@ class Detail extends Component {
     askToDeletePot = () => {
         const { name } = this.state.localPot;
         Alert.alert(
-            'Delete this Pot?',
-            'This will delete "' +name + '" completely.\nAre you sure?',
+            'Delete the pot?',
+            '"' +name + '"\nwill be removed completely.\nAre you sure?',
             [
                 { text: "NO", onPress: () => {}, style: 'cancel' },
                 { text: "YES", onPress: () => { this.deletePot() }},
@@ -336,7 +336,7 @@ class Detail extends Component {
                                 size={utils.style.icons.footer}
                                 color={ this.canAddParticipants() && permission ? utils.style.colours.purple : utils.style.colours.grayLight }/>
                         </TouchableOpacity>
-                        <Text style={[ this.canAddParticipants() && permission ? styles.emptyText : styles.emptyTextDisabled ]}>Manage pot participants</Text>
+                        <Text style={[ this.canAddParticipants() && permission ? styles.emptyText : styles.emptyTextDisabled ]}>Manage participants</Text>
                     </View>
                 )
             }
@@ -410,7 +410,7 @@ class Detail extends Component {
                                 <Icon
                                     name="minus"
                                     size={utils.style.icons.body}
-                                    color={savingsAmount <= this.savingsMin ? utils.style.colours.white : utils.style.colours.purple}/>
+                                    color={savingsAmount <= this.savingsMin ? utils.style.colours.white : utils.style.colours.grayText}/>
                             </TouchableOpacity>
                             <View style={styles.amount}>
                                 <Text style={[styles.amountText, styles.cashAmount]}>£</Text>
@@ -423,7 +423,7 @@ class Detail extends Component {
                                 <Icon
                                     name="plus"
                                     size={utils.style.icons.body}
-                                    color={savingsAmount >= this.savingsMax ? utils.style.colours.white : utils.style.colours.purple}/>
+                                    color={savingsAmount >= this.savingsMax ? utils.style.colours.white : utils.style.colours.grayText}/>
                             </TouchableOpacity>
                         </View>
 

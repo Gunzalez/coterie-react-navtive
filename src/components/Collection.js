@@ -238,7 +238,11 @@ class Collection extends Component {
                     { this.hasMadeAChange() ?
 
                         <Text style={[styles.notificationText]}>
-                            Save to confirm {this.type}
+                            {/*<Icon*/}
+                                {/*name="save"*/}
+                                {/*size={16}*/}
+                                {/*color={ utils.style.colours.grayText } />*/}
+                            <Text style={styles.innerNotificationText}>Save to confirm transaction</Text>
                         </Text>
 
                         :
@@ -417,10 +421,15 @@ const styles = StyleSheet.create({
         flex: 1
     },
     notificationText: {
-        color: utils.style.colours.purple,
-        fontSize: 15,
+        color: utils.style.colours.grayDark,
+        fontSize: 16,
         textTransform: 'uppercase',
-        paddingBottom: 15
+        paddingBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    innerNotificationText: {
+        marginVertical: 15
     },
     intro: {
         color: utils.style.colours.grayText

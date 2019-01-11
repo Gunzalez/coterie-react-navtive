@@ -109,7 +109,7 @@ class Participants extends Component {
         const { updateLocalParticipants } = this.props.navigation.state.params;
         updateLocalParticipants(this.state.participants);
         this.setState({ originalParticipants: this.state.participants }, () => {
-            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
+            this.refs.toast.show('Participants saved', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -218,7 +218,7 @@ class Participants extends Component {
         let { name } = navigation.state.params.potDetail;
 
         if(!name || name.length < 1){
-            name = "No Pot Name";
+            name = "No pot name";
         }
 
         return (
