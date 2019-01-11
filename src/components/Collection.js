@@ -109,7 +109,7 @@ class Collection extends Component {
         if(pot.status === "created"){
             Alert.alert(
                 'Start the pot?',
-                'Once started, the pot name, saving amount and participants will be fixed.\nStart the pot?',
+                'The name, saving amount and\nthe no. of participants will be fixed.\nStart the pot?',
                 [
                     { text: "NO", onPress: () => {}, style: 'cancel' },
                     { text: "YES", onPress: () => { this.startPotThenSaveTransaction(participantId, pot) }},
@@ -117,7 +117,6 @@ class Collection extends Component {
                 { cancelable: false }
             );
         } else if(pot.status === "in-progress")  {
-
             this.saveTransaction(participantId, pot)
         }
     };

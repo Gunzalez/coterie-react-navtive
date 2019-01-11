@@ -82,8 +82,8 @@ class Detail extends Component {
         })
     };
 
-    addSystemName = (array) => {
-        const arrayWithSystemName = array.map( item => {
+    reAssignContactNames = (array) => {
+        return array.map( item => {
             const lastName = item.familyName;
             let firstName = "";
             if(item.givenName && item.givenName.length){
@@ -97,18 +97,16 @@ class Detail extends Component {
             } else if (item.middleName && item.middleName.length) {
                 firstName = item.name.middleName;
             }
-
-            item.spFirstName = firstName;
-            item.spLastName = lastName;
+            item.givenName = firstName;
+            item.familyName = lastName;
             return item;
         });
-        return arrayWithSystemName;
     };
 
     getAllContacts = () => {
         Contacts.getAllWithoutPhotos((err, contacts) => {
             if (err) throw err;
-            this.setState({ contacts: this.addSystemName(contacts) })
+            this.setState({ contacts: this.reAssignContactNames(contacts) })
         });
     };
 

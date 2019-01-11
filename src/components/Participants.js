@@ -256,8 +256,8 @@ class Participants extends Component {
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={item => item.contactId.toString()}
                             renderItem={(item) => <Participant data={item}
-                                                        ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}
-                                                        participantClicked={ this.participantClicked } />
+                                    ref={(Participant) => { this.rowRefs[item.item.contactId] = Participant; }}
+                                    participantClicked={ this.participantClicked } />
                             }/>
 
                     :
