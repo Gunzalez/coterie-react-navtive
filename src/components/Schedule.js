@@ -109,32 +109,32 @@ class Schedule extends Component {
 
         const { navigation } = this.props;
 
-        const { name } = navigation.state.params.potDetail;
+        const { name, round } = navigation.state.params.potDetail;
+
+        const thisRound = round === null ? 1 : round;
 
         return (
             <View style={[ styles.container ]}>
 
                 <View style={styles.top}>
 
-                    <View style={[styles.potMeta]}>
-                        <Text style={[ styles.title ]}>{ name }</Text>
-                        <Text style={[ styles.subTitle ]}>Participants in this pot: <Text style={[styles.darker]}>{this.state.participants.length}</Text></Text>
-                    </View>
-
-                    <View style={styles.icon}>
-                        <TouchableOpacity
-                            onPress={this.closeSchedule}>
+                    <TouchableOpacity onPress={this.closeSchedule}>
                         <Icon
                             name="down"
                             size={utils.style.icons.top}
                             color={utils.style.colours.purple}/>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
+
+                    <View style={[styles.nameInput]}>
+                        <Text style={[styles.input]}>{name}</Text>
+                        <Text style={[styles.meta]}>Rnd {thisRound}</Text>
                     </View>
 
                 </View>
 
                 <View style={styles.intro}>
-                    <Text>The following participants have not collected and can be reordered</Text>
+                    <Text style={styles.introText}>Participants in this pot: <Text style={[styles.darker]}>{this.state.participants.length}</Text></Text>
+                    <Text style={styles.introText}>Reorder those that have not collected.</Text>
                 </View>
 
                 <View style={styles.bottom}>
@@ -208,14 +208,42 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.background
     },
     top: {
-        flexDirection: 'row',
+        paddingTop: 10,
+        flexDirection: 'column',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingVertical: 10
+        alignItems: 'flex-end',
+        height: 105
+    },
+    nameInput: {
+        paddingTop: 10,
+        alignSelf: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
+        width: '100%',
+    },
+    meta: {
+        textAlign: 'right',
+        color: utils.style.colours.grayText,
+        paddingTop: 10
+    },
+    input: {
+        fontSize: 25,
+        marginBottom: 15,
+        color: utils.style.colours.grayText,
+        flex: 1
     },
     intro: {
         paddingHorizontal: 20,
-        paddingVertical: 10
+        paddingVertical: 10,
+        backgroundColor: utils.style.colours.white,
+        borderBottomWidth: 1,
+        borderColor: utils.style.colours.grayLight
+    },
+    introText: {
+        color: utils.style.colours.grayText,
+        flexDirection: 'column'
     },
     list: {
         flex: 1,

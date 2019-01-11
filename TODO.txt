@@ -12,26 +12,23 @@ Performance points at using iOS native for FlatList
 MVP Todo
 =================
 Look into Screen to Screen animations - shared Components *
-In Progress Detail screen needs work
-Unify font sizes - utils
-Clean up styling - different header styling, not good
-FlatList is buggy - may need bigger rows
-Icon - new design
 Adjust display for crazy no. of Pots *
+Grouping contacts list on Participants screen *
+Unify font and general clean up of styling syntax
+FlatList is buggy - may need bigger rows
+Icon - new design, need piggy banks
 Style New Pot different
 Participants count on Landing and Participants (contacts count?)
 See about adding a new Contact direct from Saving Pots
-Grouping contacts list on Participants screen,
 Redo Flex layout to handle Super Retina
 Calculate current pot value
-Remove fixed height in styles on Landing layout
-Restart Pot ( deletes old and starts new )
+Restart Pot ( clone/re-start )
 -
 -
 Next ToDo to do
 =================
-Extract all names from Contacts
 render/setState bug on saving Pot details
+Remove fixed height in styles on all places
 
 
 
@@ -54,6 +51,8 @@ Develop utils, and use
 
 DONE
 =================
+In Progress Detail screen needs work
+Extract all names from Contacts
 Collection screen design, and other heading areas
 Continue/Skip button text, if first time?
 Bigger hit areas for Landing Row and potSlides
