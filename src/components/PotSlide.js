@@ -54,7 +54,7 @@ class PotSlide extends Component {
                             <Icon name="arrowsalt"
                                   size={utils.style.icons.top}
                                   color={utils.style.colours.white} />
-                        <Text style={[styles.text, styles.title]}>{name}</Text>
+                        <Text style={[styles.title]}>{name}</Text>
                     </View>
                 </TouchableWithoutFeedback>
 
@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
         backgroundColor: utils.style.colours.grayDark
     },
     title: {
-        fontSize: 25,
+        fontSize: 22,
+        lineHeight: 25,
         color: utils.style.colours.white,
         alignSelf: 'flex-start'
     },
@@ -137,12 +138,12 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 15
     },
-    text: {
-        fontSize: 14
-    },
     intro: {
         fontSize: 14,
         color: '#cccccc'
+    },
+    text: {
+        fontSize: 14
     }
 });
 

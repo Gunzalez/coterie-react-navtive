@@ -34,7 +34,7 @@ const Saver = (props) => {
                     <Icon
                         name={ 'ios-reorder' }
                         size={28}
-                        color={ utils.style.colours.grayLight }
+                        color={ utils.style.colours.grayText }
                     />
                 }
 
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flex: 1,
         borderBottomWidth: 1,
-        borderColor: utils.style.colours.grayLight
+        borderColor: utils.style.colours.grayLight,
+        paddingVertical: 6
     },
     active: {
         color: utils.style.colours.purple
     },
     cell: {
-        height: 42,
         flexDirection: 'column',
         justifyContent: 'center'
     },

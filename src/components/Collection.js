@@ -163,7 +163,7 @@ class Collection extends Component {
             disabled: true,
         }, () => {
             this.reloadPot(id);
-            this.refs.toast.show('Changes saved', Toast.Duration.short, Toast.Position.bottom);
+            this.refs.toast.show('Transaction confirmed', Toast.Duration.short, Toast.Position.bottom);
         })
     };
 
@@ -204,13 +204,13 @@ class Collection extends Component {
                             <IconII
                                 name={'md-hammer'}
                                 size={32}
-                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.grayText  }
+                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray  }
                             />
                             :
                             <IconIII
                                 name={'coin'}
                                 size={32}
-                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.grayText }
+                                color={ hasParticipantPaid ? utils.style.colours.purple : utils.style.colours.gray }
                             />
 
                         }
