@@ -60,6 +60,7 @@ class Detail extends Component {
                     if (permission === 'authorized') {
                         this.getAllContacts();
                     }
+
                     if (permission === 'denied') {
                         this.setState({
                             contactsPermission: false
@@ -110,10 +111,18 @@ class Detail extends Component {
     };
 
     getAllContacts = () => {
-        Contacts.getAllWithoutPhotos((err, contacts) => {
-            if (err) throw err;
-            this.setState({ contacts: this.reAssignContactNames(contacts) })
-        });
+        this.setState({
+            busy: true
+        }, ()=> {
+            Contacts.getAllWithoutPhotos((err, contacts) => {
+                if (err) throw err;
+                this.setState({ contacts: this.reAssignContactNames(contacts) }, () => {
+                    this.setState({
+                        busy: false
+                    })
+                })
+            });
+        })
     };
 
     handlePress = () => {
