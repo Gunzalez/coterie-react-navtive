@@ -542,13 +542,13 @@ class Detail extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        disabled={!this.canSavePotDetails() || !permission }
+                        disabled={!this.canSavePotDetails() || !permission || !this.hasEditedNameOrAmount() }
                         onPress={ this.savePotDetail}>
 
                         { this.hasEditedNameOrAmount() && this.canSavePotDetails() ?
 
                             <View style={styles.changes}>
-
+                                {/* red dot */}
                             </View>
 
                             :

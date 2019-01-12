@@ -24,7 +24,7 @@ class Slide extends Component {
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.bottom}>
                     <View style={styles.image}>
-                        <Text>{media}</Text>
+                        <Text style={styles.holder}>{media}</Text>
                     </View>
                 </View>
             </View>
@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
         width,
         height,
         paddingTop: 20
+    },
+    holder: {
+        paddingHorizontal: 20,
+        textAlign: 'center',
+        color: utils.style.colours.white,
+        fontSize: 16
     },
     image: {
         width: '60%',

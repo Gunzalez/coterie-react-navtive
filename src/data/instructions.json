@@ -1,24 +1,24 @@
 {
     "instructions": [
         {
-            "title": "Type in a pot name and select a saving amount",
-            "media": "http://www.image-1"
+            "title": "Type in a pot name, then select a saving amount",
+            "media": "Image of Pot Detail screen"
         },
         {
-            "title": "Pick participants from your contact list",
-            "media": "http://www.image-2"
+            "title": "Pick named participants from your contact list",
+            "media": "Participants screen"
         },
         {
-            "title": "Re-order the participants to suit your plan",
-            "media": "http://www.image-4"
+            "title": "Order the participants schedule to suit your plan",
+            "media": "Schedule screen"
         },
         {
-            "title": "Start a pot by making a first payment",
-            "media": "http://www.image-3"
+            "title": "A pot starts when the first payment is made",
+            "media": "Payment & collection screen"
         },
         {
-            "title": "Delete or restart a pot once completed",
-            "media": "http://www.image-5"
+            "title": "Pots can be deleted or restarted once completed",
+            "media": "Delete and restart buttons"
         }
     ]
 }
