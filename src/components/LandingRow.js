@@ -14,7 +14,7 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, spName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
+    const { spName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
 
     let type = isNextParticipantToCollect ? 'collection' : 'payment';
 
