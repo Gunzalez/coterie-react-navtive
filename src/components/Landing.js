@@ -84,22 +84,28 @@ class Detail extends Component {
 
     reAssignContactNames = (array) => {
         return array.map( item => {
-            const lastName = item.familyName;
+            const lastName = item.familyName.trim();
             let firstName = "";
-            if(item.givenName && item.givenName.length){
-                firstName = item.givenName;
-            } else if (item.displayName && item.displayName.length){
-                firstName = item.displayName;
-            } else if (item['nickname'] && item['nickname'].length) {
-                firstName = item['nickname'];
-            } else if (item.name['formatted'] && item.name['formatted'].length) {
-                firstName = item.name['formatted'];
-            } else if (item.middleName && item.middleName.length) {
-                firstName = item.name.middleName;
+            let avatar = '';
+            if(item.givenName && item.givenName.trim().length){
+                firstName = item.givenName.trim();
+            } else if (item.displayName && item.displayName.trim().length){
+                firstName = item.displayName.trim();
+            } else if (item['nickname'] && item['nickname'].trim().length) {
+                firstName = item['nickname'].trim();
+            } else if (item.name && item.name['formatted'] && item.name['formatted'].trim().length) {
+                firstName = item.name['formatted'].trim();
             }
             item.givenName = firstName;
-            item.familyName = lastName;
-            return item;
+            item.spName = firstName + ' ' + lastName;
+            if(firstName.length > 0){
+                avatar = firstName.charAt(0).toUpperCase();
+                if(lastName.length > 0){
+                    avatar = avatar + lastName.charAt(0).toUpperCase();
+                }
+                item.avatar = avatar;
+                return item;
+            }
         });
     };
 
@@ -262,10 +268,8 @@ class Detail extends Component {
     returnParticipantsToDisplay = () => {
         const participants = [];
         this.state.localPot.participants.forEach((participant, index) => {
-
             const displayParticipant = Object.assign({}, participant, {
-                familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
-                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
+                spName: utils.js.getContactDetailFromId(participant.contactId, 'spName', this.state.contacts),
                 participants: this.state.potDetail.participants,
                 status: this.state.potDetail.status,
                 canPayAndCollect: this.state.potDetail.status === 'in-progress' || this.state.potDetail.status === 'created' && this.state.potDetail.participants.length > 2,

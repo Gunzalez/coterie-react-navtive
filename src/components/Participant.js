@@ -53,17 +53,9 @@ class Participant extends Component {
 
     render(){
 
-        const createAvatar = (a, b) => {
-            let avatar = a.charAt(0).toUpperCase();
-            if(b && b.trim()){
-                avatar = avatar + b.charAt(0).toUpperCase()
-            }
-            return avatar;
-        };
-
         const  { data } = this.props;
 
-        const { givenName = "Participant", contactId, familyName, placeHolder, highlight } = data.item;
+        const { contactId, avatar, givenName, placeHolder, highlight } = data.item;
 
         return (
             <Animated.View style={[ styles.container, highlight ? styles.narrow : null, { width: this.state.width }]}>
@@ -99,7 +91,7 @@ class Participant extends Component {
                             color={utils.style.colours.grayText}/>
                         :
 
-                        <Text style={[styles.text]}>{ createAvatar(givenName, familyName) }</Text>
+                        <Text style={[styles.text]}>{ avatar }</Text>
                     }
 
                 </Animated.View>

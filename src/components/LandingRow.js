@@ -14,7 +14,7 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { familyName, givenName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
+    const { familyName, givenName, spName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
 
     let type = isNextParticipantToCollect ? 'collection' : 'payment';
 
@@ -75,7 +75,7 @@ const LandingRow = (props) => {
                     </View>
 
                     <View style={[styles.copy]}>
-                        <Text style={[styles.name]}>{givenName} {familyName}</Text>
+                        <Text style={[styles.name]}>{spName}</Text>
                         <Text style={[styles.text]}>{strapLine}</Text>
                     </View>
 

@@ -61,8 +61,8 @@ class Participants extends Component {
         const participants = [];
         this.state.participants.forEach(participant => {
             const displayParticipant = Object.assign({}, participant, {
-                familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
-                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts)
+                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts),
+                avatar: utils.js.getContactDetailFromId(participant.contactId, 'avatar', this.state.contacts),
             });
             participants.push(displayParticipant)
         });
@@ -73,7 +73,7 @@ class Participants extends Component {
         const { contacts, term } = this.state;
         if(term && term.trim().length){
             const filteredContacts = contacts.filter(contact => {
-                return contact.givenName.toLowerCase().includes(term.toLowerCase()) || contact.familyName.toLowerCase().includes(term.toLowerCase())
+                return contact.spName.toLowerCase().includes(term.toLowerCase())
             });
             return utils.js.sort(filteredContacts)
         } else {
