@@ -60,8 +60,7 @@ class Schedule extends Component {
         const participants = [];
         this.state.participants.forEach(participant => {
             const displayParticipant = Object.assign({}, participant, {
-                familyName: utils.js.getContactDetailFromId(participant.contactId, 'familyName', this.state.contacts),
-                givenName: utils.js.getContactDetailFromId(participant.contactId, 'givenName', this.state.contacts)
+                spName: utils.js.getContactDetailFromId(participant.contactId, 'spName', this.state.contacts)
             });
             participants.push(displayParticipant)
         });

@@ -170,9 +170,9 @@ class Collection extends Component {
 
         const { potDetail, participant } = this.props.navigation.state.params;
 
-        const { id, familyName, givenName } = participant.item;
+        const { id, spName } = participant.item;
 
-        const { hasParticipantPaid, currentPotValue } = this.state;
+        const { hasParticipantPaid } = this.state;
 
         const copy = this.copy[this.type][hasParticipantPaid ? 'paid' : 'unpaid'];
 
@@ -224,7 +224,7 @@ class Collection extends Component {
                         </Text>
 
                         <View style={styles.participant}>
-                            <Text style={styles.participantName}>{givenName} {familyName}</Text>
+                            <Text style={styles.participantName}>{ spName }</Text>
                         </View>
 
                         <Text style={styles.intro}>{ hasParticipantPaid || this.hasMadeAChange() ? copy.intro : copy.intro }</Text>

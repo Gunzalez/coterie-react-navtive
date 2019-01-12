@@ -12,12 +12,12 @@ const Saver = (props) => {
 
     const { data, active } = props;
 
-    const { familyName, givenName } = data;
+    const { spName } = data;
 
     return (
         <View style={[ styles.container ]}>
             <View style={[styles.cell]}>
-                <Text style={[styles.text, active ? styles.active : null]}>{givenName} {familyName}</Text>
+                <Text style={[styles.text, active ? styles.active : null]}>{spName}</Text>
             </View>
             <View style={[styles.cell]}>
 
