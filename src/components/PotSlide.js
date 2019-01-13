@@ -54,7 +54,14 @@ class PotSlide extends Component {
                             <Icon name="arrowsalt"
                                   size={utils.style.icons.top}
                                   color={utils.style.colours.white} />
-                        <Text style={[styles.title]}>{name}</Text>
+
+                        <View style={styles.ctaText}>
+                            { status !== "new"  &&
+                                <Text style={[styles.title]}>£{ utils.js.thousandth(this.getTotalPotValue(this.props.data))}</Text>
+                            }
+                            <Text style={[styles.title]}>{name}</Text>
+                        </View>
+
                     </View>
                 </TouchableWithoutFeedback>
 
@@ -100,6 +107,9 @@ const styles = StyleSheet.create({
         // shadowRadius: 2.22,
         // elevation: 3,
         marginVertical: 5
+    },
+    ctaText: {
+        width: '100%'
     },
     topButton: {
         flex: 1,
