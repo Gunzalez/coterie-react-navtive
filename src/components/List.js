@@ -81,9 +81,9 @@ class List extends Component {
 
                     <View style={styles.header}>
                         <Text style={styles.title}>{pots.length - 1} Saving Pots</Text>
-                        { inProgress ? <Text style={styles.text}>{inProgress} {potStr} in progress.</Text> : null }
-                        { potsSaved ? <Text style={styles.text}>{potsSaved} created but not started.</Text> : null }
-                        { completed ? <Text style={styles.text}>{completed} completed.</Text> : null }
+                        { inProgress ? <Text style={styles.text}>{inProgress} {potStr} in progress</Text> : null }
+                        { potsSaved ? <Text style={styles.text}>{potsSaved} created but not started</Text> : null }
+                        { completed ? <Text style={styles.text}>{completed} completed</Text> : null }
                     </View>
 
                     <View style={styles.icon}>
