@@ -91,7 +91,7 @@ class Participant extends Component {
                             color={utils.style.colours.grayText}/>
                         :
 
-                        <Text style={[styles.text]}>{ avatar }</Text>
+                        <Text style={[styles.avatar]}>{ avatar }</Text>
                     }
 
                 </Animated.View>
@@ -144,9 +144,10 @@ const styles = StyleSheet.create({
     narrow: {
         width: 40
     },
-    text: {
+    avatar: {
         fontSize: 20,
-        color: utils.style.colours.white
+        color: utils.style.colours.white,
+        fontWeight: 'bold'
     },
     name: {
         paddingTop: 5,
