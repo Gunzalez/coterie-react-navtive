@@ -83,8 +83,9 @@ class Detail extends Component {
         })
     };
 
-    reAssignContactNames = (array) => {
-        return array.map( item => {
+    reAssignContactNames = (contacts) => {
+        let contactsToReturn = [];
+        contacts.map( item => {
             const lastName = item.familyName.trim();
             let firstName = "";
             let avatar = '';
@@ -105,9 +106,10 @@ class Detail extends Component {
                     avatar = avatar + lastName.charAt(0).toUpperCase();
                 }
                 item.avatar = avatar;
-                return item;
+                contactsToReturn.push(item);
             }
         });
+        return contactsToReturn;
     };
 
     getAllContacts = () => {
