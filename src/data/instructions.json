@@ -5,20 +5,20 @@
             "media": "Image of Pot Detail screen"
         },
         {
-            "title": "Pick named participants from your contact list",
-            "media": "Participants screen"
+            "title": "Pick participants from your phone's contact list",
+            "media": "Image of Participants screen"
         },
         {
             "title": "Order the participants schedule to suit your plan",
-            "media": "Schedule screen"
+            "media": "Image of Schedule screen"
         },
         {
             "title": "A pot starts when the first payment is made",
-            "media": "Payment & collection screen"
+            "media": "Image Payment & collection screen"
         },
         {
             "title": "Pots can be deleted or restarted once completed",
-            "media": "Delete and restart buttons"
+            "media": "Images of delete & restart buttons"
         }
     ]
 }
