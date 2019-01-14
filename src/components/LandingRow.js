@@ -14,7 +14,7 @@ const LandingRow = (props) => {
 
     const { data, participantClicked } = props;
 
-    const { spName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status } = data.item;
+    const { spName, isNextParticipantToCollect, isReadyToCollect, hasParticipantPaid, canPayAndCollect, status, hasLocalPotName } = data.item;
 
     let type = isNextParticipantToCollect ? 'collection' : 'payment';
 
@@ -34,7 +34,7 @@ const LandingRow = (props) => {
         }
     }
 
-    if(!canPayAndCollect){
+    if(!canPayAndCollect || !hasLocalPotName){
         disabled = true;
     }
 

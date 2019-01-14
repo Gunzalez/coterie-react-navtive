@@ -49,10 +49,12 @@ class Detail extends Component {
     componentDidMount(){
 
         Contacts.checkPermission((err, permission) => {
+
             if (err) throw err;
 
             // Contacts.PERMISSION_AUTHORIZED || Contacts.PERMISSION_UNDEFINED || Contacts.PERMISSION_DENIED
             if (permission === 'undefined') {
+
                 Contacts.requestPermission((err, permission) => {
 
                     if (err) throw err;
@@ -218,8 +220,8 @@ class Detail extends Component {
     };
 
     canShowSchedule = () => {
-        const { participants, status } = this.state.localPot;
-        return participants && participants.length > 2 && status !== "completed";
+        const { participants, status, name } = this.state.localPot;
+        return name && name.trim().length > 0 && participants && participants.length > 2 && status !== "completed";
     };
 
     canAddParticipants = () => {
@@ -283,6 +285,7 @@ class Detail extends Component {
                 spName: utils.js.getContactDetailFromId(participant.contactId, 'spName', this.state.contacts),
                 participants: this.state.potDetail.participants,
                 status: this.state.potDetail.status,
+                hasLocalPotName: this.state.localPot.name && this.state.localPot.name.trim().length,
                 canPayAndCollect: this.state.potDetail.status === 'in-progress' || this.state.potDetail.status === 'created' && this.state.potDetail.participants.length > 2,
                 isNextParticipantToCollect: this.state.potDetail.status === 'in-progress' && participant.id === this.state.potDetail['nextParticipantToCollect'],
                 isNextParticipantsToPay: this.state.potDetail.status === 'in-progress' && this.state.potDetail['nextParticipantsToPay'].indexOf(participant.id) !== -1,
