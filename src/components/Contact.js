@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
         borderColor: '#eaeaea'
     },
     cell: {
-        height: 42,
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingVertical: 7
     },
     text: {
         fontSize: 16,

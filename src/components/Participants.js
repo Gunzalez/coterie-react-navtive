@@ -381,13 +381,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: utils.style.colours.grayLight,
         padding: 10,
-        borderRadius: 8,
+        borderRadius: 4,
         color: utils.style.colours.grayText
     },
     participants: {
         borderBottomWidth: 1,
         borderColor: utils.style.colours.grayLight,
-        height: 90
+        paddingBottom: 6
     },
     bottom: {
         flex: 1,

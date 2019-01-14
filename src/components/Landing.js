@@ -713,8 +713,7 @@ const styles = StyleSheet.create({
     savingsSummary: {
         flexDirection: 'row',
         width: '100%',
-        justifyContent: 'space-between',
-        height: 50
+        justifyContent: 'space-between'
     },
     savingsMeta: {
         flexDirection: 'column'

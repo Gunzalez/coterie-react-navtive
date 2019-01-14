@@ -267,11 +267,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 5
     },
-    participants: {
-        borderBottomWidth: 1,
-        borderColor: utils.style.colours.grayLight,
-        height: 90
-    },
     bottom: {
         flex: 1,
         flexDirection: 'column',

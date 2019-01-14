@@ -19,7 +19,6 @@ FlatList is buggy - may need bigger rows
 Icon - new design, need piggy banks
 Style New Pot different
 Participants count on Landing and Participants (contacts count?)
-See about adding a new Contact direct from Saving Pots
 Redo Flex layout to handle Super Retina
 Calculate current pot value
 Restart Pot ( clone/re-start )
@@ -28,7 +27,6 @@ Restart Pot ( clone/re-start )
 Next ToDo to do
 =================
 render/setState bug on saving Pot details
-Remove fixed height in styles on all places
 
 
 
@@ -79,6 +77,7 @@ Move data to JSON files
 Button back to help
 Toast Tweak/Change, may need new module
 Added Alerts
+Remove fixed height in styles on all places
 
 
 
@@ -88,6 +87,7 @@ Added Alerts
 
 NOT DOING -- yet
 =================
+See about adding a new Contact direct from Saving Pots - post MVP
 Space for next to collect - (Because I can't remember what I meant)
 Test App on Android - DVM and real device - (Will do later)
 Get Address book Contacts (Android) - (Will do later)
