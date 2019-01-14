@@ -132,10 +132,14 @@ const styles = StyleSheet.create({
         padding: 2
     },
     placeHolder: {
+        width: 62,
+        height: 62,
+        borderRadius: 31,
         backgroundColor: utils.style.colours.white,
         borderWidth: 1,
         borderColor: utils.style.colours.grayText,
-        borderStyle: 'dashed'
+        borderStyle: 'dashed',
+        marginBottom: 1
     },
     highlight: {
         backgroundColor: 'red',
