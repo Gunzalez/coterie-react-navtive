@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -13,19 +13,21 @@ const Contact = (props) => {
     const { spName, checked } = data.item;
 
     return (
-        <View style={[ styles.container ]}>
-            <View style={[styles.cell]}>
-                <Text style={styles.text}>{spName}</Text>
+        <TouchableWithoutFeedback
+            onPress={()=>{contactClicked(data.index)}}>
+            <View style={[ styles.container ]}>
+                <View style={[styles.cell]}>
+                    <Text style={styles.text}>{spName}</Text>
+                </View>
+                <View style={[styles.cell]}>
+                    <Icon
+                        name={ checked ? 'radio-button-checked' : 'radio-button-unchecked' }
+                        size={28}
+                        color={utils.style.colours.purple}
+                    />
+                </View>
             </View>
-            <View style={[styles.cell]}>
-                <Icon
-                    name={ checked ? 'radio-button-checked' : 'radio-button-unchecked' }
-                    size={28}
-                    color={utils.style.colours.purple}
-                    onPress={()=>{contactClicked(data.index)}}
-                />
-            </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 
