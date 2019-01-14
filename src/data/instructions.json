@@ -1,24 +1,24 @@
 {
     "instructions": [
         {
-            "title": "type in a pot name, and select a saving amount",
+            "title": "Type in a pot name and select a saving amount",
             "media": "Image of Pot Detail screen"
         },
         {
-            "title": "pick participants from your phone's contact list",
+            "title": "Pick participants from your phone's contact list",
             "media": "Image of Participants screen"
         },
         {
-            "title": "order participants schedule to suit your plan",
+            "title": "Order the participants to suit your pot plan",
             "media": "Image of Schedule screen"
         },
         {
-            "title": "a pot starts when the first payment is made",
-            "media": "Image Payment & collection screen"
+            "title": "A pot starts when the first payment is made",
+            "media": "Image of Payment & Collection screen"
         },
         {
-            "title": "pots can be archived or restarted when completed",
-            "media": "Images of archive & restart buttons"
+            "title": "Pots can be archived or restarted when completed",
+            "media": "Images of Archive & Restart buttons"
         }
     ]
 }

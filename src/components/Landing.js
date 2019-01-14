@@ -192,15 +192,32 @@ class Detail extends Component {
             potDetail: this.state.localPot,
             contacts: this.state.contacts,
             updateLocalParticipants: this.updateLocalParticipants
-        })
+        });
     };
 
     showCollection = participant => {
-        this.props.navigation.navigate('Collection', {
-            participant: participant,
-            potDetail: this.state.localPot,
-            reloadPot: this.reloadPot.bind(this)
-        })
+
+        const navigationCallBack = () => {
+            this.props.navigation.navigate('Collection', {
+                participant: participant,
+                potDetail: this.state.localPot,
+                reloadPot: this.reloadPot.bind(this)
+            })
+        };
+
+        if(this.hasEditedNameOrAmount()){
+            Alert.alert(
+                'Unsaved changes',
+                'Changes may be lost without saving\nLeave anyway?',
+                [
+                    { text: "LEAVE", onPress: () => { navigationCallBack() }},
+                    { text: "STAY", onPress: () => {}, style: 'cancel' }
+                ],
+                { cancelable: false }
+            );
+        } else {
+            navigationCallBack();
+        }
     };
 
     updatePotName = name => {
