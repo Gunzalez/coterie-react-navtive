@@ -552,55 +552,64 @@ class Detail extends Component {
 
                 </View>
 
-                <View style={styles.footer}>
 
-                    <TouchableOpacity
-                        disabled={ !this.canDeletePot() || !permission}
-                        onPress={this.askToDeletePot}>
-                        <Icon
-                            name="delete"
-                            size={utils.style.icons.footer}
-                            color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
-                    </TouchableOpacity>
+                { status !== "in-progress" ? 
 
-                    <TouchableOpacity
-                        disabled={!this.canSavePotDetails() || !permission || !this.hasEditedNameOrAmount() }
-                        onPress={ this.savePotDetail}>
+                    <View style={styles.footer}>
 
-                        { this.hasEditedNameOrAmount() && this.canSavePotDetails() ?
+                        <TouchableOpacity
+                            disabled={ !this.canDeletePot() || !permission}
+                            onPress={this.askToDeletePot}>
+                            <Icon
+                                name="delete"
+                                size={utils.style.icons.footer}
+                                color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                        </TouchableOpacity>
 
-                            <View style={styles.changes}>
-                                {/* red dot */}
-                            </View>
+                        <TouchableOpacity
+                            disabled={!this.canSavePotDetails() || !permission || !this.hasEditedNameOrAmount() }
+                            onPress={ this.savePotDetail}>
 
-                            :
+                            { this.hasEditedNameOrAmount() && this.canSavePotDetails() ?
 
-                            null
-                        }
-                        <Icon
-                            name="save"
-                            size={utils.style.icons.footer}
-                            color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
-                    </TouchableOpacity>
+                                <View style={styles.changes}>
+                                    {/* red dot */}
+                                </View>
 
-                    <TouchableOpacity
-                        disabled={ !this.canShowSchedule() || !permission }
-                        onPress={this.showSchedule}>
-                        <Icon
-                            name="menufold"
-                            size={utils.style.icons.footer}
-                            color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
-                    </TouchableOpacity>
+                                :
 
-                    <TouchableOpacity
-                        disabled={!this.canAddParticipants() || !permission }
-                        onPress={this.showParticipants}>
-                        <Icon
-                            name="addusergroup"
-                            size={utils.style.icons.footer}
-                            color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
-                    </TouchableOpacity>
-                </View>
+                                null
+                            }
+                            <Icon
+                                name="save"
+                                size={utils.style.icons.footer}
+                                color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            disabled={ !this.canShowSchedule() || !permission }
+                            onPress={this.showSchedule}>
+                            <Icon
+                                name="menufold"
+                                size={utils.style.icons.footer}
+                                color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            disabled={!this.canAddParticipants() || !permission }
+                            onPress={this.showParticipants}>
+                            <Icon
+                                name="addusergroup"
+                                size={utils.style.icons.footer}
+                                color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                        </TouchableOpacity>
+                    </View>
+
+                :
+                
+                    null
+                
+                }
 
                 <Modal
                     animationType={'none'}
