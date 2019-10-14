@@ -13,9 +13,7 @@ import Collection from './Collection';
 import Schedule from './Schedule';
 
 class ParticipantsScreen extends Component {
-
     render(){
-
         return(
             <Participants navigation={this.props.navigation} />
         )
@@ -23,7 +21,6 @@ class ParticipantsScreen extends Component {
 }
 
 class ScheduleScreen extends Component {
-
     render(){
         return(
             <Schedule navigation={this.props.navigation} />
@@ -32,11 +29,8 @@ class ScheduleScreen extends Component {
 }
 
 class LandingScreen extends Component {
-
     render(){
-
         const { navigateTo, potDetail, setPotDetail, removePotFromList, addPotToList, updatePotInList } = this.props.screenProps;
-
         return(
             <Landing
                 navigation={this.props.navigation}
@@ -51,9 +45,7 @@ class LandingScreen extends Component {
 }
 
 class CollectionScreen extends Component {
-
     render(){
-
         return(
             <Collection navigation={this.props.navigation} />
         )
@@ -92,9 +84,7 @@ const PotDetailNavigator = createStackNavigator({
     mode: 'modal'
 });
 
-
 class Detail extends Component {
-
     constructor(props){
         super(props);
     }
