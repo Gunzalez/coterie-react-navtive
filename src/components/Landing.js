@@ -599,7 +599,7 @@ class Detail extends Component {
                             <TouchableOpacity
                                 onPress={this.askToClonePot}>
                             <Icon
-                                name="caretright"
+                                name="antdesign"
                                 size={40}
                                 color={ colors.white } />
                             </TouchableOpacity>
