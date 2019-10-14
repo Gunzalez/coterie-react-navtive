@@ -395,6 +395,20 @@ class Detail extends Component {
             thisRound = participants.length
         }
 
+        const colors = utils.style.colours;
+        let footerBackgroundColour = colors.purple;
+        switch(status){
+            case 'completed':
+                footerBackgroundColour = colors.grayDark;
+                break;
+            case 'created':
+                footerBackgroundColour = colors.yellow;
+                break;
+            case 'new':
+                footerBackgroundColour = colors.grayText;
+                break;
+        }
+
         const _renderContent = () => {
 
             if(participants.length < 1){
@@ -427,7 +441,7 @@ class Detail extends Component {
         return (
             <View style={[ styles.container ]}>
 
-                <View style={[styles.top, status === "completed" ? styles.completed : null, status === "created" ? styles.new : null, status === "in-progress" ? styles.running : null ]}>
+                <View style={[styles.top, { backgroundColor: footerBackgroundColour }]}>
                     <TouchableOpacity onPress={this.handlePress}>
                         <Icon
                             name="shrink"
@@ -553,9 +567,50 @@ class Detail extends Component {
                 </View>
 
 
-                { status !== "in-progress" ? 
+                { status === "completed" && 
+            
+                    <View style={[styles.footer, { backgroundColor: footerBackgroundColour }]}>
 
-                    <View style={styles.footer}>
+                            <TouchableOpacity
+                                disabled={ !this.canDeletePot() || !permission}
+                                onPress={this.askToDeletePot}>
+                                <Icon
+                                    name="delete"
+                                    size={utils.style.icons.footer}
+                                    color={ colors.white } />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                disabled={true}>
+                                <Icon
+                                    name="delete"
+                                    size={utils.style.icons.footer}
+                                    color={colors.grayDark} />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                disabled={true}>
+                                <Icon
+                                    name="delete"
+                                    size={utils.style.icons.footer}
+                                    color={colors.grayDark} />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={this.askToClonePot}>
+                            <Icon
+                                name="caretright"
+                                size={40}
+                                color={ colors.white } />
+                            </TouchableOpacity>
+
+                        </View>
+                    
+                }
+                
+                { status === "created" ? 
+
+                    <View style={[styles.footer, { backgroundColor: footerBackgroundColour }]}>
 
                         <TouchableOpacity
                             disabled={ !this.canDeletePot() || !permission}
@@ -563,7 +618,7 @@ class Detail extends Component {
                             <Icon
                                 name="delete"
                                 size={utils.style.icons.footer}
-                                color={ this.canDeletePot() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                                color={ this.canDeletePot() && permission ? colors.white : colors.grayText } />
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -583,7 +638,7 @@ class Detail extends Component {
                             <Icon
                                 name="save"
                                 size={utils.style.icons.footer}
-                                color={ this.canSavePotDetails() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                                color={ this.canSavePotDetails() && permission ? colors.white : colors.grayText } />
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -592,7 +647,7 @@ class Detail extends Component {
                             <Icon
                                 name="menufold"
                                 size={utils.style.icons.footer}
-                                color={ this.canShowSchedule() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                                color={ this.canShowSchedule() && permission ? colors.white : colors.grayText } />
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -601,7 +656,7 @@ class Detail extends Component {
                             <Icon
                                 name="addusergroup"
                                 size={utils.style.icons.footer}
-                                color={ this.canAddParticipants() && permission ? utils.style.colours.white : utils.style.colours.grayText } />
+                                color={ this.canAddParticipants() && permission ? colors.white : colors.grayText } />
                         </TouchableOpacity>
                     </View>
 
