@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/AntDesign";
 
 import MyCarousel from './Carousel';
 
@@ -90,7 +90,7 @@ class List extends Component {
                         <TouchableOpacity
                             onPress={this.goToIntroduction}>
                             <Icon
-                                name="info"
+                                name="question"
                                 size={40}
                                 color={utils.style.colours.purple} />
                         </TouchableOpacity>
