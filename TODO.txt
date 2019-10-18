@@ -21,12 +21,12 @@ Style New Pot different
 Participants count on Landing and Participants (contacts count?)
 Redo Flex layout to handle Super Retina
 Calculate current pot value
-Restart Pot ( clone/re-start )
 -
 -
 Next ToDo to do
 =================
-render/setState bug on saving Pot details
+Restart Pot ( clone/re-start )
+render/setState bug on saving Pot details ...huh?
 
 
 

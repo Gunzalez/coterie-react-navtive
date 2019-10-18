@@ -264,14 +264,42 @@ class Detail extends Component {
         );
     };
 
+    askToClonePot = () => {
+        const { name } = this.state.localPot;
+        Alert.alert(
+            'Clone this pot?',
+            'New pot with the same participants?\nClick YES to continue.',
+            [
+                { 
+                    text: "NO", 
+                    onPress: () => {}, 
+                    style: 'cancel' 
+                },
+                { 
+                    text: "YES", 
+                    onPress: () => { this.clonePot() }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
+    clonePot = () => {
+        // console.log('Clone this bitch baby yeah!')
+        console.log(this.state.localPot);
+        const { localPot: { name, participants, savingsAmount } } = this.state;
+        const newPot = { name, participants, savingsAmount }
+        newPot.id = -1;
+        newPot.status = 'new';
+        this.addNewOrUpdateExistingPot(newPot);
+    }
+
     deletePot = () => {
         this.setState({
             busy: true
-        }, ()=>{
+        }, () => {
             const { id, status } = this.state.potDetail;
-
             if ( status === "completed") {
-
                 ajax.archiveAPot(id).then( response => {
                     if(response){
                         const { removePotFromList } = this.props;
@@ -280,9 +308,7 @@ class Detail extends Component {
                         });
                     }
                 })
-
             } else {
-
                 ajax.deleteAPot(id).then( response => {
                     if(response){
                         const { removePotFromList } = this.props;
@@ -672,6 +698,7 @@ class Detail extends Component {
                     presentationStyle={'overFullScreen'}
                     visible={this.state.busy}>
                     <View style={styles.modal}>
+                        <Text>WORD</Text>
                         <ActivityIndicator
                             animating={this.state.busy}
                             color={utils.style.colours.white}

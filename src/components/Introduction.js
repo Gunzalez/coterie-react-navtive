@@ -14,6 +14,8 @@ const instructions = data.instructions;
 
 const { width } = Dimensions.get('window');
 
+console.log('Introduction');
+
 class Introduction extends Component {
 
     static propTypes = {
