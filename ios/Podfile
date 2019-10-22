@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'coterieV2' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for coterieV2
+
+  target 'coterieV2-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'coterieV2Tests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'coterieV2-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for coterieV2-tvOS
+
+  target 'coterieV2-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
